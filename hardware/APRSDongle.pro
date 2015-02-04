@@ -1,4 +1,4 @@
-update=Mon 02 Feb 2015 12:22:22 PM EST
+update=Tue Feb  3 22:36:25 2015
 version=1
 last_client=pcbnew
 [general]
@@ -53,7 +53,7 @@ EquName1=devcms
 [pcbnew]
 version=1
 LastNetListRead=APRSDongle.net
-UseCmpFile=0
+UseCmpFile=1
 PadDrill="    0.000000"
 PadDrillOvalY="    0.000000"
 PadSizeH="    6.400000"
