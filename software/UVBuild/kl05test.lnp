@@ -1,0 +1,20 @@
+--cpu Cortex-M0+
+".\uvbuild\cpu.o"
+".\uvbuild\events.o"
+".\uvbuild\pe_ldd.o"
+".\uvbuild\vectors.o"
+".\uvbuild\main.o"
+".\uvbuild\startup_arm_cc.o"
+".\uvbuild\bitioldd1.o"
+".\uvbuild\led1.o"
+".\uvbuild\ledpin1.o"
+".\uvbuild\wait1.o"
+".\uvbuild\da1.o"
+".\uvbuild\cs1.o"
+".\uvbuild\ti1.o"
+".\uvbuild\tu1.o"
+".\uvbuild\ax25.o"
+--strict --scatter ".\Project_Settings\Linker_Files\ProcessorExpert.scf"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\kl05test.map" -o .\UVBuild\kl05test.axf

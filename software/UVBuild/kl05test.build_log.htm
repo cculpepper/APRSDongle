@@ -1,0 +1,61 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.13.0.0
+Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: chris Microsoft, Microsoft, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.13.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.13.0.0
+Dialog DLL:      DARMCM1.DLL V1.12.0.0
+Target DLL:      PEMicro\Pemicro_ArmCortexInterface.dll V1.11
+Dialog DLL:      TARMCM1.DLL V1.9.0.0
+ 
+<h2>Project:</h2>
+C:\Users\Administrator\workspace\APRSDongle\software\kl05test.uvproj
+Project File Date:  02/10/2015
+
+<h2>Output:</h2>
+Rebuild target 'MKL05Z32xxx4'
+compiling Cpu.c...
+compiling Events.c...
+compiling PE_LDD.c...
+compiling Vectors.c...
+compiling main.c...
+Sources\main.c(93): warning:  #128-D: loop is not reachable
+    for(;;){}
+Sources\main.c(50): warning:  #177-D: variable "Error" was declared but never referenced
+  static LDD_TError Error;
+Sources\main.c(51): warning:  #550-D: variable "MyDacPtr" was set but never used
+  static LDD_TDeviceData *MyDacPtr;
+Sources\main.c: 3 warnings, 0 errors
+compiling startup_ARM_CC.c...
+compiling BitIoLdd1.c...
+compiling LED1.c...
+compiling LEDpin1.c...
+compiling WAIT1.c...
+compiling DA1.c...
+compiling CS1.c...
+compiling TI1.c...
+compiling TU1.c...
+compiling ax25.c...
+Generated_Code\ax25.c(39): warning:  #550-D: variable "Error" was set but never used
+        LDD_TError Error;
+Generated_Code\ax25.c(57): warning:  #177-D: variable "bitMask" was declared but never referenced
+        char bitMask = 0;
+Generated_Code\ax25.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=2284 RO-data=752 RW-data=44 ZI-data=540  
+".\UVBuild\kl05test.axf" - 0 Error(s), 5 Warning(s).
+</pre>
+</body>
+</html>
