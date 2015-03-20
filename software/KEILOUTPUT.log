@@ -1,33 +1,60 @@
-*** Note: Rebuilding project, since 'Options->Output->Create Batch File' is selected.
-Rebuild target 'MKL05Z32xxx4'
+Build target 'MKL05Z32xxx4'
 compiling Cpu.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\Cpu.c: 0 warnings, 1 error
 compiling Events.c...
+.\Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Sources\Events.c: 0 warnings, 1 error
 compiling PE_LDD.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\PE_LDD.c: 0 warnings, 1 error
 compiling Vectors.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\Vectors.c: 0 warnings, 1 error
 compiling main.c...
-Sources\main.c(93): warning:  #128-D: loop is not reachable
-    for(;;){}
-Sources\main.c(50): warning:  #177-D: variable "Error" was declared but never referenced
-  static LDD_TError Error;
-Sources\main.c(51): warning:  #550-D: variable "MyDacPtr" was set but never used
-  static LDD_TDeviceData *MyDacPtr;
-Sources\main.c: 3 warnings, 0 errors
+.\Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Sources\main.c: 0 warnings, 1 error
 compiling startup_ARM_CC.c...
 compiling BitIoLdd1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\BitIoLdd1.c: 0 warnings, 1 error
 compiling LED1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\LED1.c: 0 warnings, 1 error
 compiling LEDpin1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\LEDpin1.c: 0 warnings, 1 error
 compiling WAIT1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\WAIT1.c: 0 warnings, 1 error
 compiling DA1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\DA1.c: 0 warnings, 1 error
 compiling CS1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\CS1.c: 0 warnings, 1 error
 compiling TI1.c...
+.\Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\TI1.c: 0 warnings, 1 error
 compiling TU1.c...
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\TU1.c: 0 warnings, 1 error
 compiling ax25.c...
-Generated_Code\ax25.c(39): warning:  #550-D: variable "Error" was set but never used
-        LDD_TError Error;
-Generated_Code\ax25.c(57): warning:  #177-D: variable "bitMask" was declared but never referenced
-        char bitMask = 0;
-Generated_Code\ax25.c: 2 warnings, 0 errors
-linking...
-Program Size: Code=2284 RO-data=752 RW-data=44 ZI-data=540  
-FromELF: creating hex file...
-".\UVBuild\kl05test.axf" - 0 Error(s), 5 Warning(s).
+Generated_Code\IO_Map.h(66): error:  #5: cannot open source input file "MKL05Z4.h": No such file or directory
+  #include "MKL05Z4.h"
+Generated_Code\ax25.c: 0 warnings, 1 error
+".\UVBuild\kl05test.axf" - 14 Error(s), 0 Warning(s).
+Target not created.
