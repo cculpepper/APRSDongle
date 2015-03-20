@@ -1,138 +1,0 @@
-Dependencies for Project 'kl05test', Target 'MKL05Z32xxx4': (DO NOT MODIFY !)
-F (.\Generated_Code\Cpu.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\cpu.o --omf_browse .\uvbuild\cpu.crf --depend .\uvbuild\cpu.d)
-I (Generated_Code\LED1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Sources\Events.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\events.o --omf_browse .\uvbuild\events.crf --depend .\uvbuild\events.d)
-I (.\Generated_Code\Cpu.h)(0x5509C349)
-I (.\Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (.\Generated_Code\PE_Error.h)(0x5509C349)
-I (.\Generated_Code\PE_Const.h)(0x5509C349)
-I (.\Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\PE_LDD.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\pe_ldd.o --omf_browse .\uvbuild\pe_ldd.crf --depend .\uvbuild\pe_ldd.d)
-I (Generated_Code\PE_LDD.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\LED1.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\Vectors.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\vectors.o --omf_browse .\uvbuild\vectors.crf --depend .\uvbuild\vectors.d)
-I (Generated_Code\Cpu.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Sources\main.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\main.o --omf_browse .\uvbuild\main.crf --depend .\uvbuild\main.d)
-I (.\Generated_Code\Cpu.h)(0x5509C349)
-I (.\Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (.\Generated_Code\PE_Error.h)(0x5509C349)
-I (.\Generated_Code\PE_Const.h)(0x5509C349)
-I (.\Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Project_Settings\Startup_Code\startup_ARM_CC.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\startup_arm_cc.o --omf_browse .\uvbuild\startup_arm_cc.crf --depend .\uvbuild\startup_arm_cc.d)
-F (.\Generated_Code\BitIoLdd1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\bitioldd1.o --omf_browse .\uvbuild\bitioldd1.crf --depend .\uvbuild\bitioldd1.d)
-I (Generated_Code\BitIoLdd1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\LED1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\led1.o --omf_browse .\uvbuild\led1.crf --depend .\uvbuild\led1.d)
-I (Generated_Code\LED1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\LEDpin1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\ledpin1.o --omf_browse .\uvbuild\ledpin1.crf --depend .\uvbuild\ledpin1.d)
-I (Generated_Code\LEDpin1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\WAIT1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\wait1.o --omf_browse .\uvbuild\wait1.crf --depend .\uvbuild\wait1.d)
-I (Generated_Code\WAIT1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\DA1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\da1.o --omf_browse .\uvbuild\da1.crf --depend .\uvbuild\da1.d)
-I (Generated_Code\DA1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\CS1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\cs1.o --omf_browse .\uvbuild\cs1.crf --depend .\uvbuild\cs1.d)
-I (Generated_Code\CS1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\TI1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\ti1.o --omf_browse .\uvbuild\ti1.crf --depend .\uvbuild\ti1.d)
-I (.\Sources\Events.h)(0x5509C349)
-I (.\Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (.\Generated_Code\PE_Error.h)(0x5509C349)
-I (.\Generated_Code\PE_Const.h)(0x5509C349)
-I (.\Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\TU1.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\tu1.o --omf_browse .\uvbuild\tu1.crf --depend .\uvbuild\tu1.d)
-I (Generated_Code\TI1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\ax25.c)(0x5509C349)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis-D__UVISION_VERSION="514"-o .\uvbuild\ax25.o --omf_browse .\uvbuild\ax25.crf --depend .\uvbuild\ax25.d)
-I (Generated_Code\WAIT1.h)(0x5509C349)
-I (Generated_Code\PE_Types.h)(0x5509C349)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476B7E0)
-I (Generated_Code\PE_Error.h)(0x5509C349)
-I (Generated_Code\PE_Const.h)(0x5509C349)
-I (Generated_Code\IO_Map.h)(0x5509C349)
-F (.\Generated_Code\Cpu.h)(0x5509C349)()
-F (.\Sources\Events.h)(0x5509C349)()
-F (.\Generated_Code\IO_Map.h)(0x5509C349)()
-F (.\Generated_Code\PE_Const.h)(0x5509C349)()
-F (.\Generated_Code\PE_Error.h)(0x5509C349)()
-F (.\Generated_Code\PE_LDD.h)(0x5509C349)()
-F (.\Generated_Code\PE_Types.h)(0x5509C349)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\ADC_PDD.h)(0x00000000)()
-F (.\Generated_Code\BitIoLdd1.h)(0x5509C349)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\CMP_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\COP_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\DAC_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\DMAMUX_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\DMA_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\FTFA_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\GPIO_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\I2C_PDD.h)(0x00000000)()
-F (.\Generated_Code\LED1.h)(0x5509C349)()
-F (.\Generated_Code\LEDpin1.h)(0x5509C349)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\LPTMR_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\MCM_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles\MKL05Z4.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\PDD_Types.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\PIT_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\PORT_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\RTC_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\SIM_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\SPI_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\SysTick_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\TPM_PDD.h)(0x00000000)()
-F (C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc\UART0_PDD.h)(0x00000000)()
-F (.\Generated_Code\WAIT1.h)(0x5509C349)()
-F (.\Generated_Code\DA1.h)(0x5509C349)()
-F (.\Generated_Code\CS1.h)(0x5509C349)()
-F (.\Generated_Code\TI1.h)(0x5509C349)()
-F (.\Generated_Code\TU1.h)(0x550C749C)()
-F (.\Generated_Code\ax25.h)(0x550C749C)()
