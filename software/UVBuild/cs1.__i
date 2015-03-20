@@ -1,0 +1,6 @@
+-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc" -I "C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles" -I ".\Sources" -I ".\Generated_Code" -I ".\Generated_Code" -I ".\Project_Settings\Startup_Code" -I ".\Sources"
+-I C:\Keil_v5\ARM\RV31\INC
+-I C:\Keil_v5\ARM\CMSIS\Include
+-I C:\Keil_v5\ARM\Inc\Freescale\Kinetis
+-D__UVISION_VERSION="513"
+-o .\uvbuild\cs1.o --omf_browse .\uvbuild\cs1.crf --depend .\uvbuild\cs1.d "Generated_Code\CS1.c"

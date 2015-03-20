@@ -95,7 +95,7 @@
 /*!
 **  @addtogroup TU1_module TU1 module documentation
 **  @{
-*/         
+*/           
 
 #ifndef __TU1_H
 #define __TU1_H
