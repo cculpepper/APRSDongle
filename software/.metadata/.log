@@ -1,0 +1,48 @@
+!SESSION 2015-03-18 20:20:30.705 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_02
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.freescale.processorexpert.standalone.product -product com.freescale.processorexpert.standalone.product -product com.freescale.processorexpert.standalone.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.freescale.processorexpert.standalone.product -product com.freescale.processorexpert.standalone.product -data C:\Users\Administrator\workspace\APRSDongle\software -product com.freescale.processorexpert.standalone.product
+
+!ENTRY com.freescale.processorexpert.core 1 0 2015-03-18 20:20:42.828
+!MESSAGE Plugin com.freescale.processorexpert.core.service ProcessorExpertServiceProvider
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-03-18 20:20:43.525
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.processorexpert.core.ide.wizard.ui 2 0 2015-03-18 20:20:49.087
+!MESSAGE External elements location C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert/Config/PE/CPE/wizard_data/wizards/components does not exist
+
+!ENTRY com.processorexpert.core.ide.wizard.ui 2 0 2015-03-18 20:20:49.529
+!MESSAGE External elements location C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert/Config/PE/CPE/wizard_data/wizards/components does not exist
+!SESSION 2015-03-18 20:25:05.136 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_02
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.freescale.processorexpert.standalone.product C:\Users\Administrator\workspace\APRSDongle\software\ProcessorExpert.pe
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.freescale.processorexpert.standalone.product C:\Users\Administrator\workspace\APRSDongle\software\ProcessorExpert.pe
+
+!ENTRY com.freescale.processorexpert.core 1 0 2015-03-18 20:25:14.590
+!MESSAGE Plugin com.freescale.processorexpert.core.service ProcessorExpertServiceProvider
+
+!ENTRY com.processorexpert.core.ide.wizard.ui 2 0 2015-03-18 20:25:22.217
+!MESSAGE External elements location C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert/Config/PE/CPE/wizard_data/wizards/components does not exist
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-03-18 20:25:22.733
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.processorexpert.core.ide.wizard.ui 2 0 2015-03-18 20:25:23.108
+!MESSAGE External elements location C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert/Config/PE/CPE/wizard_data/wizards/components does not exist

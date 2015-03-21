@@ -76,7 +76,7 @@ void cwTone(char DitOrDah, LDD_TDeviceData* cwDacPtr){
 	while (CyclesLeft > 0){
 
 		Error = DA1_SetValue(cwDacPtr, CWSinusOutputData[sinIndex]);
-		WAIT1_Waitus(93);
+		WAIT1_Waitus(33);
 		/*WAIT1_Waitns(CWDELAY);*/
 		sinIndex++;
 		if (sinIndex > SINUS_LENGTH){
