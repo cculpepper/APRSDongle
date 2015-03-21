@@ -3,6 +3,7 @@
 #include "DA1.h"
 #include "ax25.h"
 #include "TI1.h"
+#include "LED1.h"
 #define CLOCKRATE 48000000
 #define AX25FUDGECYCLES 10  /*Just a number of cycles to fudge the delay closer*/ 
 #define AX25MARKFREQ 1200
@@ -19,7 +20,7 @@ volatile char*	ax25DataPtr; //points to the current byte
 volatile int 		ax25ToneDelay; //ns delay between tone changes. 1775 for the space and 3255 for mark
 volatile int 		cycleDelay;		//Numbers of cycles left to delay
 const short SinusOutputData[SINUS_LENGTH] = {
-4086U,	4056U,	4007U,	3940U,	3854U,	3750U,	3631U,	3496U,	3347U,	3185U,	3013U,	2831U,	2642U,	2447U,	2248U,	2048U,	1847U,	1648U,	1453U,	1264U,	1082U,	910U,	748U,	599U,	464U,	345U,	241U,	155U,	88U,	39U,	9U,	0U,	9U,	39U,	88U,	155U,	241U,	345U,	464U,	599U,	748U,	910U,	1082U,	1264U,	1453U,	1648U,	1847U,	2048U,	2248U,	2447U,	2642U,	2831U,	3013U,	3185U,	3347U,	3496U,	3631U,	3750U,	3854U,	3940U,	4007U,	4056U,	4086U,	4096U
+2248u, 2447u, 2642u, 2831u, 3013u, 3185u, 3347u, 3496u, 3631u, 3750u, 3854u, 3940u, 4007u, 4056u, 4086u, 4096u, 4086u, 4056u, 4007u, 3940u, 3854u, 3750u, 3631u, 3496u, 3347u, 3185u, 3013u, 2831u, 2642u, 2447u, 2248u, 2048u, 1847u, 1648u, 1453u, 1264u, 1082u, 910u, 748u, 599u, 464u, 345u, 241u, 155u, 88u, 39u, 9u, 0u, 9u, 39u, 88u, 155u, 241u, 345u, 464u, 599u, 748u, 910u, 1082u, 1264u, 1453u, 1648u, 1847u, 2048u,
 
 };
 
@@ -30,6 +31,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 	LDD_TError Error;
 	int sinIndexChange; // The number of sin indices left until a change. Janky as shit. 
 	int delayFudgeCycles; // Number of cycles to remove from the current delay. 
+	LED1_On();
 	delayFudgeCycles = 0;
 	sinIndexChange = SINUS_LENGTH;
 	ax25CurrBit = 7;
@@ -41,8 +43,10 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 		/* Then we probz cant go further, not going to worry for now. */ 
 		1+1;
 	}
-	while ((data+len) > ax25DataPtr){
+	while (1==1){//((data+len) > ax25DataPtr){
 		Error = DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);
+		/*WAIT1_WaitCycles(ax25ToneDelay-delayFudgeCycles);*/
+		/*WAIT1_Waitns(2000);*/
 		WAIT1_Waitns(ax25ToneDelay-delayFudgeCycles);
 		delayFudgeCycles = 0;
 		sinIndex++;
@@ -50,7 +54,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 			sinIndex = 0;
 		}
 		sinIndexChange--;
-		if (sinIndexChange <=0){
+		if (1==0){//(sinIndexChange <=0){
 			if(!((0x80 >> ax25CurrBit) & *ax25DataPtr)){ 
 				//We need to change the freq
 				if (ax25ToneDelay == AX25MARKDELAY){
@@ -68,7 +72,9 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 			}	
 		}
 	}
+	LED1_Off();
 	return 0;
+
 }
 char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 	//sends stuff...

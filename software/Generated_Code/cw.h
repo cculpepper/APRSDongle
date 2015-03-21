@@ -2,7 +2,6 @@
 #include "WAIT1.h"
 #include "DA1.h"
 
-#define DATA_LENGTH 10                                                  /* Output data array length */
 #define SINUS_LENGTH 64
 
 
@@ -13,8 +12,5 @@
 //extern int 	ax25ToneDelay; //ns delay between tone changes. 1775 for the space and 3255 for mark
 //static LDD_TDeviceData *ax25DacPtr;
 
-char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr);
-char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr);
-char ax25TimerIntHand(void);
-char ax25TimerInit(void);
+char cwSend(char* data, int len, LDD_TDeviceData* cwDacPtr);
 

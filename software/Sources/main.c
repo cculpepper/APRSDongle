@@ -46,6 +46,7 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "ax25.h"
+#include "cw.h"
 
 static LDD_TError Error;
 static LDD_TDeviceData *MyDacPtr;
@@ -55,13 +56,14 @@ int main(void)
 {
   /* Write your local variable definition here */
   unsigned int i;
-	char data[] = "ab1tj";
+	char data[] = "AB1TJ";
 	char* dataptr;
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 	dataptr = data;
-	ax25SendNoInt(dataptr, 5, DA1_DeviceData);
+	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
+	cwSend(dataptr, 5, DA1_DeviceData);
 	
   MyDacPtr = DA1_Init(NULL);                                            /* Initialization of DA1 component */
   for (;;) {

@@ -477,6 +477,11 @@
               <FilePath>.\Generated_Code\TU1.c</FilePath>
             </File>
             <File>
+              <FileName>cw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Generated_Code\cw.c</FilePath>
+            </File>
+            <File>
               <FileName>ax25.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Generated_Code\ax25.c</FilePath>
@@ -665,6 +670,11 @@
               <FileName>TU1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Generated_Code\TU1.h</FilePath>
+            </File>
+            <File>
+              <FileName>cw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Generated_Code\cw.h</FilePath>
             </File>
             <File>
               <FileName>ax25.h</FileName>
