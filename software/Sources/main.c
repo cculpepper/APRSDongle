@@ -61,7 +61,7 @@ int main(void)
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 	dataptr = data;
-	ax25Send(dataptr, 5, DA1_DeviceData);
+	ax25SendNoInt(dataptr, 5, DA1_DeviceData);
 	
   MyDacPtr = DA1_Init(NULL);                                            /* Initialization of DA1 component */
   for (;;) {

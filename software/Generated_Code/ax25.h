@@ -3,7 +3,7 @@
 #include "DA1.h"
 
 #define DATA_LENGTH 10                                                  /* Output data array length */
-#define SINUS_LENGTH 256
+#define SINUS_LENGTH 64
 
 
 //these need to be shared between the interrupt handler, which will change the delay (tone) and the initialization routine.
