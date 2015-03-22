@@ -76,7 +76,8 @@ void Cpu_OnNMIINT(void)
 void TI1InterruptHand(LDD_TUserData *UserDataPtr)
 {
   /* Write your code here ... */
-	ax25TimerIntHand();
+	/*ax25TimerIntHand();*/
+	return;
 }
 
 /* END Events */
