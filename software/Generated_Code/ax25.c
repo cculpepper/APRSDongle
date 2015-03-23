@@ -107,7 +107,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 	oneCount = 0;  /* This is for bitstuffing*/ 
 	/*LED1_On();*/
 	delayFudgeCycles = 0;
-	sinIndexChange = SINUS_LENGTH;
+	sinIndexChange = AX25SPACESINSEGMENTS;
 	ax25CurrBit = 7;
 	ax25DataPtr = data;
 	ax25ToneDelay = AX25SPACEDELAY; //Dont know if this is right.;
@@ -128,24 +128,11 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 		sinIndexChange--;
 		if (sinIndexChange <=0){
 			if((0x80 >> ax25CurrBit) & *ax25DataPtr){ 
-				//We need to change the freq
-				if (ax25ToneDelay == AX25MARKDELAY){
-					ax25ToneDelay = AX25SPACEDELAY;
-					sinIndexChange = AX25SPACESINSEGMENTS;
-					/*LED1_Off();*/
-					cwSend("S",1,ax25DacPtr);
-				} else {
-					ax25ToneDelay = AX25MARKDELAY;
-					sinIndexChange = AX25MARKSINSEGMENTS;
-					/*LED1_On();*/
-					cwSend("M",1,ax25DacPtr);
-				}
-				delayFudgeCycles +=8; // The above takes about 8 cycles..................
-			} else {
 				/* Then we have a 1*/ 
 				oneCount++;
-				if (oneCount > 5){
+				if (oneCount > 4){
 					/* Stuff a bit*/ 
+					oneCount = 0;
 
 					cwSend("Z",1,ax25DacPtr);
 					if (ax25ToneDelay == AX25MARKDELAY){
@@ -158,12 +145,31 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 						sinIndexChange = AX25MARKSINSEGMENTS;
 						/*LED1_On();*/
 						/*cwSend("M",1,ax25DacPtr);*/
-					}
-					delayFudgeCycles +=8; // The above takes about 8 cycles..................
+					} 
+
+					
+				} else {
+
+					ax25CurrBit --;
 					cwSend("H",1,ax25DacPtr);
 				}
+				delayFudgeCycles +=8; // The above takes about 8 cycles..................
+			} else {
+				//We need to change the freq
+				oneCount = 0;
+				cwSend("S",1,ax25DacPtr);
+				if (ax25ToneDelay == AX25MARKDELAY){
+					ax25ToneDelay = AX25SPACEDELAY;
+					sinIndexChange = AX25SPACESINSEGMENTS;
+					/*LED1_Off();*/
+				} else {
+					ax25ToneDelay = AX25MARKDELAY;
+					sinIndexChange = AX25MARKSINSEGMENTS;
+					/*LED1_On();*/
+				}
+				delayFudgeCycles +=8; // The above takes about 8 cycles..................
+				ax25CurrBit --;
 			}
-			ax25CurrBit --;
 			if (ax25CurrBit == 0){
 				//we need to inc the data ptr and set the currbit to 7
 				ax25CurrBit = 7;

@@ -63,13 +63,13 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 	dataptr = data;
 	cwSend(dataptr, 5, DA1_DeviceData);
-	ax25SendNoInt(dataptr, 5, DA1_DeviceData);
+	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
 	for (;;){
 
-	ax25SendNoInt(dataptr, 5, DA1_DeviceData);
-		ax25SendNoInt("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", 30,DA1_DeviceData);
+	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
+		ax25SendNoInt("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
 	
-	ax25SendNoInt(dataptr, 5, DA1_DeviceData);
+	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
 	}
   MyDacPtr = DA1_Init(NULL);                                            /* Initialization of DA1 component */
   for (;;) {
