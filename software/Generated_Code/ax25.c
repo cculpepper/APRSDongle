@@ -8,7 +8,7 @@
 #define AX25FUDGECYCLES 10000  /*Just a number of cycles to fudge the delay closer*/ 
 #define AX25MARKFREQ 1200
 /*#define AX25MARKDELAYNS (( 1/ AX25MARKFREQ )*( 1/SINUS_LENGTH )*1000000000)*/
-#define AX25MARKDELAY 168
+#define AX25MARKDELAY 167
 /*#define AX25MARKDELAY ( CLOCKRATE * (1 / AX25MARKFREQ) * ( 1 / SINUS_LENGTH ) - AX25FUDGECYCLES)*/
 #define AX25SPACEFREQ 2200
 #define AX25SPACEDELAY 60
@@ -113,6 +113,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 	ax25ToneDelay = AX25SPACEDELAY; //Dont know if this is right.;
 	sinIndex = 0;
 	DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);
+	
 	while ((data+len) > ax25DataPtr){
 		DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);
 		WAIT1_WaitCycles(ax25ToneDelay-delayFudgeCycles);
@@ -130,7 +131,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 			if((0x80 >> ax25CurrBit) & *ax25DataPtr){ 
 				/* Then we have a 1*/ 
 				oneCount++;
-				if (oneCount > 4){
+				if (oneCount > 5){
 					/* Stuff a bit*/ 
 					oneCount = 0;
 
@@ -151,6 +152,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 				} else {
 
 					ax25CurrBit --;
+					/*Go to the next bit, bit stuffing doesnt go to the next bit. */
 					cwSend("H",1,ax25DacPtr);
 				}
 				delayFudgeCycles +=8; // The above takes about 8 cycles..................
@@ -183,6 +185,18 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 	return 0;
 
 }
+void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* ax25DacPtr){
+	ax25DataPtr = dataPtr;
+	ax25BytesLeft = len;
+	ax25SinIndex = 0;
+	ax25CurrBit = 7;
+	ax25padding = 0;
+	ax25CRC = 0;  /* TODO more here. No idea how this works...*/ 
+	ax25CurrByte = 0x7E;  /* The flag */ 
+	ax25Sending = 1;
+	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
+	while (ax25CurrByte == 0x7E)(;)  /* Wait for the current byte to chonge.... Hacky. Sorry...*/ 
+	ax25padding = 1;
 
 /*char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
 	/*//sends stuff...*/
