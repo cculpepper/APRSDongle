@@ -77,9 +77,35 @@ void TI1InterruptHand(LDD_TUserData *UserDataPtr)
 {
   /* Write your code here ... */
 	/*ax25TimerIntHand();*/
-	return;
+	 /* This is for the sin wave*/ 
+	if (ax25Sending){
+		DA1_SetValue(ax25GlobalDacPtr, ax25SinData[ax25SinIndex++]);
+		if (ax25SinIndex >= AX25SINDATALENGTH){
+			ax25SinIndex = 0;
+		}
+	}
+
 }
 
+void TI2InterruptHand(LDD_TUserData *UserDataPtr){
+	if (ax25Sending){
+		if ((0x80 >> ax25CurrBit) & ax25CurrByte){
+			if (ax25Padding){
+				ax25OnesCount++;
+				if (ax25OnesCount > 5){
+					ax25SwitchFreq();
+					ax25OnesCount = 0;
+				}
+			}
+		} else {
+			ax25OnesCount = 0;
+			ax25SwitchFreq();
+		}
+		if (ax25CurrBit <= 0){
+			/* Then we need to move onto the next thing*/ 
+
+
+	
 /* END Events */
 
 #ifdef __cplusplus

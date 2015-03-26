@@ -188,6 +188,7 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* ax25DacPtr){
 	ax25DataPtr = dataPtr;
 	ax25BytesLeft = len;
+	ax25GlobalDacPtr = ax25DataPtr;
 	ax25SinIndex = 0;
 	ax25CurrBit = 7;
 	ax25padding = 0;
