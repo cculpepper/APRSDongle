@@ -73,7 +73,7 @@ void Cpu_OnNMIINT(void)
 **                           the parameter of Init method.
 */
 /* ===================================================================*/
-void TI1InterruptHand(LDD_TUserData *UserDataPtr)
+void TI3InterruptHand(LDD_TUserData *UserDataPtr)
 {
   /* Write your code here ... */
 	/*ax25TimerIntHand();*/
@@ -90,20 +90,33 @@ void TI1InterruptHand(LDD_TUserData *UserDataPtr)
 void TI2InterruptHand(LDD_TUserData *UserDataPtr){
 	if (ax25Sending){
 		if ((0x80 >> ax25CurrBit) & ax25CurrByte){
+			/* If a one, keep frequencies*/ 
 			if (ax25Padding){
 				ax25OnesCount++;
 				if (ax25OnesCount > 5){
 					ax25SwitchFreq();
 					ax25OnesCount = 0;
 				}
-			}
+			} 
 		} else {
 			ax25OnesCount = 0;
 			ax25SwitchFreq();
 		}
-		if (ax25CurrBit <= 0){
+		if (ax25CurrBit <= 0){ /* We check after because its easier. If the current bit is a 0
+		then weve already sent it. */ 
 			/* Then we need to move onto the next thing*/ 
-
+			ax25BytesLeft--;
+			ax25DataPtr++;
+			if (ax25BytesLeft < 0){
+				ax25Sending = 0;
+				return;  /* Nothing left ta do*/ 
+			}
+			ax25CurrBit = 7;
+		} else {
+			ax25CurrBit--;
+		}
+	}
+}
 
 	
 /* END Events */

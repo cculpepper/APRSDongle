@@ -185,10 +185,19 @@ char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){
 	return 0;
 
 }
+ LDD_TDeviceData* ax25DataPtr;
+int ax25BytesLeft;
+char* ax25GlobalDataPtr;
+int ax25SinIndex;
+signed char ax25CurrBit;
+char ax25Padding;
+char ax25CRC; /* Not sure about this*/ 
+char ax25CurrByte;
+char ax25Sending;
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* ax25DacPtr){
 	ax25DataPtr = dataPtr;
 	ax25BytesLeft = len;
-	ax25GlobalDacPtr = ax25DataPtr;
+	ax25GlobalDataPtr = ax25DataPtr;
 	ax25SinIndex = 0;
 	ax25CurrBit = 7;
 	ax25padding = 0;
@@ -196,8 +205,19 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* ax25DacPtr){
 	ax25CurrByte = 0x7E;  /* The flag */ 
 	ax25Sending = 1;
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
-	while (ax25CurrByte == 0x7E)(;)  /* Wait for the current byte to chonge.... Hacky. Sorry...*/ 
+	ax25StartSinTimer();
+	ax25StartToneTimer();
+	while (ax25CurrByte == 0x7E){;}  /* Wait for the current byte to chonge.... Hacky. Sorry...*/ 
 	ax25padding = 1;
+	while (ax25Sending == 1){;}
+	ax25StopSinTimer();
+	ax25StopToneTimer();
+}
+
+ax25StartSinTimer(){
+/* No idea what to do here*/ 
+}
+
 
 /*char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
 	/*//sends stuff...*/
