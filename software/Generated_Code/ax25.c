@@ -4,6 +4,9 @@
 #include "ax25.h"
 #include "TI1.h"
 #include "LED1.h"
+#ifdef __cplusplus
+extern "C" {
+#endif 
 /*#define CLOCKRATE 48000000*/
 /*#define AX25FUDGECYCLES 10000  [>Just a number of cycles to fudge the delay closer<] */
 /*#define AX25MARKFREQ 1200*/

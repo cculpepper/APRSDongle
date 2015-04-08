@@ -2,7 +2,9 @@
 #pragma once
 #include "WAIT1.h"
 #include "DA1.h"
-
+#ifdef __cplusplus
+extern "C" {
+#endif 
 #define DATA_LENGTH 10                                                  /* Output data array length */
 #define AX25SINDATALENGTH 64
 

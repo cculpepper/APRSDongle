@@ -29,6 +29,7 @@
 
 #include "Cpu.h"
 #include "Events.h"
+#include "LED1.h"
 #include "ax25.h"
 #ifdef __cplusplus
 extern "C" {
@@ -131,7 +132,7 @@ void PITISR(){
 		/* Then we have  */ 
 	/* This will be code to test.  */ 
 	PIT_TFLG0 = 0x80000000; /* Clear the interrupt */ 
-	LED1_Toggle();
+	LED1_Neg();
 }
 /* END Events */
 
