@@ -9,6 +9,9 @@
 #ifndef __AX25HEAD
 #define __AX25HEAD
 
+#ifdef __cplusplus
+extern "C" {
+#endif 
 //these need to be shared between the interrupt handler, which will change the delay (tone) and the initialization routine.
 
 //extern char 	ax25CurrBit; //the index of the current bit.
