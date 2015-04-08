@@ -29,6 +29,7 @@
 
 #include "Cpu.h"
 #include "Events.h"
+#include "ax25.h"
 #ifdef __cplusplus
 extern "C" {
 #endif 
@@ -79,7 +80,7 @@ void TI3InterruptHand(LDD_TUserData *UserDataPtr)
 	/*ax25TimerIntHand();*/
 	 /* This is for the sin wave*/ 
 	if (ax25Sending){
-		DA1_SetValue(ax25GlobalDacPtr, ax25SinData[ax25SinIndex++]);
+		DA1_SetValue(ax25DacPtr, ax25SinData[ax25SinIndex++]);
 		if (ax25SinIndex >= AX25SINDATALENGTH){
 			ax25SinIndex = 0;
 		}
@@ -119,6 +120,19 @@ void TI2InterruptHand(LDD_TUserData *UserDataPtr){
 }
 
 	
+void PITISR(){
+	/* ISR called by the processor. 
+	 * Need to determine which func is being used
+	 * and which function with in that function needs a call
+	 * eg, aprs has 2 pit timers. */ 
+	if (ax25Sending){
+		;
+	}
+		/* Then we have  */ 
+	/* This will be code to test.  */ 
+	PIT_TFLG0 = 0x80000000; /* Clear the interrupt */ 
+	LED1_Toggle();
+}
 /* END Events */
 
 #ifdef __cplusplus

@@ -114,17 +114,4 @@ int main(void)
 **
 ** ###################################################################
 */
-void PITISR(){
-	/* ISR called by the processor. 
-	 * Need to determine which func is being used
-	 * and which function with in that function needs a call
-	 * eg, aprs has 2 pit timers. */ 
-	if (ax25Sending){
-		/* Then we have  */ 
 
-
-
-
-void TPM0Test(){
-CWSend("A", 1, globalDacPtr);
-}
