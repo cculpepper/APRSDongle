@@ -12,7 +12,7 @@
 #define DITCYCLES ((DITTIME)*CWFREQ/1000) 
 #define DAHCYCLES (3*DITCYCLES) 
 /*#define DITCYCLES (DITTIME * CWFREQ)*/
-/*#define DAHCYCLES (DAHTIME * CWFREQ)*/
+/*#define DAHCYxCLES (DAHTIME * CWFREQ)*/
 
 
 /*const short CWSinusOutputData[SINUS_LENGTH] = {*/
