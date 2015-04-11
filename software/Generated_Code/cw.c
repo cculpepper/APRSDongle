@@ -12,7 +12,7 @@
 #define DITCYCLES ((DITTIME)*CWFREQ/1000) 
 #define DAHCYCLES (3*DITCYCLES) 
 /*#define DITCYCLES (DITTIME * CWFREQ)*/
-/*#define DAHCYCLES (DAHTIME * CWFREQ)*/
+/*#define DAHCYxCLES (DAHTIME * CWFREQ)*/
 
 
 /*const short CWSinusOutputData[SINUS_LENGTH] = {*/
@@ -141,13 +141,14 @@ void cwTone(char DitOrDah, LDD_TDeviceData* cwDacPtr){
 		CyclesLeft = DITCYCLES;
 	}
 	LED1_On();	
+	sinIndex = 0;
 	while (CyclesLeft > 0){
 
 		Error = DA1_SetValue(cwDacPtr, CWSinusOutputData[sinIndex]);
 		WAIT1_Waitus(CWDELAY);
 		/*WAIT1_Waitns(CWDELAY);*/
 		sinIndex++;
-		if (sinIndex > SINUS_LENGTH){
+		if (sinIndex >= SINUS_LENGTH){
 			sinIndex = 0;
 			CyclesLeft--;
 		}

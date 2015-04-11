@@ -29,6 +29,8 @@
 
 #include "Cpu.h"
 #include "Events.h"
+#include "LED1.h"
+#include "ax25.h"
 #ifdef __cplusplus
 extern "C" {
 #endif 
@@ -73,13 +75,65 @@ void Cpu_OnNMIINT(void)
 **                           the parameter of Init method.
 */
 /* ===================================================================*/
-void TI1InterruptHand(LDD_TUserData *UserDataPtr)
+void TI3InterruptHand(LDD_TUserData *UserDataPtr)
 {
   /* Write your code here ... */
 	/*ax25TimerIntHand();*/
-	return;
+	 /* This is for the sin wave*/ 
+	if (ax25Sending){
+		DA1_SetValue(ax25DacPtr, ax25SinData[ax25SinIndex++]);
+		if (ax25SinIndex >= AX25SINDATALENGTH){
+			ax25SinIndex = 0;
+		}
+	}
+
 }
 
+void TI2InterruptHand(LDD_TUserData *UserDataPtr){
+	if (ax25Sending){
+		if ((0x80 >> ax25CurrBit) & ax25CurrByte){
+			/* If a one, keep frequencies*/ 
+			if (ax25Padding){
+				ax25OnesCount++;
+				if (ax25OnesCount > 5){
+					ax25SwitchFreq();
+					ax25OnesCount = 0;
+				}
+			} 
+		} else {
+			ax25OnesCount = 0;
+			ax25SwitchFreq();
+		}
+		if (ax25CurrBit <= 0){ /* We check after because its easier. If the current bit is a 0
+		then weve already sent it. */ 
+			/* Then we need to move onto the next thing*/ 
+			ax25BytesLeft--;
+			ax25DataPtr++;
+			if (ax25BytesLeft < 0){
+				ax25Sending = 0;
+				return;  /* Nothing left ta do*/ 
+			}
+			ax25CurrBit = 7;
+		} else {
+			ax25CurrBit--;
+		}
+	}
+}
+
+	
+void PITISR(){
+	/* ISR called by the processor. 
+	 * Need to determine which func is being used
+	 * and which function with in that function needs a call
+	 * eg, aprs has 2 pit timers. */ 
+	if (ax25Sending){
+		;
+	}
+		/* Then we have  */ 
+	/* This will be code to test.  */ 
+	PIT_TFLG0 = 0x80000000; /* Clear the interrupt */ 
+	LED1_Neg();
+}
 /* END Events */
 
 #ifdef __cplusplus
