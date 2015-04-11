@@ -127,8 +127,8 @@ int main(void)
 		/*LED1_Neg();*/
 			/*WAIT1_Waitms(2000);*/
 
-	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
-		ax25IntSend("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
+	ax25IntSend(dataptr, 5, DA1_DeviceData);
+		//ax25IntSend("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
 	
 	cwSend(dataptr, 5, DA1_DeviceData);
 	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/

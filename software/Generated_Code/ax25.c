@@ -100,16 +100,16 @@ const short ax25SinData[AX25SINDATALENGTH] = {
 	2048u};
 
 LDD_TDeviceData* ax25DacPtr;
-int ax25BytesLeft;
-char* ax25DataPtr;
-int ax25SinIndex;
-signed char ax25CurrBit;
-char ax25Padding;
-char ax25CRC; /* Not sure about this*/ 
-signed char ax25CurrByte;
-char ax25Sending;
-uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
-char ax25OnesCount;
+volatile int ax25BytesLeft;
+volatile char* ax25DataPtr;
+volatile int ax25SinIndex;
+volatile signed char ax25CurrBit;
+volatile char ax25Padding;
+volatile char ax25CRC; /* Not sure about this*/ 
+volatile signed char ax25CurrByte;
+volatile char ax25Sending;
+volatile uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
+volatile char ax25OnesCount;
 void ax25Enable_irq (int irq)                                                                                                                                                                       
 {   
     /* Make sure that the IRQ is an allowable number. Up to 32 is 
@@ -231,6 +231,8 @@ void ax25Disable_irq (int irq)
 
 /*}*/
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
+	volatile char *locSending;
+	locSending = &ax25Sending;
 	ax25DacPtr = dacPtr;
 	ax25BytesLeft = len;
 	ax25DataPtr = dataPtr;
@@ -246,10 +248,19 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	ax25StartSinTimer();
 	ax25StartToneTimer();
 	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
-	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
+	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	ax25Padding = 1;
 	ax25Sending = 1;
-	while (ax25Sending){;}
+
+	while (1){
+		if (*locSending){
+			*locSending = *locSending;
+		} else {
+			break; 
+		}
+	}
+	PIT_LDVAL0 = 12000000; //This may fix the issues
+	PIT_LDVAL1 = 12000000; //This may fix the issues
 	ax25StopTimer();
 	cwSend("AB1TJ", 5, dacPtr);
 }
@@ -274,7 +285,7 @@ void ax25StartToneTimer(void){
 	/* starts the timer to change the tone, 1200 times a second.  */ 
 
 	PIT_MCR = 0; /* Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. */ 
-	PIT_LDVAL1 = 20000;  /* How many 24MHz ticks in 1200Hz.  */ 
+	PIT_LDVAL1 = 12000000;//20000;  /* How many 24MHz ticks in 1200Hz.  */ 
 	PIT_TCTRL1 = PIT_TCTRL_TIE_MASK;
 	PIT_TCTRL1 |= PIT_TCTRL_TEN_MASK;
 	/*PIT_TFLG1 = 0x00000001; [> clear the interrupt if one is pending.  <] */
@@ -282,6 +293,8 @@ void ax25StartToneTimer(void){
 	ax25Enable_irq(INT_PIT - 16);
 }
 void ax25StopTimer(void){
+	PIT_LDVAL0 = 12000000; //This may fix the issues
+	PIT_LDVAL1 = 12000000; //This may fix the issues
 	ax25Disable_irq(INT_PIT - 16);
 	PIT_TCTRL1 &= ~PIT_TCTRL_TIE_MASK;
 	PIT_TCTRL0 &= ~PIT_TCTRL_TIE_MASK;
