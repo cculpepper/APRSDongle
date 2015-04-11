@@ -11,6 +11,9 @@ extern "C" {
 #ifndef __AX25HEAD
 #define __AX25HEAD
 
+#ifdef __cplusplus
+extern "C" {
+#endif 
 //these need to be shared between the interrupt handler, which will change the delay (tone) and the initialization routine.
 
 //extern char 	ax25CurrBit; //the index of the current bit.
@@ -23,20 +26,21 @@ extern char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr);
 extern char ax25TimerIntHand(void);
 extern char ax25TimerInit(void);
 extern void ax25SwitchFreq(void);
-
+extern void ax25ChangeBit(void);
+extern void ax25ChangeDac(void);
 extern LDD_TDeviceData* ax25DacPtr;
-extern int ax25BytesLeft;
+extern signed int ax25BytesLeft;
 extern char* ax25DataPtr;
 extern int ax25SinIndex;
 extern signed char ax25CurrBit;
 extern char ax25Padding;
 extern char ax25CRC; /* Not sure about this*/ 
-extern char ax25CurrByte;
+extern signed char ax25CurrByte;
 extern char ax25Sending;
 extern uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
 extern char ax25OnesCount;
-#define AX25MARKDELAY 312  /* .5 */ 
-#define AX25SPACEDELAY 170  /* .45  */ 
+#define AX25MARKDELAY 260  /* .5 */ 
+#define AX25SPACEDELAY 145  /* .45  */ 
 
 
 

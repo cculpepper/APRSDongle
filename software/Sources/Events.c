@@ -75,49 +75,48 @@ void Cpu_OnNMIINT(void)
 **                           the parameter of Init method.
 */
 /* ===================================================================*/
-void TI3InterruptHand(LDD_TUserData *UserDataPtr)
+void TI1InterruptHand(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+   /*Write your code here ... */
 	/*ax25TimerIntHand();*/
-	 /* This is for the sin wave*/ 
-	if (ax25Sending){
-		DA1_SetValue(ax25DacPtr, ax25SinData[ax25SinIndex++]);
-		if (ax25SinIndex >= AX25SINDATALENGTH){
-			ax25SinIndex = 0;
-		}
-	}
+	  /*This is for the sin wave */
+	/*if (ax25Sending){*/
+		/*DA1_SetValue(ax25DacPtr, ax25SinData[ax25SinIndex++]);*/
+		/*if (ax25SinIndex >= AX25SINDATALENGTH){*/
+			/*ax25SinIndex = 0;*/
+		/*}*/
+	/*}*/
 
 }
-
 void TI2InterruptHand(LDD_TUserData *UserDataPtr){
-	if (ax25Sending){
-		if ((0x80 >> ax25CurrBit) & ax25CurrByte){
-			/* If a one, keep frequencies*/ 
-			if (ax25Padding){
-				ax25OnesCount++;
-				if (ax25OnesCount > 5){
-					ax25SwitchFreq();
-					ax25OnesCount = 0;
-				}
-			} 
-		} else {
-			ax25OnesCount = 0;
-			ax25SwitchFreq();
-		}
-		if (ax25CurrBit <= 0){ /* We check after because its easier. If the current bit is a 0
-		then weve already sent it. */ 
-			/* Then we need to move onto the next thing*/ 
-			ax25BytesLeft--;
-			ax25DataPtr++;
-			if (ax25BytesLeft < 0){
-				ax25Sending = 0;
-				return;  /* Nothing left ta do*/ 
-			}
-			ax25CurrBit = 7;
-		} else {
-			ax25CurrBit--;
-		}
-	}
+	/*if (ax25Sending){*/
+		/*if ((0x80 >> ax25CurrBit) & ax25CurrByte){*/
+			/*[> If a one, keep frequencies<] */
+			/*if (ax25Padding){*/
+				/*ax25OnesCount++;*/
+				/*if (ax25OnesCount > 5){*/
+					/*ax25SwitchFreq();*/
+					/*ax25OnesCount = 0;*/
+				/*}*/
+			/*} */
+		/*} else {*/
+			/*ax25OnesCount = 0;*/
+			/*ax25SwitchFreq();*/
+		/*}*/
+		/*if (ax25CurrBit <= 0){  We check after because its easier. If the current bit is a 0*/
+		/*then weve already sent it.  */
+			/*[> Then we need to move onto the next thing<] */
+			/*ax25BytesLeft--;*/
+			/*ax25DataPtr++;*/
+			/*if (ax25BytesLeft < 0){*/
+				/*ax25Sending = 0;*/
+				/*return;  [> Nothing left ta do<] */
+			/*}*/
+			/*ax25CurrBit = 7;*/
+		/*} else {*/
+			/*ax25CurrBit--;*/
+		/*}*/
+	/*}*/
 }
 
 	
@@ -127,12 +126,21 @@ void PITISR(){
 	 * and which function with in that function needs a call
 	 * eg, aprs has 2 pit timers. */ 
 	if (ax25Sending){
-		;
+		if (PIT_TFLG0){
+			/* Then a sin change interrupt has occured.  */ 
+			PIT_TFLG0 |= PIT_TFLG_TIF_MASK ; /* Clear the interrupt */ 
+			ax25ChangeDac();
+		}
+		if (PIT_TFLG1){
+			/* Then a bit change has occured.  */ 
+			PIT_TFLG1 |= PIT_TFLG_TIF_MASK ; /* Clear the interrupt */ 
+			ax25ChangeBit();
+		}
 	}
+			LED1_Neg();
+	
 		/* Then we have  */ 
 	/* This will be code to test.  */ 
-	PIT_TFLG0 = 0x80000000; /* Clear the interrupt */ 
-	LED1_Neg();
 }
 /* END Events */
 
