@@ -14,3 +14,5 @@ deploy: $(project).srec srec
 	echo Deploying to $(DEPLOY_VOLUME)
 	dd conv=fsync bs=64k if=./$(project).srec of=$(DEPLOY_VOLUME)/$(project).srec
 		
+clean:
+	rm ./UVBuild/*.o

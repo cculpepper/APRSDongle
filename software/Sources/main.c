@@ -48,9 +48,56 @@
 #include "ax25.h"
 #include "cw.h"
 
+#define PIT_TIE 0x40000000
+#define PIT_TEN 0x80000000
 static LDD_TError Error;
 static LDD_TDeviceData *MyDacPtr;
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
+void enable_irq (int irq)                                                                                                                                                                       
+{   
+    /* Make sure that the IRQ is an allowable number. Up to 32 is 
+     * used.
+     *
+     * NOTE: If you are using the interrupt definitions from the header
+     * file, you MUST SUBTRACT 16!!!
+     */
+    if (irq > 32) 
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+    else
+    {   
+      /* Set the ICPR and ISER registers accordingly */
+      NVIC_ICPR |= 1 << (irq%32);
+      NVIC_ISER |= 1 << (irq%32);
+    }   
+}
+/***********************************************************************/
+/*
+ * Initialize the NVIC to disable the specified IRQ.
+ * 
+ * NOTE: The function only initializes the NVIC to disable a single IRQ. 
+ * If you want to disable all interrupts, then use the DisableInterrupts
+ * macro instead. 
+ *
+ * Parameters:
+ * irq    irq number to be disabled (the irq number NOT the vector number)
+ */
+
+void disable_irq (int irq)
+{
+        
+    /* Make sure that the IRQ is an allowable number. Right now up to 32 is 
+     * used.
+     *
+     * NOTE: If you are using the interrupt definitions from the header
+     * file, you MUST SUBTRACT 16!!!
+     */
+    if (irq > 32) 
+        __asm("nop");
+       // printf("\nERR! Invalid IRQ value passed to disable irq function!\n");
+    else
+      /* Set the ICER register accordingly */
+      NVIC_ICER = 1 << (irq%32);
+}
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
@@ -61,14 +108,29 @@ int main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
+  /*LED1_On();*/
+  SIM_SCGC6 |= SIM_SCGC6_PIT_MASK;  /* Enable the PIT clock */
+	/*PIT_MCR =  0x00; //PIT_MCR_FRZ_MASK; [> Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. <] */
+	/*PIT_LDVAL0 = 2400;   [> One second, for testing purpeses.  <] */
+	/*[>PIT_TFLG0 = 0x00000001; [> clear the interrupt if one is pending.  <] <]*/
+	/*PIT_TCTRL0 = PIT_TCTRL_TIE_MASK;*/
+	/*PIT_TCTRL0 |= PIT_TCTRL_TEN_MASK;*/
+	/*[>PIT_TCTRL0 = 0xC0000000;<]*/
+	/*[>PIT_TCTRL0 |= PIT_TEN;<]*/
+	/*enable_irq(INT_PIT - 16);*/
+
 	dataptr = data;
 	cwSend(dataptr, 5, DA1_DeviceData);
-	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
+	/*ax25IntSend(dataptr, 5, DA1_DeviceData);*/
 	for (;;){
 
+		/*LED1_Neg();*/
+			/*WAIT1_Waitms(2000);*/
+
 	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
-		ax25SendNoInt("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
+		ax25IntSend("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
 	
+	cwSend(dataptr, 5, DA1_DeviceData);
 	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
 	}
   MyDacPtr = DA1_Init(NULL);                                            /* Initialization of DA1 component */

@@ -30,9 +30,9 @@ extern "C" {
 /*volatile char*	ax25DataPtr; //points to the current byte*/
 /*volatile int 		ax25ToneDelay; //ns delay between tone changes. 1775 for the space and 3255 for mark*/
 /*volatile int 		cycleDelay;		//Numbers of cycles left to delay*/
-void ax25StartSinTimer();
-void ax25StartToneTimer();
-void ax25StopTimer();
+void ax25StartSinTimer(void);
+void ax25StartToneTimer(void);
+void ax25StopTimer(void);
 const short ax25SinData[AX25SINDATALENGTH] = {
 	2248u,
 	2447u,
@@ -49,7 +49,7 @@ const short ax25SinData[AX25SINDATALENGTH] = {
 	4007u,
 	4056u,
 	4086u,
-	4096u,
+	4094u,
 	4086u,
 	4056u,
 	4007u,
@@ -98,6 +98,51 @@ const short ax25SinData[AX25SINDATALENGTH] = {
 	1648u,
 	1847u,
 	2048u};
+
+LDD_TDeviceData* ax25DacPtr;
+int ax25BytesLeft;
+char* ax25DataPtr;
+int ax25SinIndex;
+signed char ax25CurrBit;
+char ax25Padding;
+char ax25CRC; /* Not sure about this*/ 
+signed char ax25CurrByte;
+char ax25Sending;
+uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
+char ax25OnesCount;
+void ax25Enable_irq (int irq)                                                                                                                                                                       
+{   
+    /* Make sure that the IRQ is an allowable number. Up to 32 is 
+     * used.
+     *
+     * NOTE: If you are using the interrupt definitions from the header
+     * file, you MUST SUBTRACT 16!!!
+     */
+    if (irq > 32) 
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+    else
+    {   
+      /* Set the ICPR and ISER registers accordingly */
+      NVIC_ICPR |= 1 << (irq%32);
+      NVIC_ISER |= 1 << (irq%32);
+    }   
+}
+void ax25Disable_irq (int irq)
+{
+        
+    /* Make sure that the IRQ is an allowable number. Right now up to 32 is 
+     * used.
+     *
+     * NOTE: If you are using the interrupt definitions from the header
+     * file, you MUST SUBTRACT 16!!!
+     */
+    if (irq > 32) 
+        __asm("nop");
+       // printf("\nERR! Invalid IRQ value passed to disable irq function!\n");
+    else
+      /* Set the ICER register accordingly */
+      NVIC_ICER = 1 << (irq%32);
+}
 /*char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
 	/*//sends stuff...*/
 	/*int sinIndex;*/
@@ -196,49 +241,56 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	ax25CurrByte = 0x7E;  /* The flag */ 
 	ax25Sending = 1;
 	ax25OnesCount = 0;
-	ax25CurrDelay = AX25MARKDELAY;
+	ax25CurrDelay = AX25SPACEDELAY;
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
 	ax25StartToneTimer();
-	while (ax25CurrByte == 0x7E){;}  /* Wait for the current byte to chonge.... Hacky. Sorry...*/ 
+	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
+	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	ax25Padding = 1;
-	while (ax25Sending == 1){;}
+	ax25Sending = 1;
+	while (ax25Sending){;}
 	ax25StopTimer();
+	cwSend("AB1TJ", 5, dacPtr);
 }
 
 #define PIT_TIE 0x40000000
 #define PIT_TEN 0x80000000
-void ax25StartSinTimer(){
+void ax25StartSinTimer(void){
 /* No idea what to do here*/ 
 	/* Note this uses the 24 MHz bus clock */ 
-	PIT_MCR = 0x40000000; /* Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. */ 
+	PIT_MCR = 0; /* Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. */ 
 	PIT_LDVAL0 = ax25CurrDelay;   /* One second, for testing purpeses.  */ 
-	PIT_TFLG0 = 0x00000001; /* clear the interrupt if one is pending.  */ 
+	/*PIT_TFLG0 = 0x00000001; [> clear the interrupt if one is pending.  <] */
 	/*PIT_TCTRL0 = 0xC0000000*/
-	PIT_TCTRL0 = PIT_TIE;
-	PIT_TCTRL0 |= PIT_TEN;
 
+	/*PIT_MCR =  0x00; //PIT_MCR_FRZ_MASK; [> Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. <] */
+	/*PIT_LDVAL0 = 2400;   [> One second, for testing purpeses.  <] */
+	PIT_TCTRL0 = PIT_TCTRL_TIE_MASK;
+	PIT_TCTRL0 |= PIT_TCTRL_TEN_MASK;
+	ax25Enable_irq(INT_PIT - 16);
 }
-void ax25StartToneTimer(){
+void ax25StartToneTimer(void){
 	/* starts the timer to change the tone, 1200 times a second.  */ 
 
-	PIT_MCR = 0x80000000; /* Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. */ 
+	PIT_MCR = 0; /* Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. */ 
 	PIT_LDVAL1 = 20000;  /* How many 24MHz ticks in 1200Hz.  */ 
-	PIT_TFLG1 = 0x00000001; /* clear the interrupt if one is pending.  */ 
+	PIT_TCTRL1 = PIT_TCTRL_TIE_MASK;
+	PIT_TCTRL1 |= PIT_TCTRL_TEN_MASK;
+	/*PIT_TFLG1 = 0x00000001; [> clear the interrupt if one is pending.  <] */
 	/*PIT_TCTRL0 = 0xC0000000*/
-	PIT_TCTRL1 = PIT_TIE;
-
-	PIT_TCTRL1 |= PIT_TEN;
+	ax25Enable_irq(INT_PIT - 16);
 }
-void ax25StopTimer(){
-	PIT_TCTRL1 &= (~PIT_TIE); /* Disable interrupt generation */ 
-	PIT_TCTRL0 &= (~PIT_TIE);
-	PIT_TCTRL0 &= (~PIT_TEN); /* Disable the timers */ 
-	PIT_TCTRL1 &= (~PIT_TEN);
-	PIT_MCR = 0x40000000;
+void ax25StopTimer(void){
+	ax25Disable_irq(INT_PIT - 16);
+	PIT_TCTRL1 &= ~PIT_TCTRL_TIE_MASK;
+	PIT_TCTRL0 &= ~PIT_TCTRL_TIE_MASK;
+	PIT_TCTRL1 &= ~PIT_TCTRL_TEN_MASK;
+	PIT_TCTRL0 &= ~PIT_TCTRL_TEN_MASK;
+	PIT_MCR = PIT_MCR_MDIS_MASK;
 }
 
-void ax25SwitchFreq(){
+void ax25SwitchFreq(void){
 	if (ax25CurrDelay == AX25MARKDELAY){
 		ax25CurrDelay = AX25SPACEDELAY;
 	} else {
@@ -246,7 +298,47 @@ void ax25SwitchFreq(){
 	}
 }
 
+void ax25ChangeBit(void){
 
+	if ((0x80 >> ax25CurrBit) & ax25CurrByte){
+		/*[> If a one, keep frequencies<] */
+		if (ax25Padding){
+			ax25OnesCount++;
+			if (ax25OnesCount > 5){
+				ax25SwitchFreq();
+				ax25OnesCount = 0;
+			}
+		} 
+	} else {
+		ax25OnesCount = 0;
+		ax25SwitchFreq();
+	}
+	if (ax25CurrBit <= 0){  /*We check after because its easier. If we need to increment the current byte*/
+		/*then weve already sent it.  */
+		/*[> Then we need to move onto the next thing<] */
+		ax25BytesLeft--;
+		ax25CurrByte = *ax25DataPtr;
+		ax25DataPtr++;
+		if (ax25BytesLeft <= 0){
+			ax25Sending = 0;
+			/*return;  [> Nothing left ta do<] */
+		}
+		ax25CurrBit = 7;
+	} else {
+		ax25CurrBit--;
+	}
+}
+
+extern void ax25ChangeDac(void){
+   /*Write your code here ... */
+	/*ax25TimerIntHand();*/
+	/*This is for the sin wave */
+	DA1_SetValue(ax25DacPtr, ax25SinData[ax25SinIndex++]);
+	if (ax25SinIndex >= AX25SINDATALENGTH){
+		ax25SinIndex = 0;
+	}
+	PIT_LDVAL0 = ax25CurrDelay;
+}
 
 /*char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
 	/*//sends stuff...*/
