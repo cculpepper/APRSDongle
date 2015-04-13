@@ -135,9 +135,9 @@ void PITISR(){
 			/* Then a bit change has occured.  */ 
 			PIT_TFLG1 |= PIT_TFLG_TIF_MASK ; /* Clear the interrupt */ 
 			ax25ChangeBit();
-			LED1_Neg();
 		}
 	}
+			LED1_Neg();
 	
 		/* Then we have  */ 
 	/* This will be code to test.  */ 

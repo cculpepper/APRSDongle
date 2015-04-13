@@ -230,6 +230,15 @@ void ax25Disable_irq (int irq)
 	/*return 0;*/
 
 /*}*/
+char ax25GetSending(void){
+	char locSend;
+	locSend = ax25Sending;
+	if (locSend + 1 == 1){
+		return 0;
+	} else {
+		return 1;
+	}
+}
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	volatile char *locSending;
 	locSending = &ax25Sending;
@@ -250,13 +259,29 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	ax25Padding = 1;
-	ax25Sending = 1;
+	/*ax25Sending = 1;*/
 
-	while (1){
-		if (*locSending){
-			*locSending = *locSending;
-		} else {
-			break; 
+	while (ax25Sending && ax25BytesLeft > 0){
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
+		WAIT1_Waitms(100);
+		if (ax25GetSending() == 0){
+			break;
 		}
 	}
 	PIT_LDVAL0 = 12000000; //This may fix the issues
@@ -285,7 +310,8 @@ void ax25StartToneTimer(void){
 	/* starts the timer to change the tone, 1200 times a second.  */ 
 
 	PIT_MCR = 0; /* Enables the timer and allows the timer to stop in debug mode? Disables timer in debug. */ 
-	PIT_LDVAL1 = 12000000;//20000;  /* How many 24MHz ticks in 1200Hz.  */ 
+	PIT_LDVAL1 = 20000;  /* How many 24MHz ticks in 1200Hz.  */ 
+	/*PIT_LDVAL1 = 12000000;//20000;  [> How many 24MHz ticks in 1200Hz.  <] */
 	PIT_TCTRL1 = PIT_TCTRL_TIE_MASK;
 	PIT_TCTRL1 |= PIT_TCTRL_TEN_MASK;
 	/*PIT_TFLG1 = 0x00000001; [> clear the interrupt if one is pending.  <] */
