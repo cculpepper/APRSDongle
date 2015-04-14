@@ -120,7 +120,7 @@ int main(void)
 	/*enable_irq(INT_PIT - 16);*/
 
 	dataptr = data;
-	cwSend(dataptr, 5, DA1_DeviceData);
+	cwSend("HELPME",6, DA1_DeviceData);
 	/*ax25IntSend(dataptr, 5, DA1_DeviceData);*/
 	for (;;){
 

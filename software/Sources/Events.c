@@ -136,6 +136,11 @@ void PITISR(){
 			PIT_TFLG1 |= PIT_TFLG_TIF_MASK ; /* Clear the interrupt */ 
 			ax25ChangeBit();
 		}
+	} else {
+		
+			PIT_TFLG0 |= PIT_TFLG_TIF_MASK ; /* Clear the interrupt */ 
+		
+			PIT_TFLG1 |= PIT_TFLG_TIF_MASK ; /* Clear the interrupt */ 
 	}
 			LED1_Neg();
 	

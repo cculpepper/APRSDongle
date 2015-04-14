@@ -240,11 +240,11 @@ char ax25GetSending(void){
 	}
 }
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
-	volatile char *locSending;
-	locSending = &ax25Sending;
+	volatile char locSending;
 	ax25DacPtr = dacPtr;
 	ax25BytesLeft = len;
 	ax25DataPtr = dataPtr;
+	ax25CrcPoly = 0b0001000000100001;
 	ax25SinIndex = 0;
 	ax25CurrBit = 7;
 	ax25Padding = 0;
@@ -259,8 +259,14 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	ax25Padding = 1;
-	/*ax25Sending = 1;*/
-
+	ax25Sending = 1;
+	__asm {
+		loop:
+		movs r0, #ax25Sending
+		//ldrb r0, [r0,0]
+		subs r0, r0, 1 // New if r0 is zero, then we are still sending
+		beq  loop 
+	}/*
 	while (ax25Sending && ax25BytesLeft > 0){
         __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
         __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
@@ -283,11 +289,11 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 		if (ax25GetSending() == 0){
 			break;
 		}
-	}
-	PIT_LDVAL0 = 12000000; //This may fix the issues
-	PIT_LDVAL1 = 12000000; //This may fix the issues
+	}*/
+	//PIT_LDVAL0 = 12000000; //This may fix the issues
+	//PIT_LDVAL1 = 12000000; //This may fix the issues
 	ax25StopTimer();
-	cwSend("AB1TJ", 5, dacPtr);
+	cwSend("DONE", 5, dacPtr);
 }
 
 #define PIT_TIE 0x40000000
