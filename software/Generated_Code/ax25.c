@@ -230,6 +230,12 @@ void ax25Disable_irq (int irq)
 	/*return 0;*/
 
 /*}*/
+void ax25UpdateCrc(char bit){
+	ax25CRC ^= bit;
+	if (ax25CRC & 1){
+		ax25CRC = (ax25CRC >> 1) ^ 0x8408;
+	} else {
+
 char ax25GetSending(void){
 	char locSend;
 	locSend = ax25Sending;

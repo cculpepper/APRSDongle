@@ -28,13 +28,15 @@ extern char ax25TimerInit(void);
 extern void ax25SwitchFreq(void);
 extern void ax25ChangeBit(void);
 extern void ax25ChangeDac(void);
+void ax25UpdateCrc(char bit);
+
 extern LDD_TDeviceData* ax25DacPtr;
 volatile extern signed int ax25BytesLeft;
 volatile extern char* ax25DataPtr;
 volatile extern int ax25SinIndex;
 volatile extern signed char ax25CurrBit;
 volatile extern char ax25Padding;
-volatile extern char ax25CRC; /* Not sure about this*/ 
+volatile extern uint16_t ax25CRC; /* Not sure about this*/ 
 volatile extern signed char ax25CurrByte;
 volatile extern char ax25Sending;
 volatile extern uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
