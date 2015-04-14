@@ -1,5 +1,5 @@
 project=APRSDongle
-all:
+all: Sources/* Generated_Code/*
 	echo Making the program....
 	sh ./make.sh
 
@@ -10,7 +10,9 @@ srec: all
 
 
 DEPLOY_VOLUME = $(shell df -h 2>/dev/null | fgrep " 128M" | awk '{print $$6}')
-deploy: all srec
+deploy: $(project).srec srec
 	echo Deploying to $(DEPLOY_VOLUME)
 	dd conv=fsync bs=64k if=./$(project).srec of=$(DEPLOY_VOLUME)/$(project).srec
 		
+clean:
+	rm ./UVBuild/*.o

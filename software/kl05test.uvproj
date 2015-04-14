@@ -169,7 +169,7 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4105</DriverSelection>
+            <DriverSelection>4106</DriverSelection>
           </Flash1>
           <bUseTDR>0</bUseTDR>
           <Flash2>PEMicro\Pemicro_ArmCortexInterface.dll</Flash2>
@@ -360,7 +360,7 @@
             <uC99>0</uC99>
             <useXO>0</useXO>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>-c</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>"C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\pdd\inc";"C:\Freescale\PExDrv v10.4\eclipse\ProcessorExpert\lib\Kinetis\iofiles";".\Sources";".\Generated_Code";".\Generated_Code";".\Project_Settings\Startup_Code";".\Sources"</IncludePath>

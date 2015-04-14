@@ -43,7 +43,6 @@
 #include "TU1.h"
 #include "CS1.h"
 
-#include "ax25.h"
 #ifdef __cplusplus
 extern "C" {
 #endif 
@@ -84,6 +83,7 @@ void Cpu_OnNMIINT(void);
 /* ===================================================================*/
 void TI1InterruptHand(LDD_TUserData *UserDataPtr);
 
+void PITISR(void);
 /* END Events */
 
 #ifdef __cplusplus
