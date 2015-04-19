@@ -8,7 +8,7 @@
 /* Class:  CMPE 250                                                  */
 /* Section:  All sections                                            */
 /*********************************************************************/
-#include "Exercise11_C.h"
+#include "uart.h"
 
 #define FALSE      (0)
 #define TRUE       (1)

@@ -486,6 +486,21 @@
               <FileType>1</FileType>
               <FilePath>.\Generated_Code\ax25.c</FilePath>
             </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sources\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Sources\uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>uart.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Sources\uart.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

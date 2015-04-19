@@ -21,7 +21,7 @@ MIXED_ASM_C SETL   {TRUE}
             OPT    64  ;Turn on listing macro expansions
 ;****************************************************************
 ;Include files
-            GET  MKL46Z4.s     ;Included by start.s
+	;include MKL05Z4.h;
             OPT  1   ;Turn on listing
 ;****************************************************************
 ;EQUates
