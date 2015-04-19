@@ -1,5 +1,6 @@
 project=APRSDongle
-all: Sources/* Generated_Code/*
+SOURCES=$(wildcard ,/Sources/*.c) $(wildcard ./Generated_Code/*.c)  
+all: $(SOURCES)
 	echo Making the program....
 	sh ./make.sh
 
