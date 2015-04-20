@@ -120,17 +120,18 @@ int main(void)
 	/*enable_irq(INT_PIT - 16);*/
 
 	dataptr = data;
-	cwSend("HELPME",6, DA1_DeviceData);
+	cwSend("FUCKYOUUUUUU",15, DA1_DeviceData);
 	/*ax25IntSend(dataptr, 5, DA1_DeviceData);*/
 	for (;;){
 
+	cwSend("FUCKYOUUUUUU",15, DA1_DeviceData);
 		/*LED1_Neg();*/
 			/*WAIT1_Waitms(2000);*/
-ax25IntSend("WB4APR-14>APRS,RELAY*,WIDE::G3NRWVVVV:Hi Ian{001", 47,  DA1_DeviceData);
-	ax25IntSend(dataptr, 5, DA1_DeviceData);
+/*ax25IntSend("WB4APR-14>APRS,RELAY*,WIDE::G3NRWVVVV:Hi Ian{001", 47,  DA1_DeviceData);*/
+	/*ax25IntSend(dataptr, 5, DA1_DeviceData);*/
 		//ax25IntSend("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
 	
-	cwSend(dataptr, 5, DA1_DeviceData);
+	/*cwSend(dataptr, 5, DA1_DeviceData);*/
 	/*ax25SendNoInt(dataptr, 5, DA1_DeviceData);*/
 	}
   MyDacPtr = DA1_Init(NULL);                                            /* Initialization of DA1 component */
