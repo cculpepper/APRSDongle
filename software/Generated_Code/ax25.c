@@ -105,6 +105,10 @@ volatile char* ax25DataPtr;
 volatile int ax25SinIndex;
 volatile signed char ax25CurrBit;
 volatile char ax25Padding;
+<<<<<<< HEAD
+=======
+//volatile char ax25CRC; /* Not sure about this*/ 
+>>>>>>> e33802a61dcc367be35bd28abd0bcf48d6119035
 volatile signed char ax25CurrByte;
 volatile char ax25Sending;
 volatile uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
@@ -231,9 +235,12 @@ void ax25Disable_irq (int irq)
 /*}*/
 void ax25UpdateCrc(char bit){
 	ax25CRC ^= bit;
-	if (ax25CRC & 1){
+if (ax25CRC & 1){
 		ax25CRC = (ax25CRC >> 1) ^ 0x8408;
 	} else {
+		ax25CRC = ax25CRC >> 1;
+	}
+}
 
 char ax25GetSending(void){
 	char locSend;
@@ -249,11 +256,11 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	ax25DacPtr = dacPtr;
 	ax25BytesLeft = len;
 	ax25DataPtr = dataPtr;
-	ax25CrcPoly = 0b0001000000100001;
+	/*ax25CrcPoly = 0; //0b0001000000100001;*/
 	ax25SinIndex = 0;
 	ax25CurrBit = 7;
 	ax25Padding = 0;
-	ax25CRC = 0;  /* TODO more here. No idea how this works...*/ 
+	ax25CRC = 1;  /* TODO more here. No idea how this works...*/ 
 	ax25CurrByte = 0x7E;  /* The flag */ 
 	ax25Sending = 1;
 	ax25OnesCount = 0;
@@ -265,40 +272,20 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	ax25Padding = 1;
 	ax25Sending = 1;
-	__asm {
+	/*__asm {
 		loop:
 		movs r0, #ax25Sending
 		//ldrb r0, [r0,0]
 		subs r0, r0, 1 // New if r0 is zero, then we are still sending
 		beq  loop 
-	}/*
-	while (ax25Sending && ax25BytesLeft > 0){
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-        __asm("nop");//printf("\nERR! Invalid IRQ value passed to enable irq function!\n");
-		WAIT1_Waitms(100);
-		if (ax25GetSending() == 0){
-			break;
-		}
 	}*/
+	while (ax25Sending);
+	locCRC = ax25CRC;
+	ax25CurrByte = (locCRC & 0xFF00) >> 8;
 	//PIT_LDVAL0 = 12000000; //This may fix the issues
 	//PIT_LDVAL1 = 12000000; //This may fix the issues
 	ax25StopTimer();
-	cwSend("DONE", 5, dacPtr);
+	cwSend("DONE", 5, ax25DacPtr  );
 }
 
 #define PIT_TIE 0x40000000
