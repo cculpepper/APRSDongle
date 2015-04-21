@@ -1,0 +1,1022 @@
+
+
+
+ARM Macro Assembler    Page 1 CMPE 250 Lab Exercise Eleven
+
+
+    1 00000000                 TTL              CMPE 250 Lab Exercise Eleven
+    2 00000000         ;*******************************************************
+                       *********
+    3 00000000         ; Tests mixed C and assembly language programming to add
+                        128-bit
+    4 00000000         ; unsigned numbers.  Prompts user to enter two numbers i
+                       n hex
+    5 00000000         ; format to add, computes the result, and prints it.
+    6 00000000         ;Name:  R. W. Melton
+    7 00000000         ;Date:  April 20, 2015
+    8 00000000         ;Class:  CMPE-250
+    9 00000000         ;Section:  All sections
+   10 00000000         ;-------------------------------------------------------
+                       --------
+   11 00000000         ;Keil Template for KL46
+   12 00000000         ;R. W. Melton
+   13 00000000         ;February 16, 2015
+   14 00000000         ;*******************************************************
+                       *********
+   15 00000000         ;Assembler directives
+   16 00000000                 THUMB
+   17 00000000         ;-------------------------------------------------------
+                       --------
+   18 00000000                 GBLL             MIXED_ASM_C
+   19 00000000 TRUE     
+                       MIXED_ASM_C
+                               SETL             {TRUE}
+   20 00000000         ;-------------------------------------------------------
+                       --------
+   22 00000000         ;*******************************************************
+                       *********
+   23 00000000         ;Include files
+   24 00000000         ;include MKL05Z4.h;
+   26 00000000         ;*******************************************************
+                       *********
+   27 00000000         ;EQUates
+   28 00000000 0000004F 
+                       MAX_STRING
+                               EQU              79
+   29 00000000         ;Characters
+   30 00000000 00000008 
+                       BS      EQU              0x08
+   31 00000000 0000000D 
+                       CR      EQU              0x0D
+   32 00000000 0000000A 
+                       LF      EQU              0x0A
+   33 00000000 00000000 
+                       NULL    EQU              0x00
+   34 00000000         ;-------------------------------------------------------
+                       --------
+   35 00000000         ; Queue management record field offsets
+   36 00000000 00000000 
+                       IN_PTR  EQU              0
+   37 00000000 00000004 
+                       OUT_PTR EQU              4
+   38 00000000 00000008 
+                       BUF_STRT
+                               EQU              8
+   39 00000000 0000000C 
+
+
+
+ARM Macro Assembler    Page 2 CMPE 250 Lab Exercise Eleven
+
+
+                       BUF_PAST
+                               EQU              12
+   40 00000000 00000010 
+                       BUF_SIZE
+                               EQU              16
+   41 00000000 00000011 
+                       NUM_ENQD
+                               EQU              17
+   42 00000000         ; Queue structure sizes
+   43 00000000 00000004 
+                       Q_BUF_SZ
+                               EQU              4           ;Queue contents
+   44 00000000 00000050 
+                       XQ_BUF_SZ
+                               EQU              80          ;Xmit queue content
+                                                            s
+   45 00000000 00000012 
+                       Q_REC_SZ
+                               EQU              18          ;Queue management r
+                                                            ecord
+   46 00000000         ; Queue delimiters for printed output
+   47 00000000 0000003E 
+                       Q_BEGIN_CH
+                               EQU              '>'
+   48 00000000 0000003C 
+                       Q_END_CH
+                               EQU              '<'
+   49 00000000         ;-------------------------------------------------------
+                       --------
+   50 00000000         ;PORTx_PCRn (Port x pin control register n [for pin n])
+   51 00000000         ;___->10-08:Pin mux control (select 0 to 8)
+   52 00000000 00000300 
+                       PORT_PCR_PIN_MUX_SELECT_3
+                               EQU              0x00000300
+   53 00000000         ;-------------------------------------------------------
+                       --------
+   54 00000000         ;Port E
+   55 00000000         ;-------------------------------------------------------
+                       --------
+   56 00000000         ;UARTx_C1
+   57 00000000         ;0-->7:LOOPS=loops select (normal)
+   58 00000000         ;0-->6:UARTSWAI=UART stop in wait mode (disabled)
+   59 00000000         ;0-->5:RSRC=receiver source select (internal--no effect 
+                       LOOPS=0)
+   60 00000000         ;0-->4:M=9- or 8-bit mode select (1 start, 8 data [lsb f
+                       irst], 1 stop)
+   61 00000000         ;0-->3:WAKE=receiver wakeup method select (idle)
+   62 00000000         ;0-->2:IDLE=idle line type select (idle begins after sta
+                       rt bit)
+   63 00000000         ;0-->1:PE=parity enable (disabled)
+   64 00000000         ;0-->0:PT=parity type (even parity--no effect PE=0)
+   65 00000000 00000000 
+                       UART_C1_8N1
+                               EQU              0x00
+   66 00000000         ;-------------------------------------------------------
+                       --------
+   67 00000000         ;UARTx_C2
+   68 00000000         ;0-->7:TIE=transmit IE for TDRE (disabled)
+   69 00000000         ;0-->6:TCIE=trasmission complete IE for TC (disabled)
+
+
+
+ARM Macro Assembler    Page 3 CMPE 250 Lab Exercise Eleven
+
+
+   70 00000000         ;0-->5:RIE=receiver IE for RDRF (disabled)
+   71 00000000         ;0-->4:ILIE=idle line IE for IDLE (disabled)
+   72 00000000         ;1-->3:TE=transmitter enable (enabled)
+   73 00000000         ;1-->2:RE=receiver enable (enabled)
+   74 00000000         ;0-->1:RWU=receiver wakeup control (normal)
+   75 00000000         ;0-->0:SBK=send break (disabled, normal)
+   76 00000000         ;UART_C2_T_R    EQU  (UART_C2_TE_MASK :OR: UART_C2_RE_MA
+                       SK)
+   77 00000000         ;UART_C2_T_RI   EQU  (UART_C2_RIE_MASK :OR: UART_C2_T_R)
+                       
+   78 00000000         ;UART_C2_TI_RI  EQU  (UART_C2_TIE_MASK :OR: UART_C2_T_RI
+                       )
+   79 00000000         ;-------------------------------------------------------
+                       --------
+   80 00000000         ;UARTx_C3
+   81 00000000         ;0-->7:R8=9th data bit for receiver (not used M=0)
+   82 00000000         ;0-->6:T8=9th data bit for transmitter (not used M=0)
+   83 00000000         ;0-->5:TXDIR=TxD pin direction in single-wire mode (no e
+                       ffect LOOPS=0)
+   84 00000000         ;0-->4:TXINV=transmit data inversion (not invereted)
+   85 00000000         ;0-->3:ORIE=overrun IE for OR (disabled)
+   86 00000000         ;0-->2:NEIE=noise error IE for NF (disabled)
+   87 00000000         ;0-->1:FEIE=framing error IE for FE (disabled)
+   88 00000000         ;0-->0:PEIE=parity error IE for PF (disabled)
+   89 00000000 00000000 
+                       UART_C3_NO_TXINV
+                               EQU              0x00
+   90 00000000         ;-------------------------------------------------------
+                       --------
+   91 00000000         ;UARTx_C4
+   92 00000000         ;0-->  7:TDMAS=transmitter DMA select (disabled)
+   93 00000000         ;0-->  6:Reserved; read-only; always 0
+   94 00000000         ;0-->  5:RDMAS=receiver full DMA select (disabled)
+   95 00000000         ;0-->  4:Reserved; read-only; always 0
+   96 00000000         ;0-->  3:Reserved; read-only; always 0
+   97 00000000         ;0-->2-0:Reserved; read-only; always 0
+   98 00000000 00000000 
+                       UART_C4_NO_DMA
+                               EQU              0x00
+   99 00000000         ;-------------------------------------------------------
+                       --------
+  100 00000000         ;UARTx_S2
+  101 00000000         ;0-->7:LBKDIF=LIN break detect interrupt flag
+  102 00000000         ;0-->6:RXEDGIF=RxD pin active edge interrupt flag
+  103 00000000         ;0-->5:(reserved);read-only; always 0
+  104 00000000         ;0-->4:RXINV=receive data inversion (disabled)
+  105 00000000         ;0-->3:RWUID=receive wake-up idle detect
+  106 00000000         ;0-->2:BRK13=break character generation length (10)
+  107 00000000         ;0-->1:LBKDE=LIN break detect enable (disabled)
+  108 00000000         ;0-->0:RAF=receiver active flag
+  109 00000000 00000000 
+                       UART_S2_NO_RXINV_BRK10_NO_LBKDETECT
+                               EQU              0x00
+  110 00000000         ;-------------------------------------------------------
+                       --------
+  111 00000000 00000003 
+                       UART0_IRQ_PRI
+                               EQU              3           ;lowest priority
+  112 00000000         ;*******************************************************
+
+
+
+ARM Macro Assembler    Page 4 CMPE 250 Lab Exercise Eleven
+
+
+                       *********
+  113 00000000         ; Macros
+  114 00000000                 MACRO
+  115 00000000                 MOVC             $Value
+  116 00000000         ;--------------------------
+  117 00000000         ;Puts $Value in C bit of PSR
+  118 00000000                 PUSH             {R0}
+  119 00000000                 MOVS             R0,$Value
+  120 00000000                 LSRS             R0,R0,#1
+  121 00000000                 POP              {R0}
+  122 00000000         ;--------------------------
+  123 00000000                 MEND
+  124 00000000         ;*******************************************************
+                       *********
+  125 00000000         ;Program
+  126 00000000         ;Linker requires Reset_Handler
+  127 00000000                 AREA             MyCode,CODE,READONLY
+  128 00000000         ;>>>>> begin subroutine code <<<<<
+  129 00000000         ;-------------------------------------------------------
+                       --------
+  130 00000000                 EXPORT           AddIntMultiU
+  131 00000000         AddIntMultiU
+  132 00000000         ;*******************************************************
+                       ***************
+  133 00000000         ;Adds two 128-bit unsigned numbers:  Sum = Augend + Adde
+                       nd
+  134 00000000         ;If result overflows, returns 1; otherwie returns 0.
+  135 00000000         ;Input:   R0: Address of Sum
+  136 00000000         ;         R1: Address of Augend
+  137 00000000         ;         R2: Address of Addend
+  138 00000000         ;         R3: Number of words in each number
+  139 00000000         ;Output:  R0: Error result
+  140 00000000         ;Modify:  R0, PSR
+  141 00000000         ;Usage:   R4: Auguend word; Sum word
+  142 00000000         ;         R5: Addend word
+  143 00000000         ;         R6: Temp
+  144 00000000         ;*******************************************************
+                       ***************
+  145 00000000         ;Save registers
+  146 00000000 B47E            PUSH             {R1-R6}     ;save used register
+                                                            s
+  147 00000002                 MOVC             #0          ;clear initial carr
+                                                            y
+  116 00000002         ;--------------------------
+  117 00000002         ;Puts $Value in C bit of PSR
+  118 00000002 B401            PUSH             {R0}
+  119 00000004 2000            MOVS             R0,#0
+  120 00000006 0840            LSRS             R0,R0,#1
+  121 00000008 BC01            POP              {R0}
+  122 0000000A         ;--------------------------
+  148 0000000A F3EF 8600       MRS              R6,APSR     ;preserve condition
+                                                             flags
+  149 0000000E         AddIntMultiULoop                     ;do {
+  150 0000000E F386 8800       MSR              APSR,R6     ;  restore conditio
+                                                            n flags
+  151 00000012 C910            LDM              R1!,{R4}    ;  get next augend 
+                                                            word
+  152 00000014 CA20            LDM              R2!,{R5}    ;  get next addend 
+                                                            word
+
+
+
+ARM Macro Assembler    Page 5 CMPE 250 Lab Exercise Eleven
+
+
+  153 00000016 416C            ADCS             R4,R4,R5    ;  add for next sum
+                                                             word
+  154 00000018 C010            STM              R0!,{R4}    ;  store result
+  155 0000001A F3EF 8600       MRS              R6,APSR     ;  preserve conditi
+                                                            on flags
+  156 0000001E 1E5B            SUBS             R3,R3,#1    ;} while (LoopCount
+                                                            er-- > 0)
+  157 00000020 D8F5            BHI              AddIntMultiULoop
+  158 00000022 F386 8800       MSR              APSR,R6     ;restore condition 
+                                                            flags
+  159 00000026 D201            BCS              AddIntMultiUOver ;if (C clear)
+  160 00000028 2000            MOVS             R0,#0       ;  Report no error
+  161 0000002A E000            B                AddIntMultiUDone
+  162 0000002C         AddIntMultiUOver                     ;else (C set)
+  163 0000002C 2001            MOVS             R0,#1       ;  Report overflow
+  164 0000002E         AddIntMultiUDone
+  165 0000002E BC7E            POP              {R1-R6}     ;restore registers
+  166 00000030 4770            BX               LR          ;return
+  167 00000032         ;-------------------------------------------------------
+                       --------
+  168 00000032         Dequeue
+  169 00000032         ;*******************************************************
+                       ***************
+  170 00000032         ; Dequeues a character to R0 from queue referenced by R1
+                       .
+  171 00000032         ; Sets/clears CCR bit C to reflect failure/success of de
+                       queue.
+  172 00000032         ; Input:   R1: Address of queue management record struct
+                       ure
+  173 00000032         ; Output:  R0: Character dequeued
+  174 00000032         ;          PSR.C = (Boolean) Failure
+  175 00000032         ; Modify:  R0, PSR
+  176 00000032         ;*******************************************************
+                       ***************
+  177 00000032         ;Save registers
+  178 00000032 B40C            PUSH             {R2-R3}
+  179 00000034         ;Dequeue
+  180 00000034 7C4A            LDRB             R2,[R1,#NUM_ENQD] 
+                                                            ;check queue count
+  181 00000036 2A00            CMP              R2,#0       ;if (queue not empt
+                                                            y) {
+  182 00000038 D00C            BEQ              DequeueFail
+  183 0000003A 684B            LDR              R3,[R1,#OUT_PTR] ;  get address
+                                                             of character
+  184 0000003C 7818            LDRB             R0,[R3,#0]  ;  dequeue characte
+                                                            r
+  185 0000003E 1C5B            ADDS             R3,R3,#1    ;  OutPointer++
+  186 00000040 1E52            SUBS             R2,R2,#1    ;  NumberEnqueued--
+                                                            
+  187 00000042 744A            STRB             R2,[R1,#NUM_ENQD]
+  188 00000044 68CA            LDR              R2,[R1,#BUF_PAST] ;  if (OutPoi
+                                                            nter past buffer) {
+                                                            
+  189 00000046 4293            CMP              R3,R2
+  190 00000048 D300            BLO              DequeueOutPtr
+  191 0000004A 688B            LDR              R3,[R1,#BUF_STRT] ;    adjust t
+                                                            o start of buffer
+  192 0000004C         DequeueOutPtr                        ;  }end if (OutPoin
+                                                            ter)
+
+
+
+ARM Macro Assembler    Page 6 CMPE 250 Lab Exercise Eleven
+
+
+  193 0000004C 604B            STR              R3,[R1,#OUT_PTR] ;  store updat
+                                                            ed OutPointer
+  194 0000004E 2200            MOVS             R2,#0       ;  clear C flag (re
+                                                            port successful)
+  195 00000050 0852            LSRS             R2,R2,#1
+  196 00000052 E001            B                DequeueDone ;}end if (queue)
+  197 00000054         DequeueFail                          ;else { ;nothing to
+                                                             dequeue
+  198 00000054 2201            MOVS             R2,#1       ;  set C flag (repo
+                                                            rt failure)
+  199 00000056 0852            LSRS             R2,R2,#1    ;}end else
+  200 00000058         DequeueDone
+  201 00000058         ;Restore registers
+  202 00000058 BC0C            POP              {R2-R3}
+  203 0000005A 4770            BX               LR
+  204 0000005C         ;-------------------------------------------------------
+                       --------
+  205 0000005C         Enqueue
+  206 0000005C         ;*******************************************************
+                       ***************
+  207 0000005C         ; Enqueue character from R0.
+  208 0000005C         ; Sets/clears CCR bit C to reflect failure/success of de
+                       queue.
+  209 0000005C         ; Input:   R0: Character to enqueue
+  210 0000005C         ;          R1: Address of queue management record struct
+                       ure
+  211 0000005C         ; Output:  CCR.C = (Boolean) Failure
+  212 0000005C         ; Modify:  CCR
+  213 0000005C         ;*******************************************************
+                       ***************
+  214 0000005C         ;Save registers
+  215 0000005C B40C            PUSH             {R2-R3}
+  216 0000005E         ;Enqueue
+  217 0000005E 7C4A            LDRB             R2,[R1,#NUM_ENQD] 
+                                                            ;check queue count
+  218 00000060 7C0B            LDRB             R3,[R1,#BUF_SIZE] ;against queu
+                                                            e capacity
+  219 00000062 429A            CMP              R2,R3       ;if queue not full
+  220 00000064 D20C            BHS              EnqueueFail
+  221 00000066 680B            LDR              R3,[R1,#IN_PTR] ;  address for 
+                                                            character
+  222 00000068 7018            STRB             R0,[R3,#0]  ;  enqueue characte
+                                                            r
+  223 0000006A 1C5B            ADDS             R3,R3,#1    ;  InPointer++
+  224 0000006C 1C52            ADDS             R2,R2,#1    ;  NumberEnqueued++
+                                                            
+  225 0000006E 744A            STRB             R2,[R1,#NUM_ENQD]
+  226 00000070 68CA            LDR              R2,[R1,#BUF_PAST] ;  if (InPoin
+                                                            ter past buffer) {
+  227 00000072 4293            CMP              R3,R2
+  228 00000074 D300            BLO              EnqueueInPtr
+  229 00000076 688B            LDR              R3,[R1,#BUF_STRT] ;    adjust t
+                                                            o start of buffer
+  230 00000078         EnqueueInPtr                         ;  }end if (InPoint
+                                                            er)
+  231 00000078 600B            STR              R3,[R1,#IN_PTR] ;  store update
+                                                            d InPointer
+  232 0000007A 2200            MOVS             R2,#0       ;  clear C flag (re
+                                                            port successful)
+
+
+
+ARM Macro Assembler    Page 7 CMPE 250 Lab Exercise Eleven
+
+
+  233 0000007C 0852            LSRS             R2,R2,#1
+  234 0000007E E001            B                EnqueueDone ;}end if (queue)
+  235 00000080         EnqueueFail                          ;else {;no room in 
+                                                            queue
+  236 00000080 2201            MOVS             R2,#1       ;  set C flag (repo
+                                                            rt failure)
+  237 00000082 0852            LSRS             R2,R2,#1    ;}end else
+  238 00000084         EnqueueDone
+  239 00000084         ;Restore registers
+  240 00000084 BC0C            POP              {R2-R3}
+  241 00000086 4770            BX               LR
+  242 00000088         ;-------------------------------------------------------
+                       --------
+  243 00000088         GetChar
+  244 00000088         ;*******************************************************
+                       ***************
+  245 00000088         ;Gets a character from receive queue buffer
+  246 00000088         ;Calls:  Dequeue
+  247 00000088         ;Output:  R0: Character received from queue buffer
+  248 00000088         ;Modifies:  R0, PSR
+  249 00000088         ;*******************************************************
+                       ***************
+  250 00000088 B502            PUSH             {R1,LR}     ;save temporary reg
+                                                            ister
+  251 0000008A 4944            LDR              R1,=RxQRecord ;setup dequeue pa
+                                                            rameter
+  252 0000008C         GetCharWait                          ;repeat {
+  253 0000008C B672            CPSID            I           ;  mask interrupts
+  254 0000008E F7FF FFD0       BL               Dequeue     ;  attempt dequeue
+  255 00000092 B662            CPSIE            I           ;  unmask interrupt
+                                                            s
+  256 00000094 D2FA            BCS              GetCharWait ;} until dequeue su
+                                                            ccessful
+  257 00000096 BD02            POP              {R1,PC}     ;restore temporary 
+                                                            register
+  258 00000098         ;-------------------------------------------------------
+                       --------
+  259 00000098                 EXPORT           GetString
+  260 00000098         GetString
+  261 00000098         ;*******************************************************
+                       ***************
+  262 00000098         ;Receives each character in string from UART0 and adds N
+                       ULL 
+  263 00000098         ;termination.  Input of CR (from pressing "Enter" key) t
+                       erminates
+  264 00000098         ;input.  Handles backspace (BS) control code, but all ot
+                       her control 
+  265 00000098         ;codes are ignored.
+  266 00000098         ;Calls:  GetChar
+  267 00000098         ;        PutChar
+  268 00000098         ;EQUate:  MAX_STRING (assumed >= 1)
+  269 00000098         ;Input:  R0: Address of string to transmit
+  270 00000098         ;Modifies:  PSR
+  271 00000098         ;*******************************************************
+                       ***************
+  272 00000098 B50F            PUSH             {R0-R3,LR}  ;save registers mod
+                                                            ified
+  273 0000009A 4601            MOV              R1,R0       ;base address of st
+                                                            ring
+
+
+
+ARM Macro Assembler    Page 8 CMPE 250 Lab Exercise Eleven
+
+
+  274 0000009C 2200            MOVS             R2,#0       ;character count
+  275 0000009E 234E            MOVS             R3,#(MAX_STRING - 1) 
+                                                            ;maximum characters
+                                                            
+  276 000000A0 D00F            BEQ              GetStringFull ;while (space for
+                                                             a character) {
+  277 000000A2         GetStringChar
+  278 000000A2 F7FF FFF1       BL               GetChar     ;  receive characte
+                                                            r
+  279 000000A6 2808            CMP              R0,#BS      ;  if backspace
+  280 000000A8 D019            BEQ              GetStringBS ;    evaluate posit
+                                                            ion
+  281 000000AA 280D            CMP              R0,#CR      ;  elseif CR
+  282 000000AC D00F            BEQ              GetStringDone ;    done
+  283 000000AE 2820            CMP              R0,#' '     ;  elseif other con
+                                                            trol character
+  284 000000B0 D3F7            BLO              GetStringChar ;    ignore
+  285 000000B2 287F            CMP              R0,#0x7F
+  286 000000B4 D8F5            BHI              GetStringChar ;  else {
+  287 000000B6 F000 F82C       BL               PutChar     ;    echo character
+                                                            
+  288 000000BA 5488            STRB             R0,[R1,R2]  ;    store in strin
+                                                            g
+  289 000000BC 1C52            ADDS             R2,R2,#1    ;    character coun
+                                                            t ++
+  290 000000BE 429A            CMP              R2,R3       ;  }end else
+  291 000000C0 D3EF            BLO              GetStringChar ;}end while (spac
+                                                            e for a character)
+  292 000000C2         GetStringFull                        ;repeat {
+  293 000000C2 F7FF FFE1       BL               GetChar     ;  receive characte
+                                                            r
+  294 000000C6 2808            CMP              R0,#BS      ;  if backspace
+  295 000000C8 D009            BEQ              GetStringBS ;    evaluate posit
+                                                            ion            
+  296 000000CA 280D            CMP              R0,#CR
+  297 000000CC D1F9            BNE              GetStringFull ;} until CR recei
+                                                            ved
+  298 000000CE         GetStringDone
+  299 000000CE F000 F820       BL               PutChar     ;echo CR
+  300 000000D2 200A            MOVS             R0,#LF      ;print LF
+  301 000000D4 F000 F81D       BL               PutChar
+  302 000000D8 2000            MOVS             R0,#NULL    ;terminate with NUL
+                                                            L
+  303 000000DA 5488            STRB             R0,[R1,R2]
+  304 000000DC BD0F            POP              {R0-R3,PC}  ;restore modified r
+                                                            egisters and return
+                                                            
+  305 000000DE 2A00    GetStringBS
+                               CMP              R2,#0       ;if (not at start o
+                                                            f string) {
+  306 000000E0 D0DF            BEQ              GetStringChar
+  307 000000E2 F000 F816       BL               PutChar     ;  echo backspace
+  308 000000E6 1E52            SUBS             R2,R2,#1    ;  character count 
+                                                             --
+  309 000000E8 2020            MOVS             R0,#' '     ;  overwrite with s
+                                                            pace
+  310 000000EA F000 F812       BL               PutChar
+  311 000000EE 2008            MOVS             R0,#BS      ;  back space
+  312 000000F0 F000 F80F       BL               PutChar
+
+
+
+ARM Macro Assembler    Page 9 CMPE 250 Lab Exercise Eleven
+
+
+  313 000000F4 E7D5            B                GetStringChar ;}end if and resu
+                                                            me while
+  314 000000F6         ;-------------------------------------------------------
+                       --------
+  315 000000F6         Init_Queue
+  316 000000F6         ;*******************************************************
+                       ***************
+  317 000000F6         ; Initializes FIFO queue management record structure whe
+                       re R1 points
+  318 000000F6         ; for byte queue buffer where R0 points and whose size i
+                       s in R2.
+  319 000000F6         ; Input:  None
+  320 000000F6         ; Output:  None
+  321 000000F6         ; Modifies:  PSR
+  322 000000F6         ;*******************************************************
+                       ***************
+  323 000000F6 B401            PUSH             {R0}
+  324 000000F8 6008            STR              R0,[R1,#IN_PTR]
+  325 000000FA 6048            STR              R0,[R1,#OUT_PTR]
+  326 000000FC 6088            STR              R0,[R1,#BUF_STRT]
+  327 000000FE 1880            ADDS             R0,R0,R2
+  328 00000100 60C8            STR              R0,[R1,#BUF_PAST]
+  329 00000102 740A            STRB             R2,[R1,#BUF_SIZE]
+  330 00000104 2000            MOVS             R0,#0
+  331 00000106 7448            STRB             R0,[R1,#NUM_ENQD]
+  332 00000108 BC01            POP              {R0}
+  333 0000010A 4770            BX               LR
+  334 0000010C         ;-------------------------------------------------------
+                       --------
+  335 0000010C         Init_UART0
+  336 0000010C         ;*******************************************************
+                       ***************
+  337 0000010C         ; Initializes UART0 for 9600 baud and 8N1 format
+  338 0000010C         ; Input:  None
+  339 0000010C         ; Output:  None
+  340 0000010C         ; Modifies:  PSR
+  341 0000010C         ;*******************************************************
+                       ***************
+  342 0000010C         ;Initialize UART0
+  343 0000010C         ;Preserve registers used
+  344 0000010C B407            PUSH             {R0-R2}
+  345 0000010E         ;           ;Set UART0 for external connection
+  346 0000010E         ;           LDR     R0,=SIM_SOPT5
+  347 0000010E         ;           LDR     R1,=SIM_SOPT5_UART0_EXTERN_MASK_CLEA
+                       R
+  348 0000010E         ;           LDR     R2,[R0,#0]
+  349 0000010E         ;           BICS    R2,R2,R1
+  350 0000010E         ;           STR     R2,[R0,#0]
+  351 0000010E         ;           ;Enable UART0 module clock
+  352 0000010E         ;           LDR     R0,=SIM_SCGC4
+  353 0000010E         ;           LDR     R1,=SIM_SCGC4_UART0CGC_MASK
+  354 0000010E         ;           LDR     R2,[R0,#0]
+  355 0000010E         ;           ORRS    R2,R2,R1
+  356 0000010E         ;           STR     R2,[R0,#0]
+  357 0000010E         ;           ;Enable PORT E module clock
+  358 0000010E         ;     ; CHECK THIS
+  359 0000010E         ;           LDR     R0,=SIM_SCGC5
+  360 0000010E         ;           LDR     R1,=SIM_SCGC5_PORTECGC_MASK
+  361 0000010E         ;           LDR     R2,[R0,#0]
+
+
+
+ARM Macro Assembler    Page 10 CMPE 250 Lab Exercise Eleven
+
+
+  362 0000010E         ;           ORRS    R2,R2,R1
+  363 0000010E         ;           STR     R2,[R0,#0]
+  364 0000010E         ;           ;Select PORT E Pin 1 (J2 Pin 20) for UART0 R
+                       X
+  365 0000010E         ;           LDR     R0,=PORTE_PCR1
+  366 0000010E         ;           LDR     R1,=PORT_PCR_SET_PTE1_UART0_RX
+  367 0000010E         ;           STR     R1,[R0,#0]
+  368 0000010E         ;           ;Select PORT E Pin 0 (J2 Pin 18) for UART0 T
+                       X
+  369 0000010E         ;           LDR     R0,=PORTE_PCR0
+  370 0000010E         ;           LDR     R1,=PORT_PCR_SET_PTE0_UART0_TX
+  371 0000010E         ;           STR     R1,[R0,#0]
+  372 0000010E         ;     ;THROUGH THIS.
+  373 0000010E         
+  374 0000010E         ;           ;Set for 9600 baud from 96MHz PLL clock
+  375 0000010E         ;           LDR     R0,=UART0_BASE
+  376 0000010E         ;           MOVS    R1,#UART_BDH_38400
+  377 0000010E         ;           STRB    R1,[R0,#UART_BDH_OFFSET]
+  378 0000010E         ;           MOVS    R1,#UART_BDL_38400
+  379 0000010E         ;           STRB    R1,[R0,#UART_BDL_OFFSET]
+  380 0000010E         ;           MOVS    R1,#UART_C1_8N1
+  381 0000010E         ;           STRB    R1,[R0,#UART_C1_OFFSET]
+  382 0000010E         ;           MOVS    R1,#UART_C3_NO_TXINV
+  383 0000010E         ;           STRB    R1,[R0,#UART_C3_OFFSET]
+  384 0000010E         ;           MOVS    R1,#UART_C4_NO_DMA
+  385 0000010E         ;           STRB    R1,[R0,#UART_C4_OFFSET]
+  386 0000010E         ;           MOVS    R1,#UART_S2_NO_RXINV_BRK10_NO_LBKDET
+                       ECT
+  387 0000010E         ;           STRB    R1,[R0,#UART_S2_OFFSET]
+  388 0000010E         ;           MOVS    R1,#UART_C2_T_RI
+  389 0000010E         ;           STRB    R1,[R0,#UART_C2_OFFSET]
+  390 0000010E         ;           ;Restore registers used
+  391 0000010E BC07            POP              {R0-R2}
+  392 00000110 4770            BX               LR
+  393 00000112         ;-------------------------------------------------------
+                       --------
+  394 00000112         PutChar
+  395 00000112         ;*******************************************************
+                       ***************
+  396 00000112         ;Puts character in transmit queue buffer
+  397 00000112         ;Calls:  Enqueue
+  398 00000112         ;Input:  R0: Character to transmit
+  399 00000112         ;Modifies:  PSR
+  400 00000112         ;*******************************************************
+                       ***************
+  401 00000112 B506            PUSH             {R1-R2,LR}  ;save temporary reg
+                                                            isters
+  402 00000114 4922            LDR              R1,=TxQRecord ;setup enqueue pa
+                                                            rameter
+  403 00000116         PutCharWait                          ;repeat {
+  404 00000116 B672            CPSID            I           ;  mask interrupts
+  405 00000118 F7FF FFA0       BL               Enqueue     ;  enqueue characte
+                                                            r
+  406 0000011C B662            CPSIE            I           ;  unmask interrupt
+                                                            s
+  407 0000011E D2FA            BCS              PutCharWait ;} until successful
+                                                            
+  408 00000120 4920            LDR              R1,=UART0_BASE ;Enable transmit
+                                                             interrupt
+
+
+
+ARM Macro Assembler    Page 11 CMPE 250 Lab Exercise Eleven
+
+
+  409 00000122 2200            MOVS             R2,#UART_C2_TI_RI
+  410 00000124 700A            STRB             R2,[R1,#UART_C2_OFFSET]
+  411 00000126 BD06            POP              {R1-R2,PC}  ;restore temporary 
+                                                            registers
+  412 00000128         ;-------------------------------------------------------
+                       --------
+  413 00000128                 EXPORT           PutString
+  414 00000128         PutString
+  415 00000128         ;*******************************************************
+                       ***************
+  416 00000128         ;Transmits each character in null-terminated string to U
+                       ART0.
+  417 00000128         ;Calls:  PutChar
+  418 00000128         ;Input:  R0: Address of string to transmit
+  419 00000128         ;Modifies:  PSR
+  420 00000128         ;*******************************************************
+                       ***************
+  421 00000128         ;Save registers
+  422 00000128 B507            PUSH             {R0-R2,LR}
+  423 0000012A 4601            MOV              R1,R0       ;R0 needed for para
+                                                            meter
+  424 0000012C         PutStringLoop                        ;repeat {
+  425 0000012C 7808            LDRB             R0,[R1,#0]  ;  CurrentChar of s
+                                                            tring
+  426 0000012E 2800            CMP              R0,#NULL    ;  if (CurrentChar 
+                                                            != NULL) {
+  427 00000130 D003            BEQ              PutStringDone
+  428 00000132 F7FF FFEE       BL               PutChar     ;    Send current c
+                                                            har to terminal
+  429 00000136 1C49            ADDS             R1,R1,#1    ;    CurrentCharPtr
+                                                            ++
+  430 00000138 E7F8            B                PutStringLoop ;} until (Current
+                                                            Char == NULL)
+  431 0000013A         ;Restore registers
+  432 0000013A         PutStringDone
+  433 0000013A BD07            POP              {R0-R2,PC}
+  434 0000013C         ;-------------------------------------------------------
+                       --------
+  435 0000013C                 EXPORT           SerialDriverInit
+  436 0000013C         SerialDriverInit
+  437 0000013C         ;*******************************************************
+                       ***************
+  438 0000013C         ;Initializes UART0 and queues for serial driver
+  439 0000013C         ;Calls:  InitQueue
+  440 0000013C         ;Modifies:  PSR
+  441 0000013C         ;*******************************************************
+                       ***************
+  442 0000013C B507            PUSH             {R0-R2,LR}
+  443 0000013E         ;Initialize UART0 for 8N1, 9600 with RIE
+  444 0000013E F7FF FFE5       BL               Init_UART0
+  445 00000142         ;Unmask UART0 interrupts
+  446 00000142 4818            LDR              R0,=NVIC_ISER
+  447 00000144 4917            LDR              R1,=UART0_IRQ_MASK
+  448 00000146 6001            STR              R1,[R0,#0]
+  449 00000148         ;Set UART0 interrupt priority
+  450 00000148 4816            LDR              R0,=UART0_IPR
+  451 0000014A 4916            LDR              R1,=(UART0_IRQ_PRI << UART0_PRI
+_POS)
+  452 0000014C 6001            STR              R1,[R0,#0]
+
+
+
+ARM Macro Assembler    Page 12 CMPE 250 Lab Exercise Eleven
+
+
+  453 0000014E         ;-------------------------------------------------------
+                       --------
+  454 0000014E         ;Initialize circular FIFO queue management record struct
+                       ures
+  455 0000014E         ;Rx queue
+  456 0000014E 4816            LDR              R0,=RxQBuffer
+  457 00000150 4912            LDR              R1,=RxQRecord
+  458 00000152 2250            MOVS             R2,#XQ_BUF_SZ
+  459 00000154 F7FF FFCF       BL               Init_Queue  ;initialize queue r
+                                                            ecord
+  460 00000158         ;Tx queue
+  461 00000158 4814            LDR              R0,=TxQBuffer
+  462 0000015A 4911            LDR              R1,=TxQRecord
+  463 0000015C         ;MOVS    R2,#XQ_BUF_SZ
+  464 0000015C F7FF FFCB       BL               Init_Queue  ;initialize queue r
+                                                            ecord
+  465 00000160 BD07            POP              {R0-R2,PC}
+  466 00000162         ;-------------------------------------------------------
+                       --------
+  467 00000162         UART0_ISR
+  468 00000162         ;*******************************************************
+                       ***************
+  469 00000162         ;UART0 Interrupt Service Routine
+  470 00000162         ;*******************************************************
+                       ***************
+  471 00000162 B672            CPSID            I           ;mask all KL46 inte
+                                                            rrupts
+  472 00000164 B500            PUSH             {LR}        ;save modified regi
+                                                            ster
+  473 00000166 4A0F            LDR              R2,=UART0_BASE 
+                                                            ;if TxIRQ enabled {
+                                                            
+  474 00000168 2000            MOVS             R0,#UART_C2_TIE_MASK
+  475 0000016A 7813            LDRB             R3,[R2,#UART_C2_OFFSET]
+  476 0000016C 4203            TST              R3,R0
+  477 0000016E D008            BEQ              UART0_ISR_RxCheck
+  478 00000170 2000            MOVS             R0,#UART_S1_TDRE_MASK 
+                                                            ;  if TxIRQ { 
+  479 00000172 7813            LDRB             R3,[R2,#UART_S1_OFFSET]
+  480 00000174 4203            TST              R3,R0
+  481 00000176 D004            BEQ              UART0_ISR_RxCheck
+  482 00000178 4909            LDR              R1,=TxQRecord ;    setup TxQ de
+                                                            queue
+  483 0000017A F7FF FF5A       BL               Dequeue     ;    dequeue
+  484 0000017E D20A            BCS              UART0_ISR_TxIRQDisable ;    if 
+                                                            successful {
+  485 00000180 7010            STRB             R0,[R2,#UART_D_OFFSET] ;      t
+                                                            ransmit character
+  486 00000182         ;    } endif successful
+  487 00000182         ;  } endif TxIRQ
+  488 00000182         ;} endif TxIRQ enabled
+  489 00000182         UART0_ISR_RxCheck                    ;if RxIRQ {
+  490 00000182 2000            MOVS             R0,#UART_S1_RDRF_MASK
+  491 00000184 7813            LDRB             R3,[R2,#UART_S1_OFFSET]
+  492 00000186 4203            TST              R3,R0
+  493 00000188 D003            BEQ              UART0_ISR_Done
+  494 0000018A 7810            LDRB             R0,[R2,#UART_D_OFFSET] ;  recei
+                                                            ve character
+  495 0000018C 4903            LDR              R1,=RxQRecord ;  setup RxQ eneq
+
+
+
+ARM Macro Assembler    Page 13 CMPE 250 Lab Exercise Eleven
+
+
+                                                            ueue
+  496 0000018E F7FF FF65       BL               Enqueue     ;  enqueue
+  497 00000192         UART0_ISR_Done                       ;}end if RxIRQ
+  498 00000192 B662            CPSIE            I           ;unmask all KL46 in
+                                                            terrupts
+  499 00000194 BD00            POP              {PC}
+  500 00000196         UART0_ISR_TxIRQDisable               ;TxIRQ dequeue unsu
+                                                            ccessful {
+  501 00000196 2300            MOVS             R3,#UART_C2_T_RI 
+                                                            ;  disable TxIRQ
+  502 00000198 7013            STRB             R3,[R2,#UART_C2_OFFSET]
+  503 0000019A E7F2            B                UART0_ISR_RxCheck ;}
+  504 0000019C         ;-------------------------------------------------------
+                       --------
+  505 0000019C         ;>>>>>   end subroutine code <<<<<
+  506 0000019C                 ALIGN
+  507 0000019C         ;*******************************************************
+                       *********
+  508 0000019C         ;Vector Table Mapped to Address 0 at Reset
+  509 0000019C         ;Linker requires __Vectors to be exported
+  510 0000019C 00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000         AREA             RESET, DATA, READONLY
+  511 00000000                 EXPORT           __Vectors
+  512 00000000                 EXPORT           __Vectors_End
+  513 00000000                 EXPORT           __Vectors_Size
+  514 00000000                 IMPORT           __initial_sp
+  515 00000000                 IMPORT           Dummy_Handler
+  516 00000000                 IMPORT           Reset_Handler
+  517 00000000         __Vectors
+  518 00000000         ;ARM core vectors
+  519 00000000 00000000        DCD              __initial_sp ;00:end of stack
+  520 00000004 00000000        DCD              Reset_Handler ;01:reset vector
+  521 00000008 00000000        DCD              Dummy_Handler ;02:NMI
+  522 0000000C 00000000        DCD              Dummy_Handler ;03:hard fault
+  523 00000010 00000000        DCD              Dummy_Handler ;04:(reserved)
+  524 00000014 00000000        DCD              Dummy_Handler ;05:(reserved)
+  525 00000018 00000000        DCD              Dummy_Handler ;06:(reserved)
+  526 0000001C 00000000        DCD              Dummy_Handler ;07:(reserved)
+  527 00000020 00000000        DCD              Dummy_Handler ;08:(reserved)
+  528 00000024 00000000        DCD              Dummy_Handler ;09:(reserved)
+  529 00000028 00000000        DCD              Dummy_Handler ;10:(reserved)
+  530 0000002C 00000000        DCD              Dummy_Handler ;11:SVCall (super
+                                                            visor call)
+  531 00000030 00000000        DCD              Dummy_Handler ;12:(reserved)
+  532 00000034 00000000        DCD              Dummy_Handler ;13:(reserved)
+  533 00000038 00000000        DCD              Dummy_Handler ;14:PendableSrvRe
+                                                            q (pendable request
+
+
+
+ARM Macro Assembler    Page 14 CMPE 250 Lab Exercise Eleven
+
+
+                                                             
+  534 0000003C         ;   for system service)
+  535 0000003C 00000000        DCD              Dummy_Handler ;15:SysTick (syst
+                                                            em tick timer)
+  536 00000040 00000000        DCD              Dummy_Handler ;16:DMA channel 0
+                                                             xfer complete/erro
+                                                            r
+  537 00000044 00000000        DCD              Dummy_Handler ;17:DMA channel 1
+                                                             xfer complete/erro
+                                                            r
+  538 00000048 00000000        DCD              Dummy_Handler ;18:DMA channel 2
+                                                             xfer complete/erro
+                                                            r
+  539 0000004C 00000000        DCD              Dummy_Handler ;19:DMA channel 3
+                                                             xfer complete/erro
+                                                            r
+  540 00000050 00000000        DCD              Dummy_Handler ;20:(reserved)
+  541 00000054 00000000        DCD              Dummy_Handler ;21:command compl
+                                                            ete; read collision
+                                                            
+  542 00000058 00000000        DCD              Dummy_Handler ;22:low-voltage d
+                                                            etect;
+  543 0000005C         ;   low-voltage warning
+  544 0000005C 00000000        DCD              Dummy_Handler ;23:low leakage w
+                                                            akeup
+  545 00000060 00000000        DCD              Dummy_Handler ;24:I2C0
+  546 00000064 00000000        DCD              Dummy_Handler ;25:I2C1
+  547 00000068 00000000        DCD              Dummy_Handler ;26:SPI0 (all IRQ
+                                                             sources)
+  548 0000006C 00000000        DCD              Dummy_Handler ;27:SPI1 (all IRQ
+                                                             sources)
+  549 00000070 00000000        DCD              Dummy_Handler ;28:UART0 (status
+                                                            ; error)
+  550 00000074 00000000        DCD              UART0_ISR   ;29:UART0 (status; 
+                                                            error)
+  551 00000078 00000000        DCD              Dummy_Handler ;30:UART2 (status
+                                                            ; error)
+  552 0000007C 00000000        DCD              Dummy_Handler ;31:ADC0
+  553 00000080 00000000        DCD              Dummy_Handler ;32:CMP0
+  554 00000084 00000000        DCD              Dummy_Handler ;33:TPM0
+  555 00000088 00000000        DCD              Dummy_Handler ;34:TPM1
+  556 0000008C 00000000        DCD              Dummy_Handler ;35:TPM2
+  557 00000090 00000000        DCD              Dummy_Handler ;36:RTC (alarm)
+  558 00000094 00000000        DCD              Dummy_Handler ;37:RTC (seconds)
+                                                            
+  559 00000098 00000000        DCD              Dummy_Handler ;38:PIT (all IRQ 
+                                                            sources)
+  560 0000009C 00000000        DCD              Dummy_Handler ;39:I2S0
+  561 000000A0 00000000        DCD              Dummy_Handler ;40:USB0
+  562 000000A4 00000000        DCD              Dummy_Handler ;41:DAC0
+  563 000000A8 00000000        DCD              Dummy_Handler ;42:TSI0
+  564 000000AC 00000000        DCD              Dummy_Handler ;43:MCG
+  565 000000B0 00000000        DCD              Dummy_Handler ;44:LPTMR0
+  566 000000B4 00000000        DCD              Dummy_Handler ;45:Segment LCD
+  567 000000B8 00000000        DCD              Dummy_Handler ;46:PORTA pin det
+                                                            ect
+  568 000000BC 00000000        DCD              Dummy_Handler ;47:PORTC and POR
+                                                            TD pin detect
+  569 000000C0         __Vectors_End
+
+
+
+ARM Macro Assembler    Page 15 CMPE 250 Lab Exercise Eleven
+
+
+  570 000000C0 000000C0 
+                       __Vectors_Size
+                               EQU              __Vectors_End - __Vectors
+  571 000000C0                 ALIGN
+  572 000000C0         ;*******************************************************
+                       *********
+  573 000000C0         ;Constants
+  574 000000C0                 AREA             MyConst,DATA,READONLY
+  575 00000000         ;>>>>> begin constants here <<<<<
+  576 00000000         ;>>>>>   end constants here <<<<<
+  577 00000000         ;*******************************************************
+                       *********
+  578 00000000         ;Variables
+  579 00000000                 AREA             MyData,DATA,READWRITE
+  580 00000000         ;>>>>> begin variables here <<<<<
+  581 00000000 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00    RxQBuffer
+                               SPACE            XQ_BUF_SZ   ; FIFO queue buffer
+                                                            
+  582 00000050                 ALIGN
+  583 00000050 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 RxQRecord
+                               SPACE            Q_REC_SZ    ; FIFO queue manage
+                                                            ment record
+  584 00000062 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+
+
+
+ARM Macro Assembler    Page 16 CMPE 250 Lab Exercise Eleven
+
+
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00    TxQBuffer
+                               SPACE            XQ_BUF_SZ   ; FIFO queue buffer
+                                                            
+  585 000000B2 00 00           ALIGN
+  586 000000B4 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 TxQRecord
+                               SPACE            Q_REC_SZ    ; FIFO queue manage
+                                                            ment record
+  587 000000C6         ;>>>>>   end variables here <<<<<
+  588 000000C6                 END
+Command Line: --debug --xref --cpu=Cortex-M0+ --apcs=interwork --depend=.\uvbui
+ld\uart_1.d -o.\uvbuild\uart_1.o -I"C:\Freescale\PExDrv v10.4\eclipse\Processor
+Expert\lib\Kinetis\pdd\inc" -I"C:\Freescale\PExDrv v10.4\eclipse\ProcessorExper
+t\lib\Kinetis\iofiles" -I.\Sources -I.\Generated_Code -I.\Generated_Code -I.\Pr
+oject_Settings\Startup_Code -I.\Sources -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\
+ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\Freescale\Kinetis --predefine="__EVAL SE
+TA 1" --predefine="__UVISION_VERSION SETA 513" --list=.\uart.lst Sources\uart.s
