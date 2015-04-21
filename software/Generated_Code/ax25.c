@@ -105,7 +105,6 @@ volatile char* ax25DataPtr;
 volatile int ax25SinIndex;
 volatile signed char ax25CurrBit;
 volatile char ax25Padding;
-volatile char ax25CRC; /* Not sure about this*/ 
 volatile signed char ax25CurrByte;
 volatile char ax25Sending;
 volatile uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 

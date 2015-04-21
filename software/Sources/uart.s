@@ -52,47 +52,6 @@ Q_END_CH    EQU   '<'
 PORT_PCR_PIN_MUX_SELECT_3  EQU  0x00000300
 ;---------------------------------------------------------------
 ;Port E
-PORT_PCR_PTE0_MUX_UART0_TX  EQU  PORT_PCR_MUX_SELECT_3_MASK
-PORT_PCR_PTE1_MUX_UART0_RX  EQU  PORT_PCR_MUX_SELECT_3_MASK
-PORT_PCR_SET_PTE0_UART0_TX  EQU  \
-             (PORT_PCR_ISF_MASK :OR: PORT_PCR_PTE0_MUX_UART0_TX)
-PORT_PCR_SET_PTE1_UART0_RX  EQU  \
-             (PORT_PCR_ISF_MASK :OR: PORT_PCR_PTE1_MUX_UART0_RX)
-;---------------------------------------------------------------
-;SIM_SCGC4
-;1->11:UART0 clock gate control (enabled)
-SIM_SCGC4_UART0CGC_MASK  EQU  SIM_SCGC4_UART0_MASK
-;---------------------------------------------------------------
-;SIM_SCGC5
-;1->   13:Port E clock gate control (enabled)
-SIM_SCGC5_PORTECGC_MASK  EQU  SIM_SCGC5_PORTE_MASK
-;---------------------------------------------------------------
-;SIM_SOPT5
-; 0->   17:UART0 open drain enable (disabled)
-; 0->   06:UART0 receive data select (UART0_RX)
-;00->05-04:UART0 transmit data select source (UART0_TX)
-SIM_SOPT5_UART0_EXTERN_MASK_CLEAR  EQU  (SIM_SOPT5_UART0ODE_MASK \
-    :OR: SIM_SOPT5_UART0RXSRC_MASK :OR: SIM_SOPT5_UART0TXSRC_MASK)
-;---------------------------------------------------------------
-;UARTx_BDH
-;    0->  7:LIN break detect IE (disabled)
-;    0->  6:RxD input active edge IE (disabled)
-;    0->  5:Stop bit number select (1)
-;00000->4-0:SBR[12:0] (BUSCLK / (16 x 9600))
-;BUSCLK = CORECLK / 2 = PLLCLK / 4
-;PLLCLK is 96 MHz
-;BUSCLK is 24 MHz
-;SBR = 24 MHz / (16 x 9600) = 156.25 --> 156 = 0x009C
-UART_BDH_9600  EQU  0
-;---------------------------------------------------------------
-;UARTx_BDL
-;26->7-0:SBR[7:0] (BUSCLK / 16 x 9600))
-;BUSCLK = CORECLK / 2 = PLLCLK / 4
-;PLLCLK is 96 MHz
-;BUSCLK is 24 MHz
-;SBR = 24 MHz / (16 x 9600) = 156.25 --> 0x9C
-UART_BDL_9600  EQU  156
-UART_BDL_38400  EQU  39
 ;---------------------------------------------------------------
 ;UARTx_C1
 ;0-->7:LOOPS=loops select (normal)
@@ -114,9 +73,9 @@ UART_C1_8N1  EQU  0x00
 ;1-->2:RE=receiver enable (enabled)
 ;0-->1:RWU=receiver wakeup control (normal)
 ;0-->0:SBK=send break (disabled, normal)
-UART_C2_T_R    EQU  (UART_C2_TE_MASK :OR: UART_C2_RE_MASK)
-UART_C2_T_RI   EQU  (UART_C2_RIE_MASK :OR: UART_C2_T_R)
-UART_C2_TI_RI  EQU  (UART_C2_TIE_MASK :OR: UART_C2_T_RI)
+;UART_C2_T_R    EQU  (UART_C2_TE_MASK :OR: UART_C2_RE_MASK)
+;UART_C2_T_RI   EQU  (UART_C2_RIE_MASK :OR: UART_C2_T_R)
+;UART_C2_TI_RI  EQU  (UART_C2_TIE_MASK :OR: UART_C2_T_RI)
 ;---------------------------------------------------------------
 ;UARTx_C3
 ;0-->7:R8=9th data bit for receiver (not used M=0)
@@ -383,52 +342,52 @@ Init_UART0
 ;Initialize UART0
             ;Preserve registers used
             PUSH    {R0-R2}
-            ;Set UART0 for external connection
-            LDR     R0,=SIM_SOPT5
-            LDR     R1,=SIM_SOPT5_UART0_EXTERN_MASK_CLEAR
-            LDR     R2,[R0,#0]
-            BICS    R2,R2,R1
-            STR     R2,[R0,#0]
-            ;Enable UART0 module clock
-            LDR     R0,=SIM_SCGC4
-            LDR     R1,=SIM_SCGC4_UART0CGC_MASK
-            LDR     R2,[R0,#0]
-            ORRS    R2,R2,R1
-            STR     R2,[R0,#0]
-            ;Enable PORT E module clock
-			; CHECK THIS
-            LDR     R0,=SIM_SCGC5
-            LDR     R1,=SIM_SCGC5_PORTECGC_MASK
-            LDR     R2,[R0,#0]
-            ORRS    R2,R2,R1
-            STR     R2,[R0,#0]
-            ;Select PORT E Pin 1 (J2 Pin 20) for UART0 RX
-            LDR     R0,=PORTE_PCR1
-            LDR     R1,=PORT_PCR_SET_PTE1_UART0_RX
-            STR     R1,[R0,#0]
-            ;Select PORT E Pin 0 (J2 Pin 18) for UART0 TX
-            LDR     R0,=PORTE_PCR0
-            LDR     R1,=PORT_PCR_SET_PTE0_UART0_TX
-            STR     R1,[R0,#0]
-			;THROUGH THIS.
+;           ;Set UART0 for external connection
+;           LDR     R0,=SIM_SOPT5
+;           LDR     R1,=SIM_SOPT5_UART0_EXTERN_MASK_CLEAR
+;           LDR     R2,[R0,#0]
+;           BICS    R2,R2,R1
+;           STR     R2,[R0,#0]
+;           ;Enable UART0 module clock
+;           LDR     R0,=SIM_SCGC4
+;           LDR     R1,=SIM_SCGC4_UART0CGC_MASK
+;           LDR     R2,[R0,#0]
+;           ORRS    R2,R2,R1
+;           STR     R2,[R0,#0]
+;           ;Enable PORT E module clock
+;   		; CHECK THIS
+;           LDR     R0,=SIM_SCGC5
+;           LDR     R1,=SIM_SCGC5_PORTECGC_MASK
+;           LDR     R2,[R0,#0]
+;           ORRS    R2,R2,R1
+;           STR     R2,[R0,#0]
+;           ;Select PORT E Pin 1 (J2 Pin 20) for UART0 RX
+;           LDR     R0,=PORTE_PCR1
+;           LDR     R1,=PORT_PCR_SET_PTE1_UART0_RX
+;           STR     R1,[R0,#0]
+;           ;Select PORT E Pin 0 (J2 Pin 18) for UART0 TX
+;           LDR     R0,=PORTE_PCR0
+;           LDR     R1,=PORT_PCR_SET_PTE0_UART0_TX
+;           STR     R1,[R0,#0]
+;   		;THROUGH THIS.
 
-            ;Set for 9600 baud from 96MHz PLL clock
-            LDR     R0,=UART0_BASE
-            MOVS    R1,#UART_BDH_38400
-            STRB    R1,[R0,#UART_BDH_OFFSET]
-            MOVS    R1,#UART_BDL_38400
-            STRB    R1,[R0,#UART_BDL_OFFSET]
-            MOVS    R1,#UART_C1_8N1
-            STRB    R1,[R0,#UART_C1_OFFSET]
-            MOVS    R1,#UART_C3_NO_TXINV
-            STRB    R1,[R0,#UART_C3_OFFSET]
-            MOVS    R1,#UART_C4_NO_DMA
-            STRB    R1,[R0,#UART_C4_OFFSET]
-            MOVS    R1,#UART_S2_NO_RXINV_BRK10_NO_LBKDETECT
-            STRB    R1,[R0,#UART_S2_OFFSET]
-            MOVS    R1,#UART_C2_T_RI
-            STRB    R1,[R0,#UART_C2_OFFSET]
-            ;Restore registers used
+;           ;Set for 9600 baud from 96MHz PLL clock
+;           LDR     R0,=UART0_BASE
+;           MOVS    R1,#UART_BDH_38400
+;           STRB    R1,[R0,#UART_BDH_OFFSET]
+;           MOVS    R1,#UART_BDL_38400
+;           STRB    R1,[R0,#UART_BDL_OFFSET]
+;           MOVS    R1,#UART_C1_8N1
+;           STRB    R1,[R0,#UART_C1_OFFSET]
+;           MOVS    R1,#UART_C3_NO_TXINV
+;           STRB    R1,[R0,#UART_C3_OFFSET]
+;           MOVS    R1,#UART_C4_NO_DMA
+;           STRB    R1,[R0,#UART_C4_OFFSET]
+;           MOVS    R1,#UART_S2_NO_RXINV_BRK10_NO_LBKDETECT
+;           STRB    R1,[R0,#UART_S2_OFFSET]
+;           MOVS    R1,#UART_C2_T_RI
+;           STRB    R1,[R0,#UART_C2_OFFSET]
+;           ;Restore registers used
             POP     {R0-R2}
             BX      LR
 ;---------------------------------------------------------------
