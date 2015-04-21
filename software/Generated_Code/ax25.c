@@ -105,9 +105,6 @@ volatile char* ax25DataPtr;
 volatile int ax25SinIndex;
 volatile signed char ax25CurrBit;
 volatile char ax25Padding;
-<<<<<<< HEAD
-=======
->>>>>>> e33802a61dcc367be35bd28abd0bcf48d6119035
 volatile signed char ax25CurrByte;
 volatile char ax25Sending;
 volatile uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
@@ -252,6 +249,7 @@ char ax25GetSending(void){
 }
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	volatile char locSending;
+	uint32_t locCRC;
 	ax25DacPtr = dacPtr;
 	ax25BytesLeft = len;
 	ax25DataPtr = dataPtr;
