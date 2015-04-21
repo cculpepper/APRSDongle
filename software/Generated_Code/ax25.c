@@ -107,7 +107,6 @@ volatile signed char ax25CurrBit;
 volatile char ax25Padding;
 <<<<<<< HEAD
 =======
-//volatile char ax25CRC; /* Not sure about this*/ 
 >>>>>>> e33802a61dcc367be35bd28abd0bcf48d6119035
 volatile signed char ax25CurrByte;
 volatile char ax25Sending;
