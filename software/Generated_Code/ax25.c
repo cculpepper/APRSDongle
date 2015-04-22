@@ -229,14 +229,7 @@ void ax25Disable_irq (int irq)
 	/*return 0;*/
 
 /*}*/
-void ax25UpdateCrc(char bit){
-	ax25CRC ^= bit;
-if (ax25CRC & 1){
-		ax25CRC = (ax25CRC >> 1) ^ 0x8408;
-	} else {
-		ax25CRC = ax25CRC >> 1;
-	}
-}
+
 
 char ax25GetSending(void){
 	char locSend;
@@ -247,8 +240,11 @@ char ax25GetSending(void){
 		return 1;
 	}
 }
+//volatile extern uint16_t ax25CRC; /* Not sure about this*/ 
+volatile uint16_t ax25CRC;
 void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	volatile char locSending;
+	
 	uint32_t locCRC;
 	ax25DacPtr = dacPtr;
 	ax25BytesLeft = len;
@@ -373,7 +369,14 @@ extern void ax25ChangeDac(void){
 	}
 	PIT_LDVAL0 = ax25CurrDelay;
 }
-
+void ax25UpdateCrc(char bit){
+	ax25CRC ^= bit;
+if (ax25CRC & 1){
+		ax25CRC = (ax25CRC >> 1) ^ 0x8408;
+	} else {
+		ax25CRC = ax25CRC >> 1;
+	}
+}
 /*char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
 	/*//sends stuff...*/
 	/*int sinIndex;*/

@@ -29,6 +29,6 @@ void Startup (void);
 /* C subroutines */
 int GetHexIntMulti (UInt32 *Number, int NumWords);
 void PutHexIntMulti (UInt32 *Number, int NumWords);
-int main (void);
-int Reset_Handler (void) __attribute__((alias("main")));
+int main2 (void);
+//int Reset_Handler (void) __attribute__((alias("main")));
 

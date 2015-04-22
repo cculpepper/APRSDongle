@@ -143,7 +143,7 @@ void PutHexIntMulti (UInt32 *Number, int NumWords) {
 	PutString (String);
 } /* PutHexIntMulti */
 
-int main (void) {
+int main2 (void) {
 	int NotFinished = TRUE;
 	UInt96 Addend,
 		   Augend,
