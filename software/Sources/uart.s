@@ -23,6 +23,7 @@ MIXED_ASM_C SETL   {TRUE}
 ;Include files
 	;include MKL05Z4.h;
             OPT  1   ;Turn on listing
+			GET MKL05.s
 ;****************************************************************
 ;EQUates
 MAX_STRING  EQU  79
@@ -73,9 +74,9 @@ UART_C1_8N1  EQU  0x00
 ;1-->2:RE=receiver enable (enabled)
 ;0-->1:RWU=receiver wakeup control (normal)
 ;0-->0:SBK=send break (disabled, normal)
-;UART_C2_T_R    EQU  (UART_C2_TE_MASK :OR: UART_C2_RE_MASK)
-;UART_C2_T_RI   EQU  (UART_C2_RIE_MASK :OR: UART_C2_T_R)
-;UART_C2_TI_RI  EQU  (UART_C2_TIE_MASK :OR: UART_C2_T_RI)
+UART_C2_T_R    EQU  (UART_C2_TE_MASK :OR: UART_C2_RE_MASK)
+UART_C2_T_RI   EQU  (UART_C2_RIE_MASK :OR: UART_C2_T_R)
+UART_C2_TI_RI  EQU  (UART_C2_TIE_MASK :OR: UART_C2_T_RI)
 ;---------------------------------------------------------------
 ;UARTx_C3
 ;0-->7:R8=9th data bit for receiver (not used M=0)
@@ -505,69 +506,6 @@ UART0_ISR_TxIRQDisable                    ;TxIRQ dequeue unsuccessful {
 ;>>>>>   end subroutine code <<<<<
             ALIGN
 ;****************************************************************
-;Vector Table Mapped to Address 0 at Reset
-;Linker requires __Vectors to be exported
-            AREA    RESET, DATA, READONLY
-            EXPORT  __Vectors
-            EXPORT  __Vectors_End
-            EXPORT  __Vectors_Size
-            IMPORT  __initial_sp
-            IMPORT  Dummy_Handler
-            IMPORT  Reset_Handler
-__Vectors 
-                                      ;ARM core vectors
-            DCD    __initial_sp       ;00:end of stack
-            DCD    Reset_Handler      ;01:reset vector
-            DCD    Dummy_Handler      ;02:NMI
-            DCD    Dummy_Handler      ;03:hard fault
-            DCD    Dummy_Handler      ;04:(reserved)
-            DCD    Dummy_Handler      ;05:(reserved)
-            DCD    Dummy_Handler      ;06:(reserved)
-            DCD    Dummy_Handler      ;07:(reserved)
-            DCD    Dummy_Handler      ;08:(reserved)
-            DCD    Dummy_Handler      ;09:(reserved)
-            DCD    Dummy_Handler      ;10:(reserved)
-            DCD    Dummy_Handler      ;11:SVCall (supervisor call)
-            DCD    Dummy_Handler      ;12:(reserved)
-            DCD    Dummy_Handler      ;13:(reserved)
-            DCD    Dummy_Handler      ;14:PendableSrvReq (pendable request 
-                                      ;   for system service)
-            DCD    Dummy_Handler      ;15:SysTick (system tick timer)
-            DCD    Dummy_Handler      ;16:DMA channel 0 xfer complete/error
-            DCD    Dummy_Handler      ;17:DMA channel 1 xfer complete/error
-            DCD    Dummy_Handler      ;18:DMA channel 2 xfer complete/error
-            DCD    Dummy_Handler      ;19:DMA channel 3 xfer complete/error
-            DCD    Dummy_Handler      ;20:(reserved)
-            DCD    Dummy_Handler      ;21:command complete; read collision
-            DCD    Dummy_Handler      ;22:low-voltage detect;
-                                      ;   low-voltage warning
-            DCD    Dummy_Handler      ;23:low leakage wakeup
-            DCD    Dummy_Handler      ;24:I2C0
-            DCD    Dummy_Handler      ;25:I2C1
-            DCD    Dummy_Handler      ;26:SPI0 (all IRQ sources)
-            DCD    Dummy_Handler      ;27:SPI1 (all IRQ sources)
-            DCD    Dummy_Handler      ;28:UART0 (status; error)
-            DCD    UART0_ISR          ;29:UART0 (status; error)
-            DCD    Dummy_Handler      ;30:UART2 (status; error)
-            DCD    Dummy_Handler      ;31:ADC0
-            DCD    Dummy_Handler      ;32:CMP0
-            DCD    Dummy_Handler      ;33:TPM0
-            DCD    Dummy_Handler      ;34:TPM1
-            DCD    Dummy_Handler      ;35:TPM2
-            DCD    Dummy_Handler      ;36:RTC (alarm)
-            DCD    Dummy_Handler      ;37:RTC (seconds)
-            DCD    Dummy_Handler      ;38:PIT (all IRQ sources)
-            DCD    Dummy_Handler      ;39:I2S0
-            DCD    Dummy_Handler      ;40:USB0
-            DCD    Dummy_Handler      ;41:DAC0
-            DCD    Dummy_Handler      ;42:TSI0
-            DCD    Dummy_Handler      ;43:MCG
-            DCD    Dummy_Handler      ;44:LPTMR0
-            DCD    Dummy_Handler      ;45:Segment LCD
-            DCD    Dummy_Handler      ;46:PORTA pin detect
-            DCD    Dummy_Handler      ;47:PORTC and PORTD pin detect
-__Vectors_End
-__Vectors_Size  EQU     __Vectors_End - __Vectors
             ALIGN
 ;****************************************************************
 ;Constants

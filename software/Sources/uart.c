@@ -150,7 +150,6 @@ int main2 (void) {
 		   Sum;
 
 	__asm("CPSID   I");  /* mask interrupts */
-	Startup ();
 	SerialDriverInit ();
 	__asm("CPSIE   I");  /* unmask interrupts */
 
