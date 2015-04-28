@@ -278,7 +278,7 @@ void ax25IntSend(char* dataPtr, int len, LDD_TDeviceData* dacPtr){
 	//PIT_LDVAL0 = 12000000; //This may fix the issues
 	//PIT_LDVAL1 = 12000000; //This may fix the issues
 	ax25StopTimer();
-	cwSend("DONE", 5, ax25DacPtr  );
+	//cwSend("DONE", 5, ax25DacPtr  );
 }
 
 #define PIT_TIE 0x40000000

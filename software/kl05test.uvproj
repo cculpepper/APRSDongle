@@ -145,7 +145,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>14</TargetSelection>
+          <TargetSelection>6</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -159,7 +159,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>PEMicro\Pemicro_ArmCortexInterface.dll</Driver>
+            <Driver>Segger\JL2CM3.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -171,7 +171,7 @@
             <Capability>1</Capability>
             <DriverSelection>4106</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
+          <bUseTDR>1</bUseTDR>
           <Flash2>PEMicro\Pemicro_ArmCortexInterface.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
@@ -485,21 +485,6 @@
               <FileName>ax25.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Generated_Code\ax25.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sources\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Sources\uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>uart.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Sources\uart.s</FilePath>
             </File>
           </Files>
         </Group>

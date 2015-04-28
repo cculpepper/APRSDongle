@@ -36,7 +36,7 @@ const short CWSinusOutputData[SINUS_LENGTH] = {
 	  4007u,
 	  4056u,
 	  4086u,
-	  4096u,
+	  4095u,
 	  4086u,
 	  4056u,
 	  4007u,

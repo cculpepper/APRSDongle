@@ -47,6 +47,12 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "ax25.h"
 #include "cw.h"
+#define INITPTBPOW SIM_SCGC5 |= SIM_SCGC5_PORTB_MASK;
+#define PORTBLEDINIT(x) PORTB_PCR(X) = (PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK);
+#define PORTBOUT(x) PORTB_PDDR(x) = (1<<(x));
+#define PORTBTOGGLE(x) GPIOB_PTOR = (1<< (x));
+
+
 
 #define PIT_TIE 0x40000000
 #define PIT_TEN 0x80000000
@@ -124,10 +130,10 @@ int main(void)
 	/*ax25IntSend(dataptr, 5, DA1_DeviceData);*/
 	for (;;){
 
-	cwSend("FUCKYOUUUUUU",15, DA1_DeviceData);
+	//cwSend("FUCKYOUUUUUU",15, DA1_DeviceData);
 		/*LED1_Neg();*/
 			/*WAIT1_Waitms(2000);*/
-/*ax25IntSend("WB4APR-14>APRS,RELAY*,WIDE::G3NRWVVVV:Hi Ian{001", 47,  DA1_DeviceData);*/
+ax25IntSend("WB4APR-14>APRS,RELAY*,WIDE::G3NRWVVVV:Hi Ian{001", 47,  DA1_DeviceData);
 	/*ax25IntSend(dataptr, 5, DA1_DeviceData);*/
 		//ax25IntSend("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}a", 30,DA1_DeviceData);
 	
