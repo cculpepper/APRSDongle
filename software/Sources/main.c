@@ -38,6 +38,7 @@
 #include "TI1.h"
 #include "TU1.h"
 #include "CS1.h"
+#include "uart.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -51,7 +52,32 @@
 #define PORTBLEDINIT(x) PORTB_PCR(X) = (PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK);
 #define PORTBOUT(x) PORTB_PDDR(x) = (1<<(x));
 #define PORTBTOGGLE(x) GPIOB_PTOR = (1<< (x));
-
+// SBR = 24 MHz / (16 x 9600) = 156.25 --> 156
+#define UART_BDH_9600 0
+#define UART_BDL_9600 156
+#define UART_C1_8N1 0x00
+#define UART_C3_NO_TXINV 0x00
+#define UART_C4_NO_DMA 0x00
+#define UART_S2_NO_RXINV_BRK10_NO_LBKDETECT 0x00
+#define UART_C2_T_R ( UART0_C2_TE_MASK | UART0_C2_RE_MASK)
+#define UART_C2_T_RI (UART0_C2_RIE_MASK | UART_C2_T_R)
+char initPCUart(void){
+	/*Need to select PTB4 as a rxd pin for uart0*/
+	 /* Thats ALT3, 0x3*/ 
+	PORTB_PCR4 = PORT_PCR_MUX(3) || PORT_PCR_ISF_MASK;
+	/*PORTB_PCR1 = PORT_PCR_MUX(2); Dont need TX for gps*/
+/* Also need to disable the rxd for the other pins. I think?*/ 
+	/*Might as well initialize the UART too. */
+	SIM_SOPT5 = 0;
+	UART0_BDH = UART_BDH_9600;
+	UART0_BDL = UART_BDL_9600;
+	UART0_C1 = UART_C1_8N1;
+	UART0_C3 = UART_C3_NO_TXINV;
+	UART0_C4 = UART_C4_NO_DMA;
+	UART0_S2 = UART_S2_NO_RXINV_BRK10_NO_LBKDETECT;
+	UART0_C2 = UART_C2_T_RI;
+	SerialDriverInit();
+}
 
 
 #define PIT_TIE 0x40000000
@@ -124,6 +150,10 @@ int main(void)
 	/*[>PIT_TCTRL0 = 0xC0000000;<]*/
 	/*[>PIT_TCTRL0 |= PIT_TEN;<]*/
 	/*enable_irq(INT_PIT - 16);*/
+  initPCUart();
+  for (;;){
+	  PutChar('a');
+  }
 
 	dataptr = data;
 	cwSend("FUCKYOUUUUUU",15, DA1_DeviceData);

@@ -32,3 +32,5 @@ void PutHexIntMulti (UInt32 *Number, int NumWords);
 int main2 (void);
 //int Reset_Handler (void) __attribute__((alias("main")));
 
+void PutChar(char);
+void SerialDriverInit();
