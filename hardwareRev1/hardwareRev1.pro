@@ -1,4 +1,4 @@
-update=Sun 03 May 2015 05:55:47 PM EDT
+update=Mon 04 May 2015 05:52:50 PM EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -66,3 +66,6 @@ LibName34=DataStorage
 LibName35=dra818Real
 LibName36=SparkFun
 LibName37=neo7
+LibName38=gpsant
+LibName39=open-project
+LibName40=smtJmpOpen
