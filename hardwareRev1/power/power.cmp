@@ -1,39 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Tue 05 May 2015 06:44:41 PM EDT
-
-BeginCmp
-TimeStamp = /55490368;
-Reference = P2;
-ValeurCmp = CONN_11X2;
-IdModule  = Pin_Headers:Pin_Header_Straight_2x11;
-EndCmp
-
-BeginCmp
-TimeStamp = /55491A9D;
-Reference = U1;
-ValeurCmp = TPS63020;
-IdModule  = ;
-EndCmp
-
-BeginCmp
-TimeStamp = /55491AF6;
-Reference = L1;
-ValeurCmp = 1uh;
-IdModule  = Inductors:SELF-WE-TPC_M;
-EndCmp
-
-BeginCmp
-TimeStamp = /55491B63;
-Reference = R3;
-ValeurCmp = 768J;
-IdModule  = Resistors_SMD:R_0603;
-EndCmp
-
-BeginCmp
-TimeStamp = /55491B9A;
-Reference = R4;
-ValeurCmp = 137J;
-IdModule  = Resistors_SMD:R_0603;
-EndCmp
+Cmp-Mod V01 Created by Cvpcb (2015-03-20 BZR 5526)-product   date = Wed 06 May 2015 03:01:11 AM EDT
 
 BeginCmp
 TimeStamp = /55491BE2;
@@ -50,16 +15,9 @@ IdModule  = Capacitors_SMD:c_elec_5x5.8;
 EndCmp
 
 BeginCmp
-TimeStamp = /55492823;
-Reference = U2;
-ValeurCmp = NCP508;
-IdModule  = SMD:SOT-23-5;
-EndCmp
-
-BeginCmp
-TimeStamp = /55492B2E;
-Reference = C5;
-ValeurCmp = 1u;
+TimeStamp = /5549617A;
+Reference = C3;
+ValeurCmp = 100n;
 IdModule  = Capacitors_SMD:C_0603;
 EndCmp
 
@@ -71,38 +29,10 @@ IdModule  = Capacitors_SMD:C_0603;
 EndCmp
 
 BeginCmp
-TimeStamp = /55493909;
-Reference = R5;
-ValeurCmp = R;
-IdModule  = Resistors_SMD:R_0603;
-EndCmp
-
-BeginCmp
-TimeStamp = /554939CC;
-Reference = R1;
-ValeurCmp = R;
-IdModule  = Resistors_SMD:R_0603;
-EndCmp
-
-BeginCmp
-TimeStamp = /55493A3A;
-Reference = R2;
-ValeurCmp = R;
-IdModule  = Resistors_SMD:R_0603;
-EndCmp
-
-BeginCmp
-TimeStamp = /55494EEA;
-Reference = P3;
-ValeurCmp = AVRProg;
-IdModule  = Pin_Headers:Pin_Header_Straight_2x03;
-EndCmp
-
-BeginCmp
-TimeStamp = /55495A00;
-Reference = TP1;
-ValeurCmp = TEST-POINT2;
-IdModule  = Measurement_Points:Measurement_Point_Round-SMD-Pad_Big;
+TimeStamp = /55492B2E;
+Reference = C5;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_0603;
 EndCmp
 
 BeginCmp
@@ -113,10 +43,10 @@ IdModule  = Capacitors_SMD:c_elec_6.3x7.7;
 EndCmp
 
 BeginCmp
-TimeStamp = /5549617A;
-Reference = C3;
-ValeurCmp = 100n;
-IdModule  = Capacitors_SMD:C_0603;
+TimeStamp = /5549747C;
+Reference = D1;
+ValeurCmp = DIODE;
+IdModule  = Diodes_SMD:SOD-323;
 EndCmp
 
 BeginCmp
@@ -134,6 +64,27 @@ IdModule  = LEDs:LED-0805;
 EndCmp
 
 BeginCmp
+TimeStamp = /5549793A;
+Reference = F1;
+ValeurCmp = FUSE;
+IdModule  = SMD_Packages:SMD-2112_Pol;
+EndCmp
+
+BeginCmp
+TimeStamp = /5549A687;
+Reference = IC1;
+ValeurCmp = ATTINY24A-M-FIXED;
+IdModule  = Housings_DFN_QFN:QFN-20-1EP_4x4mm_Pitch0.5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /55491AF6;
+Reference = L1;
+ValeurCmp = 1uh;
+IdModule  = Inductors:SELF-WE-TPC_M;
+EndCmp
+
+BeginCmp
 TimeStamp = /554972F7;
 Reference = P1;
 ValeurCmp = VIN;
@@ -141,17 +92,52 @@ IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
 EndCmp
 
 BeginCmp
-TimeStamp = /5549747C;
-Reference = D1;
-ValeurCmp = DIODE;
-IdModule  = Diodes_SMD:SOD-323;
+TimeStamp = /55490368;
+Reference = P2;
+ValeurCmp = CONN_11X2;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x11;
 EndCmp
 
 BeginCmp
-TimeStamp = /5549793A;
-Reference = F1;
-ValeurCmp = FUSE;
-IdModule  = SMD_Packages:SMD-2112_Pol;
+TimeStamp = /55494EEA;
+Reference = P3;
+ValeurCmp = AVRProg;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x03;
+EndCmp
+
+BeginCmp
+TimeStamp = /554939CC;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55493A3A;
+Reference = R2;
+ValeurCmp = R;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55491B63;
+Reference = R3;
+ValeurCmp = 768J;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55491B9A;
+Reference = R4;
+ValeurCmp = 137J;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55493909;
+Reference = R5;
+ValeurCmp = R;
+IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
 BeginCmp
@@ -169,10 +155,24 @@ IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
 BeginCmp
-TimeStamp = /55499E2D;
-Reference = IC1;
-ValeurCmp = ATTINY84A-MM;
-IdModule  = Housings_DFN_QFN:QFN-20-1EP_4x4mm_Pitch0.5mm;
+TimeStamp = /55495A00;
+Reference = TP1;
+ValeurCmp = TEST-POINT2;
+IdModule  = Measurement_Points:Measurement_Point_Round-SMD-Pad_Big;
+EndCmp
+
+BeginCmp
+TimeStamp = /55491A9D;
+Reference = U1;
+ValeurCmp = TPS63020;
+IdModule  = TPS63020:TPS63020;
+EndCmp
+
+BeginCmp
+TimeStamp = /55492823;
+Reference = U2;
+ValeurCmp = NCP508;
+IdModule  = SMD:SOT-23-5;
 EndCmp
 
 EndListe
