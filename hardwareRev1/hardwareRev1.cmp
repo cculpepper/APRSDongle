@@ -1,0 +1,227 @@
+Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Tue 05 May 2015 01:35:00 PM EDT
+
+BeginCmp
+TimeStamp = /5547B2FE;
+Reference = A1;
+ValeurCmp = GPSAnt;
+IdModule  = gpsAnt;
+EndCmp
+
+BeginCmp
+TimeStamp = /55481AFD;
+Reference = C1;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55486746;
+Reference = C2;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55488735;
+Reference = C3;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /554887C0;
+Reference = C4;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55484925;
+Reference = C5;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55469B56;
+Reference = C6;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55469B16;
+Reference = C7;
+ValeurCmp = CAPAPOL;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /5546A414;
+Reference = C8;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /5546A455;
+Reference = C9;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55484C76;
+Reference = C10;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /55469F94;
+Reference = J1;
+ValeurCmp = MicroSD;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55467B6D;
+Reference = J2;
+ValeurCmp = SMA;
+IdModule  = SMA;
+EndCmp
+
+BeginCmp
+TimeStamp = /5548190A;
+Reference = JMP1;
+ValeurCmp = SJMPOpen;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /5547EDB1;
+Reference = JMP2;
+ValeurCmp = SJMPOpen;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /5547EDED;
+Reference = JMP3;
+ValeurCmp = SJMPOpen;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55482207;
+Reference = P1;
+ValeurCmp = CONN_5X2;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55468A98;
+Reference = P2;
+ValeurCmp = PWRIN;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55485E6D;
+Reference = Q1;
+ValeurCmp = MOSFET_P;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55488804;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55484745;
+Reference = R2;
+ValeurCmp = R;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55484C2A;
+Reference = R3;
+ValeurCmp = R;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /5546BB5A;
+Reference = RF1;
+ValeurCmp = NEO7;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /5546AD5F;
+Reference = RF2;
+ValeurCmp = DRA818;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /55481AC1;
+Reference = TP1;
+ValeurCmp = 3v3Out;
+IdModule  = SparkFun-PAD.02X.02;
+EndCmp
+
+BeginCmp
+TimeStamp = /5547B09D;
+Reference = TP2;
+ValeurCmp = GPSDM;
+IdModule  = SparkFun-PAD.02X.02;
+EndCmp
+
+BeginCmp
+TimeStamp = /5547B120;
+Reference = TP3;
+ValeurCmp = GPSDP;
+IdModule  = SparkFun-PAD.02X.02;
+EndCmp
+
+BeginCmp
+TimeStamp = /554816C8;
+Reference = TP4;
+ValeurCmp = USBIN;
+IdModule  = SparkFun-PAD.02X.02;
+EndCmp
+
+BeginCmp
+TimeStamp = /5547F1D3;
+Reference = TP5;
+ValeurCmp = TEST-POINT2;
+IdModule  = SparkFun-PAD.02X.02;
+EndCmp
+
+BeginCmp
+TimeStamp = /5545C30B;
+Reference = U1;
+ValeurCmp = MKL26Z128VLH4;
+IdModule  = MODULE;
+EndCmp
+
+BeginCmp
+TimeStamp = /5547BFEB;
+Reference = U2;
+ValeurCmp = MICRO-B_USB;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /554885C5;
+Reference = X1;
+ValeurCmp = CRYSTAL_ABM3C;
+IdModule  = ;
+EndCmp
+
+EndListe

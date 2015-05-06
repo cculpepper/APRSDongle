@@ -1,4 +1,4 @@
-update=Mon 04 May 2015 05:52:50 PM EDT
+update=Tue 05 May 2015 01:44:50 PM EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -69,3 +69,4 @@ LibName37=neo7
 LibName38=gpsant
 LibName39=open-project
 LibName40=smtJmpOpen
+LibName41=conn_11x2

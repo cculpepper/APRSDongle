@@ -1,0 +1,6 @@
+(fp_lib_table
+  (lib (name dra818)(type Legacy)(uri "$(KIPRJMOD)/dra818.mod")(options "")(descr ""))
+  (lib (name open-project)(type Legacy)(uri "$(KIPRJMOD)/open-project.mod")(options "")(descr ""))
+  (lib (name SparkFun)(type Legacy)(uri "$(KIPRJMOD)/SparkFun.mod")(options "")(descr ""))
+  (lib (name USB)(type Legacy)(uri "$(KIPRJMOD)/USB.mod")(options "")(descr ""))
+)
