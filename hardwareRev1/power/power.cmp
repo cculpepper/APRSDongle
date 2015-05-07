@@ -1,17 +1,17 @@
-Cmp-Mod V01 Created by Cvpcb (2015-03-20 BZR 5526)-product   date = Wed 06 May 2015 03:01:11 AM EDT
+Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Thu 07 May 2015 01:20:54 EDT
 
 BeginCmp
 TimeStamp = /55491BE2;
 Reference = C1;
 ValeurCmp = 10u;
-IdModule  = Capacitors_SMD:C_0201;
+IdModule  = Capacitors_SMD:C_0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /55491C2D;
 Reference = C2;
 ValeurCmp = 10u;
-IdModule  = Capacitors_SMD:c_elec_5x5.8;
+IdModule  = Capacitors_SMD:C_0805;
 EndCmp
 
 BeginCmp
@@ -46,7 +46,7 @@ BeginCmp
 TimeStamp = /5549747C;
 Reference = D1;
 ValeurCmp = DIODE;
-IdModule  = Diodes_SMD:SOD-323;
+IdModule  = Diodes_ThroughHole:Diode_DO-41_SOD81_Vertical_KathodeUp;
 EndCmp
 
 BeginCmp
@@ -74,7 +74,7 @@ BeginCmp
 TimeStamp = /5549A687;
 Reference = IC1;
 ValeurCmp = ATTINY24A-M-FIXED;
-IdModule  = Housings_DFN_QFN:QFN-20-1EP_4x4mm_Pitch0.5mm;
+IdModule  = w_smd_qfn:qfn-20;
 EndCmp
 
 BeginCmp
@@ -95,7 +95,7 @@ BeginCmp
 TimeStamp = /55490368;
 Reference = P2;
 ValeurCmp = CONN_11X2;
-IdModule  = Pin_Headers:Pin_Header_Straight_2x11;
+IdModule  = hardwareRev1:1.27mmPitchHeader11X2;
 EndCmp
 
 BeginCmp
@@ -122,28 +122,28 @@ EndCmp
 BeginCmp
 TimeStamp = /55491B63;
 Reference = R3;
-ValeurCmp = 768J;
+ValeurCmp = 768K;
 IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
 BeginCmp
 TimeStamp = /55491B9A;
 Reference = R4;
-ValeurCmp = 137J;
+ValeurCmp = 137K;
 IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
 BeginCmp
 TimeStamp = /55493909;
 Reference = R5;
-ValeurCmp = R;
+ValeurCmp = 0.01;
 IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
 BeginCmp
 TimeStamp = /55499110;
 Reference = R6;
-ValeurCmp = R;
+ValeurCmp = 55;
 IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
@@ -155,17 +155,31 @@ IdModule  = Resistors_SMD:R_0603;
 EndCmp
 
 BeginCmp
+TimeStamp = /554AD2BB;
+Reference = R8;
+ValeurCmp = 100K;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /554AD254;
+Reference = R9;
+ValeurCmp = 100K;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
 TimeStamp = /55495A00;
 Reference = TP1;
 ValeurCmp = TEST-POINT2;
-IdModule  = Measurement_Points:Measurement_Point_Round-SMD-Pad_Big;
+IdModule  = Measurement_Points:Measurement_Point_Round-SMD-Pad_Small;
 EndCmp
 
 BeginCmp
 TimeStamp = /55491A9D;
 Reference = U1;
 ValeurCmp = TPS63020;
-IdModule  = TPS63020:TPS63020;
+IdModule  = hardwareRev1:TPS63020;
 EndCmp
 
 BeginCmp
