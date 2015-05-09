@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:hardwareRev1-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,13 +30,19 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:conn_11x2
-LIBS:tps63020
-LIBS:ncp508
-LIBS:smtJmpOpen
+LIBS:MKL26Z128VLH4
+LIBS:USB
+LIBS:sma
+LIBS:DataStorage
+LIBS:dra818Real
 LIBS:SparkFun
-LIBS:attiny24a-m
-LIBS:power-cache
+LIBS:neo7
+LIBS:gpsant
+LIBS:open-project
+LIBS:smtJmpOpen
+LIBS:conn_11x2
+LIBS:MOS_P_NUM
+LIBS:hardwareRev1-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -2038,17 +2045,6 @@ Wire Wire Line
 	4250 7450 4250 7650
 Text Label 3500 7350 0    60   ~ 0
 SW0
-$Comp
-L CONN_1 P9
-U 1 1 554D49E1
-P 7250 5700
-F 0 "P9" H 7330 5700 40  0000 L CNN
-F 1 "USBPW" H 7250 5755 30  0001 C CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Small" H 7250 5700 60  0001 C CNN
-F 3 "" H 7250 5700 60  0000 C CNN
-	1    7250 5700
-	0    1    1    0   
-$EndComp
 $Comp
 L CONN_1 P10
 U 1 1 554D4A41
