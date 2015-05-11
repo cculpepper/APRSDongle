@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Fri 08 May 2015 00:11:41 EDT
+Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Sun 10 May 2015 18:37:26 EDT
 
 BeginCmp
 TimeStamp = /5547B2FE;
@@ -96,6 +96,13 @@ TimeStamp = /554D9E04;
 Reference = C13;
 ValeurCmp = C;
 IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /554FE992;
+Reference = C14;
+ValeurCmp = C;
+IdModule  = Capacitors_ThroughHole:C_Rect_L13_W6_H12_P10;
 EndCmp
 
 BeginCmp
@@ -239,13 +246,6 @@ IdModule  = Measurement_Points:Measurement_Point_Round-SMD-Pad_Small;
 EndCmp
 
 BeginCmp
-TimeStamp = /554D49E1;
-Reference = P9;
-ValeurCmp = USBPW;
-IdModule  = Measurement_Points:Measurement_Point_Round-SMD-Pad_Small;
-EndCmp
-
-BeginCmp
 TimeStamp = /554D4A41;
 Reference = P10;
 ValeurCmp = ID;
@@ -346,6 +346,13 @@ EndCmp
 BeginCmp
 TimeStamp = /554CE7C5;
 Reference = R13;
+ValeurCmp = R;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /554FECB3;
+Reference = R14;
 ValeurCmp = R;
 IdModule  = Resistors_SMD:R_0603;
 EndCmp

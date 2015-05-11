@@ -354,12 +354,12 @@ $EndComp
 $Comp
 L +3.3V #PWR014
 U 1 1 5546BB95
-P 8400 1100
-F 0 "#PWR014" H 8400 1060 30  0001 C CNN
-F 1 "+3.3V" H 8400 1210 30  0000 C CNN
-F 2 "" H 8400 1100 60  0000 C CNN
-F 3 "" H 8400 1100 60  0000 C CNN
-	1    8400 1100
+P 8600 1450
+F 0 "#PWR014" H 8600 1410 30  0001 C CNN
+F 1 "+3.3V" H 8600 1560 30  0000 C CNN
+F 2 "" H 8600 1450 60  0000 C CNN
+F 3 "" H 8600 1450 60  0000 C CNN
+	1    8600 1450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -390,9 +390,9 @@ F 3 "" H 6450 2950 60  0000 C CNN
 $EndComp
 NoConn ~ 6450 3550
 Text Label 5900 750  0    60   ~ 0
-internalI2C1SDA
+internalI2C0SDA
 Text Label 5900 850  0    60   ~ 0
-internalI2C1SCL
+internalI2C0SCL
 Text Label 5900 950  0    60   ~ 0
 GPSTX
 Text Label 5900 1050 0    60   ~ 0
@@ -1428,12 +1428,7 @@ Wire Wire Line
 	8750 2350 8750 2300
 Connection ~ 9000 2350
 Wire Wire Line
-	8250 1250 8400 1250
-Wire Wire Line
-	8400 1100 8400 1400
-Wire Wire Line
 	8400 1400 8250 1400
-Connection ~ 8400 1250
 Wire Wire Line
 	8250 1700 8400 1700
 Wire Wire Line
@@ -2200,4 +2195,41 @@ Wire Wire Line
 Wire Wire Line
 	8350 5250 8350 5300
 Connection ~ 8350 5300
+$Comp
+L C C14
+U 1 1 554FE992
+P 9450 1250
+F 0 "C14" H 9450 1350 40  0000 L CNN
+F 1 "C" H 9456 1165 40  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13_W6_H12_P10" H 9488 1100 30  0001 C CNN
+F 3 "" H 9450 1250 60  0000 C CNN
+	1    9450 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R14
+U 1 1 554FECB3
+P 9050 1500
+F 0 "R14" V 9130 1500 40  0000 C CNN
+F 1 "R" V 9057 1501 40  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 8980 1500 30  0001 C CNN
+F 3 "" H 9050 1500 30  0000 C CNN
+	1    9050 1500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8400 1400 8400 1500
+Wire Wire Line
+	8400 1500 8800 1500
+Wire Wire Line
+	8600 1500 8600 1450
+Connection ~ 8600 1500
+Wire Wire Line
+	9300 1500 9450 1500
+Wire Wire Line
+	9450 1500 9450 1450
+Wire Wire Line
+	9450 1050 8250 1050
+Wire Wire Line
+	8250 1050 8250 1250
 $EndSCHEMATC
