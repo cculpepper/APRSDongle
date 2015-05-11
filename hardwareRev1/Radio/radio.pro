@@ -1,4 +1,4 @@
-update=Mon 11 May 2015 03:33:27 AM EDT
+update=Mon 11 May 2015 04:38:53 PM EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -63,3 +63,4 @@ LibName31=AX503
 LibName32=tcxo
 LibName33=RF5110G
 LibName34=PE42424
+LibName35=/home/chris/Code/APRSDongle/hardwareRev1/dra818Real
