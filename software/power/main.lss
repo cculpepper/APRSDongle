@@ -1,0 +1,399 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001f6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000002a  00800060  000001f6  0000026a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         00000c48  00000000  00000000  00000294  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000cee  00000000  00000000  00000edc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .comment      00000027  00000000  00000000  00001bca  2**0
+                  CONTENTS, READONLY
+  5 .debug_info   00000420  00000000  00000000  00001bf1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000003e8  00000000  00000000  00002011  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000001d  00000000  00000000  000023f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000173  00000000  00000000  00002416  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	10 c0       	rjmp	.+32     	; 0x22 <__ctors_end>
+   2:	22 c0       	rjmp	.+68     	; 0x48 <__bad_interrupt>
+   4:	21 c0       	rjmp	.+66     	; 0x48 <__bad_interrupt>
+   6:	20 c0       	rjmp	.+64     	; 0x48 <__bad_interrupt>
+   8:	1f c0       	rjmp	.+62     	; 0x48 <__bad_interrupt>
+   a:	1e c0       	rjmp	.+60     	; 0x48 <__bad_interrupt>
+   c:	55 c0       	rjmp	.+170    	; 0xb8 <__vector_6>
+   e:	1c c0       	rjmp	.+56     	; 0x48 <__bad_interrupt>
+  10:	1b c0       	rjmp	.+54     	; 0x48 <__bad_interrupt>
+  12:	1a c0       	rjmp	.+52     	; 0x48 <__bad_interrupt>
+  14:	19 c0       	rjmp	.+50     	; 0x48 <__bad_interrupt>
+  16:	18 c0       	rjmp	.+48     	; 0x48 <__bad_interrupt>
+  18:	17 c0       	rjmp	.+46     	; 0x48 <__bad_interrupt>
+  1a:	16 c0       	rjmp	.+44     	; 0x48 <__bad_interrupt>
+  1c:	15 c0       	rjmp	.+42     	; 0x48 <__bad_interrupt>
+  1e:	14 c0       	rjmp	.+40     	; 0x48 <__bad_interrupt>
+  20:	13 c0       	rjmp	.+38     	; 0x48 <__bad_interrupt>
+
+00000022 <__ctors_end>:
+  22:	11 24       	eor	r1, r1
+  24:	1f be       	out	0x3f, r1	; 63
+  26:	cf e5       	ldi	r28, 0x5F	; 95
+  28:	d2 e0       	ldi	r29, 0x02	; 2
+  2a:	de bf       	out	0x3e, r29	; 62
+  2c:	cd bf       	out	0x3d, r28	; 61
+
+0000002e <__do_copy_data>:
+  2e:	10 e0       	ldi	r17, 0x00	; 0
+  30:	a0 e6       	ldi	r26, 0x60	; 96
+  32:	b0 e0       	ldi	r27, 0x00	; 0
+  34:	e6 ef       	ldi	r30, 0xF6	; 246
+  36:	f1 e0       	ldi	r31, 0x01	; 1
+  38:	02 c0       	rjmp	.+4      	; 0x3e <__SP_H__>
+  3a:	05 90       	lpm	r0, Z+
+  3c:	0d 92       	st	X+, r0
+  3e:	aa 38       	cpi	r26, 0x8A	; 138
+  40:	b1 07       	cpc	r27, r17
+  42:	d9 f7       	brne	.-10     	; 0x3a <__do_copy_data+0xc>
+  44:	c2 d0       	rcall	.+388    	; 0x1ca <main>
+  46:	d5 c0       	rjmp	.+426    	; 0x1f2 <_exit>
+
+00000048 <__bad_interrupt>:
+  48:	db cf       	rjmp	.-74     	; 0x0 <__vectors>
+
+0000004a <adcVinInit>:
+#include "cw.h"
+ 
+void adcVinInit(void){
+	// For right now, will set up for single ended, battery voltage measurement. 
+	//
+	PRR &= ~(1 << PRADC);
+  4a:	00 98       	cbi	0x00, 0	; 0
+	ADCSRA &= ~(1 << ADEN);
+  4c:	37 98       	cbi	0x06, 7	; 6
+	ADMUX = 0;
+  4e:	17 b8       	out	0x07, r1	; 7
+
+	ADCSRB = (1 << ADLAR) ;
+  50:	80 e1       	ldi	r24, 0x10	; 16
+  52:	83 b9       	out	0x03, r24	; 3
+	ADCSRA = (0x6) | (1 << ADEN);
+  54:	86 e8       	ldi	r24, 0x86	; 134
+  56:	86 b9       	out	0x06, r24	; 6
+  58:	08 95       	ret
+
+0000005a <measVin>:
+}
+int measVin(void) {
+	int temp;
+	while ( ADCSRA & (1 << ADSC));
+  5a:	36 99       	sbic	0x06, 6	; 6
+  5c:	fe cf       	rjmp	.-4      	; 0x5a <measVin>
+	adcVinInit();
+  5e:	f5 df       	rcall	.-22     	; 0x4a <adcVinInit>
+	ADCSRA |= (1 << ADSC);
+  60:	36 9a       	sbi	0x06, 6	; 6
+	while ( ADCSRA & (1 << ADSC));
+  62:	36 99       	sbic	0x06, 6	; 6
+  64:	fe cf       	rjmp	.-4      	; 0x62 <measVin+0x8>
+	temp = (ADCH << 2) | (ADCL >> 6);
+  66:	85 b1       	in	r24, 0x05	; 5
+  68:	24 b1       	in	r18, 0x04	; 4
+  6a:	22 95       	swap	r18
+  6c:	26 95       	lsr	r18
+  6e:	26 95       	lsr	r18
+  70:	23 70       	andi	r18, 0x03	; 3
+  72:	90 e0       	ldi	r25, 0x00	; 0
+  74:	88 0f       	add	r24, r24
+  76:	99 1f       	adc	r25, r25
+  78:	88 0f       	add	r24, r24
+  7a:	99 1f       	adc	r25, r25
+	return temp;
+}
+  7c:	82 2b       	or	r24, r18
+  7e:	08 95       	ret
+
+00000080 <adcCurInit>:
+void adcCurInit(void){
+	// For right now, will set up for single ended, battery voltage measurement. 
+	// PA1 is pos
+	// PA2 is neg
+	//
+	PRR &= ~(1 << PRADC);
+  80:	00 98       	cbi	0x00, 0	; 0
+	ADCSRA &= ~(1 << ADEN);
+  82:	37 98       	cbi	0x06, 7	; 6
+	ADMUX = 0x5d;
+  84:	8d e5       	ldi	r24, 0x5D	; 93
+  86:	87 b9       	out	0x07, r24	; 7
+
+	ADCSRB = (1 << ADLAR) ;
+  88:	80 e1       	ldi	r24, 0x10	; 16
+  8a:	83 b9       	out	0x03, r24	; 3
+	ADCSRA = (0x6) | (1 << ADEN);
+  8c:	86 e8       	ldi	r24, 0x86	; 134
+  8e:	86 b9       	out	0x06, r24	; 6
+  90:	08 95       	ret
+
+00000092 <measCur>:
+}
+int measCur(void) {
+	int temp;
+	while ( ADCSRA & (1 << ADSC));
+  92:	36 99       	sbic	0x06, 6	; 6
+  94:	fe cf       	rjmp	.-4      	; 0x92 <measCur>
+	adcCurInit();
+  96:	f4 df       	rcall	.-24     	; 0x80 <adcCurInit>
+	ADCSRA |= (1 << ADSC);
+  98:	36 9a       	sbi	0x06, 6	; 6
+	while ( ADCSRA & (1 << ADSC));
+  9a:	36 99       	sbic	0x06, 6	; 6
+  9c:	fe cf       	rjmp	.-4      	; 0x9a <measCur+0x8>
+	temp = (ADCH << 2) | (ADCL >> 6);
+  9e:	85 b1       	in	r24, 0x05	; 5
+  a0:	24 b1       	in	r18, 0x04	; 4
+  a2:	22 95       	swap	r18
+  a4:	26 95       	lsr	r18
+  a6:	26 95       	lsr	r18
+  a8:	23 70       	andi	r18, 0x03	; 3
+  aa:	90 e0       	ldi	r25, 0x00	; 0
+  ac:	88 0f       	add	r24, r24
+  ae:	99 1f       	adc	r25, r25
+  b0:	88 0f       	add	r24, r24
+  b2:	99 1f       	adc	r25, r25
+	return temp;
+}
+  b4:	82 2b       	or	r24, r18
+  b6:	08 95       	ret
+
+000000b8 <__vector_6>:
+	for(;;);
+ 
+}
+ 
+ISR (TIM1_COMPA_vect)      //Interrupt Service Routine
+{
+  b8:	1f 92       	push	r1
+  ba:	0f 92       	push	r0
+  bc:	0f b6       	in	r0, 0x3f	; 63
+  be:	0f 92       	push	r0
+  c0:	11 24       	eor	r1, r1
+  c2:	8f 93       	push	r24
+  c4:	9f 93       	push	r25
+  PORTB ^= (1<<2);        //Use xor to toggle the LED
+  c6:	98 b3       	in	r25, 0x18	; 24
+  c8:	84 e0       	ldi	r24, 0x04	; 4
+  ca:	89 27       	eor	r24, r25
+  cc:	88 bb       	out	0x18, r24	; 24
+}
+  ce:	9f 91       	pop	r25
+  d0:	8f 91       	pop	r24
+  d2:	0f 90       	pop	r0
+  d4:	0f be       	out	0x3f, r0	; 63
+  d6:	0f 90       	pop	r0
+  d8:	1f 90       	pop	r1
+  da:	18 95       	reti
+
+000000dc <cwTone>:
+	0xA1,
+	};
+
+
+void cwTone(char DitOrDah){
+	LED1_On();		
+  dc:	df 9a       	sbi	0x1b, 7	; 27
+	if (DitOrDah == 0) {
+  de:	81 11       	cpse	r24, r1
+  e0:	08 c0       	rjmp	.+16     	; 0xf2 <cwTone+0x16>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e2:	2f e5       	ldi	r18, 0x5F	; 95
+  e4:	8a ee       	ldi	r24, 0xEA	; 234
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	21 50       	subi	r18, 0x01	; 1
+  ea:	80 40       	sbci	r24, 0x00	; 0
+  ec:	90 40       	sbci	r25, 0x00	; 0
+  ee:	e1 f7       	brne	.-8      	; 0xe8 <cwTone+0xc>
+  f0:	04 c0       	rjmp	.+8      	; 0xfa <cwTone+0x1e>
+  f2:	87 ea       	ldi	r24, 0xA7	; 167
+  f4:	91 e6       	ldi	r25, 0x61	; 97
+  f6:	01 97       	sbiw	r24, 0x01	; 1
+  f8:	f1 f7       	brne	.-4      	; 0xf6 <cwTone+0x1a>
+  fa:	00 c0       	rjmp	.+0      	; 0xfc <cwTone+0x20>
+  fc:	00 00       	nop
+		/* Then we have a dah, 0 and all. `==*/ 
+		_delay_ms(DAHTIME);
+	} else {
+		_delay_ms(DITTIME);
+	}
+	LED1_Off();	
+  fe:	df 98       	cbi	0x1b, 7	; 27
+ 100:	08 95       	ret
+
+00000102 <cwSend>:
+ 102:	af 92       	push	r10
+ 104:	bf 92       	push	r11
+ 106:	cf 92       	push	r12
+ 108:	df 92       	push	r13
+ 10a:	ef 92       	push	r14
+ 10c:	ff 92       	push	r15
+ 10e:	0f 93       	push	r16
+ 110:	1f 93       	push	r17
+ 112:	cf 93       	push	r28
+ 114:	df 93       	push	r29
+ 116:	7c 01       	movw	r14, r24
+ 118:	ec 01       	movw	r28, r24
+ 11a:	c6 0f       	add	r28, r22
+ 11c:	d7 1f       	adc	r29, r23
+ 11e:	00 e8       	ldi	r16, 0x80	; 128
+ 120:	10 e0       	ldi	r17, 0x00	; 0
+ 122:	ec 16       	cp	r14, r28
+ 124:	fd 06       	cpc	r15, r29
+ 126:	e8 f5       	brcc	.+122    	; 0x1a2 <cwSend+0xa0>
+ 128:	d7 01       	movw	r26, r14
+ 12a:	ed 91       	ld	r30, X+
+ 12c:	7d 01       	movw	r14, r26
+ 12e:	8f eb       	ldi	r24, 0xBF	; 191
+ 130:	8e 0f       	add	r24, r30
+ 132:	8a 31       	cpi	r24, 0x1A	; 26
+ 134:	20 f4       	brcc	.+8      	; 0x13e <cwSend+0x3c>
+ 136:	f0 e0       	ldi	r31, 0x00	; 0
+ 138:	e7 5d       	subi	r30, 0xD7	; 215
+ 13a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 13c:	07 c0       	rjmp	.+14     	; 0x14c <cwSend+0x4a>
+ 13e:	80 ed       	ldi	r24, 0xD0	; 208
+ 140:	8e 0f       	add	r24, r30
+ 142:	8a 30       	cpi	r24, 0x0A	; 10
+ 144:	28 f4       	brcc	.+10     	; 0x150 <cwSend+0x4e>
+ 146:	f0 e0       	ldi	r31, 0x00	; 0
+ 148:	e0 5d       	subi	r30, 0xD0	; 208
+ 14a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 14c:	d0 80       	ld	r13, Z
+ 14e:	01 c0       	rjmp	.+2      	; 0x152 <cwSend+0x50>
+ 150:	d1 2c       	mov	r13, r1
+ 152:	cd 2c       	mov	r12, r13
+ 154:	c2 94       	swap	r12
+ 156:	c6 94       	lsr	r12
+ 158:	87 e0       	ldi	r24, 0x07	; 7
+ 15a:	c8 22       	and	r12, r24
+ 15c:	93 e0       	ldi	r25, 0x03	; 3
+ 15e:	a9 2e       	mov	r10, r25
+ 160:	b1 2c       	mov	r11, r1
+ 162:	cc 20       	and	r12, r12
+ 164:	a1 f0       	breq	.+40     	; 0x18e <cwSend+0x8c>
+ 166:	c8 01       	movw	r24, r16
+ 168:	0a 2c       	mov	r0, r10
+ 16a:	02 c0       	rjmp	.+4      	; 0x170 <cwSend+0x6e>
+ 16c:	95 95       	asr	r25
+ 16e:	87 95       	ror	r24
+ 170:	0a 94       	dec	r0
+ 172:	e2 f7       	brpl	.-8      	; 0x16c <cwSend+0x6a>
+ 174:	8d 21       	and	r24, r13
+ 176:	b2 df       	rcall	.-156    	; 0xdc <cwTone>
+ 178:	87 ea       	ldi	r24, 0xA7	; 167
+ 17a:	91 e6       	ldi	r25, 0x61	; 97
+ 17c:	01 97       	sbiw	r24, 0x01	; 1
+ 17e:	f1 f7       	brne	.-4      	; 0x17c <cwSend+0x7a>
+ 180:	00 c0       	rjmp	.+0      	; 0x182 <cwSend+0x80>
+ 182:	00 00       	nop
+ 184:	ca 94       	dec	r12
+ 186:	9f ef       	ldi	r25, 0xFF	; 255
+ 188:	a9 1a       	sub	r10, r25
+ 18a:	b9 0a       	sbc	r11, r25
+ 18c:	ea cf       	rjmp	.-44     	; 0x162 <cwSend+0x60>
+ 18e:	af e5       	ldi	r26, 0x5F	; 95
+ 190:	ba ee       	ldi	r27, 0xEA	; 234
+ 192:	20 e0       	ldi	r18, 0x00	; 0
+ 194:	a1 50       	subi	r26, 0x01	; 1
+ 196:	b0 40       	sbci	r27, 0x00	; 0
+ 198:	20 40       	sbci	r18, 0x00	; 0
+ 19a:	e1 f7       	brne	.-8      	; 0x194 <cwSend+0x92>
+ 19c:	00 c0       	rjmp	.+0      	; 0x19e <cwSend+0x9c>
+ 19e:	00 00       	nop
+ 1a0:	c0 cf       	rjmp	.-128    	; 0x122 <cwSend+0x20>
+ 1a2:	8f e5       	ldi	r24, 0x5F	; 95
+ 1a4:	9a ee       	ldi	r25, 0xEA	; 234
+ 1a6:	a0 e0       	ldi	r26, 0x00	; 0
+ 1a8:	81 50       	subi	r24, 0x01	; 1
+ 1aa:	90 40       	sbci	r25, 0x00	; 0
+ 1ac:	a0 40       	sbci	r26, 0x00	; 0
+ 1ae:	e1 f7       	brne	.-8      	; 0x1a8 <cwSend+0xa6>
+ 1b0:	00 c0       	rjmp	.+0      	; 0x1b2 <cwSend+0xb0>
+ 1b2:	00 00       	nop
+ 1b4:	df 91       	pop	r29
+ 1b6:	cf 91       	pop	r28
+ 1b8:	1f 91       	pop	r17
+ 1ba:	0f 91       	pop	r16
+ 1bc:	ff 90       	pop	r15
+ 1be:	ef 90       	pop	r14
+ 1c0:	df 90       	pop	r13
+ 1c2:	cf 90       	pop	r12
+ 1c4:	bf 90       	pop	r11
+ 1c6:	af 90       	pop	r10
+ 1c8:	08 95       	ret
+
+000001ca <main>:
+		/*DDRB |= (1<<i);     //Set PortD Pin0 as an output*/
+		/*DDRA |= (1<<i);     //Set PortD Pin0 as an output*/
+		/*PORTB |= (1<<i);        //Set PortD Pin0 high to turn on LED*/
+		/*PORTA |= (1<<i);        //Set PortD Pin0 high to turn on LED*/
+	/*}*/
+	DDRB |= (1<<2) | 1;
+ 1ca:	87 b3       	in	r24, 0x17	; 23
+ 1cc:	85 60       	ori	r24, 0x05	; 5
+ 1ce:	87 bb       	out	0x17, r24	; 23
+	DDRA |= (1<<7);
+ 1d0:	d7 9a       	sbi	0x1a, 7	; 26
+
+	// Set PTB0 to 0 to enable power save. 
+	PORTB &= ~(1<<0);
+ 1d2:	c0 98       	cbi	0x18, 0	; 24
+		/*DDRB = 0xff;*/
+		/*PORTB = 0xff;*/
+		_delay_ms(100); 		
+		PORTA ^= (1<<7);
+	}
+	cwSend("AB1TJ", 5);
+ 1d4:	65 e0       	ldi	r22, 0x05	; 5
+ 1d6:	70 e0       	ldi	r23, 0x00	; 0
+ 1d8:	84 e8       	ldi	r24, 0x84	; 132
+ 1da:	90 e0       	ldi	r25, 0x00	; 0
+ 1dc:	92 df       	rcall	.-220    	; 0x102 <cwSend>
+
+		/*PORTB ^= (1<<2);*/
+  //Setup the clock
+  TCCR1B |= (1 << WGM12) | 1<<CS11 | 1<<CS10;  //Divide by 64
+ 1de:	8e b5       	in	r24, 0x2e	; 46
+ 1e0:	8b 60       	ori	r24, 0x0B	; 11
+ 1e2:	8e bd       	out	0x2e, r24	; 46
+  OCR1A = 156;        //Count 15624 cycles for 1 second interrupt
+ 1e4:	8c e9       	ldi	r24, 0x9C	; 156
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+ 1e8:	9b bd       	out	0x2b, r25	; 43
+ 1ea:	8a bd       	out	0x2a, r24	; 42
+  /*OCR1A = 15624;        //Count 15624 cycles for 1 second interrupt*/
+  TIMSK1 |= 1<<OCIE1A;        //enable timer compare interrupt
+ 1ec:	61 9a       	sbi	0x0c, 1	; 12
+  sei();            //Enable global interrupts
+ 1ee:	78 94       	sei
+ 
+	for(;;);
+ 1f0:	ff cf       	rjmp	.-2      	; 0x1f0 <main+0x26>
+
+000001f2 <_exit>:
+ 1f2:	f8 94       	cli
+
+000001f4 <__stop_program>:
+ 1f4:	ff cf       	rjmp	.-2      	; 0x1f4 <__stop_program>

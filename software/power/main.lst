@@ -1,0 +1,338 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   9               		.text
+  10               	.Ltext0:
+ 103               	.global	adcVinInit
+ 105               	adcVinInit:
+ 106               		.stabd	46,0,0
+   1:main.c        **** /*
+   2:main.c        **** * Hackaday.com AVR Tutorial firmware
+   3:main.c        **** * written by: Mike Szczys (@szczys)
+   4:main.c        **** * 10/24/2010
+   5:main.c        **** *
+   6:main.c        **** * ATmega168
+   7:main.c        **** * Blinks one LED conneced to PD0
+   8:main.c        **** *
+   9:main.c        **** * http://hackaday.com/2010/10/25/avr-programming-02-the-hardware/
+  10:main.c        **** */
+  11:main.c        **** #define __AVR_ATtiny84A__
+  12:main.c        ****  
+  13:main.c        **** #define F_CPU 8000000
+  14:main.c        **** #include <avr/io.h>
+  15:main.c        **** #include <avr/interrupt.h>
+  16:main.c        **** 
+  17:main.c        **** #include <util/delay.h>
+  18:main.c        **** #include "cw.h"
+  19:main.c        ****  
+  20:main.c        **** void adcVinInit(void){
+ 108               	.LM0:
+ 109               	.LFBB1:
+ 110               	/* prologue: function */
+ 111               	/* frame size = 0 */
+ 112               	/* stack size = 0 */
+ 113               	.L__stack_usage = 0
+  21:main.c        **** 	// For right now, will set up for single ended, battery voltage measurement. 
+  22:main.c        **** 	//
+  23:main.c        **** 	PRR &= ~(1 << PRADC);
+ 115               	.LM1:
+ 116 0000 0098      		cbi 0,0
+  24:main.c        **** 	ADCSRA &= ~(1 << ADEN);
+ 118               	.LM2:
+ 119 0002 3798      		cbi 0x6,7
+  25:main.c        **** 	ADMUX = 0;
+ 121               	.LM3:
+ 122 0004 17B8      		out 0x7,__zero_reg__
+  26:main.c        **** 
+  27:main.c        **** 	ADCSRB = (1 << ADLAR) ;
+ 124               	.LM4:
+ 125 0006 80E1      		ldi r24,lo8(16)
+ 126 0008 83B9      		out 0x3,r24
+  28:main.c        **** 	ADCSRA = (0x6) | (1 << ADEN);
+ 128               	.LM5:
+ 129 000a 86E8      		ldi r24,lo8(-122)
+ 130 000c 86B9      		out 0x6,r24
+ 131 000e 0895      		ret
+ 133               	.Lscope1:
+ 135               		.stabd	78,0,0
+ 137               	.global	measVin
+ 139               	measVin:
+ 140               		.stabd	46,0,0
+  29:main.c        **** }
+  30:main.c        **** int measVin(void) {
+ 142               	.LM6:
+ 143               	.LFBB2:
+ 144               	/* prologue: function */
+ 145               	/* frame size = 0 */
+ 146               	/* stack size = 0 */
+ 147               	.L__stack_usage = 0
+ 148               	.L3:
+  31:main.c        **** 	int temp;
+  32:main.c        **** 	while ( ADCSRA & (1 << ADSC));
+ 150               	.LM7:
+ 151 0010 3699      		sbic 0x6,6
+ 152 0012 00C0      		rjmp .L3
+  33:main.c        **** 	adcVinInit();
+ 154               	.LM8:
+ 155 0014 00D0      		rcall adcVinInit
+  34:main.c        **** 	ADCSRA |= (1 << ADSC);
+ 157               	.LM9:
+ 158 0016 369A      		sbi 0x6,6
+ 159               	.L4:
+  35:main.c        **** 	while ( ADCSRA & (1 << ADSC));
+ 161               	.LM10:
+ 162 0018 3699      		sbic 0x6,6
+ 163 001a 00C0      		rjmp .L4
+  36:main.c        **** 	temp = (ADCH << 2) | (ADCL >> 6);
+ 165               	.LM11:
+ 166 001c 85B1      		in r24,0x5
+ 167 001e 24B1      		in r18,0x4
+ 168 0020 2295      		swap r18
+ 169 0022 2695      		lsr r18
+ 170 0024 2695      		lsr r18
+ 171 0026 2370      		andi r18,lo8(3)
+ 172 0028 90E0      		ldi r25,0
+ 173 002a 880F      		lsl r24
+ 174 002c 991F      		rol r25
+ 175 002e 880F      		lsl r24
+ 176 0030 991F      		rol r25
+  37:main.c        **** 	return temp;
+  38:main.c        **** }
+ 178               	.LM12:
+ 179 0032 822B      		or r24,r18
+ 180 0034 0895      		ret
+ 182               	.Lscope2:
+ 184               		.stabd	78,0,0
+ 186               	.global	adcCurInit
+ 188               	adcCurInit:
+ 189               		.stabd	46,0,0
+  39:main.c        **** 
+  40:main.c        **** void adcCurInit(void){
+ 191               	.LM13:
+ 192               	.LFBB3:
+ 193               	/* prologue: function */
+ 194               	/* frame size = 0 */
+ 195               	/* stack size = 0 */
+ 196               	.L__stack_usage = 0
+  41:main.c        **** 	// For right now, will set up for single ended, battery voltage measurement. 
+  42:main.c        **** 	// PA1 is pos
+  43:main.c        **** 	// PA2 is neg
+  44:main.c        **** 	//
+  45:main.c        **** 	PRR &= ~(1 << PRADC);
+ 198               	.LM14:
+ 199 0036 0098      		cbi 0,0
+  46:main.c        **** 	ADCSRA &= ~(1 << ADEN);
+ 201               	.LM15:
+ 202 0038 3798      		cbi 0x6,7
+  47:main.c        **** 	ADMUX = 0x5d;
+ 204               	.LM16:
+ 205 003a 8DE5      		ldi r24,lo8(93)
+ 206 003c 87B9      		out 0x7,r24
+  48:main.c        **** 
+  49:main.c        **** 	ADCSRB = (1 << ADLAR) ;
+ 208               	.LM17:
+ 209 003e 80E1      		ldi r24,lo8(16)
+ 210 0040 83B9      		out 0x3,r24
+  50:main.c        **** 	ADCSRA = (0x6) | (1 << ADEN);
+ 212               	.LM18:
+ 213 0042 86E8      		ldi r24,lo8(-122)
+ 214 0044 86B9      		out 0x6,r24
+ 215 0046 0895      		ret
+ 217               	.Lscope3:
+ 219               		.stabd	78,0,0
+ 221               	.global	measCur
+ 223               	measCur:
+ 224               		.stabd	46,0,0
+  51:main.c        **** }
+  52:main.c        **** int measCur(void) {
+ 226               	.LM19:
+ 227               	.LFBB4:
+ 228               	/* prologue: function */
+ 229               	/* frame size = 0 */
+ 230               	/* stack size = 0 */
+ 231               	.L__stack_usage = 0
+ 232               	.L10:
+  53:main.c        **** 	int temp;
+  54:main.c        **** 	while ( ADCSRA & (1 << ADSC));
+ 234               	.LM20:
+ 235 0048 3699      		sbic 0x6,6
+ 236 004a 00C0      		rjmp .L10
+  55:main.c        **** 	adcCurInit();
+ 238               	.LM21:
+ 239 004c 00D0      		rcall adcCurInit
+  56:main.c        **** 	ADCSRA |= (1 << ADSC);
+ 241               	.LM22:
+ 242 004e 369A      		sbi 0x6,6
+ 243               	.L11:
+  57:main.c        **** 	while ( ADCSRA & (1 << ADSC));
+ 245               	.LM23:
+ 246 0050 3699      		sbic 0x6,6
+ 247 0052 00C0      		rjmp .L11
+  58:main.c        **** 	temp = (ADCH << 2) | (ADCL >> 6);
+ 249               	.LM24:
+ 250 0054 85B1      		in r24,0x5
+ 251 0056 24B1      		in r18,0x4
+ 252 0058 2295      		swap r18
+ 253 005a 2695      		lsr r18
+ 254 005c 2695      		lsr r18
+ 255 005e 2370      		andi r18,lo8(3)
+ 256 0060 90E0      		ldi r25,0
+ 257 0062 880F      		lsl r24
+ 258 0064 991F      		rol r25
+ 259 0066 880F      		lsl r24
+ 260 0068 991F      		rol r25
+  59:main.c        **** 	return temp;
+  60:main.c        **** }
+ 262               	.LM25:
+ 263 006a 822B      		or r24,r18
+ 264 006c 0895      		ret
+ 266               	.Lscope4:
+ 268               		.stabd	78,0,0
+ 269               		.section	.rodata.str1.1,"aMS",@progbits,1
+ 270               	.LC0:
+ 271 0000 4142 3154 		.string	"AB1TJ"
+ 271      4A00 
+ 272               		.section	.text.startup,"ax",@progbits
+ 274               	.global	main
+ 276               	main:
+ 277               		.stabd	46,0,0
+  61:main.c        **** 
+  62:main.c        **** 
+  63:main.c        **** 
+  64:main.c        **** int main(void)
+  65:main.c        **** {
+ 279               	.LM26:
+ 280               	.LFBB5:
+ 281               	/* prologue: function */
+ 282               	/* frame size = 0 */
+ 283               	/* stack size = 0 */
+ 284               	.L__stack_usage = 0
+  66:main.c        ****  
+  67:main.c        **** 	int i;
+  68:main.c        **** 	/*for (i=0;i<7;i++){*/
+  69:main.c        **** 		/*DDRB |= (1<<i);     //Set PortD Pin0 as an output*/
+  70:main.c        **** 		/*DDRA |= (1<<i);     //Set PortD Pin0 as an output*/
+  71:main.c        **** 		/*PORTB |= (1<<i);        //Set PortD Pin0 high to turn on LED*/
+  72:main.c        **** 		/*PORTA |= (1<<i);        //Set PortD Pin0 high to turn on LED*/
+  73:main.c        **** 	/*}*/
+  74:main.c        **** 	DDRB |= (1<<2) | 1;
+ 286               	.LM27:
+ 287 0000 87B3      		in r24,0x17
+ 288 0002 8560      		ori r24,lo8(5)
+ 289 0004 87BB      		out 0x17,r24
+  75:main.c        **** 	DDRA |= (1<<7);
+ 291               	.LM28:
+ 292 0006 D79A      		sbi 0x1a,7
+  76:main.c        **** 
+  77:main.c        **** 	// Set PTB0 to 0 to enable power save. 
+  78:main.c        **** 	PORTB &= ~(1<<0);
+ 294               	.LM29:
+ 295 0008 C098      		cbi 0x18,0
+  79:main.c        **** 	while(0){
+  80:main.c        **** 		/*DDRB = 0xff;*/
+  81:main.c        **** 		/*PORTB = 0xff;*/
+  82:main.c        **** 		_delay_ms(100); 		
+  83:main.c        **** 		PORTA ^= (1<<7);
+  84:main.c        **** 	}
+  85:main.c        **** 	cwSend("AB1TJ", 5);
+ 297               	.LM30:
+ 298 000a 65E0      		ldi r22,lo8(5)
+ 299 000c 70E0      		ldi r23,0
+ 300 000e 80E0      		ldi r24,lo8(.LC0)
+ 301 0010 90E0      		ldi r25,hi8(.LC0)
+ 302 0012 00D0      		rcall cwSend
+  86:main.c        **** 
+  87:main.c        **** 		/*PORTB ^= (1<<2);*/
+  88:main.c        ****   //Setup the clock
+  89:main.c        ****   TCCR1B |= (1 << WGM12) | 1<<CS11 | 1<<CS10;  //Divide by 64
+ 304               	.LM31:
+ 305 0014 8EB5      		in r24,0x2e
+ 306 0016 8B60      		ori r24,lo8(11)
+ 307 0018 8EBD      		out 0x2e,r24
+  90:main.c        ****   OCR1A = 156;        //Count 15624 cycles for 1 second interrupt
+ 309               	.LM32:
+ 310 001a 8CE9      		ldi r24,lo8(-100)
+ 311 001c 90E0      		ldi r25,0
+ 312 001e 9BBD      		out 0x2a+1,r25
+ 313 0020 8ABD      		out 0x2a,r24
+  91:main.c        ****   /*OCR1A = 15624;        //Count 15624 cycles for 1 second interrupt*/
+  92:main.c        ****   TIMSK1 |= 1<<OCIE1A;        //enable timer compare interrupt
+ 315               	.LM33:
+ 316 0022 619A      		sbi 0xc,1
+  93:main.c        ****   sei();            //Enable global interrupts
+ 318               	.LM34:
+ 319               	/* #APP */
+ 320               	 ;  93 "main.c" 1
+ 321 0024 7894      		sei
+ 322               	 ;  0 "" 2
+ 323               	/* #NOAPP */
+ 324               	.L15:
+  94:main.c        ****  
+  95:main.c        **** 	for(;;);
+ 326               	.LM35:
+ 327 0026 00C0      		rjmp .L15
+ 329               	.Lscope5:
+ 331               		.stabd	78,0,0
+ 332               		.text
+ 334               	.global	__vector_6
+ 336               	__vector_6:
+ 337               		.stabd	46,0,0
+  96:main.c        ****  
+  97:main.c        **** }
+  98:main.c        ****  
+  99:main.c        **** ISR (TIM1_COMPA_vect)      //Interrupt Service Routine
+ 100:main.c        **** {
+ 339               	.LM36:
+ 340               	.LFBB6:
+ 341 006e 1F92      		push r1
+ 342 0070 0F92      		push r0
+ 343 0072 0FB6      		in r0,__SREG__
+ 344 0074 0F92      		push r0
+ 345 0076 1124      		clr __zero_reg__
+ 346 0078 8F93      		push r24
+ 347 007a 9F93      		push r25
+ 348               	/* prologue: Signal */
+ 349               	/* frame size = 0 */
+ 350               	/* stack size = 5 */
+ 351               	.L__stack_usage = 5
+ 101:main.c        ****   PORTB ^= (1<<2);        //Use xor to toggle the LED
+ 353               	.LM37:
+ 354 007c 98B3      		in r25,0x18
+ 355 007e 84E0      		ldi r24,lo8(4)
+ 356 0080 8927      		eor r24,r25
+ 357 0082 88BB      		out 0x18,r24
+ 358               	/* epilogue start */
+ 102:main.c        **** }
+ 360               	.LM38:
+ 361 0084 9F91      		pop r25
+ 362 0086 8F91      		pop r24
+ 363 0088 0F90      		pop r0
+ 364 008a 0FBE      		out __SREG__,r0
+ 365 008c 0F90      		pop r0
+ 366 008e 1F90      		pop r1
+ 367 0090 1895      		reti
+ 369               	.Lscope6:
+ 371               		.stabd	78,0,0
+ 373               	.Letext0:
+ 374               		.ident	"GCC: (GNU) 4.9.2 20141224 (prerelease)"
+ 375               	.global __do_copy_data
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccKDeR7c.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccKDeR7c.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccKDeR7c.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccKDeR7c.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccKDeR7c.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccKDeR7c.s:105    .text:0000000000000000 adcVinInit
+     /tmp/ccKDeR7c.s:139    .text:0000000000000010 measVin
+     /tmp/ccKDeR7c.s:188    .text:0000000000000036 adcCurInit
+     /tmp/ccKDeR7c.s:223    .text:0000000000000048 measCur
+     /tmp/ccKDeR7c.s:276    .text.startup:0000000000000000 main
+     /tmp/ccKDeR7c.s:336    .text:000000000000006e __vector_6
+
+UNDEFINED SYMBOLS
+cwSend
+__do_copy_data
