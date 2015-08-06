@@ -41,7 +41,7 @@ OPT = s
 FORMAT = ihex
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c cw.c
+SRC = $(TARGET).c cw.c usitwislave.c
 
 # If there is more than one source file, append them above, or modify and
 # uncomment the following:
@@ -225,7 +225,9 @@ ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
 all: begin gccversion sizebefore $(TARGET).elf $(TARGET).hex $(TARGET).eep \
 	$(TARGET).lss $(TARGET).sym sizeafter finished end
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
-	echo "m8\r\n" > /dev/ttyACM0 && echo "W\r\n" > /dev/ttyACM0 
+	echo "m4" > /dev/ttyACM0 && echo "1" > /dev/ttyACM0 
+	echo "1" > /dev/ttyACM0 && echo "e2" > /dev/ttyACM0 
+	echo "P" > /dev/ttyACM0 && echo "W" > /dev/ttyACM0 
 
 # Eye candy.
 # AVR Studio 3.x does not check make's exit code but relies on

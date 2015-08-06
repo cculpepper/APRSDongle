@@ -1,1 +1,1 @@
-main.o main.d : main.c cw.h
+main.o main.d : main.c usitwislave.h cw.h
