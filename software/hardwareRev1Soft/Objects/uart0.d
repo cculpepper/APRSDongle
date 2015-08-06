@@ -1,0 +1,9 @@
+.\objects\uart0.o: uart0.c
+.\objects\uart0.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h
+.\objects\uart0.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h
+.\objects\uart0.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\objects\uart0.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\objects\uart0.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\objects\uart0.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h
+.\objects\uart0.o: queue.h
+.\objects\uart0.o: uart0.h

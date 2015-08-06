@@ -1,0 +1,16 @@
+.\objects\main.o: main.c
+.\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h
+.\objects\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\objects\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\objects\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h
+.\objects\main.o: PIT.h
+.\objects\main.o: uart2.h
+.\objects\main.o: queue.h
+.\objects\main.o: gps.h
+.\objects\main.o: uart1.h
+.\objects\main.o: i2c.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
+.\objects\main.o: gpio.h
+.\objects\main.o: delay.h
