@@ -1,4 +1,5 @@
 #include <MKL26Z4.h>
+#include "ffs/ff.h"
 #include "PIT.h"
 #include "uart2.h"
 #include "gps.h"
@@ -13,7 +14,8 @@ extern uint32_t __StackTop[];
 extern uint32_t __data_start__[], __data_end__[];
 extern uint32_t __bss_start__[], __bss_end__[];
 extern uint32_t __etext[];                // End of code/flash
-
+FATFS FatFs;
+FIL Fil;
 
 void toggle(){
 
@@ -62,6 +64,7 @@ int main(){
 	
 	char c2;
 	char s[40];
+	UINT bw;
 	char s2[40];
 	c = 0;
 	start();
@@ -72,7 +75,17 @@ int main(){
 	PTC->PDDR |= (1 << 9);
 	LedPortInit();
 	led4On();
-	initUART1();
+	initUART2();
+	f_mount(&FatFs "", 0);
+	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
+		Led1On();
+		f_write(&Fil, "It works!\r\n", 11, &bw);
+		f_close(&Fil);
+		if (bw == 11) {
+			Led2On();
+		}
+	} else Led3On();
+	for (;;);
 	for (;;){
 delay(100);
 		//c = 0;
