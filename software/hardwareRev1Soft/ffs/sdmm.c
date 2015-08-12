@@ -115,7 +115,6 @@ void rcvr_mmc (
 	UINT bc		/* Number of bytes to receive */
 )
 {
-	BYTE r;
 
 	SPI0->DL = 0;
 
@@ -329,19 +328,24 @@ DSTATUS disk_initialize (
 
 	if (drv) return RES_NOTRDY;
 
-	delay(1000);			/* 10ms */
+	delay(100);			/* 10ms */
 	SIM->SCGC4 |= SIM_SCGC4_SPI0_MASK;
-	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK | SIM_SCGC5_PORTB_MASK;
+	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK | SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTA_MASK;
+	#define SD_POW (1<<13)
+	PTA->PDDR |= SD_POW;
+	PORTB->PCR[13] = PORT_PCR_MUX(1);
 	PTB->PDDR |= SD_CS;
+	PTB->PSOR |= SD_CS;
 /* MASI: PTC6 MISO: PTC7 CLK: PTC5 select ptb18*/ 
 	PORTC->PCR[5] = PORT_PCR_MUX(2);
 	PORTC->PCR[6] = PORT_PCR_MUX(2);
 	PORTC->PCR[7] = PORT_PCR_MUX(2);
 	PORTB->PCR[18] = PORT_PCR_MUX(1);
+	SPI0->C1 = SPI_C1_SPE_MASK | SPI_C1_MSTR_MASK | SPI_C1_CPHA_MASK;
 
 	SPI0->C2 = 0;
-	SPI0->C1 = SPI_C1_SPE_MASK | SPI_C1_MSTR_MASK ;
-/* 8 bit mode uses DL*/ 
+	SPI0->BR = 0x00;
+	/* 8 bit mode uses DL*/ 
 
 
 	CS_H();		/* Initialize port pin tied to CS */

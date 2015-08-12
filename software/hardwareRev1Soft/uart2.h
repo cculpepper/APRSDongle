@@ -10,8 +10,8 @@ typedef struct {
 
 void initUART2(void);
 int uart2GetString(char* str, int len);
-int uart2TxInQueue();
-void uart2Wait();
+int uart2TxInQueue(void);
+void uart2Wait(void);
 void uart2PutString(char* str);
 void uart2PutChar(char ch);
 char uart2GetChar(void);

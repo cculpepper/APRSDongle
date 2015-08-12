@@ -14,7 +14,7 @@ int initDRA(void){
 	strcpy(draData.draTxFreq, "144.3900");
 	strcpy(draData.draRxFreq, "144.3900");
 	uart0Init();
-	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK | SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTE_MASK ;
+	SIM->SCGC5  |= SIM_SCGC5_PORTA_MASK | SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTE_MASK ;
 	// Need to init the pinz
 	// PTB19 is hight low select. 
 	PTB->PDDR |= (1 << 19) | (1 << 3);
@@ -25,7 +25,7 @@ int initDRA(void){
 	// PTB3 is the power down thingamajig. 
 	// PTA12 is the squelch detect. 
 	// PTe20 is the PTT. THIS IS THE NEW PIN Other was PTA4
-	
+	return 0;
 }
 
 char checkDRA(void){
@@ -80,13 +80,11 @@ char programDra(void){
 	}
 }
 
-char draTx(){
+void draTx(){
 	/* Need to set PTA4 to low. High is Rx*/ 
 	PTE->PSOR &= ~(1<<20);
 }
-char draRx(){
+void draRx(){
 	PTE->PCOR |= (1<<20);
-}
-char initDra(void){
 	
 }

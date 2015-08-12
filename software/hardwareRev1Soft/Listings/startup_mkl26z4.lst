@@ -567,12 +567,11 @@ ARM Macro Assembler    Page 9
               00001000 
               00000500 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
-work --depend=.\objects\startup_mkl26z4.d -o.\objects\startup_mkl26z4.o -IC:\Ke
-il_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\Ki
-netis_KLxx_DFP\1.4.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__
-UVISION_VERSION SETA 514" --list=.\listings\startup_mkl26z4.lst startup_MKL26Z4
-.s
+Command Line: --debug --xref --cpu=Cortex-M0+ --apcs=interwork --depend=.\objec
+ts\startup_mkl26z4.d -o.\objects\startup_mkl26z4.o -IC:\Keil_v5\ARM\RV31\INC -I
+C:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\
+Device\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 
+513" --list=.\listings\startup_mkl26z4.lst startup_MKL26Z4.s
 
 
 

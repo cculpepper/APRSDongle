@@ -2,7 +2,7 @@
 #include "queue.h"
 
 
-int enqueue (QRecStruct* q, char c){
+int enqueue (volatile QRecStruct* q, char c){
 	if (q->stored < q->capacity){
 		q->data[q->inPtr] = c;
 		if (q->inPtr == (q->capacity - 1)){
@@ -16,18 +16,18 @@ int enqueue (QRecStruct* q, char c){
 		return -1;
 	}
 }
-char peek(QRecStruct* q){
+char peek(volatile QRecStruct* q){
 	if (q->stored == 0){
-		return -1;
+		return 1;
 	} else {
 		return q->data[q->outPtr];
 	}
 }
 
-char dequeue ( QRecStruct* q){
+char dequeue ( volatile QRecStruct* q){
 	char c;
 	if (q->stored == 0){
-		return -1;
+		return 2;
 	} else {
 		c = q->data[q->outPtr];
 		if (q->outPtr == (q->capacity-1)){
@@ -39,9 +39,9 @@ char dequeue ( QRecStruct* q){
 		return c;
 	}
 }
-QRecStruct* initQueue(int len){
-	QRecStruct *q;
-	q = (QRecStruct*) malloc(sizeof(QRecStruct));
+volatile QRecStruct* initQueue(int len){
+	volatile QRecStruct *q;
+	q = (volatile QRecStruct*) malloc(sizeof(volatile QRecStruct));
 	q->data = malloc(len * sizeof(char));
 	q->capacity = len;
 	q->outPtr = 0;
@@ -51,11 +51,11 @@ QRecStruct* initQueue(int len){
 }
 
 
-int numEnqueued(QRecStruct* q){
+int numEnqueued(volatile QRecStruct* q){
 	return q->stored;
 }
 
-int deInitQueue(QRecStruct* q ){
+int deInitQueue(volatile QRecStruct* q ){
 	free( q->data);
 	free(q);
 	return 0;

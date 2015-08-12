@@ -10,6 +10,8 @@
 ".\objects\dra.o"
 ".\objects\gps.o"
 ".\objects\uart1.o"
+".\objects\ff.o"
+".\objects\sdmm.o"
 --strict --scatter ".\Objects\kl26test2.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

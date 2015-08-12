@@ -33,7 +33,7 @@ int uart0GetString(char* str, int len){
 	int i;
 	len--;
 	i = 0;
-	while (numEnqueued(uart0Data.rxQ) >0){
+	while (uart0Data.rxQ->stored >0){
 		__disable_irq();
 		temp = dequeue(uart0Data.rxQ);
 		__enable_irq();

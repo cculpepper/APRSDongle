@@ -95,15 +95,14 @@ uint8_t i2cFlashRead(uint16_t addr, int numBytes, char *dataPtr){
 	return index;
 }
 uint8_t i2cFlashWrite(uint16_t addr, int numBytes, char *dataPtr){
-	int ret;
 	int index;
 		index = 0; 
 	i2c_start(intI2c);
-	ret = i2c_write(intI2c, i2cFlashAddr | I2C_WRITE);
+	i2c_write(intI2c, i2cFlashAddr | I2C_WRITE);
 	//if (ret) return 1;
-	ret = i2c_write(intI2c, ((addr) >> 8));// upper byte first
+	i2c_write(intI2c, ((addr) >> 8));// upper byte first
 	//if (ret) return 1;
-	ret = i2c_write(intI2c, ((addr) & 0xFF));
+	i2c_write(intI2c, ((addr) & 0xFF));
 	//if (ret) return 1;
 	while (numBytes--){
 		i2c_write(intI2c, dataPtr[index++]);
@@ -115,11 +114,11 @@ uint8_t i2cFlashWrite(uint16_t addr, int numBytes, char *dataPtr){
 			delay(1);
 			
 				i2c_start(intI2c);
-				ret = i2c_write(intI2c, i2cFlashAddr | I2C_WRITE);
+				i2c_write(intI2c, i2cFlashAddr | I2C_WRITE);
 				//if (ret) return 1;
-				ret = i2c_write(intI2c, ((addr) >> 8));// upper byte first
+				i2c_write(intI2c, ((addr) >> 8));// upper byte first
 				//if (ret) return 1;
-				ret = i2c_write(intI2c, ((addr) & 0xFF));
+				i2c_write(intI2c, ((addr) & 0xFF));
 				//if (ret) return 1;
 		}
 	}

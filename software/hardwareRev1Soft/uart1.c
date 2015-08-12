@@ -1,7 +1,8 @@
 #include "MKL26Z4.h"
 #include "queue.h"
+#include "uart2.h"
 #include "uart1.h"
-#include "gps.h"=
+#include "gps.h"
 
 
 void initUART1(void){
@@ -31,7 +32,9 @@ void UART1_IRQHandler(void){
 			UART1->D = ' ';
 	}
 	if (status & UART_S1_RDRF_MASK){
-		ParseGPS (UART1->D);
+		status =  (UART1->D);
+		ParseGPS(status);
+		uart2PutChar(status);
 	}
 	__enable_irq();
 }

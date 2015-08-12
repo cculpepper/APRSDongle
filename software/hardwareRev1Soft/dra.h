@@ -25,7 +25,6 @@ char checkDRA(void);
 char updateTxFreq(char* freq);
 char updateRxFreq(char* freq);
 char programDra(void);
-char draTx();
-char draRx();
-char initDra(void);
+void draTx(void);
+void draRx(void);
 #endif

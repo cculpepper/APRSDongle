@@ -75,16 +75,21 @@ int main(){
 	PTC->PDDR |= (1 << 9);
 	LedPortInit();
 	led4On();
+	initUART1();
+	
 	initUART2();
-	f_mount(&FatFs "", 0);
+	while (1){
+	f_mount(&FatFs, "", 0);
 	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
-		Led1On();
+		led1On();
 		f_write(&Fil, "It works!\r\n", 11, &bw);
 		f_close(&Fil);
+		for(;;);
 		if (bw == 11) {
-			Led2On();
+			led2On();
 		}
-	} else Led3On();
+	} else led3On();
+}
 	for (;;);
 	for (;;){
 delay(100);
@@ -108,15 +113,15 @@ delay(100);
 	
 	
 	
-	startPITT0(toggle, 24000000);
+	startPIT0(toggle, 24000000);
 	initUART2();
 	i2c_init(intI2c);
 	
 	
-	for (i = 0;i<40;i++){
+	for (i = 0;i<39;i++){
 		s[i] = 'A' + i;
 	}
-	s[40] = 0;
+	s[39] = 0;
 
 	for (;;){
 		/*		uart2PutString("Enter a char to write: \r\n");
@@ -156,48 +161,13 @@ delay(100);
 	PTC->PDDR |= (1 << 10);
 	PORTC->PCR[11] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
 	PORTE->PCR[31] = PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
-	PTE->PDDR &= ~ (1 << 31);
+	PTE->PDDR &= ~ (uint32_t) (1 << 31);
 
 	PTC->PDDR |= (1 << 11);
 	PTC->PSOR |= (1<<8);
 	PTC->PSOR |= (1<<9);
 	PTC->PSOR |= (1<<10);
 	PTC->PSOR |= (1<<11);
-	startPITT0(toggle, 24000000);
-	for (;;){
-		if (PTE->PDIR & (1<<31)){
-			PTC->PSOR |= (1<<9);
-			PTC->PSOR |= (1<<10);
-			PTC->PSOR |= (1<<11);
-		} else {
-			PTC->PCOR |= (1<<9);
-			PTC->PCOR |= (1<<10);
-			PTC->PCOR |= (1<<11);
-		}
-	}
-	for (;;){
-		for (i = 0;i<100000;i){
+	startPIT0(toggle, 24000000);
 
-			PTC->PDDR |= (1 << 8);
-			PTC->PDDR |= (1 << 9);
-			PTC->PDDR |= (1 << 10);
-			PTC->PDDR |= (1 << 11);
-
-		}
-		//c = 0;
-		if (c & 0x08){
-			PTC->PTOR |= (1<<8);
-		} 
-		if (c & 0x04){
-			PTC->PTOR |= (1<<9);
-		}
-		if (c & 0x02){
-			PTC->PTOR |= (1<<10);
-		}
-		if (c & 0x01){
-			PTC->PTOR |= (1<<11);
-		}
-		c++;
-		//GPIOB_PTOR |= (1 << 18);
-	}
 }

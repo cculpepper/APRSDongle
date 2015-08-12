@@ -120,7 +120,7 @@ Where:
 		if (buf[lcv++] == '0'){
 			/* No fix*/ 
 			gpsStat = -2;
-			return -2;
+			return 12;
 		} else {
 			gpsStat = 0;  /* Standard unixy codes*/ 
 		}
@@ -140,6 +140,7 @@ char initGps(void){
 	/*Need to select PTB4 as a rxd pin for uart0*/
 	 /* Thats ALT3, 0x3*/ 
 	initUART1();
+	return 0;
 }
 
 	
