@@ -1,102 +1,0 @@
-Dependencies for Project 'kl26test2', Target 'Target 1': (DO NOT MODIFY !)
-F (.\startup_MKL26Z4.s)(0x55BD88D5)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include--pd "__UVISION_VERSION SETA 514"--list .\listings\startup_mkl26z4.lst --xref -o .\objects\startup_mkl26z4.o --depend .\objects\startup_mkl26z4.d)
-F (.\main.c)(0x55C2B77B)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (PIT.h)(0x55BD88D6)
-I (uart2.h)(0x55BD88D5)
-I (queue.h)(0x55BD88D6)
-I (gps.h)(0x55BD88D5)
-I (uart1.h)(0x55BD88D5)
-I (i2c.h)(0x55BD88D5)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55BAE993)
-I (gpio.h)(0x55BD88D6)
-I (delay.h)(0x55BD88D5)
-F (.\PIT.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\pit.o --omf_browse .\objects\pit.crf --depend .\objects\pit.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (PIT.h)(0x55BD88D6)
-F (.\uart0.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\uart0.o --omf_browse .\objects\uart0.crf --depend .\objects\uart0.d)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (queue.h)(0x55BD88D6)
-I (uart0.h)(0x55BD88D5)
-F (.\uart2.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\uart2.o --omf_browse .\objects\uart2.crf --depend .\objects\uart2.d)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (queue.h)(0x55BD88D6)
-I (uart2.h)(0x55BD88D5)
-F (.\queue.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55BAE993)
-I (queue.h)(0x55BD88D6)
-F (.\queue.h)(0x55BD88D6)()
-F (.\i2c.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (i2c.h)(0x55BD88D5)
-I (delay.h)(0x55BD88D5)
-F (.\delay.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-F (.\dra.c)(0x55BD88D5)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\dra.o --omf_browse .\objects\dra.crf --depend .\objects\dra.d)
-I (uart0.h)(0x55BD88D5)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (queue.h)(0x55BD88D6)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55BAE993)
-I (dra.h)(0x55BD88D5)
-I (dac.h)(0x55BD88D5)
-F (.\gps.c)(0x55C2B7ED)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\gps.o --omf_browse .\objects\gps.crf --depend .\objects\gps.d)
-I (uart1.h)(0x55BD88D5)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (queue.h)(0x55BD88D6)
-I (gpio.h)(0x55BD88D6)
-I (gps.h)(0x55BD88D5)
-F (.\gps.h)(0x55BD88D5)()
-F (.\uart0.h)(0x55BD88D5)()
-F (.\uart1.c)(0x55C2B7B9)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="514"-o .\objects\uart1.o --omf_browse .\objects\uart1.crf --depend .\objects\uart1.d)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h)(0x55BAE99D)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55BAE993)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x55BAE9B8)
-I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h)(0x55BAE99D)
-I (queue.h)(0x55BD88D6)
-I (uart1.h)(0x55BD88D5)
-I (gps.h)(0x55BD88D5)
-F (.\uart1.h)(0x55BD88D5)()
-F (.\uart2.h)(0x55BD88D5)()

@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP NCP508
-D NCP1117ST50T3G, 1A Low drop-out regulator, Fixed Output 5V, SOT223
-K REGULATOR LDO 5V
-F http://www.onsemi.com/pub_link/Collateral/NCP1117-D.PDF
-$ENDCMP
-#
-#End Doc Library

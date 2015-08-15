@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP ATTINY24A-M-FIXED
-D ATTINY24A, QFN/MLF20, 2k Flash, 128B SRAM, 128B EEPROM, dW
-K AVR 8bit Microcontroller tinyAVR
-F http://www.atmel.com/dyn/resources/prod_documents/doc8183.pdf
-$ENDCMP
-#
-#End Doc Library
