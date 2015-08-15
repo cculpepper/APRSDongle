@@ -1,0 +1,18 @@
+--cpu Cortex-M0+
+".\objects\startup_mkl26z4.o"
+".\objects\main.o"
+".\objects\pit.o"
+".\objects\uart0.o"
+".\objects\uart2.o"
+".\objects\queue.o"
+".\objects\i2c.o"
+".\objects\delay.o"
+".\objects\dra.o"
+".\objects\gps.o"
+".\objects\uart1.o"
+".\objects\ff.o"
+".\objects\sdmm.o"
+--strict --scatter ".\Objects\kl26test2.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\kl26test2.map" -o .\Objects\kl26test2.axf
