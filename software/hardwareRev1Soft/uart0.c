@@ -91,20 +91,6 @@ void uart0PutChar(char ch){
 UART0->C2 |= UART0_C2_TIE_MASK;//  | UART0_C2_TE_MASK;
 }
 
-void uart0PutChar(char ch){
-	
-
-/*	if (uart0Data.txQ->stored == uart0Data.txQ->capacity) {
-		UART0->C2 |= UART0_C2_TIE_MASK | UART0_C2_TE_MASK ;
-		__enable_irq();
-	}
-*/
-
-UART0->C2 &= ~UART0_C2_TIE_MASK;//  | UART0_C2_TE_MASK;
-	if (status & UART0_S1_TDRE_MASK){
-			UART0->D = ch;
-	}
-}
 char uart0GetChar(void){
 	char ret;
 	int retryCount;
@@ -128,9 +114,7 @@ char uart0GetCharBlock(void){
 		status = UART0->S1;
 	}
 	ret = UART0->D;
-	/*UART0->C2 |= (UART0_C2_RIE_MASK);*/
-	 /* This means that we need to initialize the uart again. 
-	  * */ 
+	UART0->C2 |= (UART0_C2_RIE_MASK);
 	return ret;
 }
 void uart0Wait(){
