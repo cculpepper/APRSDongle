@@ -6,17 +6,20 @@
 typedef struct {
 	volatile QRecStruct* rxQ;
 	volatile QRecStruct* txQ;
-}uart0DataStruct;
+	volatile ((UART_Type * )UART_BASE) UART_to_init;
+}uartDataStruct;
 
-void uart0Init(void);
-int uart0GetString(char* str, int len);
-int uart0TxInQueue(void);
-void uart0Wait(void);
-void uart0PutString(char* str);
-void uart0PutChar(char ch);
-char uart0GetChar(void);
-char uart0GetCharBlock(void);
-void uart0putNum(int num);
+void uartInit(((UART_Type * )UART_BASE) UART_to_init);
+int uartGetString(uartDataStruct uartData, char* str, int len);
+int uartTxInQueue(uartDataStruct uartData);
+void uartWait(uartDataStruct uartData);
+void uartPutString(uartDataStruct uartData, char* str);
+void uartPutChar(uartDataStruct uartData, char ch);
+char uartGetChar(uartDataStruct uartData);
+char uartGetCharBlock(uartDataStruct uartData);
+void uartputNum(uartDataStruct uartData, int num);
 void UART0_IRQHandler(void);
+void UART1_IRQHandler(void);
+void UART2_IRQHandler(void);
 #endif
 
