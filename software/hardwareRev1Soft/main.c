@@ -171,3 +171,4 @@ delay(100);
 	startPIT0(toggle, 24000000);
 
 }
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7

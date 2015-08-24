@@ -171,48 +171,78 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>17</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>7726</Address>
+=======
           <LineNumber>84</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>7880</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>.\uart2.c</Filename>
+=======
           <Filename>.\main.c</Filename>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>50</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>7610</Address>
+=======
           <LineNumber>76</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>7772</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>.\queue.c</Filename>
+=======
           <Filename>.\main.c</Filename>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>337</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>3880</Address>
+=======
           <LineNumber>70</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>7708</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>.\ffs\sdmm.c</Filename>
+=======
           <Filename>.\main.c</Filename>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -221,7 +251,11 @@
           <Type>0</Type>
           <LineNumber>69</LineNumber>
           <EnabledFlag>0</EnabledFlag>
+<<<<<<< HEAD
+          <Address>7916</Address>
+=======
           <Address>7706</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -235,9 +269,15 @@
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>70</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>7852</Address>
+=======
           <LineNumber>78</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>7824</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -253,7 +293,11 @@
           <Type>0</Type>
           <LineNumber>50</LineNumber>
           <EnabledFlag>0</EnabledFlag>
+<<<<<<< HEAD
+          <Address>7850</Address>
+=======
           <Address>7550</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -267,9 +311,15 @@
         <Bp>
           <Number>6</Number>
           <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>84</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>8002</Address>
+=======
           <LineNumber>17</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>7582</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -283,6 +333,11 @@
         <Bp>
           <Number>7</Number>
           <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>78</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>7968</Address>
+=======
           <LineNumber>98</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -334,11 +389,19 @@
           <LineNumber>124</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
+<<<<<<< HEAD
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+=======
           <BreakIfRCount>0</BreakIfRCount>
           <Filename>.\i2c.c</Filename>
           <ExecCommand></ExecCommand>
@@ -392,6 +455,7 @@
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
       </Breakpoint>
       <WatchWindow1>
         <Ww>

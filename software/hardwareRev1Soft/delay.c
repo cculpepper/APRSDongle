@@ -24,3 +24,4 @@ void delay(unsigned int length_ms)
     
     LPTMR0->CSR = 0;                     // Turn off timer
 }
+>>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
