@@ -39,17 +39,24 @@ char dequeue ( volatile QRecStruct* q){
 		return c;
 	}
 }
-volatile QRecStruct* initQueue(int len){
+int initQueue(volatile QRecStruct *q){
+	q->capacity = QUEUE_BUF_SIZE;
+	q->outPtr = 0;
+	q->inPtr = 0;
+	q->stored = 0;
+	return QUEUE_BUF_SIZE;
+}
+
+volatile QRecStruct* initQueueDyn(int len){
 	volatile QRecStruct *q;
 	q = (volatile QRecStruct*) malloc(sizeof(volatile QRecStruct));
 	q->data = malloc(len * sizeof(char));
-	q->capacity = len;
+	q->capacity = QUEUE_BUF_SIZE;
 	q->outPtr = 0;
 	q->inPtr = 0;
 	q->stored = 0;
 	return q;
 }
-
 
 int numEnqueued(volatile QRecStruct* q){
 	return q->stored;
