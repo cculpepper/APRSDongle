@@ -4,12 +4,12 @@
 #ifndef UART0_H
 #define UART0_H
 typedef struct {
-	volatile QRecStruct* rxQ;
-	volatile QRecStruct* txQ;
-	volatile ((UART_Type * )UART_BASE) UART_to_init;
+	volatile QRecStruct rxQ;
+	volatile QRecStruct txQ;
+	volatile UART_Type *UART;
 }uartDataStruct;
 
-void uartInit(((UART_Type * )UART_BASE) UART_to_init);
+void uartInit(UART_Type *UART_to_init, int baud);
 int uartGetString(uartDataStruct uartData, char* str, int len);
 int uartTxInQueue(uartDataStruct uartData);
 void uartWait(uartDataStruct uartData);
