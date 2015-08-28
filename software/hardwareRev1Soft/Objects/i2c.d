@@ -1,21 +1,9 @@
-<<<<<<< HEAD
 .\objects\i2c.o: i2c.c
 .\objects\i2c.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h
 .\objects\i2c.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h
-.\objects\i2c.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\i2c.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
 .\objects\i2c.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
 .\objects\i2c.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\objects\i2c.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h
 .\objects\i2c.o: i2c.h
 .\objects\i2c.o: delay.h
-=======
-.\objects\i2c.o: i2c.c
-.\objects\i2c.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\MKL26Z4.h
-.\objects\i2c.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h
-.\objects\i2c.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\i2c.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
-.\objects\i2c.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
-.\objects\i2c.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL26Z4.h
-.\objects\i2c.o: i2c.h
-.\objects\i2c.o: delay.h
->>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7

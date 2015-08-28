@@ -1,12 +1,11 @@
-<<<<<<< HEAD
 <html>
 <body>
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.13.0.0
-Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: chris culpepper, na, LIC=----
+IDE-Version: µVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: chris culpepper, rit, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.13.0.0
@@ -22,13 +21,15 @@ Target DLL:      Segger\JL2CM3.dll V2.99.11.0
 Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
-C:\Users\chris\workspace\APRSDongle\software\hardwareRev1Soft\kl26test2.uvprojx
-Project File Date:  08/11/2015
+Z:\home\chris\Code\APRSDongle\software\hardwareRev1Soft\kl26test2.uvproj
+Project File Date:  08/28/2015
 
 <h2>Output:</h2>
-Rebuild target 'Target 1'
+Build target 'Target 1'
 assembling startup_MKL26Z4.s...
 compiling main.c...
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
 main.c(88): warning:  #111-D: statement is unreachable
                 if (bw == 11) {
 main.c(93): warning:  #128-D: loop is not reachable
@@ -43,14 +44,30 @@ main.c(153): warning:  #111-D: statement is unreachable
         c = 0;
 main.c(164): warning:  #61-D: integer operation result is out of range
         PTE->PDDR &= ~ (uint32_t) (1 << 31);
-main.c: 7 warnings, 0 errors
+main.c(174): error:  #169: expected a declaration
+  >>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
+main.c: 7 warnings, 2 errors
 compiling PIT.c...
 compiling uart0.c...
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
+uart0.c: 0 warnings, 1 error
 compiling uart2.c...
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
+uart2.c: 0 warnings, 1 error
 compiling queue.c...
-queue.c(60): warning:  #167-D: argument of type "volatile QRecStruct *" is incompatible with parameter of type "void *"
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
+queue.c(42): error:  #147: declaration is incompatible with "volatile QRecStruct *initQueue(int)" (declared at line 20 of "queue.h")
+  int initQueue(volatile QRecStruct *q){
+queue.c(53): error:  #137: expression must be a modifiable lvalue
+        q->data = malloc(len * sizeof(char));
+queue.c(66): warning:  #167-D: argument of type "volatile char *" is incompatible with parameter of type "void *"
+        free( q->data);
+queue.c(67): warning:  #167-D: argument of type "volatile QRecStruct *" is incompatible with parameter of type "void *"
         free(q);
-queue.c: 1 warning, 0 errors
+queue.c: 2 warnings, 3 errors
 compiling i2c.c...
 i2c.c(71): warning:  #550-D: variable "ret" was set but never used
         int ret;
@@ -58,103 +75,25 @@ i2c.c(126): warning:  #940-D: missing return statement at end of non-void functi
   }
 i2c.c: 2 warnings, 0 errors
 compiling delay.c...
+delay.c(27): error:  #169: expected a declaration
+  >>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
+delay.c: 0 warnings, 1 error
 compiling dra.c...
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
+dra.c: 0 warnings, 1 error
 compiling gps.c...
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
 gps.c(136): warning:  #68-D: integer conversion resulted in a change of sign
         return -3;  /* Not good, cannot get a good recieve. */ 
-gps.c: 1 warning, 0 errors
+gps.c: 1 warning, 1 error
 compiling uart1.c...
-compiling ff.c...
-compiling sdmm.c...
-ffs\sdmm.c(96): warning:  #550-D: variable "t" was set but never used
-        char t;
-ffs\sdmm.c: 1 warning, 0 errors
-linking...
-Program Size: Code=9564 RO-data=352 RW-data=156 ZI-data=6068  
-FromELF: creating hex file...
-".\Objects\kl26test2.axf" - 0 Error(s), 12 Warning(s).
-
-<h2>Collection of Component include folders:</h2>
-  C:\Users\chris\workspace\APRSDongle\software\hardwareRev1Soft\RTE
-  C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include
-
-<h2>Collection of Component Files used:</h2>
+queue.h(20): error:  #147: declaration is incompatible with "int initQueue(volatile QRecStruct *)" (declared at line 19)
+  volatile QRecStruct* initQueue(int);
+uart1.c: 0 warnings, 1 error
+".\Objects\kl26test2.axf" - 11 Error(s), 12 Warning(s).
+Target not created.
 </pre>
 </body>
 </html>
-=======
-<html>
-<body>
-<pre>
-<h1>µVision Build Log</h1>
-<h2>Tool Versions:</h2>
-IDE-Version: µVision V5.13.0.0
-Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: chris culpepper, na, LIC=----
- 
-Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.13.0.0
-Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.05 update 1 (build 106)
-Assembler:       Armasm.exe V5.05 update 1 (build 106)
-Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
-Library Manager: ArmAr.exe V5.05 update 1 (build 106)
-Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
-CPU DLL:         SARMCM3.DLL V5.13.0.0
-Dialog DLL:      DARMCM1.DLL V1.12.0.0
-Target DLL:      Segger\JL2CM3.dll V2.99.11.0
-Dialog DLL:      TARMCM1.DLL V1.9.0.0
- 
-<h2>Project:</h2>
-C:\Users\chris\workspace\APRSDongle\software\hardwareRev1Soft\kl26test2.uvproj
-Project File Date:  08/08/2015
-
-<h2>Output:</h2>
-Rebuild target 'Target 1'
-assembling startup_MKL26Z4.s...
-compiling main.c...
-main.c(88): warning:  #111-D: statement is unreachable
-                if (bw == 11) {
-main.c(93): warning:  #128-D: loop is not reachable
-        for (;;);
-main.c(94): warning:  #128-D: loop is not reachable
-        for (;;){
-main.c(112): warning:  #128-D: loop is not reachable
-        for (;;);
-main.c(116): warning:  #111-D: statement is unreachable
-        startPIT0(toggle, 24000000);
-main.c(153): warning:  #111-D: statement is unreachable
-        c = 0;
-main.c(164): warning:  #61-D: integer operation result is out of range
-        PTE->PDDR &= ~ (uint32_t) (1 << 31);
-main.c: 7 warnings, 0 errors
-compiling PIT.c...
-compiling uart0.c...
-compiling uart2.c...
-compiling queue.c...
-queue.c(60): warning:  #167-D: argument of type "volatile QRecStruct *" is incompatible with parameter of type "void *"
-        free(q);
-queue.c: 1 warning, 0 errors
-compiling i2c.c...
-i2c.c(71): warning:  #550-D: variable "ret" was set but never used
-        int ret;
-i2c.c(126): warning:  #940-D: missing return statement at end of non-void function "i2cFlashWrite"
-  }
-i2c.c: 2 warnings, 0 errors
-compiling delay.c...
-compiling dra.c...
-compiling gps.c...
-gps.c(136): warning:  #68-D: integer conversion resulted in a change of sign
-        return -3;  /* Not good, cannot get a good recieve. */ 
-gps.c: 1 warning, 0 errors
-compiling uart1.c...
-compiling ff.c...
-compiling sdmm.c...
-linking...
-Program Size: Code=9468 RO-data=352 RW-data=156 ZI-data=6068  
-FromELF: creating hex file...
-".\Objects\kl26test2.axf" - 0 Error(s), 11 Warning(s).
-</pre>
-</body>
-</html>
->>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7
