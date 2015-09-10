@@ -1,14 +1,34 @@
-#pragma once
 #ifndef GPS_H
 #define GPS_H
-char updatePos(void);
-char initGps(void);
+typedef struct{
+	char time[11];
+	char stat;
+	char lat[11];
+	char latHemi;
+	char lon[12];
+	char lonHemi;
+	char speed[6];
+	char course[6];
+	char date[7];
+}GPSData;
+
+char initGps();
 
 
-extern char gpsAlt[6];
-extern char gpsLat[10];
-extern char gpsLon[11];
-extern signed char gpsStat;
-void ParseGPS (char c);
+char updatePos();
+
+extern GPSData gpsData;
+
+void ParseGPS(char c);
+
+
+volatile unsigned int Time, Msecs, Knots, Course, Date;
+volatile long Lat, Long;
+volatile char Fix;
+int testParse();
+
+
+
+
 #endif
-
+		
