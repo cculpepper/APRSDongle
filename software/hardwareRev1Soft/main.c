@@ -17,11 +17,8 @@ extern uint32_t __etext[];                // End of code/flash
 FATFS FatFs;
 FIL Fil;
 
-void toggle(){
+void clockInit(){
 
-	PTC->PTOR |= (1<<8);
-}
-void SystemInit(){
 	// Time to play with clocks. 
 	// Starting off in FEI mode. Need to switch to FBE
 	// Set bits in C2. 
@@ -50,13 +47,29 @@ void SystemInit(){
 	while ((~MCG->S & 0x0C));
 	SIM->CLKDIV1 = 1 << SIM_CLKDIV1_OUTDIV4_SHIFT; // Divide the core clock by two for the bus clock. 
 
+}
+void SystemInit(){
 	//main();
 
 }
 void start(){
 	//_start();
 	//init_mempool();
-
+	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
+	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
+	PORTC->PCR[8] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
+	PTC->PDDR |= (1 << 8);
+	PTC->PDDR |= (1 << 9);
+	LedPortInit();
+	led4On();
+	testParse();
+	initUART1();
+	
+	i2c_init(intI2c);
+	initUART2();
+	if (f_mount(&FatFs, "", 0)){
+		uart2PutString("Failure to mount the FAT filesystem.");
+	}
 }
 int main(){
 	int i;
@@ -68,18 +81,6 @@ int main(){
 	char s2[40];
 	c = 0;
 	start();
-	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
-	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
-	PORTC->PCR[8] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
-	PTC->PDDR |= (1 << 8);
-	PTC->PDDR |= (1 << 9);
-	LedPortInit();
-	led4On();
-	initUART1();
-	
-	initUART2();
-	while (1){
-	f_mount(&FatFs, "", 0);
 	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
 		led1On();
 		f_write(&Fil, "It works!\r\n", 11, &bw);
@@ -89,86 +90,6 @@ int main(){
 			led2On();
 		}
 	} else led3On();
-}
-	for (;;);
-	for (;;){
-delay(100);
-		//c = 0;
-		if (c & 0x08){
-			led1On();
-		} else led1Off();
-		if (c & 0x04){
-			PTC->PTOR |= (1<<9);
-		} else led2Off();
-		if (c & 0x02){
-			PTC->PTOR |= (1<<10);
-		} else led3Off();
-		if (c & 0x01){
-			PTC->PTOR |= (1<<11);
-		} else led4Off();
-		/*c++;*/
-		//GPIOB_PTOR |= (1 << 18);
-	}
-	for (;;);
 	
-	
-	
-	startPIT0(toggle, 24000000);
-	initUART2();
-	i2c_init(intI2c);
-	
-	
-	for (i = 0;i<39;i++){
-		s[i] = 'A' + i;
-	}
-	s[39] = 0;
-
-	for (;;){
-		/*		uart2PutString("Enter a char to write: \r\n");
-				uart2Wait();
-				c = 0;
-				while (c<'A'){
-				c = uart2GetCharBlock();
-				PTC->PTOR |= (1<<9);
-				if (c!='f') c = 0; 
-				}*/
-		c = 'l';
-		i2cFlashWrite(0, 40, (char*) &s);
-		delay(1);
-		i2cFlashRead(0, 40, (char*) &s2);
-		uart2PutString("I wrote l ");
-		uart2PutString(" and I read ");
-		uart2PutChar(c2);
-		uart2PutString("\r\n");
-		//uart2Wait();
-		for (i = 0;i<100000;i++){
-
-			PTC->PDDR |= (1 << 8);
-			PTC->PDDR |= (1 << 9);
-			PTC->PDDR |= (1 << 10);
-			PTC->PDDR |= (1 << 11);
-
-		}
-	}
-	c = 0;
-	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
-	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
-	PORTC->PCR[8] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
-	PTC->PDDR |= (1 << 8);
-	PORTC->PCR[9] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
-	PTC->PDDR |= (1 << 9);
-	PORTC->PCR[10] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
-	PTC->PDDR |= (1 << 10);
-	PORTC->PCR[11] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
-	PORTE->PCR[31] = PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
-	PTE->PDDR &= ~ (uint32_t) (1 << 31);
-
-	PTC->PDDR |= (1 << 11);
-	PTC->PSOR |= (1<<8);
-	PTC->PSOR |= (1<<9);
-	PTC->PSOR |= (1<<10);
-	PTC->PSOR |= (1<<11);
-	startPIT0(toggle, 24000000);
 
 }
->>>>>>> 84f8769cc613e3b8a61078ac300a2ff84b4d58b7

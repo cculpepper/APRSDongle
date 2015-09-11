@@ -1,6 +1,7 @@
 #include "MKL26Z4.h"
 #include "queue.h"
 #include "uart.h"
+#include "gps.h"
 #define MAXQUEUE 80
 #define MAXGETRETRIES 100000
 #define UART_IN_USE UART0
@@ -16,30 +17,37 @@ int uartTxInQueue(uartDataStruct uartData){
 }
 void uartInit(UART_Type *UART_to_init, int baud){
 	 /*Initialize clock to module*/
+     /* PTA2,1 is the DRA UART, ALT2 UART0 
+      * PTC3,4 is GPS. ALT3 UART1
+      * PTD2,3 is the external. ALT3, UART2*/ 
 	if (UART_to_init == (UART_Type*) UART0){
 		SIM->SCGC4 |= SIM_SCGC4_UART0_MASK;
 		 /*Also need to get the pins correct. PTD3 is TX, RX is PTD2*/
-		SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;
-		PORTD->PCR[2] = PORT_PCR_MUX(3);
-		PORTD->PCR[3] = PORT_PCR_MUX(3);
+		SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
+		PORTA->PCR[1] = PORT_PCR_MUX(2);
+		PORTA->PCR[2] = PORT_PCR_MUX(2);
 		uart0Data.UART = (UART_Type*) UART0;
 		NVIC_EnableIRQ(UART0_IRQn);
+		UART_to_init->C2 = UART_C2_RIE_MASK | UART_C2_RE_MASK | UART_C2_TE_MASK;
 	} else if (UART_to_init == (UART_Type*) UART1){
 		SIM->SCGC4 |= SIM_SCGC4_UART1_MASK;
 		 /*Also need to get the pins correct. PTD3 is TX, RX is PTD2*/
-		SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;
-		PORTD->PCR[2] = PORT_PCR_MUX(3);
-		PORTD->PCR[3] = PORT_PCR_MUX(3);
+		SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
+		PORTC->PCR[3] = PORT_PCR_MUX(3);
+		PORTC->PCR[4] = PORT_PCR_MUX(3);
 		uart1Data.UART = UART1;
 		NVIC_EnableIRQ(UART1_IRQn);
+		UART_to_init->C2 = UART_C2_RIE_MASK | UART_C2_RE_MASK ;
 	} else if (UART_to_init == (UART_Type*) UART2){
 		SIM->SCGC4 |= SIM_SCGC4_UART2_MASK;
 		 /*Also need to get the pins correct. PTD3 is TX, RX is PTD2*/
+		/* This is the external UART*/ 
 		SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;
 		PORTD->PCR[2] = PORT_PCR_MUX(3);
 		PORTD->PCR[3] = PORT_PCR_MUX(3);
 		uart2Data.UART = UART2;
 		NVIC_EnableIRQ(UART2_IRQn);
+		UART_to_init->C2 = UART_C2_RIE_MASK | UART_C2_RE_MASK | UART_C2_TE_MASK;
 	} else {
 		return;
 	}
@@ -48,7 +56,6 @@ void uartInit(UART_Type *UART_to_init, int baud){
 	 /*We go from the bus clock. UART1 and UART0 are the same. 9600 baud*/
 	UART_to_init->BDH = 0;
 	UART_to_init->BDL = 0x9C;
-	UART_to_init->C2 = UART_C2_RIE_MASK | UART_C2_RE_MASK | UART_C2_TE_MASK;
 	
 	__enable_irq();
 	
@@ -101,6 +108,7 @@ void uartPutString(uartDataStruct uartData, char* str){
 	/*UCA0IE |=  UCTXIE;*/
 }
 void uartPutChar(uartDataStruct uartData, char ch){
+	uartData.UART->C2 |= UART_C2_TE_MASK;
 	while (uartData.txQ.stored == uartData.txQ.capacity);
 	__disable_irq();
 	enqueue(&(uartData.txQ), ch);
@@ -117,7 +125,7 @@ char uartGetChar(uartDataStruct uartData){
 	char ret;
 	int retryCount;
 	retryCount = 0;
-	while (retryCount < MAXGETRETRIES){
+	while (retryCount++ < MAXGETRETRIES){
 		if (numEnqueued(&uartData.rxQ)){
 			__disable_irq();
 			ret = dequeue(&uartData.rxQ);
@@ -177,7 +185,8 @@ void UART1_IRQHandler(void){
 		} 
 	}
 	if (status & UART1_S1_RDRF_MASK){
-		enqueue(uart1Data.rxQ, UART1->D);
+		/*enqueue(uart1Data.rxQ, UART1->D);*/
+		ParseGPS(UART1->D);
 	}
 	__enable_irq();
 }
