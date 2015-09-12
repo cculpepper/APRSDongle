@@ -1,9 +1,8 @@
 #include <MKL26Z4.h>
 #include "ffs/ff.h"
 #include "PIT.h"
-#include "uart2.h"
+#include "uart.h"
 #include "gps.h"
-#include "uart1.h"
 #include "i2c.h"
 #include <stdlib.h>
 #include "gpio.h"
@@ -49,12 +48,13 @@ void clockInit(){
 
 }
 void SystemInit(){
-	//main();
+	main();
 
 }
 void start(){
 	//_start();
 	//init_mempool();
+	clockInit();
 	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
 	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
 	PORTC->PCR[8] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
@@ -62,11 +62,12 @@ void start(){
 	PTC->PDDR |= (1 << 9);
 	LedPortInit();
 	led4On();
+	initGps();
 	testParse();
 	initUART1();
 	
 	i2c_init(intI2c);
-	initUART2();
+//	initUART2();
 	if (f_mount(&FatFs, "", 0)){
 		uart2PutString("Failure to mount the FAT filesystem.");
 	}

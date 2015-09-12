@@ -4,10 +4,7 @@
 #include "gps.h"
 #define MAXQUEUE 80
 #define MAXGETRETRIES 100000
-#define UART_IN_USE UART0
-#if (UART_IN_USE == UART0) 
-	#define UART0
-#endif
+
 volatile uartDataStruct uart0Data;
 volatile uartDataStruct uart1Data;
 volatile uartDataStruct uart2Data;
@@ -117,9 +114,9 @@ void uartPutChar(uartDataStruct uartData, char ch){
 }
 
 void uartPutCharBlock(uartDataStruct uartData, char ch){
-	uartData->UART->C2 &= ~UART_C2_TIE_MASK;
-	while (uartData->UART->S1 & UART_S1_TDRE_MASK == 0);
-	uartData->UART->D = ch;
+	uartData.UART->C2 &= ~UART_C2_TIE_MASK;
+	while (uartData.UART->S1 & UART_S1_TDRE_MASK == 0);
+	uartData.UART->D = ch;
 }
 char uartGetChar(uartDataStruct uartData){
 	char ret;
@@ -139,19 +136,19 @@ char uartGetCharBlock(uartDataStruct uartData){
 	char ret;
 	char status;
 	uartData.UART->C2 &= ~(UART_C2_RIE_MASK);
-	status = uartDataStruct->UART->S1;
+	status = uartData.UART->S1;
 	while ((status & UART_S1_RDRF_MASK) == 0){
-		status = uartDataStruct->UART->S1;
+		status = uartData.UART->S1;
 	}
-	ret = uartDataStruct->UART->D;
+	ret = uartData.UART->D;
 	/*UART->C2 |= (UART_C2_RIE_MASK);*/
 	 /* This means that we need to initialize the uart again. 
 	  * */ 
 	return ret;
 }
 void uartWait(uartDataStruct uartData){
-	while(&uartData.txQ->stored);
-	while((uartDataStruct->UART->S1 & UART_S1_TDRE_MASK)==0);
+	while(uartData.txQ.stored);
+	while((uartData.UART->S1 & UART_S1_TDRE_MASK)==0);
 }
 void UART0_IRQHandler(void){
 	
@@ -159,15 +156,15 @@ void UART0_IRQHandler(void){
 	__disable_irq();
 	status = UART0->S1;
 	if (status & UART0_S1_TDRE_MASK){
-		UART0->D = dequeue(&uartData.txQ);
+		UART0->D = dequeue(&uart0Data.txQ);
 			//UART_IN_USE->C2 |= UART0_C2_TE_MASK;
-		if (&uartData.txQ->stored <= 0){
+		if (uart0Data.txQ.stored <= 0){
 			// Then we can disable the transmit interrupt	
 			UART0->C2 &= ~(UART0_C2_TIE_MASK);
 		} 
 	}
 	if (status & UART0_S1_RDRF_MASK){
-		enqueue(uart0Data.rxQ, UART0->D);
+		enqueue(&uart0Data.rxQ, UART0->D);
 	}
 	__enable_irq();
 }
@@ -176,35 +173,35 @@ void UART1_IRQHandler(void){
 	char status;
 	__disable_irq();
 	status = UART1->S1;
-	if (status & UART1_S1_TDRE_MASK){
-			UART1->D = dequeue(&uartData.txQ);
+	if (status & UART_S1_TDRE_MASK){
+			UART1->D = dequeue(&uart1Data.txQ);
 			//UART_IN_USE->C2 |= UART1_C2_TE_MASK;
-		if (&uartData.txQ->stored <= 1){
+		if (uart1Data.txQ.stored <= 1){
 			// Then we can disable the transmit interrupt	
-			UART1->C2 &= ~(UART1_C2_TIE_MASK);
+			UART1->C2 &= ~(UART_C2_TIE_MASK);
 		} 
 	}
-	if (status & UART1_S1_RDRF_MASK){
+	if (status & UART_S1_RDRF_MASK){
 		/*enqueue(uart1Data.rxQ, UART1->D);*/
 		ParseGPS(UART1->D);
 	}
 	__enable_irq();
 }
-void UART0_IRQHandler(void){
+void UART2_IRQHandler(void){
 	
 	char status;
 	__disable_irq();
 	status = UART2->S1;
-	if (status & UART2_S1_TDRE_MASK){
-			UART2->D = dequeue(&uartData.txQ);
+	if (status & UART_S1_TDRE_MASK){
+			UART2->D = dequeue(&uart2Data.txQ);
 			//UART_IN_USE->C2 |= UART2_C2_TE_MASK;
-		if (&uartData.txQ->stored <= 2){
+		if (uart2Data.txQ.stored <= 2){
 			// Then we can disable the transmit interrupt	
-			UART2->C2 &= ~(UART2_C2_TIE_MASK);
+			UART2->C2 &= ~(UART_C2_TIE_MASK);
 		} 
 	}
-	if (status & UART2_S1_RDRF_MASK){
-		enqueue(uart2Data.rxQ, UART2->D);
+	if (status & UART_S1_RDRF_MASK){
+		enqueue(&uart2Data.rxQ, UART2->D);
 	}
 	__enable_irq();
 }

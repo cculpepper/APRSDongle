@@ -15,8 +15,8 @@ void initUART2(void){
 	UART2->BDH = 0;
 	UART2->BDL = 0x9C;
 	UART2->C2 = UART_C2_RIE_MASK | UART_C2_RE_MASK | UART_C2_TE_MASK;
-	uart2Data.rxQ = initQueueDyn(MAXQUEUE);
-	uart2Data.txQ = initQueueDyn(MAXQUEUE);
+	initQueue(uart2Data.rxQ);
+	initQueue(uart2Data.txQ);
 	
 	// Also need to get the pins correct. PTD3 is TX, RX is PTD2
 	SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;
