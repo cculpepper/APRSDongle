@@ -12,20 +12,17 @@ typedef struct{
 	char date[7];
 }GPSData;
 
-char initGps();
+char initGps(void);
 
 
-char updatePos();
+char updatePos(void);
 
 extern GPSData gpsData;
 
 void ParseGPS(char c);
 
 
-volatile unsigned int Time, Msecs, Knots, Course, Date;
-volatile long Lat, Long;
-volatile char Fix;
-int testParse();
+int testParse(void);
 
 
 

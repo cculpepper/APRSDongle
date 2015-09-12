@@ -46,7 +46,7 @@ int initQueue(volatile QRecStruct *q){
 	q->stored = 0;
 	return QUEUE_BUF_SIZE;
 }
-
+#ifndef ALLOCATE_QUEUE_AT_COMPILE
 volatile QRecStruct* initQueueDyn(int len){
 	volatile QRecStruct *q;
 	q = (volatile QRecStruct*) malloc(sizeof(volatile QRecStruct));
@@ -57,7 +57,7 @@ volatile QRecStruct* initQueueDyn(int len){
 	q->stored = 0;
 	return q;
 }
-
+#endif
 int numEnqueued(volatile QRecStruct* q){
 	return q->stored;
 }

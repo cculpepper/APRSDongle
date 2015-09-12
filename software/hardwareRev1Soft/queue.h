@@ -17,7 +17,7 @@ typedef struct {
 int enqueue (volatile QRecStruct* q, char c);
 char dequeue (volatile QRecStruct*);
 int initQueue(volatile QRecStruct*);
-volatile QRecStruct* initQueue(int);
+//volatile QRecStruct* initQueue(int);
 volatile QRecStruct* initQueueDyn(int);
 int deInitQueue(volatile QRecStruct*);
 char peek (volatile QRecStruct* );

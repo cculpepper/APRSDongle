@@ -175,7 +175,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp>Source Group 1</pFcarmGrp>
@@ -334,8 +334,8 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
-                <StartAddress>0x1ffff000</StartAddress>
-                <Size>0x4000</Size>
+                <StartAddress>0x2000000</StartAddress>
+                <Size>0x3000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -386,7 +386,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>1</umfTarg>
+            <umfTarg>0</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -424,16 +424,6 @@
               <FilePath>.\PIT.c</FilePath>
             </File>
             <File>
-              <FileName>uart0.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uart0.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uart2.c</FilePath>
-            </File>
-            <File>
               <FileName>queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\queue.c</FilePath>
@@ -469,26 +459,6 @@
               <FilePath>.\gps.h</FilePath>
             </File>
             <File>
-              <FileName>uart0.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\uart0.h</FilePath>
-            </File>
-            <File>
-              <FileName>uart1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uart1.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart1.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\uart1.h</FilePath>
-            </File>
-            <File>
-              <FileName>uart2.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\uart2.h</FilePath>
-            </File>
-            <File>
               <FileName>diskio.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\ffs\diskio.h</FilePath>
@@ -517,6 +487,16 @@
               <FileName>sdmm.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\ffs\sdmm.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\uart.h</FilePath>
             </File>
           </Files>
         </Group>

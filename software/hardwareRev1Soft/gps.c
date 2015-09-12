@@ -1,9 +1,12 @@
 #include "uart.h"
 #include "gps.h"
-#include "LED1.h"
-#include "msp430.h"
+#include "MKL26Z4.h"
 GPSData gpsData;
+#define NULL 0
+int temp ;
+int state;
 
+char* gpsCurField;
 char initGps(void)
 {
 	/*Need to select PTB4 as a rxd pin for uart0
@@ -23,15 +26,15 @@ char initGps(void)
 	   UART_S2_REG = UART_S2_NO_RXINV_BRK10_NO_LBKDETECT;
 	   UART_C2_REG = UART_C2_T_RI; */
 	/*PCUARTInit();*/
+	state = 0;
+	temp = 0;
+	gpsCurField = NULL;
 	return 0;
 }
 
 char fmt[]=        "$GPRMC,t,s,a,A,o,O,k,c,d,Em,MCCCE";
 char nmea_test[] = "$GPRMC,144140.00,A,1233.11671,N,12435.71394,W,0.128,,310815,,,A*6D";
-#define NULL 0
-int temp = 0;
-int state = 0;
-char* gpsCurField = NULL;
+
 char gpsTerm;
 void ParseGPS(char c){
 	char pos;
@@ -47,7 +50,7 @@ void ParseGPS(char c){
 		state++;
 		temp = 0;
 
-		gpsCurField = &(gpsData.time);
+		gpsCurField = (char*) &(gpsData.time);
 		gpsTerm = 0;
 		return;
 	}
@@ -63,49 +66,49 @@ void ParseGPS(char c){
 			temp = 0;
 			switch(fmt[state]){
 			case 't':
-				gpsCurField = &(gpsData.time);
+				gpsCurField = (char*) &(gpsData.time);
 				gpsTerm = 1;
 				break;
 			case 's':
-				gpsCurField = &(gpsData.stat);
+				gpsCurField = (char*) &(gpsData.stat);
 				gpsTerm = 0;
 				break;
 			case 'a':
-				gpsCurField = &(gpsData.lat);
+				gpsCurField = (char*) &(gpsData.lat);
 				gpsTerm = 1;
 				break;
 			case 'A':
-				gpsCurField = &(gpsData.latHemi);
+				gpsCurField = (char*) &(gpsData.latHemi);
 				gpsTerm = 0;
 				break;
 			case 'o':
-				gpsCurField = &(gpsData.lon);
+				gpsCurField = (char*) &(gpsData.lon);
 				gpsTerm = 1;
 				break;
 			case 'O':
-				gpsCurField = &(gpsData.lonHemi);
+				gpsCurField = (char*) &(gpsData.lonHemi);
 				gpsTerm = 0;
 				break;
 			case 'k':
-				gpsCurField = &(gpsData.speed);
+				gpsCurField = (char*) &(gpsData.speed);
 				gpsTerm = 1;
 				break;
 			case 'c':
-				gpsCurField = &(gpsData.course);
+				gpsCurField = (char*) &(gpsData.course);
 				gpsTerm = 1;
 				break;
 			case 'd':
-				gpsCurField = &(gpsData.date);
+				gpsCurField = (char*) &(gpsData.date);
 				gpsTerm = 1;
 				break;
 			case 'E':
-				uartDisableRx();
-				gpsCurField = NULL;
+				//uartDisableRx();
+				gpsCurField = (char*) NULL;
 				gpsTerm = 0;
 				state = 0;
 				temp = 0;
 			default:
-				gpsCurField = NULL;
+				gpsCurField = (char*) NULL;
 				gpsTerm = 0;
 				break;
 			}// switch.
@@ -124,17 +127,6 @@ void ParseGPS(char c){
 
 
 
-
-#if 0
-void gpsTerm(){
-	gpsData.time[6] = 0;
-	gpsData.lat[8] = 0;
-	gpsData.lon[9] = 0;
-	gpsData.speed[5] = 0;
-	gpsData.course[5] = 0;
-	gpsData.date[7] = 0;
-}
-#endif
 int testParse(){
 	int i;
 	i = 0;
