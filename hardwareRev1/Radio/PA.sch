@@ -36,12 +36,19 @@ LIBS:PE42424
 LIBS:dra818Real
 LIBS:RFConn
 LIBS:sma
+LIBS:conn_11x2
+LIBS:SparkFun
+LIBS:smtJmpOpen
+LIBS:neo7
+LIBS:MKL26Z128VLH4
+LIBS:USB
+LIBS:open-project
 LIBS:radio-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 3
 Title ""
 Date ""
 Rev ""
