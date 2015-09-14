@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Sun 13 Sep 2015 02:03:42 EDT
+Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Mon 14 Sep 2015 00:16:02 EDT
 
 BeginCmp
 TimeStamp = /55507AE8;
@@ -302,6 +302,13 @@ IdModule  = Capacitors_SMD:C_0402;
 EndCmp
 
 BeginCmp
+TimeStamp = /55F65115;
+Reference = C44;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0402;
+EndCmp
+
+BeginCmp
 TimeStamp = /55F5DC52;
 Reference = D1;
 ValeurCmp = LED;
@@ -327,13 +334,6 @@ TimeStamp = /55F5DAD1;
 Reference = J2;
 ValeurCmp = edgeMountSMA;
 IdModule  = hardwareRev1:EdgeSMA;
-EndCmp
-
-BeginCmp
-TimeStamp = /55F6BD0E;
-Reference = J3;
-ValeurCmp = AUDIO-JACKSMD;
-IdModule  = hardwareRev1:3.5mmJack;
 EndCmp
 
 BeginCmp
@@ -466,6 +466,13 @@ BeginCmp
 TimeStamp = /55F5DAF6;
 Reference = L16;
 ValeurCmp = 27nH;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = /55F6516E;
+Reference = L17;
+ValeurCmp = INDUCTOR;
 IdModule  = Resistors_SMD:R_0402;
 EndCmp
 
