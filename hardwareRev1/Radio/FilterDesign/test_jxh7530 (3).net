@@ -1,0 +1,31 @@
+*TITLE TEST
+V1 1 0 0V AC 1V
+Rin 1 N1 50
+*Shifter
+lb1 N1 N2 68n
+cm1 N2 0 12p
+*series
+Lt1 N2 N3 120n
+Ct1 N3 VOUT 10p
+*shunt
+Lc1 VOUT 0 150n
+Cc1 VOUT 0 10p
+RL VOUT 0 50
+*Bottom circuit
+Cb2 N1 N12 12p
+*shunt1
+Lb2 N12 0 68nh
+*Cm2 N12 0
+*Series 1
+Lt2 N12 N13 120nh
+Ct2 N13 VOUT2 10pf
+*shunt2
+Cc2 VOUT2 0 10pf
+Lc2 VOUT2 0 150nH
+RL2 VOUT2 0 50
+*in is 2, out 5
+.ac lin 100 10MEG 300MEG
+*.print ac V(VOUT) V(V1)
+.plot DB(V(VOUT)/V(N1)) DB(V(VOUT2)/V(N1))
+*backanno
+.end
