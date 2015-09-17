@@ -5,11 +5,11 @@ Rin 1 N1 50
 lb1 N1 N2 68n
 cm1 N2 0 12p
 *series
-Lt1 N2 N3 120n
-Ct1 N3 VOUT 10p
+Lt1 N2 N3 5.6e-6
+Ct1 N3 VOUT 2.14e-13
 *shunt
-Lc1 VOUT 0 150n
-Cc1 VOUT 0 10p
+Lc1 VOUT 0 5.35e-10
+Cc1 VOUT 0 2.25e-9
 RL VOUT 0 50
 *Bottom circuit
 Cb2 N1 N12 12p
