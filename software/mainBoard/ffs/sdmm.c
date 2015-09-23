@@ -332,11 +332,13 @@ DSTATUS disk_initialize (
 	SIM->SCGC4 |= SIM_SCGC4_SPI0_MASK;
 	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK | SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTA_MASK;
 	#define SD_POW (1<<13)
+	PORTA->PCR[13] = PORT_PCR_MUX(1);
 	PTA->PDDR |= SD_POW;
 	PTA->PSOR |= SD_POW;
-	PORTB->PCR[13] = PORT_PCR_MUX(1);
+	PORTB->PCR[18] = PORT_PCR_MUX(1);
 	PTB->PDDR |= SD_CS;
 	PTB->PSOR |= SD_CS;
+	delay(100);
 /* MASI: PTC6 MISO: PTC7 CLK: PTC5 select ptb18*/ 
 	PORTC->PCR[5] = PORT_PCR_MUX(2);
 	PORTC->PCR[6] = PORT_PCR_MUX(2);
@@ -349,12 +351,15 @@ DSTATUS disk_initialize (
 	/* 8 bit mode uses DL*/ 
 
 
-	CS_H();		/* Initialize port pin tied to CS */
+	/*CS_H();		[> Initialize port pin tied to CS <]*/
+/* Need CS low...*/ 
+	CS_L();
 
 	for (n = 10; n; n--) rcvr_mmc(buf, 1);	/* Apply 80 dummy clocks and the card gets ready to receive command */
 
 	ty = 0;
 	if (send_cmd(CMD0, 0) == 1) {			/* Enter Idle state */
+		/*CS_H();*/
 		if (send_cmd(CMD8, 0x1AA) == 1) {	/* SDv2? */
 			rcvr_mmc(buf, 4);							/* Get trailing return value of R7 resp */
 			if (buf[2] == 0x01 && buf[3] == 0xAA) {		/* The card can work at vdd range of 2.7-3.6V */
