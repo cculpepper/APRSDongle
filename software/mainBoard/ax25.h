@@ -30,7 +30,7 @@ extern uint16_t ax25CrcPoly;
 #define AX25SPACEDELAY 145  /* .45  */ 
 
 
-extern char ax25Send(char* data, int len);
+extern int ax25IntSend(char* data, int len);
 extern char ax25SendNoInt(char* data, int len);
 extern char ax25TimerIntHand(void);
 extern char ax25TimerInit(void);

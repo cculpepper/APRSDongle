@@ -8,7 +8,7 @@
 #define CLOCKRATE 28000000
 #define CWFREQ 700
 /*#define CWDELAY 1000000000*((1/CWFREQ)*(1/SINUS_LENGTH))*/
-#define DITTIME 300 //Time in milliseconds for a dit
+#define DITTIME 100 //Time in milliseconds for a dit
 #define DAHTIME (3 * (DITTIME))
 /*#define DITCYCLES (DITTIME * CWFREQ)*/
 /*#define DAHCYxCLES (DAHTIME * CWFREQ)*/
@@ -48,9 +48,7 @@ void cwTone(char DitOrDah){
 		delay(DITTIME);
 	}
 	stopPIT0();
-	led1On();	
 	sinIndex = 0;
-	led1Off();	
 }
 char cwSend(char* data, int len){
 	//sends stuff...
@@ -58,7 +56,7 @@ char cwSend(char* data, int len){
 	char currChar;
 	char* cwDataPtr;
 	char currBit;
-	
+	led1Off();
 	dacInit();
 	cwDataPtr = data;
 	while((data+len) > cwDataPtr){
@@ -74,7 +72,9 @@ char cwSend(char* data, int len){
 		charLen = (currChar >> 5); /* This is the length of the morse code char, in the top 3 bits*/ 
 		currBit = 0;
 		while ( charLen > 0 ){
+			led1On();
 			cwTone((currChar & ( 0x80 >> (3+currBit))));
+			led1Off();
 			/* A little bit crazy, passes to the sender, the current bit. Ands the current morse byte with a shifted 1  to get the current character*/ 
 			delay(DITTIME);
 			charLen--;

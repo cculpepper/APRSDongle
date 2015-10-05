@@ -31,7 +31,7 @@ char ax25GetSending(void){
 }
 //volatile extern uint16_t ax25CRC; /* Not sure about this*/ 
 volatile uint16_t ax25CRC;
-void ax25IntSend(char* dataPtr, int len){
+int ax25IntSend(char* dataPtr, int len){
 
 	uint32_t locCRC;
 	ax25BytesLeft = len;
@@ -45,6 +45,8 @@ void ax25IntSend(char* dataPtr, int len){
 	ax25Sending = 1;
 	ax25OnesCount = 0;
 	ax25CurrDelay = AX25SPACEDELAY;
+	
+	dacInit();
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
 	ax25StartToneTimer();

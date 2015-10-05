@@ -1,14 +1,14 @@
-#include "uart0.h"
+#include "uart.h"
 #include "dac.h"
-#include <stdio.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <string.h>
 #include <stdint.h>
 #ifndef DRA_H
 #define DRA_H
-#define draPutString(x) uart0PutString(x);
+#define draPutString(x) uart0PutStringBlock(x);
 #define draGetString(x, y) uart0GetString(x, y );
 
-#define FREQSTRLEN 9 /* This takes into account the null termination. */ 
+#define FREQSTRLEN 11 /* This takes into account the null termination. */ 
 
 typedef struct{
 	char draTxFreq[FREQSTRLEN]; /* 144.3900\0*/ 

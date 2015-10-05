@@ -1,5 +1,8 @@
 #ifndef GPS_H
 #define GPS_H
+
+#define gpsUARTEnableInterrupts() uart1EnableInterrupts()
+#define gpsUARTDisableInterrupts() uart1DisableInterrupts()
 typedef struct{
 	char time[11];
 	char stat;

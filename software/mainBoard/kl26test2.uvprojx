@@ -147,7 +147,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>6</TargetSelection>
+          <TargetSelection>12</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -161,7 +161,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>Segger\JL2CM3.dll</Driver>
+            <Driver>BIN\CMSIS_AGDI.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -335,7 +335,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x2000000</StartAddress>
-                <Size>0x3000</Size>
+                <Size>0x2000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -350,7 +350,7 @@
             <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
-            <OneElfS>1</OneElfS>
+            <OneElfS>0</OneElfS>
             <Strict>0</Strict>
             <EnumInt>0</EnumInt>
             <PlainCh>0</PlainCh>
@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>..\KSDK\platform\CMSIS\Include;..\KSDK\platform\devices\MKL26Z4\startup</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,7 +393,7 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
-            <DataAddressRange>0x1FFFF000</DataAddressRange>
+            <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile></ScatterFile>
             <IncludeLibs></IncludeLibs>
@@ -459,34 +459,9 @@
               <FilePath>.\gps.h</FilePath>
             </File>
             <File>
-              <FileName>diskio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ffs\diskio.h</FilePath>
-            </File>
-            <File>
-              <FileName>ff.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ffs\ff.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ffs\ff.h</FilePath>
-            </File>
-            <File>
-              <FileName>ffconf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ffs\ffconf.h</FilePath>
-            </File>
-            <File>
               <FileName>integer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\ffs\integer.h</FilePath>
-            </File>
-            <File>
-              <FileName>sdmm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ffs\sdmm.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
@@ -497,6 +472,46 @@
               <FileName>uart.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>MKL26Z4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MKL26Z4.h</FilePath>
+            </File>
+            <File>
+              <FileName>aprs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\aprs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ax25.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ax25.c</FilePath>
+            </File>
+            <File>
+              <FileName>ax25.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ax25.h</FilePath>
+            </File>
+            <File>
+              <FileName>dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>dac.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dac.h</FilePath>
+            </File>
+            <File>
+              <FileName>cw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cw.c</FilePath>
+            </File>
+            <File>
+              <FileName>cw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\cw.h</FilePath>
             </File>
           </Files>
         </Group>
