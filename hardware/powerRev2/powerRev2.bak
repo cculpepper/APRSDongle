@@ -31,12 +31,13 @@ LIBS:contrib
 LIBS:valves
 LIBS:lt6105
 LIBS:tps563200
+LIBS:lt3652
 LIBS:powerRev2-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 2
+Sheet 1 3
 Title ""
 Date ""
 Rev ""
@@ -349,5 +350,32 @@ S 5700 3500 900  550
 U 5611FB98
 F0 "12Vto3v3" 60
 F1 "12Vto3v3.sch" 60
+F2 "Vin" I L 5700 3750 60 
+F3 "Gnd" I L 5700 3950 60 
+F4 "En" I L 5700 3550 60 
+F5 "Vout" I R 6600 3700 60 
+$EndSheet
+Wire Wire Line
+	5450 3750 5700 3750
+$Comp
+L GND #PWR?
+U 1 1 56120AF0
+P 5550 4000
+F 0 "#PWR?" H 5550 4000 30  0001 C CNN
+F 1 "GND" H 5550 3930 30  0001 C CNN
+F 2 "" H 5550 4000 60  0000 C CNN
+F 3 "" H 5550 4000 60  0000 C CNN
+	1    5550 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 4000 5550 3950
+Wire Wire Line
+	5550 3950 5700 3950
+$Sheet
+S 5750 4800 950  700 
+U 56114AF5
+F0 "lifepo4Charger" 60
+F1 "lifepo4Charger.sch" 60
 $EndSheet
 $EndSCHEMATC

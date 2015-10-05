@@ -1,4 +1,4 @@
-update=Sun 04 Oct 2015 02:08:18 EDT
+update=Sun 04 Oct 2015 11:46:28 EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -61,3 +61,4 @@ LibName29=contrib
 LibName30=valves
 LibName31=/home/chris/Code/APRSDongle/hardware/lt6105
 LibName32=/home/chris/Code/APRSDongle/hardware/tps563200
+LibName33=/home/chris/Code/APRSDongle/hardware/lt3652
