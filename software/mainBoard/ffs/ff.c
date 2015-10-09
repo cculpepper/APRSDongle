@@ -2378,7 +2378,7 @@ FRESULT f_mount (
 #if _FS_REENTRANT						/* Discard sync object of the current volume */
 		if (!ff_del_syncobj(cfs->sobj)) return FR_INT_ERR;
 #endif
-		cfs->fs_type = 0;				/* Clear old fs object */
+//		cfs->fs_type = 0;				/* Clear old fs object */
 	}
 
 	if (fs) {

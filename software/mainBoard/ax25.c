@@ -31,7 +31,7 @@ char ax25GetSending(void){
 }
 //volatile extern uint16_t ax25CRC; /* Not sure about this*/ 
 volatile uint16_t ax25CRC;
-void ax25IntSend(char* dataPtr, int len){
+int ax25IntSend(char* dataPtr, int len){
 
 	uint32_t locCRC;
 	ax25BytesLeft = len;
@@ -45,11 +45,14 @@ void ax25IntSend(char* dataPtr, int len){
 	ax25Sending = 1;
 	ax25OnesCount = 0;
 	ax25CurrDelay = AX25SPACEDELAY;
+	
+	dacInit();
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
 	ax25StartToneTimer();
 	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
+	delay(100);
 	ax25Padding = 1;
 	ax25Sending = 1;
 	/*__asm {
@@ -71,12 +74,12 @@ movs r0, #ax25Sending
 void ax25StartSinTimer(void){
 	/* No idea what to do here*/ 
 	/* Note this uses the 24 MHz bus clock */ 
-	startPIT1(ax25ChangeDac, ax25CurrDelay);
+	startPIT0(ax25ChangeDac, ax25CurrDelay);
 }
 void ax25StartToneTimer(void){
 	/* starts the timer to change the tone, 1200 times a second.  */ 
 
-	startPIT0(ax25ChangeBit, 20000);
+	startPIT1(ax25ChangeBit, 200000);
 }
 void ax25StopTimers(void){
 	stopPIT0();

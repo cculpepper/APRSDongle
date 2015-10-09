@@ -26,11 +26,11 @@ volatile extern char ax25Sending;
 volatile extern uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
 volatile extern char ax25OnesCount;
 extern uint16_t ax25CrcPoly;
-#define AX25MARKDELAY 260  /* .5 */ 
-#define AX25SPACEDELAY 145  /* .45  */ 
+#define AX25MARKDELAY 400//260  /* .5 */ 
+#define AX25SPACEDELAY 300//145  /* .45  */ 
 
 
-extern char ax25Send(char* data, int len);
+extern int ax25IntSend(char* data, int len);
 extern char ax25SendNoInt(char* data, int len);
 extern char ax25TimerIntHand(void);
 extern char ax25TimerInit(void);

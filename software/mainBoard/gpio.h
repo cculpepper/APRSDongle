@@ -15,21 +15,21 @@
 #define SWB (1<<31)
 #define initSWF() PORTE->PCR[31] = PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
 #define initSWb() PORTE->PCR[1] = PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
-#define led1On() PTC->PSOR |= LED1
-#define led1Off() PTC->PCOR |=  LED1
-#define led1Toggle() PTC->PTOR |=  LED1
+#define led1On() PTC->PSOR = LED1
+#define led1Off() PTC->PCOR =  LED1
+#define led1Toggle() PTC->PTOR =  LED1
 
-#define led2On() PTC->PSOR |= LED2
-#define led2Off() PTC->PCOR |=  LED2
-#define led2Toggle() PTC->PTOR |=  LED2
+#define led2On() PTC->PSOR = LED2
+#define led2Off() PTC->PCOR =  LED2
+#define led2Toggle() PTC->PTOR =  LED2
 
-#define led3On() PTC->PSOR |= LED3
-#define led3Off() PTC->PSOR |=  LED3
-#define led3Toggle() PTC->PTOR |=  LED3
+#define led3On() PTC->PSOR = LED3
+#define led3Off() PTC->PCOR =  LED3
+#define led3Toggle() PTC->PTOR =  LED3
 
-#define led4On() PTC->PSOR |= LED4
-#define led4Off() PTC->PSOR |=  LED4
-#define led4Toggle() PTC->PTOR |=  LED4
+#define led4On() PTC->PSOR = LED4
+#define led4Off() PTC->PCOR =  LED4
+#define led4Toggle() PTC->PTOR =  LED4
 
 #define ledData(x) PTC->PDO |= (x<<7) | (PTC->PDO & ~ (0xF << 7))
 

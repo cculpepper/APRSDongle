@@ -40,10 +40,14 @@ char dequeue ( volatile QRecStruct* q){
 	}
 }
 int initQueue(volatile QRecStruct *q){
+	int i;
 	q->capacity = QUEUE_BUF_SIZE;
 	q->outPtr = 0;
 	q->inPtr = 0;
 	q->stored = 0;
+	for (i = 0;i<QUEUE_BUF_SIZE-1;i++){
+		q->data[i] = 0;
+	}
 	return QUEUE_BUF_SIZE;
 }
 #ifndef ALLOCATE_QUEUE_AT_COMPILE

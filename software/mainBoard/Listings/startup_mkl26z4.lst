@@ -419,148 +419,154 @@ ARM Macro Assembler    Page 7
                                PROC
   257 00000008                 EXPORT           NMI_Handler               [WEAK
 ]
-  258 00000008 E7FE            B                .
-  259 0000000A                 ENDP
-  261 0000000A         HardFault_Handler
+  258 00000008         ;bkpt
+  259 00000008 E7FE            B                .
+  260 0000000A                 ENDP
+  262 0000000A         HardFault_Handler
                                PROC
-  262 0000000A                 EXPORT           HardFault_Handler         [WEAK
+  263 0000000A                 EXPORT           HardFault_Handler         [WEAK
 ]
-  263 0000000A E7FE            B                .
-  264 0000000C                 ENDP
-  265 0000000C         SVC_Handler
+  264 0000000A         ;bkpt
+  265 0000000A E7FE            B                .
+  266 0000000C                 ENDP
+  267 0000000C         SVC_Handler
                                PROC
-  266 0000000C                 EXPORT           SVC_Handler               [WEAK
+  268 0000000C                 EXPORT           SVC_Handler               [WEAK
 ]
-  267 0000000C E7FE            B                .
-  268 0000000E                 ENDP
-  269 0000000E         PendSV_Handler
+  269 0000000C         ;bkpt
+  270 0000000C E7FE            B                .
+  271 0000000E                 ENDP
+  272 0000000E         PendSV_Handler
                                PROC
-  270 0000000E                 EXPORT           PendSV_Handler            [WEAK
+  273 0000000E                 EXPORT           PendSV_Handler            [WEAK
 ]
-  271 0000000E E7FE            B                .
-  272 00000010                 ENDP
-  273 00000010         SysTick_Handler
+  274 0000000E         ;bkpt
+  275 0000000E E7FE            B                .
+  276 00000010                 ENDP
+  277 00000010         SysTick_Handler
                                PROC
-  274 00000010                 EXPORT           SysTick_Handler           [WEAK
+  278 00000010                 EXPORT           SysTick_Handler           [WEAK
 ]
-  275 00000010 E7FE            B                .
-  276 00000012                 ENDP
-  277 00000012         
-  278 00000012         Default_Handler
+  279 00000010         ;bkpt
+  280 00000010 E7FE            B                .
+  281 00000012                 ENDP
+  282 00000012         
+  283 00000012         Default_Handler
                                PROC
-  279 00000012                 EXPORT           DMA0_IRQHandler     [WEAK]
-  280 00000012                 EXPORT           DMA1_IRQHandler     [WEAK]
-  281 00000012                 EXPORT           DMA2_IRQHandler     [WEAK]
-  282 00000012                 EXPORT           DMA3_IRQHandler     [WEAK]
-  283 00000012                 EXPORT           Reserved20_IRQHandler     [WEAK
 
 
 
 ARM Macro Assembler    Page 8 
 
 
+  284 00000012                 EXPORT           DMA0_IRQHandler     [WEAK]
+  285 00000012                 EXPORT           DMA1_IRQHandler     [WEAK]
+  286 00000012                 EXPORT           DMA2_IRQHandler     [WEAK]
+  287 00000012                 EXPORT           DMA3_IRQHandler     [WEAK]
+  288 00000012                 EXPORT           Reserved20_IRQHandler     [WEAK
 ]
-  284 00000012                 EXPORT           FTFA_IRQHandler     [WEAK]
-  285 00000012                 EXPORT           LVD_LVW_IRQHandler     [WEAK]
-  286 00000012                 EXPORT           LLW_IRQHandler     [WEAK]
-  287 00000012                 EXPORT           I2C0_IRQHandler     [WEAK]
-  288 00000012                 EXPORT           I2C1_IRQHandler     [WEAK]
-  289 00000012                 EXPORT           SPI0_IRQHandler     [WEAK]
-  290 00000012                 EXPORT           SPI1_IRQHandler     [WEAK]
-  291 00000012                 EXPORT           UART0_IRQHandler     [WEAK]
-  292 00000012                 EXPORT           UART1_IRQHandler     [WEAK]
-  293 00000012                 EXPORT           UART2_IRQHandler     [WEAK]
-  294 00000012                 EXPORT           ADC0_IRQHandler     [WEAK]
-  295 00000012                 EXPORT           CMP0_IRQHandler     [WEAK]
-  296 00000012                 EXPORT           TPM0_IRQHandler     [WEAK]
-  297 00000012                 EXPORT           TPM1_IRQHandler     [WEAK]
-  298 00000012                 EXPORT           TPM2_IRQHandler     [WEAK]
-  299 00000012                 EXPORT           RTC_IRQHandler     [WEAK]
-  300 00000012                 EXPORT           RTC_Seconds_IRQHandler     [WEA
+  289 00000012                 EXPORT           FTFA_IRQHandler     [WEAK]
+  290 00000012                 EXPORT           LVD_LVW_IRQHandler     [WEAK]
+  291 00000012                 EXPORT           LLW_IRQHandler     [WEAK]
+  292 00000012                 EXPORT           I2C0_IRQHandler     [WEAK]
+  293 00000012                 EXPORT           I2C1_IRQHandler     [WEAK]
+  294 00000012                 EXPORT           SPI0_IRQHandler     [WEAK]
+  295 00000012                 EXPORT           SPI1_IRQHandler     [WEAK]
+  296 00000012                 EXPORT           UART0_IRQHandler     [WEAK]
+  297 00000012                 EXPORT           UART1_IRQHandler     [WEAK]
+  298 00000012                 EXPORT           UART2_IRQHandler     [WEAK]
+  299 00000012                 EXPORT           ADC0_IRQHandler     [WEAK]
+  300 00000012                 EXPORT           CMP0_IRQHandler     [WEAK]
+  301 00000012                 EXPORT           TPM0_IRQHandler     [WEAK]
+  302 00000012                 EXPORT           TPM1_IRQHandler     [WEAK]
+  303 00000012                 EXPORT           TPM2_IRQHandler     [WEAK]
+  304 00000012                 EXPORT           RTC_IRQHandler     [WEAK]
+  305 00000012                 EXPORT           RTC_Seconds_IRQHandler     [WEA
 K]
-  301 00000012                 EXPORT           PIT_IRQHandler     [WEAK]
-  302 00000012                 EXPORT           I2S0_IRQHandler     [WEAK]
-  303 00000012                 EXPORT           USB0_IRQHandler     [WEAK]
-  304 00000012                 EXPORT           DAC0_IRQHandler     [WEAK]
-  305 00000012                 EXPORT           TSI0_IRQHandler     [WEAK]
-  306 00000012                 EXPORT           MCG_IRQHandler     [WEAK]
-  307 00000012                 EXPORT           LPTimer_IRQHandler     [WEAK]
-  308 00000012                 EXPORT           Reserved45_IRQHandler     [WEAK
+  306 00000012                 EXPORT           PIT_IRQHandler     [WEAK]
+  307 00000012                 EXPORT           I2S0_IRQHandler     [WEAK]
+  308 00000012                 EXPORT           USB0_IRQHandler     [WEAK]
+  309 00000012                 EXPORT           DAC0_IRQHandler     [WEAK]
+  310 00000012                 EXPORT           TSI0_IRQHandler     [WEAK]
+  311 00000012                 EXPORT           MCG_IRQHandler     [WEAK]
+  312 00000012                 EXPORT           LPTimer_IRQHandler     [WEAK]
+  313 00000012                 EXPORT           Reserved45_IRQHandler     [WEAK
 ]
-  309 00000012                 EXPORT           PORTA_IRQHandler     [WEAK]
-  310 00000012                 EXPORT           PORTC_PORTD_IRQHandler     [WEA
+  314 00000012                 EXPORT           PORTA_IRQHandler     [WEAK]
+  315 00000012                 EXPORT           PORTC_PORTD_IRQHandler     [WEA
 K]
-  311 00000012                 EXPORT           DefaultISR                     
+  316 00000012                 EXPORT           DefaultISR                     
  [WEAK]
-  312 00000012         
-  313 00000012         DMA0_IRQHandler
-  314 00000012         DMA1_IRQHandler
-  315 00000012         DMA2_IRQHandler
-  316 00000012         DMA3_IRQHandler
-  317 00000012         Reserved20_IRQHandler
-  318 00000012         FTFA_IRQHandler
-  319 00000012         LVD_LVW_IRQHandler
-  320 00000012         LLW_IRQHandler
-  321 00000012         I2C0_IRQHandler
-  322 00000012         I2C1_IRQHandler
-  323 00000012         SPI0_IRQHandler
-  324 00000012         SPI1_IRQHandler
-  325 00000012         UART0_IRQHandler
-  326 00000012         UART1_IRQHandler
-  327 00000012         UART2_IRQHandler
-  328 00000012         ADC0_IRQHandler
-  329 00000012         CMP0_IRQHandler
-  330 00000012         TPM0_IRQHandler
-  331 00000012         TPM1_IRQHandler
-  332 00000012         TPM2_IRQHandler
-  333 00000012         RTC_IRQHandler
-  334 00000012         RTC_Seconds_IRQHandler
-  335 00000012         PIT_IRQHandler
-  336 00000012         I2S0_IRQHandler
-  337 00000012         USB0_IRQHandler
+  317 00000012         
+  318 00000012         DMA0_IRQHandler
+  319 00000012         DMA1_IRQHandler
+  320 00000012         DMA2_IRQHandler
+  321 00000012         DMA3_IRQHandler
+  322 00000012         Reserved20_IRQHandler
+  323 00000012         FTFA_IRQHandler
+  324 00000012         LVD_LVW_IRQHandler
+  325 00000012         LLW_IRQHandler
+  326 00000012         I2C0_IRQHandler
+  327 00000012         I2C1_IRQHandler
+  328 00000012         SPI0_IRQHandler
+  329 00000012         SPI1_IRQHandler
+  330 00000012         UART0_IRQHandler
+  331 00000012         UART1_IRQHandler
+  332 00000012         UART2_IRQHandler
+  333 00000012         ADC0_IRQHandler
+  334 00000012         CMP0_IRQHandler
+  335 00000012         TPM0_IRQHandler
+  336 00000012         TPM1_IRQHandler
+  337 00000012         TPM2_IRQHandler
 
 
 
 ARM Macro Assembler    Page 9 
 
 
-  338 00000012         DAC0_IRQHandler
-  339 00000012         TSI0_IRQHandler
-  340 00000012         MCG_IRQHandler
-  341 00000012         LPTimer_IRQHandler
-  342 00000012         Reserved45_IRQHandler
-  343 00000012         PORTA_IRQHandler
-  344 00000012         PORTC_PORTD_IRQHandler
-  345 00000012         DefaultISR
-  346 00000012         
-  347 00000012 E7FE            B                .
-  348 00000014         
-  349 00000014                 ENDP
-  350 00000014         
-  351 00000014         
-  352 00000014                 ALIGN
-  353 00000014         
+  338 00000012         RTC_IRQHandler
+  339 00000012         RTC_Seconds_IRQHandler
+  340 00000012         PIT_IRQHandler
+  341 00000012         I2S0_IRQHandler
+  342 00000012         USB0_IRQHandler
+  343 00000012         DAC0_IRQHandler
+  344 00000012         TSI0_IRQHandler
+  345 00000012         MCG_IRQHandler
+  346 00000012         LPTimer_IRQHandler
+  347 00000012         Reserved45_IRQHandler
+  348 00000012         PORTA_IRQHandler
+  349 00000012         PORTC_PORTD_IRQHandler
+  350 00000012         DefaultISR
+  351 00000012         
+  352 00000012         ;bkpt
+  353 00000012 E7FE            B                .
   354 00000014         
-  355 00000014         ; User Initial Stack & Heap
+  355 00000014                 ENDP
   356 00000014         
-  357 00000014                 IF               :DEF:__MICROLIB
-  364 00000014         
-  365 00000014                 IMPORT           __use_two_region_memory
-  366 00000014                 EXPORT           __user_initial_stackheap
-  367 00000014         __user_initial_stackheap
-  368 00000014         
-  369 00000014 4804            LDR              R0, =  Heap_Mem
-  370 00000016 4905            LDR              R1, =(Stack_Mem + Stack_Size)
-  371 00000018 4A05            LDR              R2, = (Heap_Mem +  Heap_Size)
-  372 0000001A 4B06            LDR              R3, = Stack_Mem
-  373 0000001C 4770            BX               LR
-  374 0000001E         
-  375 0000001E 00 00           ALIGN
-  376 00000020         
-  377 00000020                 ENDIF
-  378 00000020         
-  379 00000020         
-  380 00000020                 END
+  357 00000014         
+  358 00000014                 ALIGN
+  359 00000014         
+  360 00000014         
+  361 00000014         ; User Initial Stack & Heap
+  362 00000014         
+  363 00000014                 IF               :DEF:__MICROLIB
+  370 00000014         
+  371 00000014                 IMPORT           __use_two_region_memory
+  372 00000014                 EXPORT           __user_initial_stackheap
+  373 00000014         __user_initial_stackheap
+  374 00000014         
+  375 00000014 4804            LDR              R0, =  Heap_Mem
+  376 00000016 4905            LDR              R1, =(Stack_Mem + Stack_Size)
+  377 00000018 4A05            LDR              R2, = (Heap_Mem +  Heap_Size)
+  378 0000001A 4B06            LDR              R3, = Stack_Mem
+  379 0000001C 4770            BX               LR
+  380 0000001E         
+  381 0000001E 00 00           ALIGN
+  382 00000020         
+  383 00000020                 ENDIF
+  384 00000020         
+  385 00000020         
+  386 00000020                 END
               00000000 
               00000000 
               00000000 
@@ -568,11 +574,11 @@ ARM Macro Assembler    Page 9
               00000500 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M0+ --apcs=interwork --depend=.\objec
-ts\startup_mkl26z4.d -o.\objects\startup_mkl26z4.o -IC:\Users\chris\workspace\A
-PRSDongle\software\hardwareRev1Soft\RTE -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx
-_DFP\1.4.0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SE
-TA 1" --predefine="__UVISION_VERSION SETA 513" --predefine="MKL26Z128xxx4 SETA 
-1" --list=.\listings\startup_mkl26z4.lst startup_MKL26Z4.s
+ts\startup_mkl26z4.d -o.\objects\startup_mkl26z4.o -IE:\APRSDongle\software\mai
+nBoard\RTE -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include -IC
+:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_
+VERSION SETA 513" --predefine="MKL26Z128xxx4 SETA 1" --list=.\listings\startup_
+mkl26z4.lst startup_MKL26Z4.s
 
 
 
@@ -593,8 +599,8 @@ Symbol: Stack_Mem
    Definitions
       At line 22 in file startup_MKL26Z4.s
    Uses
-      At line 370 in file startup_MKL26Z4.s
-      At line 372 in file startup_MKL26Z4.s
+      At line 376 in file startup_MKL26Z4.s
+      At line 378 in file startup_MKL26Z4.s
 
 __initial_sp 00001000
 
@@ -625,8 +631,8 @@ Symbol: Heap_Mem
    Definitions
       At line 34 in file startup_MKL26Z4.s
    Uses
-      At line 369 in file startup_MKL26Z4.s
-      At line 371 in file startup_MKL26Z4.s
+      At line 375 in file startup_MKL26Z4.s
+      At line 377 in file startup_MKL26Z4.s
 
 __heap_base 00000000
 
@@ -711,52 +717,52 @@ ADC0_IRQHandler 00000012
 
 Symbol: ADC0_IRQHandler
    Definitions
-      At line 328 in file startup_MKL26Z4.s
+      At line 333 in file startup_MKL26Z4.s
    Uses
       At line 82 in file startup_MKL26Z4.s
-      At line 294 in file startup_MKL26Z4.s
+      At line 299 in file startup_MKL26Z4.s
 
 CMP0_IRQHandler 00000012
 
 Symbol: CMP0_IRQHandler
    Definitions
-      At line 329 in file startup_MKL26Z4.s
+      At line 334 in file startup_MKL26Z4.s
    Uses
       At line 83 in file startup_MKL26Z4.s
-      At line 295 in file startup_MKL26Z4.s
+      At line 300 in file startup_MKL26Z4.s
 
 DAC0_IRQHandler 00000012
 
 Symbol: DAC0_IRQHandler
    Definitions
-      At line 338 in file startup_MKL26Z4.s
+      At line 343 in file startup_MKL26Z4.s
    Uses
       At line 92 in file startup_MKL26Z4.s
-      At line 304 in file startup_MKL26Z4.s
+      At line 309 in file startup_MKL26Z4.s
 
 DMA0_IRQHandler 00000012
 
 Symbol: DMA0_IRQHandler
    Definitions
-      At line 313 in file startup_MKL26Z4.s
+      At line 318 in file startup_MKL26Z4.s
    Uses
       At line 67 in file startup_MKL26Z4.s
-      At line 279 in file startup_MKL26Z4.s
+      At line 284 in file startup_MKL26Z4.s
 
 DMA1_IRQHandler 00000012
 
 Symbol: DMA1_IRQHandler
    Definitions
-      At line 314 in file startup_MKL26Z4.s
+      At line 319 in file startup_MKL26Z4.s
    Uses
       At line 68 in file startup_MKL26Z4.s
-      At line 280 in file startup_MKL26Z4.s
+      At line 285 in file startup_MKL26Z4.s
 
 DMA2_IRQHandler 00000012
 
 Symbol: DMA2_IRQHandler
    Definitions
-      At line 315 in file startup_MKL26Z4.s
+      At line 320 in file startup_MKL26Z4.s
    Uses
 
 
@@ -765,30 +771,30 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
       At line 69 in file startup_MKL26Z4.s
-      At line 281 in file startup_MKL26Z4.s
+      At line 286 in file startup_MKL26Z4.s
 
 DMA3_IRQHandler 00000012
 
 Symbol: DMA3_IRQHandler
    Definitions
-      At line 316 in file startup_MKL26Z4.s
+      At line 321 in file startup_MKL26Z4.s
    Uses
       At line 70 in file startup_MKL26Z4.s
-      At line 282 in file startup_MKL26Z4.s
+      At line 287 in file startup_MKL26Z4.s
 
 DefaultISR 00000012
 
 Symbol: DefaultISR
    Definitions
-      At line 345 in file startup_MKL26Z4.s
+      At line 350 in file startup_MKL26Z4.s
    Uses
-      At line 311 in file startup_MKL26Z4.s
+      At line 316 in file startup_MKL26Z4.s
 Comment: DefaultISR used once
 Default_Handler 00000012
 
 Symbol: Default_Handler
    Definitions
-      At line 278 in file startup_MKL26Z4.s
+      At line 283 in file startup_MKL26Z4.s
    Uses
       None
 Comment: Default_Handler unused
@@ -796,28 +802,28 @@ FTFA_IRQHandler 00000012
 
 Symbol: FTFA_IRQHandler
    Definitions
-      At line 318 in file startup_MKL26Z4.s
+      At line 323 in file startup_MKL26Z4.s
    Uses
       At line 72 in file startup_MKL26Z4.s
-      At line 284 in file startup_MKL26Z4.s
+      At line 289 in file startup_MKL26Z4.s
 
 HardFault_Handler 0000000A
 
 Symbol: HardFault_Handler
    Definitions
-      At line 261 in file startup_MKL26Z4.s
+      At line 262 in file startup_MKL26Z4.s
    Uses
       At line 52 in file startup_MKL26Z4.s
-      At line 262 in file startup_MKL26Z4.s
+      At line 263 in file startup_MKL26Z4.s
 
 I2C0_IRQHandler 00000012
 
 Symbol: I2C0_IRQHandler
    Definitions
-      At line 321 in file startup_MKL26Z4.s
+      At line 326 in file startup_MKL26Z4.s
    Uses
       At line 75 in file startup_MKL26Z4.s
-      At line 287 in file startup_MKL26Z4.s
+      At line 292 in file startup_MKL26Z4.s
 
 I2C1_IRQHandler 00000012
 
@@ -829,55 +835,55 @@ Symbol: I2C1_IRQHandler
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 322 in file startup_MKL26Z4.s
+      At line 327 in file startup_MKL26Z4.s
    Uses
       At line 76 in file startup_MKL26Z4.s
-      At line 288 in file startup_MKL26Z4.s
+      At line 293 in file startup_MKL26Z4.s
 
 I2S0_IRQHandler 00000012
 
 Symbol: I2S0_IRQHandler
    Definitions
-      At line 336 in file startup_MKL26Z4.s
+      At line 341 in file startup_MKL26Z4.s
    Uses
       At line 90 in file startup_MKL26Z4.s
-      At line 302 in file startup_MKL26Z4.s
+      At line 307 in file startup_MKL26Z4.s
 
 LLW_IRQHandler 00000012
 
 Symbol: LLW_IRQHandler
    Definitions
-      At line 320 in file startup_MKL26Z4.s
+      At line 325 in file startup_MKL26Z4.s
    Uses
       At line 74 in file startup_MKL26Z4.s
-      At line 286 in file startup_MKL26Z4.s
+      At line 291 in file startup_MKL26Z4.s
 
 LPTimer_IRQHandler 00000012
 
 Symbol: LPTimer_IRQHandler
    Definitions
-      At line 341 in file startup_MKL26Z4.s
+      At line 346 in file startup_MKL26Z4.s
    Uses
       At line 95 in file startup_MKL26Z4.s
-      At line 307 in file startup_MKL26Z4.s
+      At line 312 in file startup_MKL26Z4.s
 
 LVD_LVW_IRQHandler 00000012
 
 Symbol: LVD_LVW_IRQHandler
    Definitions
-      At line 319 in file startup_MKL26Z4.s
+      At line 324 in file startup_MKL26Z4.s
    Uses
       At line 73 in file startup_MKL26Z4.s
-      At line 285 in file startup_MKL26Z4.s
+      At line 290 in file startup_MKL26Z4.s
 
 MCG_IRQHandler 00000012
 
 Symbol: MCG_IRQHandler
    Definitions
-      At line 340 in file startup_MKL26Z4.s
+      At line 345 in file startup_MKL26Z4.s
    Uses
       At line 94 in file startup_MKL26Z4.s
-      At line 306 in file startup_MKL26Z4.s
+      At line 311 in file startup_MKL26Z4.s
 
 NMI_Handler 00000008
 
@@ -898,61 +904,61 @@ PIT_IRQHandler 00000012
 
 Symbol: PIT_IRQHandler
    Definitions
-      At line 335 in file startup_MKL26Z4.s
+      At line 340 in file startup_MKL26Z4.s
    Uses
       At line 89 in file startup_MKL26Z4.s
-      At line 301 in file startup_MKL26Z4.s
+      At line 306 in file startup_MKL26Z4.s
 
 PORTA_IRQHandler 00000012
 
 Symbol: PORTA_IRQHandler
    Definitions
-      At line 343 in file startup_MKL26Z4.s
+      At line 348 in file startup_MKL26Z4.s
    Uses
       At line 97 in file startup_MKL26Z4.s
-      At line 309 in file startup_MKL26Z4.s
+      At line 314 in file startup_MKL26Z4.s
 
 PORTC_PORTD_IRQHandler 00000012
 
 Symbol: PORTC_PORTD_IRQHandler
    Definitions
-      At line 344 in file startup_MKL26Z4.s
+      At line 349 in file startup_MKL26Z4.s
    Uses
       At line 98 in file startup_MKL26Z4.s
-      At line 310 in file startup_MKL26Z4.s
+      At line 315 in file startup_MKL26Z4.s
 
 PendSV_Handler 0000000E
 
 Symbol: PendSV_Handler
    Definitions
-      At line 269 in file startup_MKL26Z4.s
+      At line 272 in file startup_MKL26Z4.s
    Uses
       At line 63 in file startup_MKL26Z4.s
-      At line 270 in file startup_MKL26Z4.s
+      At line 273 in file startup_MKL26Z4.s
 
 RTC_IRQHandler 00000012
 
 Symbol: RTC_IRQHandler
    Definitions
-      At line 333 in file startup_MKL26Z4.s
+      At line 338 in file startup_MKL26Z4.s
    Uses
       At line 87 in file startup_MKL26Z4.s
-      At line 299 in file startup_MKL26Z4.s
+      At line 304 in file startup_MKL26Z4.s
 
 RTC_Seconds_IRQHandler 00000012
 
 Symbol: RTC_Seconds_IRQHandler
    Definitions
-      At line 334 in file startup_MKL26Z4.s
+      At line 339 in file startup_MKL26Z4.s
    Uses
       At line 88 in file startup_MKL26Z4.s
-      At line 300 in file startup_MKL26Z4.s
+      At line 305 in file startup_MKL26Z4.s
 
 Reserved20_IRQHandler 00000012
 
 Symbol: Reserved20_IRQHandler
    Definitions
-      At line 317 in file startup_MKL26Z4.s
+      At line 322 in file startup_MKL26Z4.s
 
 
 
@@ -961,16 +967,16 @@ Relocatable symbols
 
    Uses
       At line 71 in file startup_MKL26Z4.s
-      At line 283 in file startup_MKL26Z4.s
+      At line 288 in file startup_MKL26Z4.s
 
 Reserved45_IRQHandler 00000012
 
 Symbol: Reserved45_IRQHandler
    Definitions
-      At line 342 in file startup_MKL26Z4.s
+      At line 347 in file startup_MKL26Z4.s
    Uses
       At line 96 in file startup_MKL26Z4.s
-      At line 308 in file startup_MKL26Z4.s
+      At line 313 in file startup_MKL26Z4.s
 
 Reset_Handler 00000000
 
@@ -985,37 +991,37 @@ SPI0_IRQHandler 00000012
 
 Symbol: SPI0_IRQHandler
    Definitions
-      At line 323 in file startup_MKL26Z4.s
+      At line 328 in file startup_MKL26Z4.s
    Uses
       At line 77 in file startup_MKL26Z4.s
-      At line 289 in file startup_MKL26Z4.s
+      At line 294 in file startup_MKL26Z4.s
 
 SPI1_IRQHandler 00000012
 
 Symbol: SPI1_IRQHandler
    Definitions
-      At line 324 in file startup_MKL26Z4.s
+      At line 329 in file startup_MKL26Z4.s
    Uses
       At line 78 in file startup_MKL26Z4.s
-      At line 290 in file startup_MKL26Z4.s
+      At line 295 in file startup_MKL26Z4.s
 
 SVC_Handler 0000000C
 
 Symbol: SVC_Handler
    Definitions
-      At line 265 in file startup_MKL26Z4.s
+      At line 267 in file startup_MKL26Z4.s
    Uses
       At line 60 in file startup_MKL26Z4.s
-      At line 266 in file startup_MKL26Z4.s
+      At line 268 in file startup_MKL26Z4.s
 
 SysTick_Handler 00000010
 
 Symbol: SysTick_Handler
    Definitions
-      At line 273 in file startup_MKL26Z4.s
+      At line 277 in file startup_MKL26Z4.s
    Uses
       At line 64 in file startup_MKL26Z4.s
-      At line 274 in file startup_MKL26Z4.s
+      At line 278 in file startup_MKL26Z4.s
 
 TPM0_IRQHandler 00000012
 
@@ -1027,61 +1033,61 @@ Relocatable symbols
 
 Symbol: TPM0_IRQHandler
    Definitions
-      At line 330 in file startup_MKL26Z4.s
+      At line 335 in file startup_MKL26Z4.s
    Uses
       At line 84 in file startup_MKL26Z4.s
-      At line 296 in file startup_MKL26Z4.s
+      At line 301 in file startup_MKL26Z4.s
 
 TPM1_IRQHandler 00000012
 
 Symbol: TPM1_IRQHandler
    Definitions
-      At line 331 in file startup_MKL26Z4.s
+      At line 336 in file startup_MKL26Z4.s
    Uses
       At line 85 in file startup_MKL26Z4.s
-      At line 297 in file startup_MKL26Z4.s
+      At line 302 in file startup_MKL26Z4.s
 
 TPM2_IRQHandler 00000012
 
 Symbol: TPM2_IRQHandler
    Definitions
-      At line 332 in file startup_MKL26Z4.s
+      At line 337 in file startup_MKL26Z4.s
    Uses
       At line 86 in file startup_MKL26Z4.s
-      At line 298 in file startup_MKL26Z4.s
+      At line 303 in file startup_MKL26Z4.s
 
 TSI0_IRQHandler 00000012
 
 Symbol: TSI0_IRQHandler
    Definitions
-      At line 339 in file startup_MKL26Z4.s
+      At line 344 in file startup_MKL26Z4.s
    Uses
       At line 93 in file startup_MKL26Z4.s
-      At line 305 in file startup_MKL26Z4.s
+      At line 310 in file startup_MKL26Z4.s
 
 UART0_IRQHandler 00000012
 
 Symbol: UART0_IRQHandler
    Definitions
-      At line 325 in file startup_MKL26Z4.s
+      At line 330 in file startup_MKL26Z4.s
    Uses
       At line 79 in file startup_MKL26Z4.s
-      At line 291 in file startup_MKL26Z4.s
+      At line 296 in file startup_MKL26Z4.s
 
 UART1_IRQHandler 00000012
 
 Symbol: UART1_IRQHandler
    Definitions
-      At line 326 in file startup_MKL26Z4.s
+      At line 331 in file startup_MKL26Z4.s
    Uses
       At line 80 in file startup_MKL26Z4.s
-      At line 292 in file startup_MKL26Z4.s
+      At line 297 in file startup_MKL26Z4.s
 
 UART2_IRQHandler 00000012
 
 Symbol: UART2_IRQHandler
    Definitions
-      At line 327 in file startup_MKL26Z4.s
+      At line 332 in file startup_MKL26Z4.s
    Uses
 
 
@@ -1090,24 +1096,24 @@ ARM Macro Assembler    Page 7 Alphabetic symbol ordering
 Relocatable symbols
 
       At line 81 in file startup_MKL26Z4.s
-      At line 293 in file startup_MKL26Z4.s
+      At line 298 in file startup_MKL26Z4.s
 
 USB0_IRQHandler 00000012
 
 Symbol: USB0_IRQHandler
    Definitions
-      At line 337 in file startup_MKL26Z4.s
+      At line 342 in file startup_MKL26Z4.s
    Uses
       At line 91 in file startup_MKL26Z4.s
-      At line 303 in file startup_MKL26Z4.s
+      At line 308 in file startup_MKL26Z4.s
 
 __user_initial_stackheap 00000014
 
 Symbol: __user_initial_stackheap
    Definitions
-      At line 367 in file startup_MKL26Z4.s
+      At line 373 in file startup_MKL26Z4.s
    Uses
-      At line 366 in file startup_MKL26Z4.s
+      At line 372 in file startup_MKL26Z4.s
 Comment: __user_initial_stackheap used once
 42 symbols
 
@@ -1247,7 +1253,7 @@ ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Absolute symbols
 
       At line 34 in file startup_MKL26Z4.s
-      At line 371 in file startup_MKL26Z4.s
+      At line 377 in file startup_MKL26Z4.s
 
 Stack_Size 00001000
 
@@ -1256,7 +1262,7 @@ Symbol: Stack_Size
       At line 19 in file startup_MKL26Z4.s
    Uses
       At line 22 in file startup_MKL26Z4.s
-      At line 370 in file startup_MKL26Z4.s
+      At line 376 in file startup_MKL26Z4.s
 
 __Vectors_Size 000000C0
 
@@ -1325,7 +1331,7 @@ __use_two_region_memory 00000000
 
 Symbol: __use_two_region_memory
    Definitions
-      At line 365 in file startup_MKL26Z4.s
+      At line 371 in file startup_MKL26Z4.s
    Uses
       None
 Comment: __use_two_region_memory unused

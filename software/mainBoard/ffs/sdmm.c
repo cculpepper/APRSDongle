@@ -344,12 +344,12 @@ DSTATUS disk_initialize (
 	PORTC->PCR[6] = PORT_PCR_MUX(2);
 	PORTC->PCR[7] = PORT_PCR_MUX(2);
 	PORTB->PCR[18] = PORT_PCR_MUX(1);
-	SPI0->C1 = SPI_C1_SPE_MASK | SPI_C1_MSTR_MASK | SPI_C1_CPHA_MASK;
+	SPI0->C1 = SPI_C1_MSTR_MASK | SPI_C1_SSOE_MASK;
+	SPI0->C2 = SPI_C2_MODFEN_MASK;
+	SPI0->BR = (SPI_BR_SPPR(0x00) | SPI_BR_SPR(0x05));
 
-	SPI0->C2 = 0;
-	SPI0->BR = 0x00;
 	/* 8 bit mode uses DL*/ 
-
+	SPI0->C1 |= SPI_C1_SPE_MASK;
 
 	/*CS_H();		[> Initialize port pin tied to CS <]*/
 /* Need CS low...*/ 

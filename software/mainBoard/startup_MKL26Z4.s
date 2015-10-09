@@ -255,23 +255,28 @@ Reset_Handler   PROC
 
 NMI_Handler     PROC
                 EXPORT  NMI_Handler               [WEAK]
+				;bkpt
                 B       .
                 ENDP
 HardFault_Handler\
                 PROC
                 EXPORT  HardFault_Handler         [WEAK]
+				;bkpt
                 B       .
                 ENDP
 SVC_Handler     PROC
                 EXPORT  SVC_Handler               [WEAK]
+				;bkpt
                 B       .
                 ENDP
 PendSV_Handler  PROC
                 EXPORT  PendSV_Handler            [WEAK]
+				;bkpt
                 B       .
                 ENDP
 SysTick_Handler PROC
                 EXPORT  SysTick_Handler           [WEAK]
+				;bkpt
                 B       .
                 ENDP
 
@@ -344,6 +349,7 @@ PORTA_IRQHandler
 PORTC_PORTD_IRQHandler
 DefaultISR
 
+				;bkpt
                 B       .
 
                 ENDP

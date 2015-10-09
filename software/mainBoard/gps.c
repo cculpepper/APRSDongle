@@ -5,26 +5,11 @@ GPSData gpsData;
 #define NULL 0
 int temp ;
 int state;
-
+int fix;
 char* gpsCurField;
 char initGps(void)
 {
-	/*Need to select PTB4 as a rxd pin for uart0
-	   /* Thats ALT3, 0x3
-	   PORTB_PCR4 = PORT_PCR_MUX(3) || PORT_PCR_ISF_MASK;
-	   /*PORTB_PCR1 = PORT_PCR_MUX(2); Dont need TX for gp
-	   /* Also need to disable the rxd for the other pins. I think?
-	   /*Might as well initialize the UART too.
-	   SIM_SOPT5 &= ~ SIM_SOPT5_UART0_EXTERN_MASK_CLEAR;
-	   SIM_SCGC4 |= SIM_SCGC4_UART0CGC_MASK;
-	   SIM_SCGC5 |= SIM_SCGC5_PORTECGC_MASK;  /* THIS IS WRONG*
-	   UART_BDH_REG = UART_BDH_38400;
-	   UART_BDL_REG = UART_BDL_38400;
-	   UART_C1_REG = UART_C1_8N1;
-	   UART_C3_REG = UART_C3_NO_TXINV;
-	   UART_C4_REG = UART_C4_NO_DMA;
-	   UART_S2_REG = UART_S2_NO_RXINV_BRK10_NO_LBKDETECT;
-	   UART_C2_REG = UART_C2_T_RI; */
+
 	/*PCUARTInit();*/
 	state = 0;
 	temp = 0;
@@ -107,6 +92,7 @@ void ParseGPS(char c){
 				gpsTerm = 0;
 				state = 0;
 				temp = 0;
+				fix = 1;
 			default:
 				gpsCurField = (char*) NULL;
 				gpsTerm = 0;
@@ -125,7 +111,18 @@ void ParseGPS(char c){
 	}
 }
 
-
+int getPos(){
+	int cycles;
+	#define MAXCYCLES 100000
+	fix = 0;
+	gpsUARTEnableInterrupts();
+	while((fix == 0) & (cycles++<MAXCYCLES));
+	if (cycles >= MAXCYCLES){
+		return 1;
+	} 
+	gpsUARTDisableInterrupts();
+	return 0;
+}
 
 int testParse(){
 	int i;

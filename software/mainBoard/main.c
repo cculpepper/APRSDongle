@@ -1,5 +1,4 @@
-#include <MKL26Z4.h>
-#include "ffs/ff.h"
+#include "MKL26Z4.h"
 #include "PIT.h"
 #include "uart.h"
 #include "gps.h"
@@ -7,14 +6,23 @@
 #include <stdlib.h>
 #include "gpio.h"
 #include "delay.h"
+#include "dra.h"
+#include "aprs.h"
+#include "cw.h"
+#define inline __inline
+
+//#include "ff.h"
+
+int main(void);
+
 
 extern uint32_t __heap_start[];
 extern uint32_t __StackTop[];
 extern uint32_t __data_start__[], __data_end__[];
 extern uint32_t __bss_start__[], __bss_end__[];
 extern uint32_t __etext[];                // End of code/flash
-FATFS FatFs;
-FIL Fil;
+//FATFS FatFs;
+//FIL Fil;
 
 void clockInit(){
 
@@ -48,12 +56,14 @@ void clockInit(){
 
 }
 void SystemInit(){
-	main();
+//	PTC->PCOR = 0xf00;
+//	main();
 
 }
 void start(){
 	//_start();
 	//init_mempool();
+	SIM->COPC = 0; // Disable the COP
 	clockInit();
 	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
 	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
@@ -61,29 +71,26 @@ void start(){
 	PTC->PDDR |= (1 << 8);
 	PTC->PDDR |= (1 << 9);
 	LedPortInit();
-	led4On();
+	//led4On();
 	initGps();
 	testParse();
 	initUART1();
 	
 	i2c_init(intI2c);
 //	initUART2();
-	if (f_mount(&FatFs, "", 0)){
-		uart2PutString("Failure to mount the FAT filesystem.");
-	}
+//	if (f_mount(0,&FatFs)){
+//		uart2PutString("Failure to mount the FAT filesystem.");
+//	}
 }
 int main(){
-	int i;
-	char c;
+
+	uint32_t bw;
 	
-	char c2;
-	char s[40];
-	UINT bw;
-	char s2[40];
-	c = 0;
+	//delay(10000);
+	
 	start();
-	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
-		led1On();
+/*	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
+/*		led1On();
 		f_write(&Fil, "It works!\r\n", 11, &bw);
 		f_close(&Fil);
 		for(;;);
@@ -91,6 +98,23 @@ int main(){
 			led2On();
 		}
 	} else led3On();
-	
-
+	*/
+	initDRA();
+	draRx();
+	checkDRA();
+	programDra();
+	delay(10000);
+	for (;;){
+		PTC->PCOR = 0xf00;
+		led1Toggle();
+		
+		draTx();
+		delay(1000);
+		cwSend("AB1TJ", 5);
+		delay(100);
+		sendPos();
+		draRx();
+		led2Toggle();
+		delay(10000);
+	}
 }

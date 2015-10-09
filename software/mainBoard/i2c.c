@@ -6,7 +6,7 @@
 
 // Based on demo example from Freescale
 
-#include <MKL26Z4.h>
+#include "MKL26Z4.h"
 #include "i2c.h"
 #include "delay.h"
 
@@ -82,7 +82,7 @@ uint8_t i2cFlashRead(uint16_t addr, int numBytes, char *dataPtr){
 	i2c_repeated_start(intI2c);
 	i2c_write(intI2c, i2cFlashAddr | I2C_READ); // Send the read. 
 	i2c_set_rx(intI2c);
-	dataPtr[0] = i2c_read(intI2c); // Dummy read because FREESCALE does?
+	dataPtr[0] = i2c_read(intI2c); // Dummy read 
 	i2c_wait(intI2c);
 	while (numBytes--){
 		
@@ -91,6 +91,7 @@ uint8_t i2cFlashRead(uint16_t addr, int numBytes, char *dataPtr){
 		i2c_wait(intI2c);
 	}
 	dataPtr[index++] = i2c_read(intI2c);
+	i2c_give_nack(intI2c);
 	i2c_stop(intI2c);
 	return index;
 }
@@ -123,5 +124,6 @@ uint8_t i2cFlashWrite(uint16_t addr, int numBytes, char *dataPtr){
 		}
 	}
 	i2c_stop(intI2c);
+	return 0;
 }
 

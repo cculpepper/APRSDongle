@@ -3,7 +3,7 @@
 #define i2c_h
 
 #include <stdint.h>
-#include <MKL26Z4.h>
+#include "MKL26Z4.h"
 
 #define I2C_READ 1
 #define I2C_WRITE 0
