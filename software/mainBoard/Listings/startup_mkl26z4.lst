@@ -574,11 +574,19 @@ ARM Macro Assembler    Page 9
               00000500 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M0+ --apcs=interwork --depend=.\objec
+<<<<<<< HEAD
 ts\startup_mkl26z4.d -o.\objects\startup_mkl26z4.o -IE:\APRSDongle\software\mai
 nBoard\RTE -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include -IC
 :\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_
 VERSION SETA 513" --predefine="MKL26Z128xxx4 SETA 1" --list=.\listings\startup_
 mkl26z4.lst startup_MKL26Z4.s
+=======
+ts\startup_mkl26z4.d -o.\objects\startup_mkl26z4.o -IC:\Users\chris\workspace\A
+PRSDongle\software\mainBoard\RTE -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.
+4.0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" -
+-predefine="__UVISION_VERSION SETA 513" --predefine="MKL26Z128xxx4 SETA 1" --li
+st=.\listings\startup_mkl26z4.lst startup_MKL26Z4.s
+>>>>>>> 53e13e9b65409e09b56a57a491499ac872b8658b
 
 
 

@@ -50,9 +50,7 @@ int ax25IntSend(char* dataPtr, int len){
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
 	ax25StartToneTimer();
-	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
-	delay(100);
 	ax25Padding = 1;
 	ax25Sending = 1;
 	/*__asm {

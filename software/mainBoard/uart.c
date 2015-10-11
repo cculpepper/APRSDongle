@@ -202,6 +202,37 @@ char uartGetChar(uartDataStruct uartData){
 	}
 	return 0x25;
 }
+int uartGetLine(uartDataStruct uartData, char* str, int len){
+
+	char temp;
+	int i;
+	int retries;
+	i = 0;
+	temp = uartGetChar(uartData);
+	while (temp != '\r' | temp != '\n){
+		if (temp == UARTERRORCHAR){
+			retries++;
+		} else {
+			retries = 0;
+		}
+		if (retries >= MAXGETRETRIES){
+			return i;
+		}
+		if (i >= len){
+			return i;
+		}
+		str[i++] = temp;
+		temp = uartGetChar(uartData);
+	}
+	if (temp == '\r' | temp == '\n'){
+		temp = peek(&uartData.rxQ);
+		if (temp == '\r' | temp == '\n'){
+			uartGetChar(uartData);
+		}
+	}
+	str[i] = 0;
+}
+
 char uartGetCharBlock(uartDataStruct uartData){
 	char ret;
 	char status;
