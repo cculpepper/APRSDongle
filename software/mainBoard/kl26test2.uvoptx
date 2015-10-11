@@ -214,9 +214,6 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\dra.c</Filename>
           <ExecCommand></ExecCommand>
-<<<<<<< HEAD
-          <Expression></Expression>
-=======
           <Expression>\\kl26test2\dra.c\111</Expression>
         </Bp>
       </Breakpoint>

@@ -32,9 +32,6 @@
     <View>
       <WinId>38003</WinId>
       <ViewName>Registers</ViewName>
-<<<<<<< HEAD
-      <TableColWidths>102 100</TableColWidths>
-=======
       <TableColWidths>115 138</TableColWidths>
     </View>
     <View>
