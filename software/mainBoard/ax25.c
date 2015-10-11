@@ -50,6 +50,7 @@ int ax25IntSend(char* dataPtr, int len){
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
 	ax25StartToneTimer();
+	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
 	ax25Padding = 1;
 	ax25Sending = 1;
@@ -72,12 +73,12 @@ movs r0, #ax25Sending
 void ax25StartSinTimer(void){
 	/* No idea what to do here*/ 
 	/* Note this uses the 24 MHz bus clock */ 
-	startPIT0(ax25ChangeDac, ax25CurrDelay);
+	startPIT1(ax25ChangeDac, ax25CurrDelay);
 }
 void ax25StartToneTimer(void){
 	/* starts the timer to change the tone, 1200 times a second.  */ 
 
-	startPIT1(ax25ChangeBit, 200000);
+	startPIT0(ax25ChangeBit, 20000);
 }
 void ax25StopTimers(void){
 	stopPIT0();

@@ -586,7 +586,6 @@ PRSDongle\software\mainBoard\RTE -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.
 4.0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" -
 -predefine="__UVISION_VERSION SETA 513" --predefine="MKL26Z128xxx4 SETA 1" --li
 st=.\listings\startup_mkl26z4.lst startup_MKL26Z4.s
->>>>>>> 53e13e9b65409e09b56a57a491499ac872b8658b
 
 
 

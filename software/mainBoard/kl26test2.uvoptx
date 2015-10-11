@@ -157,11 +157,7 @@
           <Type>0</Type>
           <LineNumber>107</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-<<<<<<< HEAD
-          <Address>778</Address>
-=======
           <Address>772</Address>
->>>>>>> 53e13e9b65409e09b56a57a491499ac872b8658b
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -178,8 +174,6 @@
           <LineNumber>102</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>756</Address>
-<<<<<<< HEAD
-=======
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -212,7 +206,6 @@
           <LineNumber>111</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>18682</Address>
->>>>>>> 53e13e9b65409e09b56a57a491499ac872b8658b
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -225,7 +218,6 @@
           <Expression></Expression>
 =======
           <Expression>\\kl26test2\dra.c\111</Expression>
->>>>>>> 53e13e9b65409e09b56a57a491499ac872b8658b
         </Bp>
       </Breakpoint>
       <WatchWindow1>

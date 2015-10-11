@@ -35,6 +35,7 @@ int initDRA(void){
 	PTA->PDDR &= ~(1<<12);
 	PTA->PDDR |= (1<<4);
 	PTB->PCOR = (1<<19);
+	PTA->PSOR = (1<<4); // Need to turn off the transmitter. 
 	
 	// PTB3 is the power down thingamajig. 
 	PTB->PCOR = (1<<3); // Turn off the device to make it less confused. 
@@ -102,7 +103,6 @@ char programDra(void){
 	 /* AT+DMOSETGROUP=BW，TX_F，RX_F，Tx_subaudio，SQ，Rx_subaudio*/ 
 	/* Sets up for 12.5 Khz BW*/ 
 	int count;
-	count = 0;
 	if (draData.draInited){
 		do{
 	//draPutString("AT+DMOSETGROUP=0，");
@@ -124,8 +124,9 @@ char programDra(void){
 
 void draTx(){
 	/* Need to set PTA4 to low. High is Rx*/ 
-	PTE->PCOR = (1<<20);
+	PTA->PCOR = (1<<4);
 }
 void draRx(){
-	PTE->PSOR = (1<<20);
+	PTA->PSOR = (1<<4);
+	
 }
