@@ -32,12 +32,13 @@ LIBS:valves
 LIBS:lt6105
 LIBS:tps563200
 LIBS:lt3652
+LIBS:lt4415
 LIBS:powerRev2-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 3
+Sheet 2 4
 Title ""
 Date ""
 Rev ""

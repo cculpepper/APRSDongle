@@ -202,6 +202,7 @@ char uartGetChar(uartDataStruct uartData){
 	}
 	return 0x25;
 }
+#define UARTERRORCHAR 0
 int uartGetLine(uartDataStruct uartData, char* str, int len){
 
 	char temp;
@@ -209,7 +210,7 @@ int uartGetLine(uartDataStruct uartData, char* str, int len){
 	int retries;
 	i = 0;
 	temp = uartGetChar(uartData);
-	while (temp != '\r' | temp != '\n){
+	while (temp != '\r' | temp != '\n'){
 		if (temp == UARTERRORCHAR){
 			retries++;
 		} else {

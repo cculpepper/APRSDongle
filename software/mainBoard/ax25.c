@@ -14,8 +14,9 @@ extern "C" {
 void ax25StartSinTimer(void);
 void ax25StartToneTimer(void);
 void ax25StopTimer(void);
-const short ax25SinData[AX25SINDATALENGTH] = {	2248u,	2447u,	2642u,	2831u,	3013u,	3185u,	3347u,	3496u,	3631u,	3750u,	3854u,	3940u,	4007u,	4056u,	4086u,	4094u,	4086u,	4056u,	4007u,	3940u,	3854u,	3750u,	3631u,	3496u,	3347u,	3185u,	3013u,	2831u,	2642u,	2447u,	2248u,	2048u,	1847u,	1648u,	1453u,	1264u,	1082u,	910u,	748u,	599u,	464u,	345u,	241u,	155u,	88u,	39u,	9u,	0u,	9u,	39u,	88u,	155u,	241u,	345u,	464u,	599u,	748u,	910u,	1082u,	1264u,	1453u,	1648u,	1847u,	2048u};
+//const short ax25SinData[AX25SINDATALENGTH] = {	2248u,	2447u,	2642u,	2831u,	3013u,	3185u,	3347u,	3496u,	3631u,	3750u,	3854u,	3940u,	4007u,	4056u,	4086u,	4094u,	4086u,	4056u,	4007u,	3940u,	3854u,	3750u,	3631u,	3496u,	3347u,	3185u,	3013u,	2831u,	2642u,	2447u,	2248u,	2048u,	1847u,	1648u,	1453u,	1264u,	1082u,	910u,	748u,	599u,	464u,	345u,	241u,	155u,	88u,	39u,	9u,	0u,	9u,	39u,	88u,	155u,	241u,	345u,	464u,	599u,	748u,	910u,	1082u,	1264u,	1453u,	1648u,	1847u,	2048u};
 
+const short ax25SinData[AX25SINDATALENGTH] = {	0x620, 0x680, 0x740, 0x800, 0x856, 0x912, 0x964, 0x1012, 0x1056, 0x1100,        0x1136, 0x1164, 0x1192, 0x1212, 0x1228, 0x1236, 0x1240, 0x1236, 0x1228, 0x1212, 0x1192, 0x1164, 0x1136, 0x1100, 0x1056, 0x1012, 0x964, 0x912, 0x856, 0x800,     0x740, 0x680, 0x620, 0x556, 0x496, 0x440, 0x380, 0x324, 0x272, 0x224, 0x180,    0x140, 0x104, 0x72, 0x44, 0x24, 0x8, 0x0, 0x0, 0x0, 0x8, 0x24, 0x44, 0x72,      0x104, 0x140, 0x180, 0x224, 0x272, 0x324, 0x380, 0x440, 0x496, 0x556 };
 volatile int ax25BytesLeft;
 volatile char* ax25DataPtr;
 volatile int ax25SinIndex;
@@ -23,6 +24,7 @@ volatile signed char ax25CurrBit;
 volatile char ax25Padding;
 volatile signed char ax25CurrByte;
 volatile char ax25Sending;
+volatile char ax25Preamble;
 volatile uint32_t ax25CurrDelay;  /* Ticks of a 24 MHz clock we are currently delaying.  */ 
 volatile char ax25OnesCount;
 
@@ -44,23 +46,14 @@ int ax25IntSend(char* dataPtr, int len){
 	ax25CurrByte = 0x7E;  /* The flag */ 
 	ax25Sending = 1;
 	ax25OnesCount = 0;
+	ax25Preamble = 1;
 	ax25CurrDelay = AX25SPACEDELAY;
 	
 	dacInit();
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
 	ax25StartToneTimer();
-	/*while (ax25CurrByte == 0x7E){;}  [> Wait for the current byte to chonge.... Hacky. Sorry...<] */
-	while (ax25CurrByte == 0x7E);  /*[> Wait for the current byte to chonge.... Hacky. Sorry...<] */
-	ax25Padding = 1;
-	ax25Sending = 1;
-	/*__asm {
-loop:
-movs r0, #ax25Sending
-	//ldrb r0, [r0,0]
-	subs r0, r0, 1 // New if r0 is zero, then we are still sending
-	beq  loop 
-	}*/
+	
 	while (ax25Sending);
 	locCRC = ax25CRC;
 	ax25CurrByte = (locCRC & 0xFF00) >> 8;
@@ -73,16 +66,17 @@ movs r0, #ax25Sending
 void ax25StartSinTimer(void){
 	/* No idea what to do here*/ 
 	/* Note this uses the 24 MHz bus clock */ 
-	startPIT1(ax25ChangeDac, ax25CurrDelay);
+	startPIT0(ax25ChangeDac, ax25CurrDelay);
 }
 void ax25StartToneTimer(void){
 	/* starts the timer to change the tone, 1200 times a second.  */ 
 
-	startPIT0(ax25ChangeBit, 20000);
+	startPIT1(ax25ChangeBit, AX25BAUDTIME);
 }
 void ax25StopTimers(void){
 	stopPIT0();
 	stopPIT1();
+	SIM->SCGC6 &= ~ SIM_SCGC6_PIT_MASK;
 }
 
 void ax25SwitchFreq(void){
@@ -115,10 +109,15 @@ void ax25ChangeBit(void){
 			ax25BytesLeft--;
 			ax25CurrByte = *ax25DataPtr;
 			ax25DataPtr++;
+			if (!ax25Preamble){ // if were sending the preamble, keep sending
 			if (ax25BytesLeft <= 0){
 				ax25Sending = 0;
 				/*return;  [> Nothing left ta do<] */
 			}
+		} else {
+			ax25Preamble = 0;
+			ax25Padding = 0;
+		}
 			ax25CurrBit = 7;
 		} else {
 			ax25CurrBit--;
@@ -146,140 +145,3 @@ void ax25UpdateCrc(char bit){
 		ax25CRC = ax25CRC >> 1;
 	}
 }
-/*char ax25Send(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
-/*//sends stuff...*/
-/*int sinIndex;*/
-/*LDD_TError Error;*/
-/*ax25CurrBit = 7;*/
-/*ax25DataPtr = data;*/
-/*ax25ToneDelay = AX25MARKDELAY; //Dont know if this is right.;*/
-/*sinIndex = 0;*/
-/*Error = DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);*/
-/*ax25TimerInit();*/
-/*while ((data+len) > ax25DataPtr){*/
-/*Error = DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);*/
-/*cycleDelay = ax25ToneDelay;*/
-/*[>__asm volitile (<]*/
-/*[>ax25DelayLoop:<]*/
-/*[>add %[cycleDelay], %[cycleDelay], #-4<]*/
-/*[>cmp %[cycleDelay], 0<]*/
-/*[>[>bgt ax25DelayLoop<]<]*/
-/*[>);<]*/
-/*WAIT1_Waitns(ax25ToneDelay);*/
-/*sinIndex++;*/
-/*if (sinIndex >= AX25SINDATALENGTH){*/
-/*sinIndex = 0;*/
-/*}*/
-/*}*/
-/*return 0;*/
-/*}*/
-/*char ax25TimerIntHand(){*/
-/*char bitMask = 0;*/
-/*//bitMask = (0x80 >> ax25CurrBit);*/
-/*if(!((0x80 >> ax25CurrBit) & *ax25DataPtr)){ */
-/*//We need to change the freq*/
-/*if (ax25ToneDelay == AX25MARKDELAY){*/
-/*ax25ToneDelay = AX25SPACEDELAY;*/
-/*} else {*/
-/*ax25ToneDelay = AX25MARKDELAY;*/
-/*}*/
-/*}*/
-/*if (ax25CurrBit == 0){*/
-/*//we need to inc the data ptr and set the currbit to 7*/
-/*ax25CurrBit = 7;*/
-/*ax25DataPtr++;*/
-/*}	*/
-/*return 0;*/
-/*}*/
-/*char ax25TimerInit(){*/
-/*//need to set up the timer for 0.833333 ms. */
-/*TI1_Enable(TI1_DeviceData);*/
-/*return 1;*/
-/*}*/
-/*char ax25SendNoInt(char* data, int len, LDD_TDeviceData* ax25DacPtr){*/
-/*//sends stuff...*/
-/*int sinIndex;*/
-/*unsigned short sinIndexChange; // The number of sin indices left until a change. Janky as shit. */
-/*int delayFudgeCycles; // Number of cycles to remove from the current delay. */
-/*unsigned char oneCount;*/
-/*oneCount = 0;  [> This is for bitstuffing<] */
-/*[>LED1_On();<]*/
-/*delayFudgeCycles = 0;*/
-/*sinIndexChange = AX25SPACESINSEGMENTS;*/
-/*ax25CurrBit = 7;*/
-/*ax25DataPtr = data;*/
-/*ax25ToneDelay = AX25SPACEDELAY; //Dont know if this is right.;*/
-/*sinIndex = 0;*/
-/*DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);*/
-
-/*while ((data+len) > ax25DataPtr){*/
-/*DA1_SetValue(ax25DacPtr, SinusOutputData[sinIndex]);*/
-/*WAIT1_WaitCycles(ax25ToneDelay-delayFudgeCycles);*/
-/*[>WAIT1_Waitns(2000);<]*/
-/*[>WAIT1_Waitns(abs(ax25ToneDelay-delayFudgeCycles));<]*/
-/*[>WAIT1_WaitCycles(60);<]*/
-/*[>WAIT1_WaitCycles(168);<]*/
-/*delayFudgeCycles = 0;*/
-/*sinIndex++;*/
-/*if (sinIndex >= AX25SINDATALENGTH){*/
-/*sinIndex = 0;*/
-/*}*/
-/*sinIndexChange--;*/
-/*if (sinIndexChange <=0){*/
-/*if((0x80 >> ax25CurrBit) & *ax25DataPtr){ */
-/*[> Then we have a 1<] */
-/*oneCount++;*/
-/*if (oneCount > 5){*/
-/*[> Stuff a bit<] */
-/*oneCount = 0;*/
-
-/*cwSend("Z",1,ax25DacPtr);*/
-/*if (ax25ToneDelay == AX25MARKDELAY){*/
-/*ax25ToneDelay = AX25SPACEDELAY;*/
-/*sinIndexChange = AX25SPACESINSEGMENTS;*/
-/*[>LED1_Off();<]*/
-/*[>cwSend("S",1,ax25DacPtr);<]*/
-/*} else {*/
-/*ax25ToneDelay = AX25MARKDELAY;*/
-/*sinIndexChange = AX25MARKSINSEGMENTS;*/
-/*[>LED1_On();<]*/
-/*[>cwSend("M",1,ax25DacPtr);<]*/
-/*} */
-
-
-/*} else {*/
-
-/*ax25CurrBit --;*/
-/*[>Go to the next bit, bit stuffing doesnt go to the next bit. <]*/
-/*cwSend("H",1,ax25DacPtr);*/
-/*}*/
-/*delayFudgeCycles +=8; // The above takes about 8 cycles..................*/
-/*} else {*/
-/*//We need to change the freq*/
-/*oneCount = 0;*/
-/*cwSend("S",1,ax25DacPtr);*/
-/*if (ax25ToneDelay == AX25MARKDELAY){*/
-/*ax25ToneDelay = AX25SPACEDELAY;*/
-/*sinIndexChange = AX25SPACESINSEGMENTS;*/
-/*[>LED1_Off();<]*/
-/*} else {*/
-/*ax25ToneDelay = AX25MARKDELAY;*/
-/*sinIndexChange = AX25MARKSINSEGMENTS;*/
-/*[>LED1_On();<]*/
-/*}*/
-/*delayFudgeCycles +=8; // The above takes about 8 cycles..................*/
-/*ax25CurrBit --;*/
-/*}*/
-/*if (ax25CurrBit == 0){*/
-/*//we need to inc the data ptr and set the currbit to 7*/
-/*ax25CurrBit = 7;*/
-/*ax25DataPtr++;*/
-/*[>cwSend(ax25DataPtr, 1, ax25DacPtr);<]*/
-/*delayFudgeCycles += 4;//The above takes about 4 cycles....*/
-/*}	*/
-/*}*/
-/*}*/
-/*[>LED1_Off();<]*/
-/*return 0;*/
-
-/*}*/

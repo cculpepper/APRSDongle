@@ -32,10 +32,6 @@ int initDRA(void){
 	PTE->PDDR |= (1<<20);
 	PTB->PCOR = (1<<19);
 	PTE->PSOR = (1<<20); // Need to turn off the transmitter. 
-	PTA->PDDR &= ~(1<<12);
-	PTA->PDDR |= (1<<4);
-	PTB->PCOR = (1<<19);
-	PTA->PSOR = (1<<4); // Need to turn off the transmitter. 
 	
 	// PTB3 is the power down thingamajig. 
 	PTB->PCOR = (1<<3); // Turn off the device to make it less confused. 
@@ -124,9 +120,11 @@ char programDra(void){
 
 void draTx(){
 	/* Need to set PTA4 to low. High is Rx*/ 
-	PTA->PCOR = (1<<4);
+	PTE->PCOR = (1<<20);
+	led4On();
 }
 void draRx(){
-	PTA->PSOR = (1<<4);
+	PTE->PSOR = (1<<20);
+	led4Off();
 	
 }

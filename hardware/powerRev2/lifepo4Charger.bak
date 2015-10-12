@@ -82,17 +82,6 @@ F 3 "" H 3850 2900 30  0000 C CNN
 $EndComp
 $Comp
 L R R?
-U 1 1 56114D7A
-P 3750 4050
-F 0 "R?" V 3830 4050 40  0000 C CNN
-F 1 "R" V 3757 4051 40  0000 C CNN
-F 2 "" V 3680 4050 30  0000 C CNN
-F 3 "" H 3750 4050 30  0000 C CNN
-	1    3750 4050
-	0    1    1    0   
-$EndComp
-$Comp
-L R R?
 U 1 1 56114DC8
 P 4150 3200
 F 0 "R?" V 4230 3200 40  0000 C CNN
@@ -102,8 +91,6 @@ F 3 "" H 4150 3200 30  0000 C CNN
 	1    4150 3200
 	1    0    0    -1  
 $EndComp
-Text HLabel 3450 3350 0    60   Input ~ 0
-GND
 Text HLabel 3200 2800 0    60   Input ~ 0
 Vin
 $Comp
@@ -395,4 +382,19 @@ F 3 "" H 7200 2900 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	7400 2900 7900 2900
+Text HLabel 3300 4100 0    60   Input ~ 0
+GND
+Wire Wire Line
+	3300 4100 5200 4100
+Wire Wire Line
+	5200 4100 5200 3750
+Wire Wire Line
+	4850 3550 4850 4100
+Connection ~ 4850 4100
+Wire Wire Line
+	4150 3450 4150 4100
+Connection ~ 4150 4100
+Wire Wire Line
+	3450 3350 3450 4100
+Connection ~ 3450 4100
 $EndSCHEMATC

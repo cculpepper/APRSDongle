@@ -242,7 +242,7 @@ F 3 "" H 8600 3800 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 Text HLabel 8300 3950 3    60   Input ~ 0
-STAT1
+STAT2
 Wire Wire Line
 	6950 4000 6750 4000
 Wire Wire Line

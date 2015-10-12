@@ -103,14 +103,17 @@ int main(){
 	draRx();
 	checkDRA();
 	programDra();
-	//delay(10000);
+	delay(10000);
 	for (;;){
 		PTC->PCOR = 0xf00;
 		led1Toggle();
 		draTx();
+		delay(500);
 		cwSend("AB1TJ", 5);
 		delay(100);
 		sendPos();
+		
+		delay(500);
 		draRx();
 		led2Toggle();
 		delay(10000);

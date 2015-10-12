@@ -282,7 +282,7 @@ Wire Wire Line
 	4850 2300 4950 2300
 Connection ~ 4850 2300
 Wire Wire Line
-	4850 2850 4850 3750
+	4850 2850 4850 4650
 Wire Wire Line
 	4850 2900 4950 2900
 Wire Wire Line
@@ -373,9 +373,52 @@ Wire Wire Line
 Wire Wire Line
 	5550 3950 5700 3950
 $Sheet
-S 5750 4800 950  700 
+S 5750 4450 950  700 
 U 56114AF5
 F0 "lifepo4Charger" 60
 F1 "lifepo4Charger.sch" 60
+F2 "Vin" I L 5750 4650 60 
+F3 "GND" I L 5750 4950 60 
+F4 "Vout" I R 6700 4600 60 
+F5 "SHDN" I R 6700 4950 60 
+F6 "CHRG" I R 6700 4850 60 
+F7 "FAULT" I R 6700 5050 60 
+$EndSheet
+$Comp
+L R R?
+U 1 1 56129619
+P 5250 4650
+F 0 "R?" V 5330 4650 40  0000 C CNN
+F 1 "R" V 5257 4651 40  0000 C CNN
+F 2 "" V 5180 4650 30  0000 C CNN
+F 3 "" H 5250 4650 30  0000 C CNN
+	1    5250 4650
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 56129679
+P 5450 5050
+F 0 "#PWR?" H 5450 5050 30  0001 C CNN
+F 1 "GND" H 5450 4980 30  0001 C CNN
+F 2 "" H 5450 5050 60  0000 C CNN
+F 3 "" H 5450 5050 60  0000 C CNN
+	1    5450 5050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 4650 5500 4650
+Wire Wire Line
+	4850 4650 5000 4650
+Connection ~ 4850 3750
+Wire Wire Line
+	5750 4950 5450 4950
+Wire Wire Line
+	5450 4950 5450 5050
+$Sheet
+S 7500 3900 900  550 
+U 56129ACB
+F0 "dualIdealDiode" 60
+F1 "dualIdealDiode.sch" 60
 $EndSheet
 $EndSCHEMATC
