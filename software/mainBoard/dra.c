@@ -128,3 +128,13 @@ void draRx(){
 	led4Off();
 	
 }
+
+void draOn(void){
+	PTB->PSOR = (1<<3); 
+	led3On();
+}
+
+void draOff(void){
+	PTB->PCOR = (1<<3);
+	led3Off(); 
+}

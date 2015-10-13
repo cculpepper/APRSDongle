@@ -1,10 +1,13 @@
 
 #include "delay.h"
 #include "dac.h"
+#include "sin.h"
 
-#define SINUS_LENGTH 64
+#define CWSINLENGTH SINLENGTH64
+#define cwSinData sinData64
 
 
+extern uint16_t cwSinData[CWSINLENGTH	];
 //these need to be shared between the interrupt handler, which will change the delay (tone) and the initialization routine.
 
 //extern char 	ax25CurrBit; //the index of the current bit.

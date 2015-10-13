@@ -14,7 +14,7 @@ void dacDeInit(void) {
 }
 void dacSet(uint16_t val){
 	DAC0->DAT[0].DATL = (uint8_t) val & 0xFF;
-	DAC0->DAT[0].DATH = (uint8_t) ( val >> 8);
+	DAC0->DAT[0].DATH = ((uint8_t) ( val >> 8)) & 0x0f;
 }
 
 
