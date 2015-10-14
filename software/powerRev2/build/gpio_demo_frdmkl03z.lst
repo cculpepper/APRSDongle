@@ -1,0 +1,114 @@
+
+build/gpio_demo_frdmkl03z.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000410 <__do_global_dtors_aux>:
+ 410:	4b07      	ldr	r3, [pc, #28]	; (430 <__do_global_dtors_aux+0x20>)
+ 412:	b510      	push	{r4, lr}
+ 414:	781a      	ldrb	r2, [r3, #0]
+ 416:	001c      	movs	r4, r3
+ 418:	2a00      	cmp	r2, #0
+ 41a:	d107      	bne.n	42c <__do_global_dtors_aux+0x1c>
+ 41c:	4b05      	ldr	r3, [pc, #20]	; (434 <__do_global_dtors_aux+0x24>)
+ 41e:	2b00      	cmp	r3, #0
+ 420:	d002      	beq.n	428 <__do_global_dtors_aux+0x18>
+ 422:	4805      	ldr	r0, [pc, #20]	; (438 <__do_global_dtors_aux+0x28>)
+ 424:	e000      	b.n	428 <__do_global_dtors_aux+0x18>
+ 426:	bf00      	nop
+ 428:	2301      	movs	r3, #1
+ 42a:	7023      	strb	r3, [r4, #0]
+ 42c:	bd10      	pop	{r4, pc}
+ 42e:	46c0      	nop			; (mov r8, r8)
+ 430:	1ffffe04 	svcne	0x00fffe04
+ 434:	00000000 	andeq	r0, r0, r0
+ 438:	00000474 	andeq	r0, r0, r4, ror r4
+
+0000043c <frame_dummy>:
+ 43c:	4b08      	ldr	r3, [pc, #32]	; (460 <frame_dummy+0x24>)
+ 43e:	b510      	push	{r4, lr}
+ 440:	2b00      	cmp	r3, #0
+ 442:	d003      	beq.n	44c <frame_dummy+0x10>
+ 444:	4907      	ldr	r1, [pc, #28]	; (464 <frame_dummy+0x28>)
+ 446:	4808      	ldr	r0, [pc, #32]	; (468 <frame_dummy+0x2c>)
+ 448:	e000      	b.n	44c <frame_dummy+0x10>
+ 44a:	bf00      	nop
+ 44c:	4807      	ldr	r0, [pc, #28]	; (46c <frame_dummy+0x30>)
+ 44e:	6803      	ldr	r3, [r0, #0]
+ 450:	2b00      	cmp	r3, #0
+ 452:	d003      	beq.n	45c <frame_dummy+0x20>
+ 454:	4b06      	ldr	r3, [pc, #24]	; (470 <frame_dummy+0x34>)
+ 456:	2b00      	cmp	r3, #0
+ 458:	d000      	beq.n	45c <frame_dummy+0x20>
+ 45a:	4798      	blx	r3
+ 45c:	bd10      	pop	{r4, pc}
+ 45e:	46c0      	nop			; (mov r8, r8)
+ 460:	00000000 	andeq	r0, r0, r0
+ 464:	1ffffe08 	svcne	0x00fffe08
+ 468:	00000474 	andeq	r0, r0, r4, ror r4
+ 46c:	1ffffe00 	svcne	0x00fffe00
+ 470:	00000000 	andeq	r0, r0, r0
+
+00000474 <_init>:
+ 474:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 476:	46c0      	nop			; (mov r8, r8)
+ 478:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 47a:	bc08      	pop	{r3}
+ 47c:	469e      	mov	lr, r3
+ 47e:	4770      	bx	lr
+
+00000480 <_fini>:
+ 480:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 482:	46c0      	nop			; (mov r8, r8)
+ 484:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 486:	bc08      	pop	{r3}
+ 488:	469e      	mov	lr, r3
+ 48a:	4770      	bx	lr
+
+Disassembly of section .init_array:
+
+0000048c <__CTOR_END__>:
+ 48c:	0000043d 	andeq	r0, r0, sp, lsr r4
+
+Disassembly of section .fini_array:
+
+00000490 <__do_global_dtors_aux_fini_array_entry>:
+ 490:	00000411 	andeq	r0, r0, r1, lsl r4
+
+Disassembly of section .data:
+
+1ffffe00 <__DATA_RAM>:
+1ffffe00:	00000000 	andeq	r0, r0, r0
+
+Disassembly of section .bss:
+
+1ffffe04 <__START_BSS>:
+1ffffe04:	00000000 	andeq	r0, r0, r0
+
+1ffffe08 <object.8363>:
+	...
+
+Disassembly of section .heap:
+
+1ffffe20 <__HeapBase>:
+	...
+
+Disassembly of section .stack:
+
+20000020 <.stack>:
+	...
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00002741 	andeq	r2, r0, r1, asr #14
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000001d 	andeq	r0, r0, sp, lsl r0
+  10:	2d533605 	ldclcs	6, cr3, [r3, #-20]	; 0xffffffec
+  14:	0c06004d 	stceq	0, cr0, [r6], {77}	; 0x4d
+  18:	01094d07 	tsteq	r9, r7, lsl #26
+  1c:	01140412 	tsteq	r4, r2, lsl r4
+  20:	03170115 	tsteq	r7, #1073741829	; 0x40000005
+  24:	011a0118 	tsteq	sl, r8, lsl r1
