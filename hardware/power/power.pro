@@ -1,6 +1,6 @@
-update=Tue 05 May 2015 06:48:30 PM EDT
+update=Wed 14 Oct 2015 00:46:59 EDT
 version=1
-last_client=eeschema
+last_client=kicad
 [general]
 version=1
 RootSch=
@@ -67,3 +67,4 @@ LibName33=ncp508
 LibName34=smtJmpOpen
 LibName35=SparkFun
 LibName36=attiny24a-m
+LibName37=/home/chris/Code/APRSDongle/hardware/ncp508
