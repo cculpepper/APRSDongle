@@ -477,17 +477,6 @@ F 3 "" H 4400 2000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3V #PWR?
-U 1 1 5611F8EB
-P 4400 1750
-F 0 "#PWR?" H 4400 1710 30  0001 C CNN
-F 1 "+3.3V" H 4400 1860 30  0000 C CNN
-F 2 "" H 4400 1750 60  0000 C CNN
-F 3 "" H 4400 1750 60  0000 C CNN
-	1    4400 1750
-	1    0    0    -1  
-$EndComp
-$Comp
 L LT6105 U?
 U 1 1 5611F611
 P 5000 2000
@@ -590,7 +579,7 @@ Connection ~ 1900 2250
 Wire Wire Line
 	3550 750  3550 1450
 Wire Wire Line
-	3550 1400 3650 1400
+	3200 1400 3650 1400
 Connection ~ 3550 1400
 Wire Wire Line
 	3550 1950 3550 3750
@@ -666,8 +655,6 @@ Wire Wire Line
 Wire Wire Line
 	2350 750  2900 750 
 Wire Wire Line
-	3300 750  3550 750 
-Wire Wire Line
 	4150 2000 4150 1550
 Wire Wire Line
 	5550 1650 5950 1650
@@ -676,9 +663,7 @@ Wire Wire Line
 Wire Wire Line
 	4550 1900 4400 1900
 Wire Wire Line
-	4400 1800 4550 1800
-Wire Wire Line
-	4400 1750 4400 1800
+	4250 1800 4550 1800
 Wire Wire Line
 	4150 1550 4550 1550
 Wire Wire Line
@@ -753,13 +738,236 @@ F 3 "DOCUMENTATION" H 2500 5850 50  0001 C CNN
 $EndComp
 $Comp
 L NCP1117ST33T3G U?
-U 1 1 561EA351
-P 1950 4250
-F 0 "U?" H 1950 4500 40  0000 C CNN
-F 1 "NCP1117ST33T3G" H 1950 4450 40  0000 C CNN
-F 2 "" H 1950 4250 60  0000 C CNN
-F 3 "" H 1950 4250 60  0000 C CNN
-	1    1950 4250
+U 1 1 561EB20E
+P 4600 800
+F 0 "U?" H 4600 1050 40  0000 C CNN
+F 1 "NCP1117ST33T3G" H 4600 1000 40  0000 C CNN
+F 2 "" H 4600 800 60  0000 C CNN
+F 3 "" H 4600 800 60  0000 C CNN
+	1    4600 800 
 	1    0    0    -1  
 $EndComp
+$Comp
+L GND #PWR?
+U 1 1 561EBA89
+P 4600 1150
+F 0 "#PWR?" H 4600 1150 30  0001 C CNN
+F 1 "GND" H 4600 1080 30  0001 C CNN
+F 2 "" H 4600 1150 60  0000 C CNN
+F 3 "" H 4600 1150 60  0000 C CNN
+	1    4600 1150
+	1    0    0    -1  
+$EndComp
+Connection ~ 3550 750 
+Wire Wire Line
+	4600 1050 4600 1150
+Wire Wire Line
+	5000 750  5400 750 
+Text Label 5100 750  0    60   ~ 0
+VBackup
+Text Label 4250 1800 0    60   ~ 0
+VBackup
+$Comp
+L R R?
+U 1 1 561EC5CA
+P 3900 750
+F 0 "R?" V 3980 750 40  0000 C CNN
+F 1 "0" V 3907 751 40  0000 C CNN
+F 2 "" V 3830 750 30  0000 C CNN
+F 3 "" H 3900 750 30  0000 C CNN
+	1    3900 750 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3300 750  3650 750 
+Wire Wire Line
+	4150 750  4200 750 
+Wire Wire Line
+	2500 4850 2500 4700
+Wire Wire Line
+	2500 4700 3000 4700
+Text Label 2500 4700 0    60   ~ 0
+VBackup
+$Comp
+L GND #PWR?
+U 1 1 561ED290
+P 2500 6950
+F 0 "#PWR?" H 2500 6950 30  0001 C CNN
+F 1 "GND" H 2500 6880 30  0001 C CNN
+F 2 "" H 2500 6950 60  0000 C CNN
+F 3 "" H 2500 6950 60  0000 C CNN
+	1    2500 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 6850 2500 6950
+$Comp
+L R R?
+U 1 1 561EE1AC
+P 3200 2750
+F 0 "R?" V 3280 2750 40  0000 C CNN
+F 1 "200000" V 3207 2751 40  0000 C CNN
+F 2 "" V 3130 2750 30  0000 C CNN
+F 3 "" H 3200 2750 30  0000 C CNN
+	1    3200 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 561EE22D
+P 3200 3350
+F 0 "R?" V 3280 3350 40  0000 C CNN
+F 1 "10000" V 3207 3351 40  0000 C CNN
+F 2 "" V 3130 3350 30  0000 C CNN
+F 3 "" H 3200 3350 30  0000 C CNN
+	1    3200 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 561EE2B7
+P 3200 3700
+F 0 "#PWR?" H 3200 3700 30  0001 C CNN
+F 1 "GND" H 3200 3630 30  0001 C CNN
+F 2 "" H 3200 3700 60  0000 C CNN
+F 3 "" H 3200 3700 60  0000 C CNN
+	1    3200 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 2500 3200 1400
+Wire Wire Line
+	3200 3700 3200 3600
+Wire Wire Line
+	3200 3100 3200 3000
+Wire Wire Line
+	3200 3050 2550 3050
+Connection ~ 3200 3050
+Text Label 2550 3050 0    60   ~ 0
+VInSense
+Wire Wire Line
+	1700 5350 1050 5350
+Wire Wire Line
+	700  5450 1700 5450
+Wire Wire Line
+	1700 5550 1050 5550
+Wire Wire Line
+	1700 5650 1050 5650
+Wire Wire Line
+	1700 5750 1050 5750
+Wire Wire Line
+	1700 5850 1050 5850
+Wire Wire Line
+	1700 5950 1050 5950
+Wire Wire Line
+	1700 6050 1050 6050
+Wire Wire Line
+	1700 6150 1050 6150
+Wire Wire Line
+	1700 6250 1050 6250
+Wire Wire Line
+	1700 6350 1050 6350
+Wire Wire Line
+	3300 5350 3950 5350
+Wire Wire Line
+	3300 5450 3950 5450
+Wire Wire Line
+	3300 5550 3950 5550
+Wire Wire Line
+	3300 5650 3950 5650
+Wire Wire Line
+	3300 5750 3950 5750
+Wire Wire Line
+	3300 5850 3950 5850
+Wire Wire Line
+	3300 5950 3950 5950
+Wire Wire Line
+	3300 6050 3950 6050
+Wire Wire Line
+	3300 6150 3950 6150
+Wire Wire Line
+	3300 6250 3950 6250
+Wire Wire Line
+	3300 6350 3950 6350
+Text Label 1050 6350 0    60   ~ 0
+SWD_DIO
+Text Label 1050 6250 0    60   ~ 0
+SWD_RST
+Text Label 1050 6150 0    60   ~ 0
+SWD_CLK
+$Comp
+L C C?
+U 1 1 561F0D2D
+P 4150 5750
+F 0 "C?" H 4150 5850 40  0000 L CNN
+F 1 "C" H 4156 5665 40  0000 L CNN
+F 2 "" H 4188 5600 30  0000 C CNN
+F 3 "" H 4150 5750 60  0000 C CNN
+	1    4150 5750
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 561F0F52
+P 4450 5800
+F 0 "#PWR?" H 4450 5800 30  0001 C CNN
+F 1 "GND" H 4450 5730 30  0001 C CNN
+F 2 "" H 4450 5800 60  0000 C CNN
+F 3 "" H 4450 5800 60  0000 C CNN
+	1    4450 5800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4350 5750 4450 5750
+Wire Wire Line
+	4450 5750 4450 5800
+Text Label 3450 5750 0    60   ~ 0
+VREF
+Text Label 1050 5750 0    60   ~ 0
+ChargerFault
+Text Label 3450 6050 0    60   ~ 0
+OREnable1
+Text Label 3450 6150 0    60   ~ 0
+OREnable2
+Text Label 3450 5450 0    60   ~ 0
+VinSense
+Text Label 3450 6250 0    60   ~ 0
+ORWarn1
+Text Label 3450 6350 0    60   ~ 0
+ORWarn2
+$Comp
+L CRYSTAL X?
+U 1 1 561F4D51
+P 700 5100
+F 0 "X?" H 700 5250 60  0000 C CNN
+F 1 "CRYSTAL" H 700 4950 60  0000 C CNN
+F 2 "" H 700 5100 60  0000 C CNN
+F 3 "" H 700 5100 60  0000 C CNN
+	1    700  5100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	700  5450 700  5400
+Wire Wire Line
+	700  4800 1050 4800
+Wire Wire Line
+	1050 4800 1050 5350
+Text Label 1050 5850 0    60   ~ 0
+SwitchVOut
+Text Label 1050 5950 0    60   ~ 0
+BatVOut
+Text Label 1050 6050 0    60   ~ 0
+MainCurrent
+Text Label 3450 5850 0    60   ~ 0
+ORCurrent1
+Text Label 3450 5950 0    60   ~ 0
+ORCurrent2
+Text Label 3450 5550 0    60   ~ 0
+I2C_SDA
+Text Label 3450 5650 0    60   ~ 0
+I2C_SCL
+Text Label 3450 5350 0    60   ~ 0
+Charge
+Text Label 1050 5650 0    60   ~ 0
+ChargerShutdown
 $EndSCHEMATC
