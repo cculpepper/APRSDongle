@@ -31,6 +31,22 @@
 #define led4Off() PTC->PCOR =  LED4
 #define led4Toggle() PTC->PTOR =  LED4
 
+/*#define led1On() PTC->PSOR = LED1*/
+/*#define led1Off() PTC->PCOR =  LED1*/
+/*#define led1Toggle() PTC->PTOR =  LED1*/
+
+/*#define led2On() PTC->PSOR = LED2*/
+/*#define led2Off() PTC->PCOR =  LED2*/
+/*#define led2Toggle() PTC->PTOR =  LED2*/
+
+#define gpsLedOn() PTC->PSOR = LED3
+#define gpsLedOff() PTC->PCOR =  LED3
+#define gpsLedToggle() PTC->PTOR =  LED3
+
+#define txLedOn() PTC->PSOR = LED4
+#define txLedOff() PTC->PCOR =  LED4
+#define txLedToggle() PTC->PTOR =  LED4
+
 #define ledData(x) PTC->PDO |= (x<<7) | (PTC->PDO & ~ (0xF << 7))
 
 #define getSwF() PTE->PDIR & SWF

@@ -1,6 +1,7 @@
 #include "uart.h"
 #include "gps.h"
 #include "MKL26Z4.h"
+#include "gpio.h"
 GPSData gpsData;
 #define NULL 0
 int temp ;
@@ -93,6 +94,7 @@ void ParseGPS(char c){
 				state = 0;
 				temp = 0;
 				fix = 1;
+				gpsLedOn();
 			default:
 				gpsCurField = (char*) NULL;
 				gpsTerm = 0;
@@ -115,6 +117,7 @@ int getPos(){
 	int cycles;
 	#define MAXCYCLES 100000
 	fix = 0;
+	gpsLedOff();
 	gpsUARTEnableInterrupts();
 	while((fix == 0) & (cycles++<MAXCYCLES));
 	if (cycles >= MAXCYCLES){
