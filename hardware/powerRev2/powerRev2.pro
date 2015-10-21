@@ -1,4 +1,4 @@
-update=Wed 14 Oct 2015 00:47:34 EDT
+update=Tue 20 Oct 2015 21:10:46 EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -66,3 +66,4 @@ LibName34=/home/chris/Code/APRSDongle/hardware/lt4415
 LibName35=msp430
 LibName36=/home/chris/Code/APRSDongle/hardware/KL03-QFN24
 LibName37=/home/chris/Code/APRSDongle/hardware/ncp508
+LibName38=/home/chris/Code/APRSDongle/hardware/hardwareRev1-cache
