@@ -9,42 +9,42 @@ int ax5043_power_up(){
 	int count;
 	int ret;
 	count = 0; 
-	/*MISO_PT.pcr[MISO] = MISO_GPIO_SEL;*/
-	/*MISO_PORT->PDDR |=  (1<<MISO);*/
-	/*ax5043_sel();*/
-	/*while(((MISO_PORT->PDIR && (1<<MISO) ) == 0) & (count++ < PWR_UP_TIMEOUT));*/
-	/*if ((MISO_PORT->PDIR && (1<<MISO)) == 0){*/
+	MISO_PT.pcr[MISO] = MISO_GPIO_SEL;
+	MISO_PORT->PDDR |=  (1<<MISO);
+	ax5043_sel();
+	while(((MISO_PORT->PDIR && (1<<MISO) ) == 0) & (count++ < PWR_UP_TIMEOUT));
+	if ((MISO_PORT->PDIR && (1<<MISO)) == 0){
 		 /* Then we cant get it to power up. */ 
-		/*ret = 1;*/
-	/*} else {*/
-		/*ret = 0;*/
-	/*}*/
-	/*ax5043_desel();*/
-	/*MISO_PT.pcr[MISO] = MISO_SPI_SEL;*/
+		ret = 1;
+	} else {
+		ret = 0;
+	}
+	ax5043_desel();
+	MISO_PT.pcr[MISO] = MISO_SPI_SEL;
 }
-int spi_send(char* tx_data, char* rx_data, int num_bytes);
+int spi_send(char[] tx_data, char[] rx_data, int num_bytes);
 /* The chenk of data has a header.
  * In this header, there was a byte (first byte)
  * And in that byte, there was a length (upper 3 bits)
  * And in that len, there are invalids (100, 101, and 110)*/ 
-#define CHUNK_HEAD_LEN_SHIFT 5
-#define CHUNK_HEAD_LEN_0 (0x0) << CHUNK_HEAD_LEN_SHIFT
-#define CHUNK_HEAD_LEN_1 (0x1) << CHUNK_HEAD_LEN_SHIFT
-#define CHUNK_HEAD_LEN_2 (0x2) << CHUNK_HEAD_LEN_SHIFT
-#define CHUNK_HEAD_LEN_3 (0x3) << CHUNK_HEAD_LEN_SHIFT
-#define CHUNK_HEAD_LEN_VAR_LEN (0x7) << CHUNK_HEAD_LEN_SHIFT
+CHUNK_HEAD_LEN_SHIFT 5
+CHUNK_HEAD_LEN_0 (0x0) << CHUNK_HEAD_LEN_SHIFT
+CHUNK_HEAD_LEN_1 (0x1) << CHUNK_HEAD_LEN_SHIFT
+CHUNK_HEAD_LEN_2 (0x2) << CHUNK_HEAD_LEN_SHIFT
+CHUNK_HEAD_LEN_3 (0x3) << CHUNK_HEAD_LEN_SHIFT
+CHUNK_HEAD_LEN_VAR_LEN (0x7) << CHUNK_HEAD_LEN_SHIFT
 /* If the length is variable, the next byte is the length, I think.*/ 
-#define CHUNK_HEAD_NOP 0x00 /* A NOP. Receiver will not send NOP. */ 
-#define CHUNK_HEAD_RSSI 0x31  /* Indicates that the next 1 byte will be RSSI.*/ 
-#define CHUNK_HEAD_TXCTRL 0x3C /* Transmit control data*/ 
-#define CHUNK_HEAD_FREQOFFS 0x52 /* Reciever Gen, see TRKFREQ*/ 
-#define CHUNK_HEAD_ANTRSSI2 0x55 /* See RSSI register, includes BGNDNOISE*/ 
-#define CHUNK_HEAD_REPEATDATA 0x62 /* Allows data to be repeated. Constructing preamble*/ 
-#define CHUNK_HEAD_TIMER 0x70  /* Contains a copy of the us register. Freq hopping*/ 
-#define CHUNK_HEAD_RFFREQOFFS 0x73 /* See TRKRFFREQ*/ 
-#define CHUNK_HEAD_DATARATE 0x74  /* Gen by rec. See TRKDATARATE*/ 
-#define CHUNK_HEAD_ANTRSSI3 0x75/* Gen by rec. See RSSI. Encodes ant 0,1,bgnd*/ 
-#define CHUNK_HEAD_DATA 0xE1 /* Actual data. */ 
+CHUNK_HEAD_NOP 0x00 /* A NOP. Receiver will not send NOP. */ 
+CHUNK_HEAD_RSSI 0x31  /* Indicates that the next 1 byte will be RSSI.*/ 
+CHUNK_HEAD_TXCTRL 0x3C /* Transmit control data*/ 
+CHUNK_HEAD_FREQOFFS 0x52 /* Reciever Gen, see TRKFREQ*/ 
+CHUNK_HEAD_ANTRSSI2 0x55 /* See RSSI register, includes BGNDNOISE*/ 
+CHUNK_HEAD_REPEATDATA 0x62 /* Allows data to be repeated. Constructing preamble*/ 
+CHUNK_HEAD_TIMER 0x70  /* Contains a copy of the us register. Freq hopping*/ 
+CHUNK_HEAD_RFFREQOFFS 0x73 /* See TRKRFFREQ*/ 
+CHUNK_HEAD_DATARATE 0x74  /* Gen by rec. See TRKDATARATE*/ 
+CHUNK_HEAD_ANTRSSI3 0x75/* Gen by rec. See RSSI. Encodes ant 0,1,bgnd*/ 
+CHUNK_HEAD_DATA 0xE1 /* Actual data. */ 
 /* Length is 1st byte after header.  Includes actual data and flag bits
  * Transmit data format:
  * byte after length is the flags. 
@@ -64,19 +64,19 @@ int spi_send(char* tx_data, char* rx_data, int num_bytes);
  * Bit 2-0: See bits 2-0 of the tx format. */ 
 
 
-#define CHUNK_HEAD_TXPWR 0xFD /* Allows the TX power to be changed on the fly. */ 
+CHUNK_HEAD_TXPWR 0xFD /* Allows the TX power to be changed on the fly. */ 
 
 
 
-#define PWRMODE_POWERDOWN 0x00 /* All circuits dead. Except the register. */ 
-#define PWRMODE_DEEPSLEEP 0x01 /* Now I really mean all circuits are dead. Data loss*/ 
-#define PWRMODE_STANDBY 0x05 /* Xtal OSC enabled*/ 
-#define PWRMODE_FIFOON 0x07  /* The FIFO and the crystal are enabled*/ 
-#define PWRMODE_SYNTHRX 0x08 /* The synth is running, in receive mode*/ 
-#define PWRMODE_FULLRX 0x09 /* The receiver is running*/ 
-#define PWRMODE_WORRX 0x0B /* Wake on radio mode*/ 
-#define PWRMODE_SYNTHTX 0x0C /* The synth is running, transmit mode*/ 
-#define PWRMODE_FULLTX 0x0D /* The transmitter is running. */ 
+PWRMODE_POWERDOWN 0x00 /* All circuits dead. Except the register. */ 
+PWRMODE_DEEPSLEEP 0x01 /* Now I really mean all circuits are dead. Data loss*/ 
+PWRMODE_STANDBY 0x05 /* Xtal OSC enabled*/ 
+PWRMODE_FIFOON 0x07  /* The FIFO and the crystal are enabled*/ 
+PWRMODE_SYNTHRX 0x08 /* The synth is running, in receive mode*/ 
+PWRMODE_FULLRX 0x09 /* The receiver is running*/ 
+PWRMODE_WORRX 0x0B /* Wake on radio mode*/ 
+PWRMODE_SYNTHTX 0x0C /* The synth is running, transmit mode*/ 
+PWRMODE_FULLTX 0x0D /* The transmitter is running. */ 
 
 int ax5043_full_tx(){
 	ax5043_sel();
@@ -110,28 +110,28 @@ int ax5043_read_packet(char* rx_data, int max){
 	  * reads the data until max len or data all read
 	  * empty the fifo if max is reached. */ 
 }
-#define AX_REG_REVISION 0x000
-#define AX_REG_PWRMODE 0x002
-#define AX_REG_POWSTAT 0x003
-#define AX_REG_POWSTICKYSTAT 0x004
-#define AX_REG_POWIRQMASK 0x005
-#define AX_REG_IRQMASK1 0x006
-#define AX_REG_IRQMASK0 0x007
-#define AX_REG_RADIOEVENTMASK1 0x008
-#define AX_REG_RADIOEVENTMASK0 0x009
-#define AX_REG_IRQINVERSION1 0x00a
-#define AX_REG_IRQINVERSION0 0x00b
-#define AX_REG_IRQREQUEST1 0x00c
-#define AX_REG_ 0x00d
-#define AX_REG_ 0x00e
-#define AX_REG_ 0x00f
-#define AX_REG_ 0x010
-#define AX_REG_ 0x011
-#define AX_REG_ 0x012
-#define AX_REG_ 0x013
-#define AX_REG_ 0x014
-#define AX_REG_ 0x015
-#define AX_REG_ 0x016
-#define AX_REG_ 0x017
-#define AX_REG_ 0x018
-#define AX_REG_ 0x019
+AX_REG_REVISION 0x000
+AX_REG_PWRMODE 0x002
+AX_REG_POWSTAT 0x003
+AX_REG_POWSTICKYSTAT 0x004
+AX_REG_POWIRQMASK 0x005
+AX_REG_IRQMASK1 0x006
+AX_REG_IRQMASK0 0x007
+AX_REG_RADIOEVENTMASK1 0x008
+AX_REG_RADIOEVENTMASK0 0x009
+AX_REG_IRQINVERSION1 0x00a
+AX_REG_IRQINVERSION0 0x00b
+AX_REG_IRQREQUEST1 0x00c
+AX_REG_ 0x00d
+AX_REG_ 0x00e
+AX_REG_ 0x00f
+AX_REG_ 0x010
+AX_REG_ 0x011
+AX_REG_ 0x012
+AX_REG_ 0x013
+AX_REG_ 0x014
+AX_REG_ 0x015
+AX_REG_ 0x016
+AX_REG_ 0x017
+AX_REG_ 0x018
+AX_REG_ 0x019
