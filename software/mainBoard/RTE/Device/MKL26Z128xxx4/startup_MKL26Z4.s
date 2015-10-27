@@ -16,7 +16,7 @@
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Stack_Size      EQU     0x00001000
+Stack_Size      EQU     0x00000100
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -27,7 +27,7 @@ __initial_sp
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Heap_Size       EQU     0x00000500
+Heap_Size       EQU     0x00000000
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
@@ -255,28 +255,23 @@ Reset_Handler   PROC
 
 NMI_Handler     PROC
                 EXPORT  NMI_Handler               [WEAK]
-				;bkpt
                 B       .
                 ENDP
 HardFault_Handler\
                 PROC
                 EXPORT  HardFault_Handler         [WEAK]
-				;bkpt
                 B       .
                 ENDP
 SVC_Handler     PROC
                 EXPORT  SVC_Handler               [WEAK]
-				;bkpt
                 B       .
                 ENDP
 PendSV_Handler  PROC
                 EXPORT  PendSV_Handler            [WEAK]
-				;bkpt
                 B       .
                 ENDP
 SysTick_Handler PROC
                 EXPORT  SysTick_Handler           [WEAK]
-				;bkpt
                 B       .
                 ENDP
 
@@ -349,7 +344,6 @@ PORTA_IRQHandler
 PORTC_PORTD_IRQHandler
 DefaultISR
 
-				;bkpt
                 B       .
 
                 ENDP

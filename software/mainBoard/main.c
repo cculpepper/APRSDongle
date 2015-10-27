@@ -109,7 +109,7 @@ int main(){
 		led1Toggle();
 		draOn();
 		delay(100);
-		draTx();
+		//draTx();
 		delay(500);
 		cwSend("AB1TJ", 5);
 		delay(100);
