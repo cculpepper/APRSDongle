@@ -1,4 +1,4 @@
-update=Tue 20 Oct 2015 21:10:46 EDT
+update=Thu 22 Oct 2015 20:40:03 EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -67,3 +67,7 @@ LibName35=msp430
 LibName36=/home/chris/Code/APRSDongle/hardware/KL03-QFN24
 LibName37=/home/chris/Code/APRSDongle/hardware/ncp508
 LibName38=/home/chris/Code/APRSDongle/hardware/hardwareRev1-cache
+LibName39=/home/chris/Code/APRSDongle/hardware/TagConnect/Tag-Connect_Schematic_Library/Tag-Connect
+LibName40=/home/chris/Code/kicad-mini-pci-express/mpcie
+LibName41=/home/chris/Code/APRSDongle/hardware/RF-Head2
+LibName42=/home/chris/Code/APRSDongle/hardware/ritli-rfhead

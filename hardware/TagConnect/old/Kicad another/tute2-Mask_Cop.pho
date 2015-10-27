@@ -1,0 +1,10 @@
+G04 (created by PCBnew (20090216-final)) date 2010/02/21 10:20:59 AM*
+G01*
+G70*
+G90*
+%MOIN*%
+G04 Gerber Fmt 3.4, Leading zero omitted, Abs format*
+%FSLAX34Y34*%
+G04 APERTURE LIST*
+G04 APERTURE END LIST*
+M02*

@@ -1,0 +1,59 @@
+Cmp-Mod V01 Created by CvPcb (2012-05-18 BZR 3565)-testing date = 5/24/2012 1:39:54 AM
+
+BeginCmp
+TimeStamp = /4FBDDB0E;
+Reference = P1;
+ValeurCmp = TC2030-IDC;
+IdModule  = TC2030-NL_BIG;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDD78E;
+Reference = P2;
+ValeurCmp = TC2030-IDC;
+IdModule  = TC2030-NL_SMALL;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDD77F;
+Reference = P3;
+ValeurCmp = TC2030-CTX;
+IdModule  = TC2030_BIG;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDD79D;
+Reference = P4;
+ValeurCmp = TC2030-MCP;
+IdModule  = TC2030_SMALL;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDDB14;
+Reference = P5;
+ValeurCmp = TC2050-IDC;
+IdModule  = TC2050-NL_BIG;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDD7AC;
+Reference = P6;
+ValeurCmp = TC2050-IDC;
+IdModule  = TC2050-NL_SMALL;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDD7BB;
+Reference = P7;
+ValeurCmp = TC2050-IDC-430;
+IdModule  = TC2050_BIG;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FBDD7CA;
+Reference = P8;
+ValeurCmp = TC2050-MINIHDMI;
+IdModule  = TC2050_SMALL;
+EndCmp
+
+EndListe
