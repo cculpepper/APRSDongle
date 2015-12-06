@@ -121,17 +121,20 @@ char programDra(void){
 void draTx(){
 	/* Need to set PTA4 to low. High is Rx*/ 
 	PTE->PCOR = (1<<20);
-	txLedOn();
+	led4On();
 }
 void draRx(){
 	PTE->PSOR = (1<<20);
-	txLedOff();
+	led4Off();
 	
 }
 
 void draOn(void){
 	PTB->PSOR = (1<<3); 
+	led3On();
 }
 
 void draOff(void){
+	PTB->PCOR = (1<<3);
+	led3Off(); 
 }

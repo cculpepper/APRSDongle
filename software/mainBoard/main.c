@@ -55,6 +55,11 @@ void clockInit(){
 	SIM->CLKDIV1 = 1 << SIM_CLKDIV1_OUTDIV4_SHIFT; // Divide the core clock by two for the bus clock. 
 
 }
+void SystemInit(){
+//	PTC->PCOR = 0xf00;
+//	main();
+
+}
 void start(){
 	//_start();
 	//init_mempool();
@@ -104,9 +109,10 @@ int main(){
 	led4On();
 	for (;;){
 		//PTC->PCOR = 0xf00;
+		led1Toggle();
 		draOn();
-		delay(2000);
-		draTx();
+		delay(100);
+		//draTx();
 		delay(500);
 		cwSend("AB1TJ", 5);
 		delay(100);
@@ -116,6 +122,7 @@ int main(){
 		draRx();
 		delay(200);
 		draOff();
+		led2Toggle();
 		delay(10000);
 	}
 }
