@@ -88,17 +88,6 @@ int main(){
 	//delay(10000);
 	
 	start();
-	led1On();
-/*	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
-/*		led1On();
-		f_write(&Fil, "It works!\r\n", 11, &bw);
-		f_close(&Fil);
-		for(;;);
-		if (bw == 11) {
-			led2On();
-		}
-	} else led3On();
-	*/
 	initDRA();
 	draRx();
 	led2On();
@@ -109,20 +98,36 @@ int main(){
 	led4On();
 	for (;;){
 		//PTC->PCOR = 0xf00;
-		led1Toggle();
-		draOn();
-		delay(100);
 		//draTx();
+		draTx();
 		delay(500);
 		cwSend("AB1TJ", 5);
+		
+		delay(100);
+		cwSend("LAT",3);
+		delay(200);
+		cwSend(gpsData.lat, 10);
+		delay(1000);
+		cwSend("LON",3);
+		delay(200);
+		cwSend(gpsData.lon, 11);
+		delay(200);
+		sendPos();
+		
+		delay(200);
+		draRx();
+		getPos();
+		
+		delay(40000);draTx();
+		delay(500);
+		cwSend("AB1TJ", 5);
+		
 		delay(100);
 		sendPos();
 		
 		delay(200);
 		draRx();
-		delay(200);
-		draOff();
-		led2Toggle();
-		delay(10000);
+		delay(50000);
+		
 	}
 }

@@ -46,17 +46,20 @@ int ax25IntSend(char* dataPtr, int len){
 	ax25CurrByte = 0x7E;  /* The flag */ 
 	ax25Sending = 1;
 	ax25OnesCount = 0;
-	ax25Preamble = 1;
+	ax25Preamble = 3;
 	ax25CurrDelay = AX25SPACEDELAY;
 	
 	dacInit();
 	/* Now we need to set up the 1.2 KHz timer up for regular sending...*/ 
 	ax25StartSinTimer();
+	delay(100); // Wait for 100 ms
 	ax25StartToneTimer();
 	
 	while (ax25Sending);
 	locCRC = ax25CRC;
 	ax25CurrByte = (locCRC & 0xFF00) >> 8;
+	ax25Sending = 1;
+	while (ax25Sending);
 	//PIT_LDVAL0 = 12000000; //This may fix the issues
 	//PIT_LDVAL1 = 12000000; //This may fix the issues
 	ax25StopTimers();
@@ -106,18 +109,19 @@ void ax25ChangeBit(void){
 		if (ax25CurrBit <= 0){  /*We check after because its easier. If we need to increment the current byte*/
 			/*then weve already sent it.  */
 			/*[> Then we need to move onto the next thing<] */
-			ax25BytesLeft--;
-			ax25CurrByte = *ax25DataPtr;
-			ax25DataPtr++;
 			if (!ax25Preamble){ // if were sending the preamble, keep sending
-			if (ax25BytesLeft <= 0){
-				ax25Sending = 0;
-				/*return;  [> Nothing left ta do<] */
+				
+				ax25BytesLeft--;
+				ax25Padding = 1;
+				ax25CurrByte = *ax25DataPtr;
+				ax25DataPtr++;
+				if (ax25BytesLeft <= 0){
+					ax25Sending = 0;
+					/*return;  [> Nothing left ta do<] */
+				}
+			} else {
+				ax25Preamble--;
 			}
-		} else {
-			ax25Preamble = 0;
-			ax25Padding = 0;
-		}
 			ax25CurrBit = 7;
 		} else {
 			ax25CurrBit--;

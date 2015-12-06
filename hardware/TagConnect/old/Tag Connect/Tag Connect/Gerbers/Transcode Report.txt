@@ -1,0 +1,13 @@
+
+
+   ---- Transcoding 'C:\Users\neil\Documents\Tag-Connect\Footprint Decals\To Check\KiCad\Tag Connect\Tag Connect\Gerbers\Tag-Front.gtl' ----   Fri Sep 28 00:41:12 2012
+
+D11   --> D100
+-----------------------------------------------------------------
+
+
+   ---- Transcoding 'C:\Users\neil\Documents\Tag-Connect\Footprint Decals\To Check\KiCad\Tag Connect\Tag Connect\Gerbers\Tag-Mask_Back.gbs' ----   Fri Sep 28 00:41:12 2012
+
+D11   --> D101
+D12   --> D102
+-----------------------------------------------------------------

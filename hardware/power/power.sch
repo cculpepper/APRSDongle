@@ -29,11 +29,8 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:conn_11x2
 LIBS:tps63020
 LIBS:ncp508
-LIBS:smtJmpOpen
-LIBS:SparkFun
 LIBS:attiny24a-m
 LIBS:power-cache
 EELAYER 25 0

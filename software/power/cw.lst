@@ -6,9 +6,9 @@
    6               	__zero_reg__ = 1
    9               		.text
   10               	.Ltext0:
- 106               	.global	cwTone
- 108               	cwTone:
- 109               		.stabd	46,0,0
+ 108               	.global	cwTone
+ 110               	cwTone:
+ 111               		.stabd	46,0,0
    1:cw.c          **** #include "cw.h"
    2:cw.c          **** #define CLOCKRATE 48000000
    3:cw.c          **** /*#define CWDELAY 1000000000*((1/CWFREQ)*(1/SINUS_LENGTH))*/
@@ -62,22 +62,22 @@
   51:cw.c          **** 
   52:cw.c          **** 
   53:cw.c          **** void cwTone(char DitOrDah){
- 111               	.LM0:
- 112               	.LFBB1:
- 113               	/* prologue: function */
- 114               	/* frame size = 0 */
- 115               	/* stack size = 0 */
- 116               	.L__stack_usage = 0
+ 113               	.LM0:
+ 114               	.LFBB1:
+ 115               	/* prologue: function */
+ 116               	/* frame size = 0 */
+ 117               	/* stack size = 0 */
+ 118               	.L__stack_usage = 0
   54:cw.c          **** 	LED1_On();		
- 118               	.LM1:
- 119 0000 DF9A      		sbi 0x1b,7
+ 120               	.LM1:
+ 121 0000 DF9A      		sbi 0x1b,7
   55:cw.c          **** 	if (DitOrDah == 0) {
- 121               	.LM2:
- 122 0002 8111      		cpse r24,__zero_reg__
- 123 0004 00C0      		rjmp .L2
- 124               	.LBB12:
- 125               	.LBB13:
- 127               	.Ltext1:
+ 123               	.LM2:
+ 124 0002 8111      		cpse r24,__zero_reg__
+ 125 0004 00C0      		rjmp .L2
+ 126               	.LBB12:
+ 127               	.LBB13:
+ 129               	.Ltext1:
    1:/usr/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
    2:/usr/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
    3:/usr/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
@@ -110,7 +110,7 @@
   30:/usr/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   31:/usr/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
   32:/usr/avr/include/util/delay.h **** 
-  33:/usr/avr/include/util/delay.h **** /* $Id: delay.h.in 2385 2013-05-03 13:14:20Z joerg_wunsch $ */
+  33:/usr/avr/include/util/delay.h **** /* $Id: delay.h.in 2453 2014-10-19 08:18:11Z saaadhu $ */
   34:/usr/avr/include/util/delay.h **** 
   35:/usr/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
   36:/usr/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
@@ -161,8 +161,8 @@
   81:/usr/avr/include/util/delay.h **** */
   82:/usr/avr/include/util/delay.h **** 
   83:/usr/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
-  84:/usr/avr/include/util/delay.h **** static inline void _delay_us(double __us) __attribute__((always_inline));
-  85:/usr/avr/include/util/delay.h **** static inline void _delay_ms(double __ms) __attribute__((always_inline));
+  84:/usr/avr/include/util/delay.h **** static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+  85:/usr/avr/include/util/delay.h **** static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
   86:/usr/avr/include/util/delay.h **** #endif
   87:/usr/avr/include/util/delay.h **** 
   88:/usr/avr/include/util/delay.h **** #ifndef F_CPU
@@ -241,63 +241,63 @@
  161:/usr/avr/include/util/delay.h **** 	#endif
  162:/usr/avr/include/util/delay.h **** 
  163:/usr/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
- 129               	.LM3:
- 130 0006 2FE5      		ldi r18,lo8(59999)
- 131 0008 8AEE      		ldi r24,hi8(59999)
- 132 000a 90E0      		ldi r25,hlo8(59999)
- 133 000c 2150      		1: subi r18,1
- 134 000e 8040      		sbci r24,0
- 135 0010 9040      		sbci r25,0
- 136 0012 01F4      		brne 1b
- 137 0014 00C0      		rjmp .L4
- 138               	.L2:
- 139               	.LBE13:
- 140               	.LBE12:
- 141               	.LBB14:
- 142               	.LBB15:
- 143 0016 87EA      		ldi r24,lo8(24999)
- 144 0018 91E6      		ldi r25,hi8(24999)
- 145 001a 0197      		1: sbiw r24,1
- 146 001c 01F4      		brne 1b
- 147               	.L4:
- 148 001e 00C0      		rjmp .
- 149 0020 0000      		nop
- 150               	.LBE15:
- 151               	.LBE14:
- 153               	.Ltext2:
+ 131               	.LM3:
+ 132 0006 2FE5      		ldi r18,lo8(59999)
+ 133 0008 8AEE      		ldi r24,hi8(59999)
+ 134 000a 90E0      		ldi r25,hlo8(59999)
+ 135 000c 2150      	1:	subi r18,1
+ 136 000e 8040      		sbci r24,0
+ 137 0010 9040      		sbci r25,0
+ 138 0012 01F4      		brne 1b
+ 139 0014 00C0      		rjmp .L4
+ 140               	.L2:
+ 141               	.LBE13:
+ 142               	.LBE12:
+ 143               	.LBB14:
+ 144               	.LBB15:
+ 145 0016 87EA      		ldi r24,lo8(24999)
+ 146 0018 91E6      		ldi r25,hi8(24999)
+ 147 001a 0197      	1:	sbiw r24,1
+ 148 001c 01F4      		brne 1b
+ 149               	.L4:
+ 150 001e 00C0      		rjmp .
+ 151 0020 0000      		nop
+ 152               	.LBE15:
+ 153               	.LBE14:
+ 155               	.Ltext2:
   56:cw.c          **** 		/* Then we have a dah, 0 and all. `==*/ 
   57:cw.c          **** 		_delay_ms(DAHTIME);
   58:cw.c          **** 	} else {
   59:cw.c          **** 		_delay_ms(DITTIME);
   60:cw.c          **** 	}
   61:cw.c          **** 	LED1_Off();	
- 155               	.LM4:
- 156 0022 DF98      		cbi 0x1b,7
- 157 0024 0895      		ret
- 159               	.Lscope1:
- 161               		.stabd	78,0,0
- 165               	.global	cwSend
- 167               	cwSend:
- 168               		.stabd	46,0,0
+ 157               	.LM4:
+ 158 0022 DF98      		cbi 0x1b,7
+ 159 0024 0895      		ret
+ 161               	.Lscope1:
+ 163               		.stabd	78,0,0
+ 167               	.global	cwSend
+ 169               	cwSend:
+ 170               		.stabd	46,0,0
   62:cw.c          **** }
   63:cw.c          **** char cwSend(char* data, int len){
- 170               	.LM5:
- 171               	.LFBB2:
- 172 0026 AF92      		push r10
- 173 0028 BF92      		push r11
- 174 002a CF92      		push r12
- 175 002c DF92      		push r13
- 176 002e EF92      		push r14
- 177 0030 FF92      		push r15
- 178 0032 0F93      		push r16
- 179 0034 1F93      		push r17
- 180 0036 CF93      		push r28
- 181 0038 DF93      		push r29
- 182               	/* prologue: function */
- 183               	/* frame size = 0 */
- 184               	/* stack size = 10 */
- 185               	.L__stack_usage = 10
- 186 003a 7C01      		movw r14,r24
+ 172               	.LM5:
+ 173               	.LFBB2:
+ 174 0026 AF92      		push r10
+ 175 0028 BF92      		push r11
+ 176 002a CF92      		push r12
+ 177 002c DF92      		push r13
+ 178 002e EF92      		push r14
+ 179 0030 FF92      		push r15
+ 180 0032 0F93      		push r16
+ 181 0034 1F93      		push r17
+ 182 0036 CF93      		push r28
+ 183 0038 DF93      		push r29
+ 184               	/* prologue: function */
+ 185               	/* frame size = 0 */
+ 186               	/* stack size = 10 */
+ 187               	.L__stack_usage = 10
+ 188 003a 7C01      		movw r14,r24
   64:cw.c          **** 	//sends stuff...
   65:cw.c          **** 	char charLen;
   66:cw.c          **** 	char currChar;
@@ -306,10 +306,10 @@
   69:cw.c          **** 	
   70:cw.c          **** 	cwDataPtr = data;
   71:cw.c          **** 	while((data+len) > cwDataPtr){
- 188               	.LM6:
- 189 003c EC01      		movw r28,r24
- 190 003e C60F      		add r28,r22
- 191 0040 D71F      		adc r29,r23
+ 190               	.LM6:
+ 191 003c EC01      		movw r28,r24
+ 192 003e C60F      		add r28,r22
+ 193 0040 D71F      		adc r29,r23
   72:cw.c          **** 		currChar = *cwDataPtr;
   73:cw.c          **** 		if (currChar >= 'A' && currChar <= 'Z'){
   74:cw.c          **** 			currChar = CwLetterData[currChar - 'A']; /* This sets the current char to the morse binary repre
@@ -323,134 +323,134 @@
   82:cw.c          **** 		currBit = 0;
   83:cw.c          **** 		while ( charLen > 0 ){
   84:cw.c          **** 			cwTone((currChar & ( 0x80 >> (3+currBit))));
- 193               	.LM7:
- 194 0042 00E8      		ldi r16,lo8(-128)
- 195 0044 10E0      		ldi r17,0
- 196               	.L7:
+ 195               	.LM7:
+ 196 0042 00E8      		ldi r16,lo8(-128)
+ 197 0044 10E0      		ldi r17,0
+ 198               	.L7:
   71:cw.c          **** 		currChar = *cwDataPtr;
- 198               	.LM8:
- 199 0046 EC16      		cp r14,r28
- 200 0048 FD06      		cpc r15,r29
- 201 004a 00F4      		brsh .L15
+ 200               	.LM8:
+ 201 0046 EC16      		cp r14,r28
+ 202 0048 FD06      		cpc r15,r29
+ 203 004a 00F4      		brsh .L15
   72:cw.c          **** 		currChar = *cwDataPtr;
- 203               	.LM9:
- 204 004c D701      		movw r26,r14
- 205 004e ED91      		ld r30,X+
- 206 0050 7D01      		movw r14,r26
+ 205               	.LM9:
+ 206 004c D701      		movw r26,r14
+ 207 004e ED91      		ld r30,X+
+ 208 0050 7D01      		movw r14,r26
   73:cw.c          **** 			currChar = CwLetterData[currChar - 'A']; /* This sets the current char to the morse binary repre
- 208               	.LM10:
- 209 0052 8FEB      		ldi r24,lo8(-65)
- 210 0054 8E0F      		add r24,r30
- 211 0056 8A31      		cpi r24,lo8(26)
- 212 0058 00F4      		brsh .L8
+ 210               	.LM10:
+ 211 0052 8FEB      		ldi r24,lo8(-65)
+ 212 0054 8E0F      		add r24,r30
+ 213 0056 8A31      		cpi r24,lo8(26)
+ 214 0058 00F4      		brsh .L8
   74:cw.c          **** 		} else if (currChar >= '0' && currChar <= '9'){
- 214               	.LM11:
- 215 005a F0E0      		ldi r31,0
- 216 005c E050      		subi r30,lo8(-(CwLetterData-65))
- 217 005e F040      		sbci r31,hi8(-(CwLetterData-65))
- 218 0060 00C0      		rjmp .L14
- 219               	.L8:
+ 216               	.LM11:
+ 217 005a F0E0      		ldi r31,0
+ 218 005c E050      		subi r30,lo8(-(CwLetterData-65))
+ 219 005e F040      		sbci r31,hi8(-(CwLetterData-65))
+ 220 0060 00C0      		rjmp .L14
+ 221               	.L8:
   75:cw.c          **** 			currChar = CwNumberData[currChar - '0'];
- 221               	.LM12:
- 222 0062 80ED      		ldi r24,lo8(-48)
- 223 0064 8E0F      		add r24,r30
- 224 0066 8A30      		cpi r24,lo8(10)
- 225 0068 00F4      		brsh .L13
+ 223               	.LM12:
+ 224 0062 80ED      		ldi r24,lo8(-48)
+ 225 0064 8E0F      		add r24,r30
+ 226 0066 8A30      		cpi r24,lo8(10)
+ 227 0068 00F4      		brsh .L13
   76:cw.c          **** 		} else {
- 227               	.LM13:
- 228 006a F0E0      		ldi r31,0
- 229 006c E050      		subi r30,lo8(-(CwNumberData-48))
- 230 006e F040      		sbci r31,hi8(-(CwNumberData-48))
- 231               	.L14:
- 232 0070 D080      		ld r13,Z
- 233 0072 00C0      		rjmp .L9
- 234               	.L13:
+ 229               	.LM13:
+ 230 006a F0E0      		ldi r31,0
+ 231 006c E050      		subi r30,lo8(-(CwNumberData-48))
+ 232 006e F040      		sbci r31,hi8(-(CwNumberData-48))
+ 233               	.L14:
+ 234 0070 D080      		ld r13,Z
+ 235 0072 00C0      		rjmp .L9
+ 236               	.L13:
   78:cw.c          **** 		}
- 236               	.LM14:
- 237 0074 D12C      		mov r13,__zero_reg__
- 238               	.L9:
+ 238               	.LM14:
+ 239 0074 D12C      		mov r13,__zero_reg__
+ 240               	.L9:
   81:cw.c          **** 		currBit = 0;
- 240               	.LM15:
- 241 0076 CD2C      		mov r12,r13
- 242 0078 C294      		swap r12
- 243 007a C694      		lsr r12
- 244 007c 87E0      		ldi r24,lo8(7)
- 245 007e C822      		and r12,r24
+ 242               	.LM15:
+ 243 0076 CD2C      		mov r12,r13
+ 244 0078 C294      		swap r12
+ 245 007a C694      		lsr r12
+ 246 007c 87E0      		ldi r24,lo8(7)
+ 247 007e C822      		and r12,r24
   83:cw.c          **** 			cwTone((currChar & ( 0x80 >> (3+currBit))));
- 247               	.LM16:
- 248 0080 93E0      		ldi r25,lo8(3)
- 249 0082 A92E      		mov r10,r25
- 250 0084 B12C      		mov r11,__zero_reg__
- 251               	.L10:
- 252 0086 CC20      		tst r12
- 253 0088 01F0      		breq .L16
- 255               	.LM17:
- 256 008a C801      		movw r24,r16
- 257 008c 0A2C      		mov r0,r10
- 258 008e 00C0      		rjmp 2f
- 259               		1:
- 260 0090 9595      		asr r25
- 261 0092 8795      		ror r24
- 262               		2:
- 263 0094 0A94      		dec r0
- 264 0096 02F4      		brpl 1b
- 265 0098 8D21      		and r24,r13
- 266 009a 00D0      		rcall cwTone
- 267               	.LBB16:
- 268               	.LBB17:
- 270               	.Ltext3:
- 272               	.LM18:
- 273 009c 87EA      		ldi r24,lo8(24999)
- 274 009e 91E6      		ldi r25,hi8(24999)
- 275 00a0 0197      		1: sbiw r24,1
- 276 00a2 01F4      		brne 1b
- 277 00a4 00C0      		rjmp .
- 278 00a6 0000      		nop
- 279               	.LBE17:
- 280               	.LBE16:
- 282               	.Ltext4:
+ 249               	.LM16:
+ 250 0080 93E0      		ldi r25,lo8(3)
+ 251 0082 A92E      		mov r10,r25
+ 252 0084 B12C      		mov r11,__zero_reg__
+ 253               	.L10:
+ 254 0086 CC20      		tst r12
+ 255 0088 01F0      		breq .L16
+ 257               	.LM17:
+ 258 008a C801      		movw r24,r16
+ 259 008c 0A2C      		mov r0,r10
+ 260 008e 00C0      		rjmp 2f
+ 261               		1:
+ 262 0090 9595      		asr r25
+ 263 0092 8795      		ror r24
+ 264               		2:
+ 265 0094 0A94      		dec r0
+ 266 0096 02F4      		brpl 1b
+ 267 0098 8D21      		and r24,r13
+ 268 009a 00D0      		rcall cwTone
+ 269               	.LBB16:
+ 270               	.LBB17:
+ 272               	.Ltext3:
+ 274               	.LM18:
+ 275 009c 87EA      		ldi r24,lo8(24999)
+ 276 009e 91E6      		ldi r25,hi8(24999)
+ 277 00a0 0197      	1:	sbiw r24,1
+ 278 00a2 01F4      		brne 1b
+ 279 00a4 00C0      		rjmp .
+ 280 00a6 0000      		nop
+ 281               	.LBE17:
+ 282               	.LBE16:
+ 284               	.Ltext4:
   85:cw.c          **** 			/* A little bit crazy, passes to the sender, the current bit. Ands the current morse byte with a
   86:cw.c          **** 			_delay_ms(DITTIME);
   87:cw.c          **** 			charLen--;
- 284               	.LM19:
- 285 00a8 CA94      		dec r12
- 286 00aa 9FEF      		ldi r25,-1
- 287 00ac A91A      		sub r10,r25
- 288 00ae B90A      		sbc r11,r25
- 289 00b0 00C0      		rjmp .L10
- 290               	.L16:
- 291               	.LBB18:
- 292               	.LBB19:
- 294               	.Ltext5:
- 296               	.LM20:
- 297 00b2 AFE5      		ldi r26,lo8(59999)
- 298 00b4 BAEE      		ldi r27,hi8(59999)
- 299 00b6 20E0      		ldi r18,hlo8(59999)
- 300 00b8 A150      		1: subi r26,1
- 301 00ba B040      		sbci r27,0
- 302 00bc 2040      		sbci r18,0
- 303 00be 01F4      		brne 1b
- 304 00c0 00C0      		rjmp .
- 305 00c2 0000      		nop
- 306 00c4 00C0      		rjmp .L7
- 307               	.L15:
- 308               	.LBE19:
- 309               	.LBE18:
- 310               	.LBB20:
- 311               	.LBB21:
- 312 00c6 8FE5      		ldi r24,lo8(59999)
- 313 00c8 9AEE      		ldi r25,hi8(59999)
- 314 00ca A0E0      		ldi r26,hlo8(59999)
- 315 00cc 8150      		1: subi r24,1
- 316 00ce 9040      		sbci r25,0
- 317 00d0 A040      		sbci r26,0
- 318 00d2 01F4      		brne 1b
- 319 00d4 00C0      		rjmp .
- 320 00d6 0000      		nop
- 321               	/* epilogue start */
- 322               	.LBE21:
- 323               	.LBE20:
- 325               	.Ltext6:
+ 286               	.LM19:
+ 287 00a8 CA94      		dec r12
+ 288 00aa 9FEF      		ldi r25,-1
+ 289 00ac A91A      		sub r10,r25
+ 290 00ae B90A      		sbc r11,r25
+ 291 00b0 00C0      		rjmp .L10
+ 292               	.L16:
+ 293               	.LBB18:
+ 294               	.LBB19:
+ 296               	.Ltext5:
+ 298               	.LM20:
+ 299 00b2 AFE5      		ldi r26,lo8(59999)
+ 300 00b4 BAEE      		ldi r27,hi8(59999)
+ 301 00b6 20E0      		ldi r18,hlo8(59999)
+ 302 00b8 A150      	1:	subi r26,1
+ 303 00ba B040      		sbci r27,0
+ 304 00bc 2040      		sbci r18,0
+ 305 00be 01F4      		brne 1b
+ 306 00c0 00C0      		rjmp .
+ 307 00c2 0000      		nop
+ 308 00c4 00C0      		rjmp .L7
+ 309               	.L15:
+ 310               	.LBE19:
+ 311               	.LBE18:
+ 312               	.LBB20:
+ 313               	.LBB21:
+ 314 00c6 8FE5      		ldi r24,lo8(59999)
+ 315 00c8 9AEE      		ldi r25,hi8(59999)
+ 316 00ca A0E0      		ldi r26,hlo8(59999)
+ 317 00cc 8150      	1:	subi r24,1
+ 318 00ce 9040      		sbci r25,0
+ 319 00d0 A040      		sbci r26,0
+ 320 00d2 01F4      		brne 1b
+ 321 00d4 00C0      		rjmp .
+ 322 00d6 0000      		nop
+ 323               	/* epilogue start */
+ 324               	.LBE21:
+ 325               	.LBE20:
+ 327               	.Ltext6:
   88:cw.c          **** 			currBit ++;
   89:cw.c          **** 		}
   90:cw.c          **** 		cwDataPtr++;
@@ -462,76 +462,76 @@
   96:cw.c          **** 	_delay_ms(DAHTIME);
   97:cw.c          **** 	
   98:cw.c          **** }
- 327               	.LM21:
- 328 00d8 DF91      		pop r29
- 329 00da CF91      		pop r28
- 330 00dc 1F91      		pop r17
- 331 00de 0F91      		pop r16
- 332 00e0 FF90      		pop r15
- 333 00e2 EF90      		pop r14
- 334 00e4 DF90      		pop r13
- 335 00e6 CF90      		pop r12
- 336 00e8 BF90      		pop r11
- 337 00ea AF90      		pop r10
- 338 00ec 0895      		ret
- 343               	.Lscope2:
- 345               		.stabd	78,0,0
- 346               	.global	CwNumberData
- 347               		.section	.rodata
- 350               	CwNumberData:
- 351 0000 A0        		.byte	-96
- 352 0001 B0        		.byte	-80
- 353 0002 B8        		.byte	-72
- 354 0003 BC        		.byte	-68
- 355 0004 BE        		.byte	-66
- 356 0005 BF        		.byte	-65
- 357 0006 AF        		.byte	-81
- 358 0007 A7        		.byte	-89
- 359 0008 A3        		.byte	-93
- 360 0009 A1        		.byte	-95
- 361               	.global	CwLetterData
- 364               	CwLetterData:
- 365 000a 50        		.byte	80
- 366 000b 8E        		.byte	-114
- 367 000c 8A        		.byte	-118
- 368 000d 6C        		.byte	108
- 369 000e 30        		.byte	48
- 370 000f 9A        		.byte	-102
- 371 0010 64        		.byte	100
- 372 0011 9E        		.byte	-98
- 373 0012 58        		.byte	88
- 374 0013 90        		.byte	-112
- 375 0014 68        		.byte	104
- 376 0015 96        		.byte	-106
- 377 0016 40        		.byte	64
- 378 0017 48        		.byte	72
- 379 0018 60        		.byte	96
- 380 0019 92        		.byte	-110
- 381 001a 9A        		.byte	-102
- 382 001b 74        		.byte	116
- 383 001c 7C        		.byte	124
- 384 001d 20        		.byte	32
- 385 001e 78        		.byte	120
- 386 001f 9C        		.byte	-100
- 387 0020 70        		.byte	112
- 388 0021 8C        		.byte	-116
- 389 0022 88        		.byte	-120
- 390 0023 86        		.byte	-122
- 393               		.text
- 395               	.Letext0:
- 396               		.ident	"GCC: (GNU) 4.9.2 20141224 (prerelease)"
- 397               	.global __do_copy_data
+ 329               	.LM21:
+ 330 00d8 DF91      		pop r29
+ 331 00da CF91      		pop r28
+ 332 00dc 1F91      		pop r17
+ 333 00de 0F91      		pop r16
+ 334 00e0 FF90      		pop r15
+ 335 00e2 EF90      		pop r14
+ 336 00e4 DF90      		pop r13
+ 337 00e6 CF90      		pop r12
+ 338 00e8 BF90      		pop r11
+ 339 00ea AF90      		pop r10
+ 340 00ec 0895      		ret
+ 345               	.Lscope2:
+ 347               		.stabd	78,0,0
+ 348               	.global	CwNumberData
+ 349               		.section	.rodata
+ 352               	CwNumberData:
+ 353 0000 A0        		.byte	-96
+ 354 0001 B0        		.byte	-80
+ 355 0002 B8        		.byte	-72
+ 356 0003 BC        		.byte	-68
+ 357 0004 BE        		.byte	-66
+ 358 0005 BF        		.byte	-65
+ 359 0006 AF        		.byte	-81
+ 360 0007 A7        		.byte	-89
+ 361 0008 A3        		.byte	-93
+ 362 0009 A1        		.byte	-95
+ 363               	.global	CwLetterData
+ 366               	CwLetterData:
+ 367 000a 50        		.byte	80
+ 368 000b 8E        		.byte	-114
+ 369 000c 8A        		.byte	-118
+ 370 000d 6C        		.byte	108
+ 371 000e 30        		.byte	48
+ 372 000f 9A        		.byte	-102
+ 373 0010 64        		.byte	100
+ 374 0011 9E        		.byte	-98
+ 375 0012 58        		.byte	88
+ 376 0013 90        		.byte	-112
+ 377 0014 68        		.byte	104
+ 378 0015 96        		.byte	-106
+ 379 0016 40        		.byte	64
+ 380 0017 48        		.byte	72
+ 381 0018 60        		.byte	96
+ 382 0019 92        		.byte	-110
+ 383 001a 9A        		.byte	-102
+ 384 001b 74        		.byte	116
+ 385 001c 7C        		.byte	124
+ 386 001d 20        		.byte	32
+ 387 001e 78        		.byte	120
+ 388 001f 9C        		.byte	-100
+ 389 0020 70        		.byte	112
+ 390 0021 8C        		.byte	-116
+ 391 0022 88        		.byte	-120
+ 392 0023 86        		.byte	-122
+ 395               		.text
+ 397               	.Letext0:
+ 398               		.ident	"GCC: (GNU) 5.2.0"
+ 399               	.global __do_copy_data
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 cw.c
-     /tmp/cczZ6KZP.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/cczZ6KZP.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/cczZ6KZP.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/cczZ6KZP.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/cczZ6KZP.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/cczZ6KZP.s:108    .text:0000000000000000 cwTone
-     /tmp/cczZ6KZP.s:167    .text:0000000000000026 cwSend
-     /tmp/cczZ6KZP.s:364    .rodata:000000000000000a CwLetterData
-     /tmp/cczZ6KZP.s:350    .rodata:0000000000000000 CwNumberData
+     /tmp/ccCfGl0a.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccCfGl0a.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccCfGl0a.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccCfGl0a.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccCfGl0a.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccCfGl0a.s:110    .text:0000000000000000 cwTone
+     /tmp/ccCfGl0a.s:169    .text:0000000000000026 cwSend
+     /tmp/ccCfGl0a.s:366    .rodata:000000000000000a CwLetterData
+     /tmp/ccCfGl0a.s:352    .rodata:0000000000000000 CwNumberData
 
 UNDEFINED SYMBOLS
 __do_copy_data

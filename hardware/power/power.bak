@@ -821,7 +821,7 @@ Connection ~ 6650 2350
 Text Label 8900 1350 0    60   ~ 0
 ISenceHi
 Text Label 6050 3850 0    60   ~ 0
-ISenceHigh
+ISenceHi
 Wire Wire Line
 	10850 1850 10850 2250
 Wire Wire Line
@@ -870,14 +870,15 @@ F 3 "" H 2600 4400 30  0000 C CNN
 	1    2600 4400
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	2750 5200 2750 5500
 Connection ~ 2750 5500
-Wire Wire Line
-	2350 4400 2350 2750
-Wire Wire Line
-	2350 2750 5050 2750
-Wire Wire Line
-	5050 2750 5050 3850
 Connection ~ 5050 3850
+Wire Wire Line
+	2750 5200 2400 5200
+Text Label 2400 5200 0    60   ~ 0
+Vin
+Wire Wire Line
+	2350 4400 2350 4150
+Connection ~ 2350 4150
+Text Notes 2200 4050 0    60   ~ 0
+THis should be right. \n
 $EndSCHEMATC

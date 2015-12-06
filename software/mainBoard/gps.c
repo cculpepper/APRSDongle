@@ -1,5 +1,6 @@
 #include "uart.h"
 #include "gps.h"
+#include "gpio.h"
 #include "MKL26Z4.h"
 GPSData gpsData;
 #define NULL 0
@@ -113,14 +114,17 @@ void ParseGPS(char c){
 
 int getPos(){
 	int cycles;
-	#define MAXCYCLES 100000
+	#define MAXCYCLES 1000000
+	led3Off();
 	fix = 0;
 	gpsUARTEnableInterrupts();
+	delay(2000);
 	while((fix == 0) & (cycles++<MAXCYCLES));
 	if (cycles >= MAXCYCLES){
 		return 1;
 	} 
 	gpsUARTDisableInterrupts();
+	led3On();
 	return 0;
 }
 

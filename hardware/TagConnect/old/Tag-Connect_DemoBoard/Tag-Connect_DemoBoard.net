@@ -1,0 +1,114 @@
+# EESchema Netlist Version 1.1 created  5/24/2012 1:39:20 AM
+(
+ ( /4FBDD77F $noname  P3 TC2030-CTX {Lib=TC2030-CTX}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+ )
+ ( /4FBDD78E $noname  P2 TC2030-IDC {Lib=TC2030-IDC}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+ )
+ ( /4FBDD79D $noname  P4 TC2030-MCP {Lib=TC2030-MCP}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+ )
+ ( /4FBDD7AC $noname  P6 TC2050-IDC {Lib=TC2050-IDC}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+  (    7 ? )
+  (    8 ? )
+  (    9 ? )
+  (   10 ? )
+ )
+ ( /4FBDD7BB $noname  P7 TC2050-IDC-430 {Lib=TC2050-IDC-430}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+  (    7 ? )
+  (    8 ? )
+  (    9 ? )
+  (   10 ? )
+ )
+ ( /4FBDD7CA $noname  P8 TC2050-MINIHDMI {Lib=TC2050-MINIHDMI}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+  (    7 ? )
+  (    8 ? )
+  (    9 ? )
+  (   10 ? )
+ )
+ ( /4FBDDB0E $noname  P1 TC2030-IDC {Lib=TC2030-IDC}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+ )
+ ( /4FBDDB14 $noname  P5 TC2050-IDC {Lib=TC2050-IDC}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (    6 ? )
+  (    7 ? )
+  (    8 ? )
+  (    9 ? )
+  (   10 ? )
+ )
+)
+*
+{ Allowed footprints by component:
+$component P3
+ TC2030*
+$endlist
+$component P2
+ TC2030*
+$endlist
+$component P4
+ TC2030*
+$endlist
+$component P6
+ TC2050*
+$endlist
+$component P7
+ TC2050*
+$endlist
+$component P8
+ TC2050*
+$endlist
+$component P1
+ TC2030*
+$endlist
+$component P5
+ TC2050*
+$endlist
+$endfootprintlist
+}
+{ Pin List by Nets
+}
+#End

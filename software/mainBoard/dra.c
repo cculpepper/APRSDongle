@@ -46,16 +46,6 @@ char checkDRA(void){
 	int count;
 	char ret[40];
 	count = 4;
-	led4Off();
-	led3Off();
-	led2Off();
-	led1Off();
-	PTC->PCOR = 0xf00;
-	led4On();
-	led3On();
-	led2On();
-	led1On();
-	PTC->PCOR = 0xf00;
 	while (count-->0){
 		//led1On();
 		delay(10);
@@ -65,7 +55,7 @@ char checkDRA(void){
 		
 		draPutString("\r\nAT+DMOCONNECT\r\n");
 		//led4On();
-		delay(100);
+		delay(1000);
 		//draGetString(ret, 40);
 		led3On();
 		//if (strcmp(ret, "+DMOCONNECT: 0") == 0){
@@ -102,7 +92,7 @@ char programDra(void){
 	if (draData.draInited){
 		do{
 	//draPutString("AT+DMOSETGROUP=0，");
-	draPutString("AT+DMOSETGROUP=0,145.3900,145.3900,0000,7,0000\r\n");
+	draPutString("AT+DMOSETGROUP=0,145.5000,145.5000,0000,7,0000\r\n");
 	//draPutString(draData.draTxFreq);
 	//draPutString(", ");
 	//draPutString(draData.draRxFreq);
