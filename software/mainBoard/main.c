@@ -66,7 +66,6 @@ void start(){
 	PTC->PDDR |= (1 << 8);
 	PTC->PDDR |= (1 << 9);
 	LedPortInit();
-	led4On();
 	initGps();
 	testParse();
 	initUART1();
@@ -84,6 +83,7 @@ int main(){
 	//delay(10000);
 	
 	start();
+	led1On();
 /*	if (f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {    /*             Create a file */ 
 /*		led1On();
 		f_write(&Fil, "It works!\r\n", 11, &bw);
@@ -96,9 +96,12 @@ int main(){
 	*/
 	initDRA();
 	draRx();
+	led2On();
 	checkDRA();
 	programDra();
+	led3On();
 	delay(10000);
+	led4On();
 	for (;;){
 		//PTC->PCOR = 0xf00;
 		draOn();
