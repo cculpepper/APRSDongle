@@ -5,12 +5,22 @@
 #define LedPortInit() SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK; LedDirInit(); PORTC->PCR[8] = PORT_PCR_MUX(1) ; PORTC->PCR[9] = PORT_PCR_MUX(1) ; PORTC->PCR[10] = PORT_PCR_MUX(1) ; PORTC->PCR[11] = PORT_PCR_MUX(1) ; 
 //#define LedPortInit() SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK; LedDirInit(); PORTC->PCR[8] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; PORTC->PCR[9] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; PORTC->PCR[10] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; PORTC->PCR[11] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK; 
 
-#define LedDirInit() PTC->PDDR |= LED1 | LED2 | LED3 | LED4
-#define SwPortInit() SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK
-#define LED1 (1<<8)
-#define LED2 (1<<9)
-#define LED3 (1<<10)
-#define LED4 (1<<11)
+#define LedDirInit() PTB->PDDR |= LED1 | LED2 
+#define SwPortInit() SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK
+#define LED1 (1<<6) // PTB6
+#define LED2 (1<<7) // PTB7
+#define IRQ  (1<<13) // PTB13
+#define ORENABLE1 (1<<11) // PTB11, Switching supply
+#define ORENABLE2 (1<<10) // PTB10, Battery
+
+
+#define ORWARN1 (1<<3) // PTA3
+#define ORWARN2 (1<<4) // PTA4
+#define CHARGE  (1<<5) // PTA5
+#define CHARGERSHUTDOWN  (1<<6) // PTA6
+#define CHARGERFAULT  (1<<7) // PTA7
+
+#define INPUT
 #define SWF (1<<1)
 #define SWB (1<<31)
 #define initSWF() PORTE->PCR[31] = PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
