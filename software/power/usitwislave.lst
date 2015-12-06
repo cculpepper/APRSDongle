@@ -6,8 +6,8 @@
    6               	__zero_reg__ = 1
    9               		.text
   10               	.Ltext0:
- 109               	set_sda_to_input:
- 110               		.stabd	46,0,0
+ 111               	set_sda_to_input:
+ 112               		.stabd	46,0,0
    1:usitwislave.c **** /*	See LICENSE for Copyright etc. */
    2:usitwislave.c **** 
    3:usitwislave.c **** #include <avr/io.h>
@@ -61,38 +61,38 @@
   51:usitwislave.c **** 
   52:usitwislave.c **** static void set_sda_to_input(void)
   53:usitwislave.c **** {
- 112               	.LM0:
- 113               	.LFBB1:
- 114               	/* prologue: function */
- 115               	/* frame size = 0 */
- 116               	/* stack size = 0 */
- 117               	.L__stack_usage = 0
+ 114               	.LM0:
+ 115               	.LFBB1:
+ 116               	/* prologue: function */
+ 117               	/* frame size = 0 */
+ 118               	/* stack size = 0 */
+ 119               	.L__stack_usage = 0
   54:usitwislave.c **** 	DDR_USI &= ~_BV(PORT_USI_SDA);
- 119               	.LM1:
- 120 0000 D698      		cbi 0x1a,6
- 121 0002 0895      		ret
- 123               	.Lscope1:
- 125               		.stabd	78,0,0
- 128               	set_sda_to_output:
- 129               		.stabd	46,0,0
+ 121               	.LM1:
+ 122 0000 D698      		cbi 0x1a,6
+ 123 0002 0895      		ret
+ 125               	.Lscope1:
+ 127               		.stabd	78,0,0
+ 130               	set_sda_to_output:
+ 131               		.stabd	46,0,0
   55:usitwislave.c **** }
   56:usitwislave.c **** 
   57:usitwislave.c **** static void set_sda_to_output(void)
   58:usitwislave.c **** {
- 131               	.LM2:
- 132               	.LFBB2:
- 133               	/* prologue: function */
- 134               	/* frame size = 0 */
- 135               	/* stack size = 0 */
- 136               	.L__stack_usage = 0
+ 133               	.LM2:
+ 134               	.LFBB2:
+ 135               	/* prologue: function */
+ 136               	/* frame size = 0 */
+ 137               	/* stack size = 0 */
+ 138               	.L__stack_usage = 0
   59:usitwislave.c **** 	DDR_USI |= _BV(PORT_USI_SDA);
- 138               	.LM3:
- 139 0004 D69A      		sbi 0x1a,6
- 140 0006 0895      		ret
- 142               	.Lscope2:
- 144               		.stabd	78,0,0
- 147               	twi_reset:
- 148               		.stabd	46,0,0
+ 140               	.LM3:
+ 141 0004 D69A      		sbi 0x1a,6
+ 142 0006 0895      		ret
+ 144               	.Lscope2:
+ 146               		.stabd	78,0,0
+ 149               	twi_reset:
+ 150               		.stabd	46,0,0
   60:usitwislave.c **** }
   61:usitwislave.c **** 
   62:usitwislave.c **** static inline void set_scl_to_input(void)
@@ -144,95 +144,95 @@
  108:usitwislave.c **** 
  109:usitwislave.c **** static void twi_reset(void)
  110:usitwislave.c **** {
- 150               	.LM4:
- 151               	.LFBB3:
- 152               	/* prologue: function */
- 153               	/* frame size = 0 */
- 154               	/* stack size = 0 */
- 155               	.L__stack_usage = 0
+ 152               	.LM4:
+ 153               	.LFBB3:
+ 154               	/* prologue: function */
+ 155               	/* frame size = 0 */
+ 156               	/* stack size = 0 */
+ 157               	.L__stack_usage = 0
  111:usitwislave.c **** 	// make sure no sda/scl remains pulled up or down
  112:usitwislave.c **** 
  113:usitwislave.c **** 	set_sda_to_input();		//	deactivate internal pullup on sda/scl
- 157               	.LM5:
- 158 0008 00D0      		rcall set_sda_to_input
- 159               	.LBB20:
- 160               	.LBB21:
+ 159               	.LM5:
+ 160 0008 00D0      		rcall set_sda_to_input
+ 161               	.LBB20:
+ 162               	.LBB21:
   74:usitwislave.c **** }
- 162               	.LM6:
- 163 000a DE98      		cbi 0x1b,6
- 164               	.LBE21:
- 165               	.LBE20:
- 166               	.LBB22:
- 167               	.LBB23:
+ 164               	.LM6:
+ 165 000a DE98      		cbi 0x1b,6
+ 166               	.LBE21:
+ 167               	.LBE20:
+ 168               	.LBB22:
+ 169               	.LBB23:
   64:usitwislave.c **** }
- 169               	.LM7:
- 170 000c D498      		cbi 0x1a,4
- 171               	.LBE23:
- 172               	.LBE22:
- 173               	.LBB24:
- 174               	.LBB25:
+ 171               	.LM7:
+ 172 000c D498      		cbi 0x1a,4
+ 173               	.LBE23:
+ 174               	.LBE22:
+ 175               	.LBB24:
+ 176               	.LBB25:
   84:usitwislave.c **** }
- 176               	.LM8:
- 177 000e DC98      		cbi 0x1b,4
- 178               	.LBE25:
- 179               	.LBE24:
+ 178               	.LM8:
+ 179 000e DC98      		cbi 0x1b,4
+ 180               	.LBE25:
+ 181               	.LBE24:
  114:usitwislave.c **** 	set_sda_low();
  115:usitwislave.c **** 	set_scl_to_input();
  116:usitwislave.c **** 	set_scl_low();
  117:usitwislave.c **** 
  118:usitwislave.c **** 	set_sda_to_output();	//	release (set high) on sda/scl
- 181               	.LM9:
- 182 0010 00D0      		rcall set_sda_to_output
- 183               	.LBB26:
- 184               	.LBB27:
+ 183               	.LM9:
+ 184 0010 00D0      		rcall set_sda_to_output
+ 185               	.LBB26:
+ 186               	.LBB27:
   79:usitwislave.c **** }
- 186               	.LM10:
- 187 0012 DE9A      		sbi 0x1b,6
- 188               	.LBE27:
- 189               	.LBE26:
+ 188               	.LM10:
+ 189 0012 DE9A      		sbi 0x1b,6
+ 190               	.LBE27:
+ 191               	.LBE26:
  119:usitwislave.c **** 	set_sda_high();
  120:usitwislave.c **** 	set_sda_to_input();
- 191               	.LM11:
- 192 0014 00D0      		rcall set_sda_to_input
- 193               	.LBB28:
- 194               	.LBB29:
+ 193               	.LM11:
+ 194 0014 00D0      		rcall set_sda_to_input
+ 195               	.LBB28:
+ 196               	.LBB29:
   79:usitwislave.c **** }
- 196               	.LM12:
- 197 0016 DE9A      		sbi 0x1b,6
- 198               	.LBE29:
- 199               	.LBE28:
- 200               	.LBB30:
- 201               	.LBB31:
+ 198               	.LM12:
+ 199 0016 DE9A      		sbi 0x1b,6
+ 200               	.LBE29:
+ 201               	.LBE28:
+ 202               	.LBB30:
+ 203               	.LBB31:
   69:usitwislave.c **** }
- 203               	.LM13:
- 204 0018 D49A      		sbi 0x1a,4
- 205               	.LBE31:
- 206               	.LBE30:
- 207               	.LBB32:
- 208               	.LBB33:
+ 205               	.LM13:
+ 206 0018 D49A      		sbi 0x1a,4
+ 207               	.LBE31:
+ 208               	.LBE30:
+ 209               	.LBB32:
+ 210               	.LBB33:
   89:usitwislave.c **** }
- 210               	.LM14:
- 211 001a DC9A      		sbi 0x1b,4
- 212               	.LBE33:
- 213               	.LBE32:
- 214               	.LBB34:
- 215               	.LBB35:
+ 212               	.LM14:
+ 213 001a DC9A      		sbi 0x1b,4
+ 214               	.LBE33:
+ 215               	.LBE32:
+ 216               	.LBB34:
+ 217               	.LBB35:
   94:usitwislave.c **** 		(1		<< USISIF)	|		// clear start condition flag
- 217               	.LM15:
- 218 001c 80ED      		ldi r24,lo8(-48)
- 219 001e 8EB9      		out 0xe,r24
+ 219               	.LM15:
+ 220 001c 80ED      		ldi r24,lo8(-48)
+ 221 001e 8EB9      		out 0xe,r24
  101:usitwislave.c **** 		(1 << USISIE) |									// enable start condition interrupt
- 221               	.LM16:
- 222 0020 88EA      		ldi r24,lo8(-88)
- 223 0022 8DB9      		out 0xd,r24
- 224 0024 0895      		ret
- 225               	.LBE35:
- 226               	.LBE34:
- 228               	.Lscope3:
- 230               		.stabd	78,0,0
- 232               	.global	__vector_15
- 234               	__vector_15:
- 235               		.stabd	46,0,0
+ 223               	.LM16:
+ 224 0020 88EA      		ldi r24,lo8(-88)
+ 225 0022 8DB9      		out 0xd,r24
+ 226 0024 0895      		ret
+ 227               	.LBE35:
+ 228               	.LBE34:
+ 230               	.Lscope3:
+ 232               		.stabd	78,0,0
+ 234               	.global	__vector_15
+ 236               	__vector_15:
+ 237               		.stabd	46,0,0
  121:usitwislave.c **** 	set_sda_high();
  122:usitwislave.c **** 	set_scl_to_output();
  123:usitwislave.c **** 	set_scl_high();
@@ -255,33 +255,33 @@
  140:usitwislave.c **** 
  141:usitwislave.c **** ISR(USI_START_vect)
  142:usitwislave.c **** {
- 237               	.LM17:
- 238               	.LFBB4:
- 239 0026 1F92      		push r1
- 240 0028 0F92      		push r0
- 241 002a 0FB6      		in r0,__SREG__
- 242 002c 0F92      		push r0
- 243 002e 1124      		clr __zero_reg__
- 244 0030 2F93      		push r18
- 245 0032 3F93      		push r19
- 246 0034 4F93      		push r20
- 247 0036 5F93      		push r21
- 248 0038 6F93      		push r22
- 249 003a 7F93      		push r23
- 250 003c 8F93      		push r24
- 251 003e 9F93      		push r25
- 252 0040 AF93      		push r26
- 253 0042 BF93      		push r27
- 254 0044 EF93      		push r30
- 255 0046 FF93      		push r31
- 256               	/* prologue: Signal */
- 257               	/* frame size = 0 */
- 258               	/* stack size = 15 */
- 259               	.L__stack_usage = 15
+ 239               	.LM17:
+ 240               	.LFBB4:
+ 241 0026 1F92      		push r1
+ 242 0028 0F92      		push r0
+ 243 002a 0FB6      		in r0,__SREG__
+ 244 002c 0F92      		push r0
+ 245 002e 1124      		clr __zero_reg__
+ 246 0030 2F93      		push r18
+ 247 0032 3F93      		push r19
+ 248 0034 4F93      		push r20
+ 249 0036 5F93      		push r21
+ 250 0038 6F93      		push r22
+ 251 003a 7F93      		push r23
+ 252 003c 8F93      		push r24
+ 253 003e 9F93      		push r25
+ 254 0040 AF93      		push r26
+ 255 0042 BF93      		push r27
+ 256 0044 EF93      		push r30
+ 257 0046 FF93      		push r31
+ 258               	/* prologue: Signal */
+ 259               	/* frame size = 0 */
+ 260               	/* stack size = 15 */
+ 261               	.L__stack_usage = 15
  143:usitwislave.c **** 	set_sda_to_input();
- 261               	.LM18:
- 262 0048 00D0      		rcall set_sda_to_input
- 263               	.L5:
+ 263               	.LM18:
+ 264 0048 00D0      		rcall set_sda_to_input
+ 265               	.L5:
  144:usitwislave.c **** 
  145:usitwislave.c **** 	// wait for SCL to go low to ensure the start condition has completed (the
  146:usitwislave.c **** 	// start detector will hold SCL low) - if a stop condition arises then leave
@@ -290,12 +290,12 @@
  149:usitwislave.c **** 	// going to be set from the last TWI sequence
  150:usitwislave.c **** 
  151:usitwislave.c **** 	while(!(PIN_USI & _BV(PIN_USI_SDA)) &&
- 265               	.LM19:
- 266 004a CE99      		sbic 0x19,6
- 267 004c 00C0      		rjmp .L7
- 269               	.LM20:
- 270 004e CC9B      		sbis 0x19,4
- 271 0050 00C0      		rjmp .L7
+ 267               	.LM19:
+ 268 004a CE99      		sbic 0x19,6
+ 269 004c 00C0      		rjmp .L7
+ 271               	.LM20:
+ 272 004e CC9B      		sbis 0x19,4
+ 273 0050 00C0      		rjmp .L7
  152:usitwislave.c **** 			(PIN_USI & _BV(PIN_USI_SCL)))
  153:usitwislave.c **** 
  154:usitwislave.c **** 	// possible combinations
@@ -305,62 +305,62 @@
  158:usitwislave.c **** 	//	sda = high	scl = high		break	stop condition
  159:usitwislave.c **** 
  160:usitwislave.c **** 	if((PIN_USI & _BV(PIN_USI_SDA)))	// stop condition
- 273               	.LM21:
- 274 0052 CE9B      		sbis 0x19,6
- 275 0054 00C0      		rjmp .L5
+ 275               	.LM21:
+ 276 0052 CE9B      		sbis 0x19,6
+ 277 0054 00C0      		rjmp .L5
  161:usitwislave.c **** 	{
  162:usitwislave.c **** 		twi_reset();
- 277               	.LM22:
- 278 0056 00D0      		rcall twi_reset
+ 279               	.LM22:
+ 280 0056 00D0      		rcall twi_reset
  163:usitwislave.c **** 
  164:usitwislave.c **** 		if(stats_enabled)
- 280               	.LM23:
- 281 0058 8091 0000 		lds r24,stats_enabled
- 282 005c 8823      		tst r24
- 283 005e 01F0      		breq .L4
+ 282               	.LM23:
+ 283 0058 8091 0000 		lds r24,stats_enabled
+ 284 005c 8823      		tst r24
+ 285 005e 01F0      		breq .L4
  165:usitwislave.c **** 			error_conditions_count++;
- 285               	.LM24:
- 286 0060 8091 0000 		lds r24,error_conditions_count
- 287 0064 9091 0000 		lds r25,error_conditions_count+1
- 288 0068 0196      		adiw r24,1
- 289 006a 9093 0000 		sts error_conditions_count+1,r25
- 290 006e 8093 0000 		sts error_conditions_count,r24
- 291 0072 00C0      		rjmp .L4
- 292               	.L7:
+ 287               	.LM24:
+ 288 0060 8091 0000 		lds r24,error_conditions_count
+ 289 0064 9091 0000 		lds r25,error_conditions_count+1
+ 290 0068 0196      		adiw r24,1
+ 291 006a 9093 0000 		sts error_conditions_count+1,r25
+ 292 006e 8093 0000 		sts error_conditions_count,r24
+ 293 0072 00C0      		rjmp .L4
+ 294               	.L7:
  166:usitwislave.c **** 		return;
  167:usitwislave.c **** 	}
  168:usitwislave.c **** 
  169:usitwislave.c **** 	if(stats_enabled)
- 294               	.LM25:
- 295 0074 8091 0000 		lds r24,stats_enabled
- 296 0078 8823      		tst r24
- 297 007a 01F0      		breq .L9
+ 296               	.LM25:
+ 297 0074 8091 0000 		lds r24,stats_enabled
+ 298 0078 8823      		tst r24
+ 299 007a 01F0      		breq .L9
  170:usitwislave.c **** 		start_conditions_count++;
- 299               	.LM26:
- 300 007c 8091 0000 		lds r24,start_conditions_count
- 301 0080 9091 0000 		lds r25,start_conditions_count+1
- 302 0084 0196      		adiw r24,1
- 303 0086 9093 0000 		sts start_conditions_count+1,r25
- 304 008a 8093 0000 		sts start_conditions_count,r24
- 305               	.L9:
+ 301               	.LM26:
+ 302 007c 8091 0000 		lds r24,start_conditions_count
+ 303 0080 9091 0000 		lds r25,start_conditions_count+1
+ 304 0084 0196      		adiw r24,1
+ 305 0086 9093 0000 		sts start_conditions_count+1,r25
+ 306 008a 8093 0000 		sts start_conditions_count,r24
+ 307               	.L9:
  171:usitwislave.c **** 
  172:usitwislave.c **** 	of_state = of_state_check_address;
- 307               	.LM27:
- 308 008e 1092 0000 		sts of_state,__zero_reg__
+ 309               	.LM27:
+ 310 008e 1092 0000 		sts of_state,__zero_reg__
  173:usitwislave.c **** 	ss_state = ss_state_after_start;
- 310               	.LM28:
- 311 0092 81E0      		ldi r24,lo8(1)
- 312 0094 8093 0000 		sts ss_state,r24
+ 312               	.LM28:
+ 313 0092 81E0      		ldi r24,lo8(1)
+ 314 0094 8093 0000 		sts ss_state,r24
  174:usitwislave.c **** 
  175:usitwislave.c **** 	USIDR = 0xff;
- 314               	.LM29:
- 315 0098 8FEF      		ldi r24,lo8(-1)
- 316 009a 8FB9      		out 0xf,r24
+ 316               	.LM29:
+ 317 0098 8FEF      		ldi r24,lo8(-1)
+ 318 009a 8FB9      		out 0xf,r24
  176:usitwislave.c **** 
  177:usitwislave.c **** 	USICR =
- 318               	.LM30:
- 319 009c 88EF      		ldi r24,lo8(-8)
- 320 009e 8DB9      		out 0xd,r24
+ 320               	.LM30:
+ 321 009c 88EF      		ldi r24,lo8(-8)
+ 322 009e 8DB9      		out 0xd,r24
  178:usitwislave.c **** 		(1 << USISIE) |									// enable start condition interrupt
  179:usitwislave.c **** 		(1 << USIOIE) |									// enable overflow interrupt
  180:usitwislave.c **** 		(1 << USIWM1) | (1 << USIWM0) |					// set usi in two-wire mode, enable bit counter overflow hold
@@ -368,116 +368,114 @@
  182:usitwislave.c **** 		(0 << USITC);									// don't toggle clock-port pin
  183:usitwislave.c **** 
  184:usitwislave.c **** 	USISR =
- 322               	.LM31:
- 323 00a0 80ED      		ldi r24,lo8(-48)
- 324 00a2 8EB9      		out 0xe,r24
- 325               	.L4:
- 326               	/* epilogue start */
+ 324               	.LM31:
+ 325 00a0 80ED      		ldi r24,lo8(-48)
+ 326 00a2 8EB9      		out 0xe,r24
+ 327               	.L4:
+ 328               	/* epilogue start */
  185:usitwislave.c **** 		(1		<< USISIF)	|		// clear start condition flag
  186:usitwislave.c **** 		(1		<< USIOIF)	|		// clear overflow condition flag
  187:usitwislave.c **** 		(0		<< USIPF)	|		// !clear stop condition flag
  188:usitwislave.c **** 		(1		<< USIDC)	|		// clear arbitration error flag
  189:usitwislave.c **** 		(0x00	<< USICNT0);		// set counter to "8" bits
  190:usitwislave.c **** }
- 328               	.LM32:
- 329 00a4 FF91      		pop r31
- 330 00a6 EF91      		pop r30
- 331 00a8 BF91      		pop r27
- 332 00aa AF91      		pop r26
- 333 00ac 9F91      		pop r25
- 334 00ae 8F91      		pop r24
- 335 00b0 7F91      		pop r23
- 336 00b2 6F91      		pop r22
- 337 00b4 5F91      		pop r21
- 338 00b6 4F91      		pop r20
- 339 00b8 3F91      		pop r19
- 340 00ba 2F91      		pop r18
- 341 00bc 0F90      		pop r0
- 342 00be 0FBE      		out __SREG__,r0
- 343 00c0 0F90      		pop r0
- 344 00c2 1F90      		pop r1
- 345 00c4 1895      		reti
- 347               	.Lscope4:
- 349               		.stabd	78,0,0
- 351               	.global	__vector_16
- 353               	__vector_16:
- 354               		.stabd	46,0,0
+ 330               	.LM32:
+ 331 00a4 FF91      		pop r31
+ 332 00a6 EF91      		pop r30
+ 333 00a8 BF91      		pop r27
+ 334 00aa AF91      		pop r26
+ 335 00ac 9F91      		pop r25
+ 336 00ae 8F91      		pop r24
+ 337 00b0 7F91      		pop r23
+ 338 00b2 6F91      		pop r22
+ 339 00b4 5F91      		pop r21
+ 340 00b6 4F91      		pop r20
+ 341 00b8 3F91      		pop r19
+ 342 00ba 2F91      		pop r18
+ 343 00bc 0F90      		pop r0
+ 344 00be 0FBE      		out __SREG__,r0
+ 345 00c0 0F90      		pop r0
+ 346 00c2 1F90      		pop r1
+ 347 00c4 1895      		reti
+ 349               	.Lscope4:
+ 351               		.stabd	78,0,0
+ 353               	.global	__vector_16
+ 355               	__vector_16:
+ 356               		.stabd	46,0,0
  191:usitwislave.c **** 
  192:usitwislave.c **** ISR(USI_OVERFLOW_VECTOR)
  193:usitwislave.c **** {
- 356               	.LM33:
- 357               	.LFBB5:
- 358 00c6 1F92      		push r1
- 359 00c8 0F92      		push r0
- 360 00ca 0FB6      		in r0,__SREG__
- 361 00cc 0F92      		push r0
- 362 00ce 1124      		clr __zero_reg__
- 363 00d0 2F93      		push r18
- 364 00d2 3F93      		push r19
- 365 00d4 4F93      		push r20
- 366 00d6 5F93      		push r21
- 367 00d8 6F93      		push r22
- 368 00da 7F93      		push r23
- 369 00dc 8F93      		push r24
- 370 00de 9F93      		push r25
- 371 00e0 AF93      		push r26
- 372 00e2 BF93      		push r27
- 373 00e4 EF93      		push r30
- 374 00e6 FF93      		push r31
- 375               	/* prologue: Signal */
- 376               	/* frame size = 0 */
- 377               	/* stack size = 15 */
- 378               	.L__stack_usage = 15
+ 358               	.LM33:
+ 359               	.LFBB5:
+ 360 00c6 1F92      		push r1
+ 361 00c8 0F92      		push r0
+ 362 00ca 0FB6      		in r0,__SREG__
+ 363 00cc 0F92      		push r0
+ 364 00ce 1124      		clr __zero_reg__
+ 365 00d0 2F93      		push r18
+ 366 00d2 3F93      		push r19
+ 367 00d4 4F93      		push r20
+ 368 00d6 5F93      		push r21
+ 369 00d8 6F93      		push r22
+ 370 00da 7F93      		push r23
+ 371 00dc 8F93      		push r24
+ 372 00de 9F93      		push r25
+ 373 00e0 AF93      		push r26
+ 374 00e2 BF93      		push r27
+ 375 00e4 EF93      		push r30
+ 376 00e6 FF93      		push r31
+ 377               	/* prologue: Signal */
+ 378               	/* frame size = 0 */
+ 379               	/* stack size = 15 */
+ 380               	.L__stack_usage = 15
  194:usitwislave.c **** 	// bit shift register overflow condition occured
  195:usitwislave.c **** 	// scl forced low until overflow condition is cleared!
  196:usitwislave.c **** 
  197:usitwislave.c **** 	uint8_t data		= USIDR;
- 380               	.LM34:
- 381 00e8 9FB1      		in r25,0xf
+ 382               	.LM34:
+ 383 00e8 9FB1      		in r25,0xf
  198:usitwislave.c **** 	uint8_t set_counter = 0x00;		// send 8 bits (16 edges)
  199:usitwislave.c **** 
  200:usitwislave.c **** 	if(stats_enabled)
- 383               	.LM35:
- 384 00ea 8091 0000 		lds r24,stats_enabled
- 385 00ee 8823      		tst r24
- 386 00f0 01F0      		breq .L20
+ 385               	.LM35:
+ 386 00ea 8091 0000 		lds r24,stats_enabled
+ 387 00ee 8823      		tst r24
+ 388 00f0 01F0      		breq .L20
  201:usitwislave.c **** 		overflow_conditions_count++;
- 388               	.LM36:
- 389 00f2 2091 0000 		lds r18,overflow_conditions_count
- 390 00f6 3091 0000 		lds r19,overflow_conditions_count+1
- 391 00fa 2F5F      		subi r18,-1
- 392 00fc 3F4F      		sbci r19,-1
- 393 00fe 3093 0000 		sts overflow_conditions_count+1,r19
- 394 0102 2093 0000 		sts overflow_conditions_count,r18
- 395               	.L20:
- 396 0106 8091 0000 		lds r24,of_state
+ 390               	.LM36:
+ 391 00f2 2091 0000 		lds r18,overflow_conditions_count
+ 392 00f6 3091 0000 		lds r19,overflow_conditions_count+1
+ 393 00fa 2F5F      		subi r18,-1
+ 394 00fc 3F4F      		sbci r19,-1
+ 395 00fe 3093 0000 		sts overflow_conditions_count+1,r19
+ 396 0102 2093 0000 		sts overflow_conditions_count,r18
+ 397               	.L20:
  202:usitwislave.c **** 
  203:usitwislave.c **** again:
  204:usitwislave.c **** 	switch(of_state)
- 398               	.LM37:
- 399 010a 8230      		cpi r24,lo8(2)
- 400 010c 01F4      		brne .+2
- 401 010e 00C0      		rjmp .L22
- 402 0110 00F4      		brsh .L23
- 403 0112 8823      		tst r24
- 404 0114 01F0      		breq .L24
- 405 0116 8130      		cpi r24,lo8(1)
- 406 0118 01F4      		brne .L21
- 407 011a 00C0      		rjmp .L25
- 408               	.L23:
- 409 011c 8430      		cpi r24,lo8(4)
- 410 011e 01F4      		brne .+2
- 411 0120 00C0      		rjmp .L26
- 412 0122 00F4      		brsh .+2
- 413 0124 00C0      		rjmp .L27
- 414 0126 8530      		cpi r24,lo8(5)
- 415 0128 01F4      		brne .+2
- 416 012a 00C0      		rjmp .L28
- 417               	.L21:
- 418 012c 8093 0000 		sts of_state,r24
- 419 0130 00C0      		rjmp .L46
- 420               	.L24:
- 421 0132 1092 0000 		sts of_state,__zero_reg__
+ 399               	.LM37:
+ 400 0106 8091 0000 		lds r24,of_state
+ 401 010a 8230      		cpi r24,lo8(2)
+ 402 010c 01F4      		brne .+2
+ 403 010e 00C0      		rjmp .L22
+ 404 0110 00F4      		brsh .L23
+ 405 0112 8823      		tst r24
+ 406 0114 01F0      		breq .L24
+ 407 0116 8130      		cpi r24,lo8(1)
+ 408 0118 01F0      		breq .+2
+ 409 011a 00C0      		rjmp .L35
+ 410 011c 00C0      		rjmp .L25
+ 411               	.L23:
+ 412 011e 8430      		cpi r24,lo8(4)
+ 413 0120 01F4      		brne .+2
+ 414 0122 00C0      		rjmp .L26
+ 415 0124 00F4      		brsh .+2
+ 416 0126 00C0      		rjmp .L27
+ 417 0128 8530      		cpi r24,lo8(5)
+ 418 012a 01F4      		brne .+2
+ 419 012c 00C0      		rjmp .L28
+ 420 012e 00C0      		rjmp .L35
+ 421               	.L24:
  422               	.LBB39:
  205:usitwislave.c **** 	{
  206:usitwislave.c **** 		// start condition occured and succeed
@@ -494,70 +492,71 @@
  217:usitwislave.c **** 
  218:usitwislave.c **** 			if(address == slave_address)
  424               	.LM38:
- 425 0136 2091 0000 		lds r18,slave_address
- 426 013a 892F      		mov r24,r25
- 427 013c 8695      		lsr r24
- 428 013e 8213      		cpse r24,r18
- 429 0140 00C0      		rjmp .L30
+ 425 0130 2091 0000 		lds r18,slave_address
+ 426 0134 892F      		mov r24,r25
+ 427 0136 8695      		lsr r24
+ 428 0138 8213      		cpse r24,r18
+ 429 013a 00C0      		rjmp .L29
  219:usitwislave.c **** 			{
  220:usitwislave.c **** 				ss_state = ss_state_address_selected;
  431               	.LM39:
- 432 0142 82E0      		ldi r24,lo8(2)
- 433 0144 8093 0000 		sts ss_state,r24
+ 432 013c 82E0      		ldi r24,lo8(2)
+ 433 013e 8093 0000 		sts ss_state,r24
  221:usitwislave.c **** 
  222:usitwislave.c **** 	/*PORTA ^= (1<<7);        //Use xor to toggle the LED*/
  223:usitwislave.c **** 				if(direction)					// read request from master
  435               	.LM40:
- 436 0148 90FF      		sbrs r25,0
- 437 014a 00C0      		rjmp .L31
+ 436 0142 90FF      		sbrs r25,0
+ 437 0144 00C0      		rjmp .L30
  224:usitwislave.c **** 					of_state = of_state_send_data;
  439               	.LM41:
- 440 014c 81E0      		ldi r24,lo8(1)
- 441 014e 00C0      		rjmp .L45
- 442               	.L31:
+ 440 0146 81E0      		ldi r24,lo8(1)
+ 441 0148 00C0      		rjmp .L45
+ 442               	.L30:
  225:usitwislave.c **** 				else							// write request from master
  226:usitwislave.c **** 					of_state = of_state_receive_data;
  444               	.LM42:
- 445 0150 84E0      		ldi r24,lo8(4)
+ 445 014a 84E0      		ldi r24,lo8(4)
  446               	.L45:
- 447 0152 8093 0000 		sts of_state,r24
- 448 0156 00C0      		rjmp .L35
- 449               	.L30:
+ 447 014c 8093 0000 		sts of_state,r24
+ 448               	.L47:
  227:usitwislave.c **** 
  228:usitwislave.c **** 				USIDR		= 0x00;
+ 450               	.LM43:
+ 451 0150 1FB8      		out 0xf,__zero_reg__
  229:usitwislave.c **** 				set_counter = 0x0e;				// send 1 bit (2 edges)
  230:usitwislave.c **** 				set_sda_to_output();			// initiate send ack
+ 453               	.LM44:
+ 454 0152 00D0      		rcall set_sda_to_output
+ 455 0154 00C0      		rjmp .L46
+ 456               	.L29:
  231:usitwislave.c **** 			}
  232:usitwislave.c **** 			else
  233:usitwislave.c **** 			{
  234:usitwislave.c **** 				USIDR		= 0x00;
- 451               	.LM43:
- 452 0158 1FB8      		out 0xf,__zero_reg__
- 453               	.LBB40:
- 454               	.LBB41:
+ 458               	.LM45:
+ 459 0156 1FB8      		out 0xf,__zero_reg__
+ 460               	.LBB40:
+ 461               	.LBB41:
   94:usitwislave.c **** 		(1		<< USISIF)	|		// clear start condition flag
- 456               	.LM44:
- 457 015a 80ED      		ldi r24,lo8(-48)
- 458 015c 8EB9      		out 0xe,r24
+ 463               	.LM46:
+ 464 0158 80ED      		ldi r24,lo8(-48)
+ 465 015a 8EB9      		out 0xe,r24
  101:usitwislave.c **** 		(1 << USISIE) |									// enable start condition interrupt
- 460               	.LM45:
- 461 015e 88EA      		ldi r24,lo8(-88)
- 462 0160 8DB9      		out 0xd,r24
- 463               	.LBE41:
- 464               	.LBE40:
+ 467               	.LM47:
+ 468 015c 88EA      		ldi r24,lo8(-88)
+ 469 015e 8DB9      		out 0xd,r24
+ 470               	.LBE41:
+ 471               	.LBE40:
  235:usitwislave.c **** 				set_counter = 0x00;
  236:usitwislave.c **** 				twi_reset_state();
  237:usitwislave.c **** 				ss_state = ss_state_address_not_selected;
- 466               	.LM46:
- 467 0162 83E0      		ldi r24,lo8(3)
- 468 0164 8093 0000 		sts ss_state,r24
- 469               	.L46:
- 235:usitwislave.c **** 				set_counter = 0x00;
- 471               	.LM47:
- 472 0168 80E0      		ldi r24,0
- 473 016a 00C0      		rjmp .L29
- 474               	.L25:
- 475               	.LBE39:
+ 473               	.LM48:
+ 474 0160 83E0      		ldi r24,lo8(3)
+ 475 0162 8093 0000 		sts ss_state,r24
+ 476 0166 00C0      		rjmp .L35
+ 477               	.L25:
+ 478               	.LBE39:
  238:usitwislave.c **** 			}
  239:usitwislave.c **** 
  240:usitwislave.c **** 			break;
@@ -568,44 +567,44 @@
  245:usitwislave.c **** 		case(of_state_send_data):
  246:usitwislave.c **** 		{
  247:usitwislave.c **** 			ss_state = ss_state_data_processed;
- 477               	.LM48:
- 478 016c 84E0      		ldi r24,lo8(4)
- 479 016e 8093 0000 		sts ss_state,r24
+ 480               	.LM49:
+ 481 0168 84E0      		ldi r24,lo8(4)
+ 482 016a 8093 0000 		sts ss_state,r24
  248:usitwislave.c **** 			of_state = of_state_request_ack;
- 481               	.LM49:
- 482 0172 82E0      		ldi r24,lo8(2)
- 483 0174 8093 0000 		sts of_state,r24
+ 484               	.LM50:
+ 485 016e 82E0      		ldi r24,lo8(2)
+ 486 0170 8093 0000 		sts of_state,r24
  249:usitwislave.c **** 
  250:usitwislave.c **** 			if(output_buffer_current < output_buffer_length)
- 485               	.LM50:
- 486 0178 E091 0000 		lds r30,output_buffer_current
- 487 017c 8091 0000 		lds r24,output_buffer_length
- 488 0180 E817      		cp r30,r24
- 489 0182 00F4      		brsh .L33
+ 488               	.LM51:
+ 489 0174 E091 0000 		lds r30,output_buffer_current
+ 490 0178 8091 0000 		lds r24,output_buffer_length
+ 491 017c E817      		cp r30,r24
+ 492 017e 00F4      		brsh .L32
  251:usitwislave.c **** 				USIDR = output_buffer[output_buffer_current++];
- 491               	.LM51:
- 492 0184 81E0      		ldi r24,lo8(1)
- 493 0186 8E0F      		add r24,r30
- 494 0188 8093 0000 		sts output_buffer_current,r24
- 495 018c F0E0      		ldi r31,0
- 496 018e E050      		subi r30,lo8(-(output_buffer))
- 497 0190 F040      		sbci r31,hi8(-(output_buffer))
- 498 0192 8081      		ld r24,Z
- 499 0194 8FB9      		out 0xf,r24
- 500 0196 00C0      		rjmp .L34
- 501               	.L33:
+ 494               	.LM52:
+ 495 0180 81E0      		ldi r24,lo8(1)
+ 496 0182 8E0F      		add r24,r30
+ 497 0184 8093 0000 		sts output_buffer_current,r24
+ 498 0188 F0E0      		ldi r31,0
+ 499 018a E050      		subi r30,lo8(-(output_buffer))
+ 500 018c F040      		sbci r31,hi8(-(output_buffer))
+ 501 018e 8081      		ld r24,Z
+ 502 0190 8FB9      		out 0xf,r24
+ 503 0192 00C0      		rjmp .L33
+ 504               	.L32:
  252:usitwislave.c **** 			else
  253:usitwislave.c **** 				USIDR = 0x00;					// no more data, but cannot send "nothing" or "nak"
- 503               	.LM52:
- 504 0198 1FB8      		out 0xf,__zero_reg__
- 505               	.L34:
+ 506               	.LM53:
+ 507 0194 1FB8      		out 0xf,__zero_reg__
+ 508               	.L33:
  254:usitwislave.c **** 
  255:usitwislave.c **** 			set_counter = 0x00;
  256:usitwislave.c **** 			set_sda_to_output();				// initiate send data
- 507               	.LM53:
- 508 019a 00D0      		rcall set_sda_to_output
- 509 019c 00C0      		rjmp .L46
- 510               	.L22:
+ 510               	.LM54:
+ 511 0196 00D0      		rcall set_sda_to_output
+ 512 0198 00C0      		rjmp .L35
+ 513               	.L22:
  257:usitwislave.c **** 
  258:usitwislave.c **** 			break;
  259:usitwislave.c **** 		}
@@ -615,21 +614,26 @@
  263:usitwislave.c **** 		case(of_state_request_ack):
  264:usitwislave.c **** 		{
  265:usitwislave.c **** 			of_state = of_state_check_ack;
- 512               	.LM54:
- 513 019e 83E0      		ldi r24,lo8(3)
- 514 01a0 8093 0000 		sts of_state,r24
+ 515               	.LM55:
+ 516 019a 83E0      		ldi r24,lo8(3)
+ 517 019c 8093 0000 		sts of_state,r24
  266:usitwislave.c **** 
  267:usitwislave.c **** 			USIDR		= 0x00;
- 516               	.LM55:
- 517 01a4 1FB8      		out 0xf,__zero_reg__
+ 519               	.LM56:
+ 520 01a0 1FB8      		out 0xf,__zero_reg__
  268:usitwislave.c **** 			set_counter = 0x0e;					//	receive 1 bit (2 edges)
  269:usitwislave.c **** 			set_sda_to_input();					//	initiate receive ack
- 519               	.LM56:
- 520 01a6 00D0      		rcall set_sda_to_input
- 521 01a8 00C0      		rjmp .L47
- 522               	.L27:
+ 522               	.LM57:
+ 523 01a2 00D0      		rcall set_sda_to_input
+ 524               	.L46:
+ 268:usitwislave.c **** 			set_counter = 0x0e;					//	receive 1 bit (2 edges)
+ 526               	.LM58:
+ 527 01a4 8EE0      		ldi r24,lo8(14)
  270:usitwislave.c **** 
  271:usitwislave.c **** 			break;
+ 529               	.LM59:
+ 530 01a6 00C0      		rjmp .L21
+ 531               	.L27:
  272:usitwislave.c **** 		}
  273:usitwislave.c **** 
  274:usitwislave.c **** 		// ack/nack from master received
@@ -637,19 +641,19 @@
  276:usitwislave.c **** 		case(of_state_check_ack):
  277:usitwislave.c **** 		{
  278:usitwislave.c **** 			if(data)	// if NACK, the master does not want more data
- 524               	.LM57:
- 525 01aa 9923      		tst r25
- 526 01ac 01F0      		breq .L25
+ 533               	.LM60:
+ 534 01a8 9923      		tst r25
+ 535 01aa 01F0      		breq .L25
  279:usitwislave.c **** 			{
  280:usitwislave.c **** 				of_state = of_state_check_address;
- 528               	.LM58:
- 529 01ae 1092 0000 		sts of_state,__zero_reg__
+ 537               	.LM61:
+ 538 01ac 1092 0000 		sts of_state,__zero_reg__
  281:usitwislave.c **** 				set_counter = 0x00;
  282:usitwislave.c **** 				twi_reset();
- 531               	.LM59:
- 532 01b2 00D0      		rcall twi_reset
- 533 01b4 00C0      		rjmp .L46
- 534               	.L26:
+ 540               	.LM62:
+ 541 01b0 00D0      		rcall twi_reset
+ 542 01b2 00C0      		rjmp .L35
+ 543               	.L26:
  283:usitwislave.c **** 			}
  284:usitwislave.c **** 			else
  285:usitwislave.c **** 			{
@@ -665,20 +669,20 @@
  295:usitwislave.c **** 		case(of_state_receive_data):
  296:usitwislave.c **** 		{
  297:usitwislave.c **** 			ss_state = ss_state_data_processed;
- 536               	.LM60:
- 537 01b6 8093 0000 		sts ss_state,r24
+ 545               	.LM63:
+ 546 01b4 8093 0000 		sts ss_state,r24
  298:usitwislave.c **** 
  299:usitwislave.c **** 			of_state = of_state_store_data_and_send_ack;
- 539               	.LM61:
- 540 01ba 85E0      		ldi r24,lo8(5)
- 541 01bc 8093 0000 		sts of_state,r24
+ 548               	.LM64:
+ 549 01b8 85E0      		ldi r24,lo8(5)
+ 550 01ba 8093 0000 		sts of_state,r24
  300:usitwislave.c **** 
  301:usitwislave.c **** 			set_counter = 0x00;					// receive 1 bit (2 edges)
  302:usitwislave.c **** 			set_sda_to_input();					// initiate receive data
- 543               	.LM62:
- 544 01c0 00D0      		rcall set_sda_to_input
- 545 01c2 00C0      		rjmp .L46
- 546               	.L28:
+ 552               	.LM65:
+ 553 01be 00D0      		rcall set_sda_to_input
+ 554 01c0 00C0      		rjmp .L35
+ 555               	.L28:
  303:usitwislave.c **** 
  304:usitwislave.c **** 			break;
  305:usitwislave.c **** 		}
@@ -688,327 +692,326 @@
  309:usitwislave.c **** 		case(of_state_store_data_and_send_ack):
  310:usitwislave.c **** 		{
  311:usitwislave.c **** 			of_state = of_state_receive_data;
- 548               	.LM63:
- 549 01c4 84E0      		ldi r24,lo8(4)
- 550 01c6 8093 0000 		sts of_state,r24
+ 557               	.LM66:
+ 558 01c2 84E0      		ldi r24,lo8(4)
+ 559 01c4 8093 0000 		sts of_state,r24
  312:usitwislave.c **** 
  313:usitwislave.c **** 			if(input_buffer_length < (USI_TWI_BUFFER_SIZE - 1))
- 552               	.LM64:
- 553 01ca E091 0000 		lds r30,input_buffer_length
- 554 01ce EF31      		cpi r30,lo8(31)
- 555 01d0 00F4      		brsh .L35
+ 561               	.LM67:
+ 562 01c8 E091 0000 		lds r30,input_buffer_length
+ 563 01cc EF31      		cpi r30,lo8(31)
+ 564 01ce 00F0      		brlo .+2
+ 565 01d0 00C0      		rjmp .L47
  314:usitwislave.c **** 				input_buffer[input_buffer_length++] = data;
- 557               	.LM65:
- 558 01d2 81E0      		ldi r24,lo8(1)
- 559 01d4 8E0F      		add r24,r30
- 560 01d6 8093 0000 		sts input_buffer_length,r24
- 561 01da F0E0      		ldi r31,0
- 562 01dc E050      		subi r30,lo8(-(input_buffer))
- 563 01de F040      		sbci r31,hi8(-(input_buffer))
- 564 01e0 9083      		st Z,r25
- 565               	.L35:
+ 567               	.LM68:
+ 568 01d2 81E0      		ldi r24,lo8(1)
+ 569 01d4 8E0F      		add r24,r30
+ 570 01d6 8093 0000 		sts input_buffer_length,r24
+ 571 01da F0E0      		ldi r31,0
+ 572 01dc E050      		subi r30,lo8(-(input_buffer))
+ 573 01de F040      		sbci r31,hi8(-(input_buffer))
+ 574 01e0 9083      		st Z,r25
+ 575 01e2 00C0      		rjmp .L47
+ 576               	.L35:
+ 198:usitwislave.c **** 
+ 578               	.LM69:
+ 579 01e4 80E0      		ldi r24,0
+ 580               	.L21:
  315:usitwislave.c **** 
  316:usitwislave.c **** 			USIDR		= 0x00;
- 567               	.LM66:
- 568 01e2 1FB8      		out 0xf,__zero_reg__
  317:usitwislave.c **** 			set_counter = 0x0e;					// send 1 bit (2 edges)
  318:usitwislave.c **** 			set_sda_to_output();				// initiate send ack
- 570               	.LM67:
- 571 01e4 00D0      		rcall set_sda_to_output
- 572               	.L47:
- 317:usitwislave.c **** 			set_counter = 0x0e;					// send 1 bit (2 edges)
- 574               	.LM68:
- 575 01e6 8EE0      		ldi r24,lo8(14)
- 576               	.L29:
  319:usitwislave.c **** 
  320:usitwislave.c **** 			break;
  321:usitwislave.c **** 		}
  322:usitwislave.c **** 	}
  323:usitwislave.c **** 
  324:usitwislave.c **** 	USISR =
- 578               	.LM69:
- 579 01e8 8065      		ori r24,lo8(80)
- 580 01ea 8EB9      		out 0xe,r24
- 581               	/* epilogue start */
  325:usitwislave.c **** 		(0				<< USISIF)	|		// don't clear start condition flag
  326:usitwislave.c **** 		(1				<< USIOIF)	|		// clear overflow condition flag
  327:usitwislave.c **** 		(0				<< USIPF)	|		// don't clear stop condition flag
  328:usitwislave.c **** 		(1				<< USIDC)	|		// clear arbitration error flag
+ 582               	.LM70:
+ 583 01e6 8065      		ori r24,lo8(80)
+ 324:usitwislave.c **** 		(0				<< USISIF)	|		// don't clear start condition flag
+ 585               	.LM71:
+ 586 01e8 8EB9      		out 0xe,r24
+ 587               	/* epilogue start */
  329:usitwislave.c **** 		(set_counter	<< USICNT0);		// set counter to 8 or 1 bits
  330:usitwislave.c **** }
- 583               	.LM70:
- 584 01ec FF91      		pop r31
- 585 01ee EF91      		pop r30
- 586 01f0 BF91      		pop r27
- 587 01f2 AF91      		pop r26
- 588 01f4 9F91      		pop r25
- 589 01f6 8F91      		pop r24
- 590 01f8 7F91      		pop r23
- 591 01fa 6F91      		pop r22
- 592 01fc 5F91      		pop r21
- 593 01fe 4F91      		pop r20
- 594 0200 3F91      		pop r19
- 595 0202 2F91      		pop r18
- 596 0204 0F90      		pop r0
- 597 0206 0FBE      		out __SREG__,r0
- 598 0208 0F90      		pop r0
- 599 020a 1F90      		pop r1
- 600 020c 1895      		reti
- 606               	.Lscope5:
- 608               		.stabd	78,0,0
- 614               	.global	usi_twi_slave
- 616               	usi_twi_slave:
- 617               		.stabd	46,0,0
+ 589               	.LM72:
+ 590 01ea FF91      		pop r31
+ 591 01ec EF91      		pop r30
+ 592 01ee BF91      		pop r27
+ 593 01f0 AF91      		pop r26
+ 594 01f2 9F91      		pop r25
+ 595 01f4 8F91      		pop r24
+ 596 01f6 7F91      		pop r23
+ 597 01f8 6F91      		pop r22
+ 598 01fa 5F91      		pop r21
+ 599 01fc 4F91      		pop r20
+ 600 01fe 3F91      		pop r19
+ 601 0200 2F91      		pop r18
+ 602 0202 0F90      		pop r0
+ 603 0204 0FBE      		out __SREG__,r0
+ 604 0206 0F90      		pop r0
+ 605 0208 1F90      		pop r1
+ 606 020a 1895      		reti
+ 612               	.Lscope5:
+ 614               		.stabd	78,0,0
+ 620               	.global	usi_twi_slave
+ 622               	usi_twi_slave:
+ 623               		.stabd	46,0,0
  331:usitwislave.c **** 
  332:usitwislave.c **** void usi_twi_slave(uint8_t slave_address_in, uint8_t use_sleep,
  333:usitwislave.c **** 			void (*data_callback_in)(volatile uint8_t *input_buffer_length, volatile const uint8_t *input_bu
  334:usitwislave.c **** 			volatile uint8_t *output_buffer_length, volatile uint8_t *output_buffer),
  335:usitwislave.c **** 			void (*idle_callback_in)(void))
  336:usitwislave.c **** {
- 619               	.LM71:
- 620               	.LFBB6:
- 621               	/* prologue: function */
- 622               	/* frame size = 0 */
- 623               	/* stack size = 0 */
- 624               	.L__stack_usage = 0
- 625 020e C62F      		mov r28,r22
+ 625               	.LM73:
+ 626               	.LFBB6:
+ 627               	/* prologue: function */
+ 628               	/* frame size = 0 */
+ 629               	/* stack size = 0 */
+ 630               	.L__stack_usage = 0
+ 631 020c C62F      		mov r28,r22
  337:usitwislave.c **** 	uint8_t	call_datacallback = 0;
  338:usitwislave.c **** 
  339:usitwislave.c **** 	slave_address			= slave_address_in;
- 627               	.LM72:
- 628 0210 8093 0000 		sts slave_address,r24
+ 633               	.LM74:
+ 634 020e 8093 0000 		sts slave_address,r24
  340:usitwislave.c **** 	data_callback			= data_callback_in;
- 630               	.LM73:
- 631 0214 5093 0000 		sts data_callback+1,r21
- 632 0218 4093 0000 		sts data_callback,r20
+ 636               	.LM75:
+ 637 0212 5093 0000 		sts data_callback+1,r21
+ 638 0216 4093 0000 		sts data_callback,r20
  341:usitwislave.c **** 	idle_callback			= idle_callback_in;
- 634               	.LM74:
- 635 021c 3093 0000 		sts idle_callback+1,r19
- 636 0220 2093 0000 		sts idle_callback,r18
+ 640               	.LM76:
+ 641 021a 3093 0000 		sts idle_callback+1,r19
+ 642 021e 2093 0000 		sts idle_callback,r18
  342:usitwislave.c **** 
  343:usitwislave.c **** 	input_buffer_length		= 0;
- 638               	.LM75:
- 639 0224 1092 0000 		sts input_buffer_length,__zero_reg__
- 344:usitwislave.c **** 	output_buffer_length	= 0;
- 641               	.LM76:
- 642 0228 1092 0000 		sts output_buffer_length,__zero_reg__
- 345:usitwislave.c **** 	output_buffer_current	= 0;
  644               	.LM77:
- 645 022c 1092 0000 		sts output_buffer_current,__zero_reg__
- 346:usitwislave.c **** 	ss_state				= ss_state_before_start;
+ 645 0222 1092 0000 		sts input_buffer_length,__zero_reg__
+ 344:usitwislave.c **** 	output_buffer_length	= 0;
  647               	.LM78:
- 648 0230 1092 0000 		sts ss_state,__zero_reg__
+ 648 0226 1092 0000 		sts output_buffer_length,__zero_reg__
+ 345:usitwislave.c **** 	output_buffer_current	= 0;
+ 650               	.LM79:
+ 651 022a 1092 0000 		sts output_buffer_current,__zero_reg__
+ 346:usitwislave.c **** 	ss_state				= ss_state_before_start;
+ 653               	.LM80:
+ 654 022e 1092 0000 		sts ss_state,__zero_reg__
  347:usitwislave.c **** 
  348:usitwislave.c **** 	if(use_sleep)
- 650               	.LM79:
- 651 0234 6623      		tst r22
- 652 0236 01F0      		breq .L49
+ 656               	.LM81:
+ 657 0232 6623      		tst r22
+ 658 0234 01F0      		breq .L49
  349:usitwislave.c **** 		set_sleep_mode(SLEEP_MODE_IDLE);
- 654               	.LM80:
- 655 0238 85B7      		in r24,0x35
- 656 023a 877E      		andi r24,lo8(-25)
- 657 023c 85BF      		out 0x35,r24
- 658               	.L49:
- 659               	.LBB42:
- 660               	.LBB43:
+ 660               	.LM82:
+ 661 0236 85B7      		in r24,0x35
+ 662 0238 877E      		andi r24,lo8(-25)
+ 663 023a 85BF      		out 0x35,r24
+ 664               	.L49:
+ 665               	.LBB42:
+ 666               	.LBB43:
  138:usitwislave.c **** }
- 662               	.LM81:
- 663 023e 00D0      		rcall twi_reset
- 664               	.LBE43:
- 665               	.LBE42:
+ 668               	.LM83:
+ 669 023c 00D0      		rcall twi_reset
+ 670               	.LBE43:
+ 671               	.LBE42:
  350:usitwislave.c **** 
  351:usitwislave.c **** 	twi_init();
  352:usitwislave.c **** 
  353:usitwislave.c **** 	sei();
- 667               	.LM82:
- 668               	/* #APP */
- 669               	 ;  353 "usitwislave.c" 1
- 670 0240 7894      		sei
- 671               	 ;  0 "" 2
- 672               	/* #NOAPP */
- 673               	.L54:
+ 673               	.LM84:
+ 674               	/* #APP */
+ 675               	 ;  353 "usitwislave.c" 1
+ 676 023e 7894      		sei
+ 677               	 ;  0 "" 2
+ 678               	/* #NOAPP */
+ 679               	.L54:
  354:usitwislave.c **** 	for(;;)
  355:usitwislave.c **** 	{
  356:usitwislave.c **** 		if(idle_callback)
- 675               	.LM83:
- 676 0242 E091 0000 		lds r30,idle_callback
- 677 0246 F091 0000 		lds r31,idle_callback+1
- 678 024a 3097      		sbiw r30,0
- 679 024c 01F0      		breq .L51
+ 681               	.LM85:
+ 682 0240 E091 0000 		lds r30,idle_callback
+ 683 0244 F091 0000 		lds r31,idle_callback+1
+ 684 0248 3097      		sbiw r30,0
+ 685 024a 01F0      		breq .L51
  357:usitwislave.c **** 		{
  358:usitwislave.c **** 
  359:usitwislave.c **** 			idle_callback();
- 681               	.LM84:
- 682 024e 0995      		icall
+ 687               	.LM86:
+ 688 024c 0995      		icall
  360:usitwislave.c **** 
  361:usitwislave.c **** 			if(stats_enabled)
- 684               	.LM85:
- 685 0250 8091 0000 		lds r24,stats_enabled
- 686 0254 8823      		tst r24
- 687 0256 01F0      		breq .L51
+ 690               	.LM87:
+ 691 024e 8091 0000 		lds r24,stats_enabled
+ 692 0252 8823      		tst r24
+ 693 0254 01F0      		breq .L51
  362:usitwislave.c **** 				idle_call_count++;
- 689               	.LM86:
- 690 0258 8091 0000 		lds r24,idle_call_count
- 691 025c 9091 0000 		lds r25,idle_call_count+1
- 692 0260 0196      		adiw r24,1
- 693 0262 9093 0000 		sts idle_call_count+1,r25
- 694 0266 8093 0000 		sts idle_call_count,r24
- 695               	.L51:
+ 695               	.LM88:
+ 696 0256 8091 0000 		lds r24,idle_call_count
+ 697 025a 9091 0000 		lds r25,idle_call_count+1
+ 698 025e 0196      		adiw r24,1
+ 699 0260 9093 0000 		sts idle_call_count+1,r25
+ 700 0264 8093 0000 		sts idle_call_count,r24
+ 701               	.L51:
  363:usitwislave.c **** 		}
  364:usitwislave.c **** 
  365:usitwislave.c **** 		if(use_sleep && (ss_state == ss_state_before_start))
- 697               	.LM87:
- 698 026a CC23      		tst r28
- 699 026c 01F0      		breq .L53
- 701               	.LM88:
- 702 026e 8091 0000 		lds r24,ss_state
- 703 0272 8111      		cpse r24,__zero_reg__
- 704 0274 00C0      		rjmp .L53
+ 703               	.LM89:
+ 704 0268 CC23      		tst r28
+ 705 026a 01F0      		breq .L53
+ 707               	.LM90:
+ 708 026c 8091 0000 		lds r24,ss_state
+ 709 0270 8111      		cpse r24,__zero_reg__
+ 710 0272 00C0      		rjmp .L53
  366:usitwislave.c **** 			sleep_mode();
- 706               	.LM89:
- 707 0276 85B7      		in r24,0x35
- 708 0278 8062      		ori r24,lo8(32)
- 709 027a 85BF      		out 0x35,r24
- 710               	/* #APP */
- 711               	 ;  366 "usitwislave.c" 1
- 712 027c 8895      		sleep
- 713               		
- 714               	 ;  0 "" 2
- 715               	/* #NOAPP */
- 716 027e 85B7      		in r24,0x35
- 717 0280 8F7D      		andi r24,lo8(-33)
- 718 0282 85BF      		out 0x35,r24
- 719               	.L53:
+ 712               	.LM91:
+ 713 0274 85B7      		in r24,0x35
+ 714 0276 8062      		ori r24,lo8(32)
+ 715 0278 85BF      		out 0x35,r24
+ 716               	/* #APP */
+ 717               	 ;  366 "usitwislave.c" 1
+ 718 027a 8895      		sleep
+ 719               		
+ 720               	 ;  0 "" 2
+ 721               	/* #NOAPP */
+ 722 027c 85B7      		in r24,0x35
+ 723 027e 8F7D      		andi r24,lo8(-33)
+ 724 0280 85BF      		out 0x35,r24
+ 725               	.L53:
  367:usitwislave.c **** 
  368:usitwislave.c **** 		if(USISR & _BV(USIPF))
- 721               	.LM90:
- 722 0284 759B      		sbis 0xe,5
- 723 0286 00C0      		rjmp .L54
+ 727               	.LM92:
+ 728 0282 759B      		sbis 0xe,5
+ 729 0284 00C0      		rjmp .L54
  369:usitwislave.c **** 		{
  370:usitwislave.c **** 			cli();
- 725               	.LM91:
- 726               	/* #APP */
- 727               	 ;  370 "usitwislave.c" 1
- 728 0288 F894      		cli
- 729               	 ;  0 "" 2
+ 731               	.LM93:
+ 732               	/* #APP */
+ 733               	 ;  370 "usitwislave.c" 1
+ 734 0286 F894      		cli
+ 735               	 ;  0 "" 2
  371:usitwislave.c **** 
  372:usitwislave.c **** 			if(stats_enabled)
- 731               	.LM92:
- 732               	/* #NOAPP */
- 733 028a 8091 0000 		lds r24,stats_enabled
- 734 028e 8823      		tst r24
- 735 0290 01F0      		breq .L55
+ 737               	.LM94:
+ 738               	/* #NOAPP */
+ 739 0288 8091 0000 		lds r24,stats_enabled
+ 740 028c 8823      		tst r24
+ 741 028e 01F0      		breq .L55
  373:usitwislave.c **** 				stop_conditions_count++;
- 737               	.LM93:
- 738 0292 8091 0000 		lds r24,stop_conditions_count
- 739 0296 9091 0000 		lds r25,stop_conditions_count+1
- 740 029a 0196      		adiw r24,1
- 741 029c 9093 0000 		sts stop_conditions_count+1,r25
- 742 02a0 8093 0000 		sts stop_conditions_count,r24
- 743               	.L55:
+ 743               	.LM95:
+ 744 0290 8091 0000 		lds r24,stop_conditions_count
+ 745 0294 9091 0000 		lds r25,stop_conditions_count+1
+ 746 0298 0196      		adiw r24,1
+ 747 029a 9093 0000 		sts stop_conditions_count+1,r25
+ 748 029e 8093 0000 		sts stop_conditions_count,r24
+ 749               	.L55:
  374:usitwislave.c **** 
  375:usitwislave.c **** 			USISR |= _BV(USIPF);	// clear stop condition flag
- 745               	.LM94:
- 746 02a4 759A      		sbi 0xe,5
+ 751               	.LM96:
+ 752 02a2 759A      		sbi 0xe,5
  376:usitwislave.c **** 
  377:usitwislave.c **** 			switch(ss_state)
- 748               	.LM95:
- 749 02a6 8091 0000 		lds r24,ss_state
- 750 02aa 8130      		cpi r24,lo8(1)
- 751 02ac 01F0      		breq .L57
- 752 02ae 8430      		cpi r24,lo8(4)
- 753 02b0 01F0      		breq .L58
- 754 02b2 00C0      		rjmp .L79
- 755               	.L57:
+ 754               	.LM97:
+ 755 02a4 8091 0000 		lds r24,ss_state
+ 756 02a8 8130      		cpi r24,lo8(1)
+ 757 02aa 01F0      		breq .L57
+ 758 02ac 8430      		cpi r24,lo8(4)
+ 759 02ae 01F0      		breq .L58
+ 760 02b0 00C0      		rjmp .L79
+ 761               	.L57:
  378:usitwislave.c **** 			{
  379:usitwislave.c **** 				case(ss_state_after_start):
  380:usitwislave.c **** 				{
  381:usitwislave.c **** 					twi_reset();
- 757               	.LM96:
- 758 02b4 00D0      		rcall twi_reset
- 759 02b6 00C0      		rjmp .L79
- 760               	.L58:
+ 763               	.LM98:
+ 764 02b2 00D0      		rcall twi_reset
+ 765 02b4 00C0      		rjmp .L79
+ 766               	.L58:
  382:usitwislave.c **** 					break;
  383:usitwislave.c **** 				}
  384:usitwislave.c **** 
  385:usitwislave.c **** 				case(ss_state_data_processed):
  386:usitwislave.c **** 				{
  387:usitwislave.c **** 					if(stats_enabled)
- 762               	.LM97:
- 763 02b8 8091 0000 		lds r24,stats_enabled
- 764 02bc 8823      		tst r24
- 765 02be 01F0      		breq .L62
+ 768               	.LM99:
+ 769 02b6 8091 0000 		lds r24,stats_enabled
+ 770 02ba 8823      		tst r24
+ 771 02bc 01F0      		breq .L62
  388:usitwislave.c **** 						local_frames_count++;
- 767               	.LM98:
- 768 02c0 8091 0000 		lds r24,local_frames_count
- 769 02c4 9091 0000 		lds r25,local_frames_count+1
- 770 02c8 0196      		adiw r24,1
- 771 02ca 9093 0000 		sts local_frames_count+1,r25
- 772 02ce 8093 0000 		sts local_frames_count,r24
- 773 02d2 00C0      		rjmp .L62
- 774               	.L79:
+ 773               	.LM100:
+ 774 02be 8091 0000 		lds r24,local_frames_count
+ 775 02c2 9091 0000 		lds r25,local_frames_count+1
+ 776 02c6 0196      		adiw r24,1
+ 777 02c8 9093 0000 		sts local_frames_count+1,r25
+ 778 02cc 8093 0000 		sts local_frames_count,r24
+ 779 02d0 00C0      		rjmp .L62
+ 780               	.L79:
  377:usitwislave.c **** 			{
- 776               	.LM99:
- 777 02d4 80E0      		ldi r24,0
- 778 02d6 00C0      		rjmp .L56
- 779               	.L62:
+ 782               	.LM101:
+ 783 02d2 80E0      		ldi r24,0
+ 784 02d4 00C0      		rjmp .L56
+ 785               	.L62:
  389:usitwislave.c **** 
  390:usitwislave.c **** 					call_datacallback = 1;
- 781               	.LM100:
- 782 02d8 81E0      		ldi r24,lo8(1)
- 783               	.L56:
+ 787               	.LM102:
+ 788 02d6 81E0      		ldi r24,lo8(1)
+ 789               	.L56:
  391:usitwislave.c **** 
  392:usitwislave.c **** 					break;
  393:usitwislave.c **** 				}
  394:usitwislave.c **** 			}
  395:usitwislave.c **** 
  396:usitwislave.c **** 			ss_state = ss_state_before_start;
- 785               	.LM101:
- 786 02da 1092 0000 		sts ss_state,__zero_reg__
+ 791               	.LM103:
+ 792 02d8 1092 0000 		sts ss_state,__zero_reg__
  397:usitwislave.c **** 
  398:usitwislave.c **** 			sei();
- 788               	.LM102:
- 789               	/* #APP */
- 790               	 ;  398 "usitwislave.c" 1
- 791 02de 7894      		sei
- 792               	 ;  0 "" 2
+ 794               	.LM104:
+ 795               	/* #APP */
+ 796               	 ;  398 "usitwislave.c" 1
+ 797 02dc 7894      		sei
+ 798               	 ;  0 "" 2
  399:usitwislave.c **** 		}
  400:usitwislave.c **** 
  401:usitwislave.c **** 		if(call_datacallback)
- 794               	.LM103:
- 795               	/* #NOAPP */
- 796 02e0 8823      		tst r24
- 797 02e2 01F4      		brne .+2
- 798 02e4 00C0      		rjmp .L54
+ 800               	.LM105:
+ 801               	/* #NOAPP */
+ 802 02de 8823      		tst r24
+ 803 02e0 01F4      		brne .+2
+ 804 02e2 00C0      		rjmp .L54
  402:usitwislave.c **** 		{
  403:usitwislave.c **** 			output_buffer_length	= 0;
- 800               	.LM104:
- 801 02e6 1092 0000 		sts output_buffer_length,__zero_reg__
- 404:usitwislave.c **** 			output_buffer_current	= 0;
- 803               	.LM105:
- 804 02ea 1092 0000 		sts output_buffer_current,__zero_reg__
- 405:usitwislave.c **** 			data_callback(&input_buffer_length, &input_buffer, &output_buffer_length, &output_buffer);
  806               	.LM106:
- 807 02ee E091 0000 		lds r30,data_callback
- 808 02f2 F091 0000 		lds r31,data_callback+1
- 809 02f6 20E0      		ldi r18,lo8(output_buffer)
- 810 02f8 30E0      		ldi r19,hi8(output_buffer)
- 811 02fa 40E0      		ldi r20,lo8(output_buffer_length)
- 812 02fc 50E0      		ldi r21,hi8(output_buffer_length)
- 813 02fe 60E0      		ldi r22,lo8(input_buffer)
- 814 0300 70E0      		ldi r23,hi8(input_buffer)
- 815 0302 80E0      		ldi r24,lo8(input_buffer_length)
- 816 0304 90E0      		ldi r25,hi8(input_buffer_length)
- 817 0306 0995      		icall
+ 807 02e4 1092 0000 		sts output_buffer_length,__zero_reg__
+ 404:usitwislave.c **** 			output_buffer_current	= 0;
+ 809               	.LM107:
+ 810 02e8 1092 0000 		sts output_buffer_current,__zero_reg__
+ 405:usitwislave.c **** 			data_callback(&input_buffer_length, &input_buffer, &output_buffer_length, &output_buffer);
+ 812               	.LM108:
+ 813 02ec E091 0000 		lds r30,data_callback
+ 814 02f0 F091 0000 		lds r31,data_callback+1
+ 815 02f4 20E0      		ldi r18,lo8(output_buffer)
+ 816 02f6 30E0      		ldi r19,hi8(output_buffer)
+ 817 02f8 40E0      		ldi r20,lo8(output_buffer_length)
+ 818 02fa 50E0      		ldi r21,hi8(output_buffer_length)
+ 819 02fc 60E0      		ldi r22,lo8(input_buffer)
+ 820 02fe 70E0      		ldi r23,hi8(input_buffer)
+ 821 0300 80E0      		ldi r24,lo8(input_buffer_length)
+ 822 0302 90E0      		ldi r25,hi8(input_buffer_length)
+ 823 0304 0995      		icall
  406:usitwislave.c **** 			input_buffer_length		= 0;
- 819               	.LM107:
- 820 0308 1092 0000 		sts input_buffer_length,__zero_reg__
- 821 030c 00C0      		rjmp .L54
- 826               	.Lscope6:
- 828               		.stabd	78,0,0
- 831               	.global	usi_twi_enable_stats
- 833               	usi_twi_enable_stats:
- 834               		.stabd	46,0,0
+ 825               	.LM109:
+ 826 0306 1092 0000 		sts input_buffer_length,__zero_reg__
+ 827 030a 00C0      		rjmp .L54
+ 832               	.Lscope6:
+ 834               		.stabd	78,0,0
+ 837               	.global	usi_twi_enable_stats
+ 839               	usi_twi_enable_stats:
+ 840               		.stabd	46,0,0
  407:usitwislave.c **** 			call_datacallback		= 0;
  408:usitwislave.c **** 		}
  409:usitwislave.c **** 	}
@@ -1016,239 +1019,239 @@
  411:usitwislave.c **** 
  412:usitwislave.c **** void usi_twi_enable_stats(uint8_t onoff)
  413:usitwislave.c **** {
- 836               	.LM108:
- 837               	.LFBB7:
- 838               	/* prologue: function */
- 839               	/* frame size = 0 */
- 840               	/* stack size = 0 */
- 841               	.L__stack_usage = 0
+ 842               	.LM110:
+ 843               	.LFBB7:
+ 844               	/* prologue: function */
+ 845               	/* frame size = 0 */
+ 846               	/* stack size = 0 */
+ 847               	.L__stack_usage = 0
  414:usitwislave.c **** 	stats_enabled				= onoff;
- 843               	.LM109:
- 844 030e 8093 0000 		sts stats_enabled,r24
+ 849               	.LM111:
+ 850 030c 8093 0000 		sts stats_enabled,r24
  415:usitwislave.c **** 	start_conditions_count		= 0;
- 846               	.LM110:
- 847 0312 1092 0000 		sts start_conditions_count+1,__zero_reg__
- 848 0316 1092 0000 		sts start_conditions_count,__zero_reg__
+ 852               	.LM112:
+ 853 0310 1092 0000 		sts start_conditions_count+1,__zero_reg__
+ 854 0314 1092 0000 		sts start_conditions_count,__zero_reg__
  416:usitwislave.c **** 	stop_conditions_count		= 0;
- 850               	.LM111:
- 851 031a 1092 0000 		sts stop_conditions_count+1,__zero_reg__
- 852 031e 1092 0000 		sts stop_conditions_count,__zero_reg__
+ 856               	.LM113:
+ 857 0318 1092 0000 		sts stop_conditions_count+1,__zero_reg__
+ 858 031c 1092 0000 		sts stop_conditions_count,__zero_reg__
  417:usitwislave.c **** 	error_conditions_count		= 0;
- 854               	.LM112:
- 855 0322 1092 0000 		sts error_conditions_count+1,__zero_reg__
- 856 0326 1092 0000 		sts error_conditions_count,__zero_reg__
+ 860               	.LM114:
+ 861 0320 1092 0000 		sts error_conditions_count+1,__zero_reg__
+ 862 0324 1092 0000 		sts error_conditions_count,__zero_reg__
  418:usitwislave.c **** 	overflow_conditions_count	= 0;
- 858               	.LM113:
- 859 032a 1092 0000 		sts overflow_conditions_count+1,__zero_reg__
- 860 032e 1092 0000 		sts overflow_conditions_count,__zero_reg__
+ 864               	.LM115:
+ 865 0328 1092 0000 		sts overflow_conditions_count+1,__zero_reg__
+ 866 032c 1092 0000 		sts overflow_conditions_count,__zero_reg__
  419:usitwislave.c **** 	local_frames_count			= 0;
- 862               	.LM114:
- 863 0332 1092 0000 		sts local_frames_count+1,__zero_reg__
- 864 0336 1092 0000 		sts local_frames_count,__zero_reg__
+ 868               	.LM116:
+ 869 0330 1092 0000 		sts local_frames_count+1,__zero_reg__
+ 870 0334 1092 0000 		sts local_frames_count,__zero_reg__
  420:usitwislave.c **** 	idle_call_count				= 0;
- 866               	.LM115:
- 867 033a 1092 0000 		sts idle_call_count+1,__zero_reg__
- 868 033e 1092 0000 		sts idle_call_count,__zero_reg__
- 869 0342 0895      		ret
- 871               	.Lscope7:
- 873               		.stabd	78,0,0
- 875               	.global	usi_twi_stats_start_conditions
- 877               	usi_twi_stats_start_conditions:
- 878               		.stabd	46,0,0
+ 872               	.LM117:
+ 873 0338 1092 0000 		sts idle_call_count+1,__zero_reg__
+ 874 033c 1092 0000 		sts idle_call_count,__zero_reg__
+ 875 0340 0895      		ret
+ 877               	.Lscope7:
+ 879               		.stabd	78,0,0
+ 881               	.global	usi_twi_stats_start_conditions
+ 883               	usi_twi_stats_start_conditions:
+ 884               		.stabd	46,0,0
  421:usitwislave.c **** }
  422:usitwislave.c **** 
  423:usitwislave.c **** uint16_t usi_twi_stats_start_conditions(void)
  424:usitwislave.c **** {
- 880               	.LM116:
- 881               	.LFBB8:
- 882               	/* prologue: function */
- 883               	/* frame size = 0 */
- 884               	/* stack size = 0 */
- 885               	.L__stack_usage = 0
+ 886               	.LM118:
+ 887               	.LFBB8:
+ 888               	/* prologue: function */
+ 889               	/* frame size = 0 */
+ 890               	/* stack size = 0 */
+ 891               	.L__stack_usage = 0
  425:usitwislave.c **** 	return(start_conditions_count);
  426:usitwislave.c **** }
- 887               	.LM117:
- 888 0344 8091 0000 		lds r24,start_conditions_count
- 889 0348 9091 0000 		lds r25,start_conditions_count+1
- 890 034c 0895      		ret
- 892               	.Lscope8:
- 894               		.stabd	78,0,0
- 896               	.global	usi_twi_stats_stop_conditions
- 898               	usi_twi_stats_stop_conditions:
- 899               		.stabd	46,0,0
+ 893               	.LM119:
+ 894 0342 8091 0000 		lds r24,start_conditions_count
+ 895 0346 9091 0000 		lds r25,start_conditions_count+1
+ 896 034a 0895      		ret
+ 898               	.Lscope8:
+ 900               		.stabd	78,0,0
+ 902               	.global	usi_twi_stats_stop_conditions
+ 904               	usi_twi_stats_stop_conditions:
+ 905               		.stabd	46,0,0
  427:usitwislave.c **** 
  428:usitwislave.c **** uint16_t usi_twi_stats_stop_conditions(void)
  429:usitwislave.c **** {
- 901               	.LM118:
- 902               	.LFBB9:
- 903               	/* prologue: function */
- 904               	/* frame size = 0 */
- 905               	/* stack size = 0 */
- 906               	.L__stack_usage = 0
+ 907               	.LM120:
+ 908               	.LFBB9:
+ 909               	/* prologue: function */
+ 910               	/* frame size = 0 */
+ 911               	/* stack size = 0 */
+ 912               	.L__stack_usage = 0
  430:usitwislave.c **** 	return(stop_conditions_count);
  431:usitwislave.c **** }
- 908               	.LM119:
- 909 034e 8091 0000 		lds r24,stop_conditions_count
- 910 0352 9091 0000 		lds r25,stop_conditions_count+1
- 911 0356 0895      		ret
- 913               	.Lscope9:
- 915               		.stabd	78,0,0
- 917               	.global	usi_twi_stats_error_conditions
- 919               	usi_twi_stats_error_conditions:
- 920               		.stabd	46,0,0
+ 914               	.LM121:
+ 915 034c 8091 0000 		lds r24,stop_conditions_count
+ 916 0350 9091 0000 		lds r25,stop_conditions_count+1
+ 917 0354 0895      		ret
+ 919               	.Lscope9:
+ 921               		.stabd	78,0,0
+ 923               	.global	usi_twi_stats_error_conditions
+ 925               	usi_twi_stats_error_conditions:
+ 926               		.stabd	46,0,0
  432:usitwislave.c **** 
  433:usitwislave.c **** uint16_t usi_twi_stats_error_conditions(void)
  434:usitwislave.c **** {
- 922               	.LM120:
- 923               	.LFBB10:
- 924               	/* prologue: function */
- 925               	/* frame size = 0 */
- 926               	/* stack size = 0 */
- 927               	.L__stack_usage = 0
+ 928               	.LM122:
+ 929               	.LFBB10:
+ 930               	/* prologue: function */
+ 931               	/* frame size = 0 */
+ 932               	/* stack size = 0 */
+ 933               	.L__stack_usage = 0
  435:usitwislave.c **** 	return(error_conditions_count);
  436:usitwislave.c **** }
- 929               	.LM121:
- 930 0358 8091 0000 		lds r24,error_conditions_count
- 931 035c 9091 0000 		lds r25,error_conditions_count+1
- 932 0360 0895      		ret
- 934               	.Lscope10:
- 936               		.stabd	78,0,0
- 938               	.global	usi_twi_stats_overflow_conditions
- 940               	usi_twi_stats_overflow_conditions:
- 941               		.stabd	46,0,0
+ 935               	.LM123:
+ 936 0356 8091 0000 		lds r24,error_conditions_count
+ 937 035a 9091 0000 		lds r25,error_conditions_count+1
+ 938 035e 0895      		ret
+ 940               	.Lscope10:
+ 942               		.stabd	78,0,0
+ 944               	.global	usi_twi_stats_overflow_conditions
+ 946               	usi_twi_stats_overflow_conditions:
+ 947               		.stabd	46,0,0
  437:usitwislave.c **** 
  438:usitwislave.c **** uint16_t usi_twi_stats_overflow_conditions(void)
  439:usitwislave.c **** {
- 943               	.LM122:
- 944               	.LFBB11:
- 945               	/* prologue: function */
- 946               	/* frame size = 0 */
- 947               	/* stack size = 0 */
- 948               	.L__stack_usage = 0
+ 949               	.LM124:
+ 950               	.LFBB11:
+ 951               	/* prologue: function */
+ 952               	/* frame size = 0 */
+ 953               	/* stack size = 0 */
+ 954               	.L__stack_usage = 0
  440:usitwislave.c **** 	return(overflow_conditions_count);
  441:usitwislave.c **** }
- 950               	.LM123:
- 951 0362 8091 0000 		lds r24,overflow_conditions_count
- 952 0366 9091 0000 		lds r25,overflow_conditions_count+1
- 953 036a 0895      		ret
- 955               	.Lscope11:
- 957               		.stabd	78,0,0
- 959               	.global	usi_twi_stats_local_frames
- 961               	usi_twi_stats_local_frames:
- 962               		.stabd	46,0,0
+ 956               	.LM125:
+ 957 0360 8091 0000 		lds r24,overflow_conditions_count
+ 958 0364 9091 0000 		lds r25,overflow_conditions_count+1
+ 959 0368 0895      		ret
+ 961               	.Lscope11:
+ 963               		.stabd	78,0,0
+ 965               	.global	usi_twi_stats_local_frames
+ 967               	usi_twi_stats_local_frames:
+ 968               		.stabd	46,0,0
  442:usitwislave.c **** 
  443:usitwislave.c **** uint16_t usi_twi_stats_local_frames(void)
  444:usitwislave.c **** {
- 964               	.LM124:
- 965               	.LFBB12:
- 966               	/* prologue: function */
- 967               	/* frame size = 0 */
- 968               	/* stack size = 0 */
- 969               	.L__stack_usage = 0
+ 970               	.LM126:
+ 971               	.LFBB12:
+ 972               	/* prologue: function */
+ 973               	/* frame size = 0 */
+ 974               	/* stack size = 0 */
+ 975               	.L__stack_usage = 0
  445:usitwislave.c **** 	return(local_frames_count);
  446:usitwislave.c **** }
- 971               	.LM125:
- 972 036c 8091 0000 		lds r24,local_frames_count
- 973 0370 9091 0000 		lds r25,local_frames_count+1
- 974 0374 0895      		ret
- 976               	.Lscope12:
- 978               		.stabd	78,0,0
- 980               	.global	usi_twi_stats_idle_calls
- 982               	usi_twi_stats_idle_calls:
- 983               		.stabd	46,0,0
+ 977               	.LM127:
+ 978 036a 8091 0000 		lds r24,local_frames_count
+ 979 036e 9091 0000 		lds r25,local_frames_count+1
+ 980 0372 0895      		ret
+ 982               	.Lscope12:
+ 984               		.stabd	78,0,0
+ 986               	.global	usi_twi_stats_idle_calls
+ 988               	usi_twi_stats_idle_calls:
+ 989               		.stabd	46,0,0
  447:usitwislave.c **** 
  448:usitwislave.c **** uint16_t usi_twi_stats_idle_calls(void)
  449:usitwislave.c **** {
- 985               	.LM126:
- 986               	.LFBB13:
- 987               	/* prologue: function */
- 988               	/* frame size = 0 */
- 989               	/* stack size = 0 */
- 990               	.L__stack_usage = 0
+ 991               	.LM128:
+ 992               	.LFBB13:
+ 993               	/* prologue: function */
+ 994               	/* frame size = 0 */
+ 995               	/* stack size = 0 */
+ 996               	.L__stack_usage = 0
  450:usitwislave.c **** 	return(idle_call_count);
  451:usitwislave.c **** }
- 992               	.LM127:
- 993 0376 8091 0000 		lds r24,idle_call_count
- 994 037a 9091 0000 		lds r25,idle_call_count+1
- 995 037e 0895      		ret
- 997               	.Lscope13:
- 999               		.stabd	78,0,0
- 1000               		.local	idle_call_count
- 1001               		.comm	idle_call_count,2,1
- 1002               		.local	local_frames_count
- 1003               		.comm	local_frames_count,2,1
- 1004               		.local	overflow_conditions_count
- 1005               		.comm	overflow_conditions_count,2,1
- 1006               		.local	error_conditions_count
- 1007               		.comm	error_conditions_count,2,1
- 1008               		.local	stop_conditions_count
- 1009               		.comm	stop_conditions_count,2,1
- 1010               		.local	start_conditions_count
- 1011               		.comm	start_conditions_count,2,1
- 1012               		.local	stats_enabled
- 1013               		.comm	stats_enabled,1,1
- 1014               		.local	output_buffer_current
- 1015               		.comm	output_buffer_current,1,1
- 1016               		.local	output_buffer_length
- 1017               		.comm	output_buffer_length,1,1
- 1018               		.local	output_buffer
- 1019               		.comm	output_buffer,32,1
- 1020               		.local	input_buffer_length
- 1021               		.comm	input_buffer_length,1,1
- 1022               		.local	input_buffer
- 1023               		.comm	input_buffer,32,1
- 1024               		.local	slave_address
- 1025               		.comm	slave_address,1,1
- 1026               		.local	ss_state
- 1027               		.comm	ss_state,1,1
- 1028               		.local	of_state
- 1029               		.comm	of_state,1,1
- 1030               		.local	data_callback
- 1031               		.comm	data_callback,2,1
- 1032               		.local	idle_callback
- 1033               		.comm	idle_callback,2,1
- 1034               		.comm	startstop_state_t,1,1
- 1035               		.comm	overflow_state_t,1,1
- 1056               	.Letext0:
- 1057               		.ident	"GCC: (GNU) 4.9.2 20141224 (prerelease)"
- 1058               	.global __do_clear_bss
+ 998               	.LM129:
+ 999 0374 8091 0000 		lds r24,idle_call_count
+ 1000 0378 9091 0000 		lds r25,idle_call_count+1
+ 1001 037c 0895      		ret
+ 1003               	.Lscope13:
+ 1005               		.stabd	78,0,0
+ 1006               		.local	idle_call_count
+ 1007               		.comm	idle_call_count,2,1
+ 1008               		.local	local_frames_count
+ 1009               		.comm	local_frames_count,2,1
+ 1010               		.local	overflow_conditions_count
+ 1011               		.comm	overflow_conditions_count,2,1
+ 1012               		.local	error_conditions_count
+ 1013               		.comm	error_conditions_count,2,1
+ 1014               		.local	stop_conditions_count
+ 1015               		.comm	stop_conditions_count,2,1
+ 1016               		.local	start_conditions_count
+ 1017               		.comm	start_conditions_count,2,1
+ 1018               		.local	stats_enabled
+ 1019               		.comm	stats_enabled,1,1
+ 1020               		.local	output_buffer_current
+ 1021               		.comm	output_buffer_current,1,1
+ 1022               		.local	output_buffer_length
+ 1023               		.comm	output_buffer_length,1,1
+ 1024               		.local	output_buffer
+ 1025               		.comm	output_buffer,32,1
+ 1026               		.local	input_buffer_length
+ 1027               		.comm	input_buffer_length,1,1
+ 1028               		.local	input_buffer
+ 1029               		.comm	input_buffer,32,1
+ 1030               		.local	slave_address
+ 1031               		.comm	slave_address,1,1
+ 1032               		.local	ss_state
+ 1033               		.comm	ss_state,1,1
+ 1034               		.local	of_state
+ 1035               		.comm	of_state,1,1
+ 1036               		.local	data_callback
+ 1037               		.comm	data_callback,2,1
+ 1038               		.local	idle_callback
+ 1039               		.comm	idle_callback,2,1
+ 1040               		.comm	startstop_state_t,1,1
+ 1041               		.comm	overflow_state_t,1,1
+ 1062               	.Letext0:
+ 1063               		.ident	"GCC: (GNU) 5.2.0"
+ 1064               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usitwislave.c
-     /tmp/ccTFqpAo.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccTFqpAo.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccTFqpAo.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccTFqpAo.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccTFqpAo.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccTFqpAo.s:109    .text:0000000000000000 set_sda_to_input
-     /tmp/ccTFqpAo.s:128    .text:0000000000000004 set_sda_to_output
-     /tmp/ccTFqpAo.s:147    .text:0000000000000008 twi_reset
-     /tmp/ccTFqpAo.s:234    .text:0000000000000026 __vector_15
-     /tmp/ccTFqpAo.s:1011   .bss:000000000000000c stats_enabled
-     /tmp/ccTFqpAo.s:1005   .bss:0000000000000006 error_conditions_count
-     /tmp/ccTFqpAo.s:1009   .bss:000000000000000a start_conditions_count
-     /tmp/ccTFqpAo.s:1027   .bss:0000000000000052 of_state
-     /tmp/ccTFqpAo.s:1025   .bss:0000000000000051 ss_state
-     /tmp/ccTFqpAo.s:353    .text:00000000000000c6 __vector_16
-     /tmp/ccTFqpAo.s:1003   .bss:0000000000000004 overflow_conditions_count
-     /tmp/ccTFqpAo.s:1023   .bss:0000000000000050 slave_address
-     /tmp/ccTFqpAo.s:1013   .bss:000000000000000d output_buffer_current
-     /tmp/ccTFqpAo.s:1015   .bss:000000000000000e output_buffer_length
-     /tmp/ccTFqpAo.s:1017   .bss:000000000000000f output_buffer
-     /tmp/ccTFqpAo.s:1019   .bss:000000000000002f input_buffer_length
-     /tmp/ccTFqpAo.s:1021   .bss:0000000000000030 input_buffer
-     /tmp/ccTFqpAo.s:616    .text:000000000000020e usi_twi_slave
-     /tmp/ccTFqpAo.s:1029   .bss:0000000000000053 data_callback
-     /tmp/ccTFqpAo.s:1031   .bss:0000000000000055 idle_callback
+     /tmp/ccSnqoOf.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccSnqoOf.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccSnqoOf.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccSnqoOf.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccSnqoOf.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccSnqoOf.s:111    .text:0000000000000000 set_sda_to_input
+     /tmp/ccSnqoOf.s:130    .text:0000000000000004 set_sda_to_output
+     /tmp/ccSnqoOf.s:149    .text:0000000000000008 twi_reset
+     /tmp/ccSnqoOf.s:236    .text:0000000000000026 __vector_15
+     /tmp/ccSnqoOf.s:1017   .bss:000000000000000c stats_enabled
+     /tmp/ccSnqoOf.s:1011   .bss:0000000000000006 error_conditions_count
+     /tmp/ccSnqoOf.s:1015   .bss:000000000000000a start_conditions_count
+     /tmp/ccSnqoOf.s:1033   .bss:0000000000000052 of_state
+     /tmp/ccSnqoOf.s:1031   .bss:0000000000000051 ss_state
+     /tmp/ccSnqoOf.s:355    .text:00000000000000c6 __vector_16
+     /tmp/ccSnqoOf.s:1009   .bss:0000000000000004 overflow_conditions_count
+     /tmp/ccSnqoOf.s:1029   .bss:0000000000000050 slave_address
+     /tmp/ccSnqoOf.s:1019   .bss:000000000000000d output_buffer_current
+     /tmp/ccSnqoOf.s:1021   .bss:000000000000000e output_buffer_length
+     /tmp/ccSnqoOf.s:1023   .bss:000000000000000f output_buffer
+     /tmp/ccSnqoOf.s:1025   .bss:000000000000002f input_buffer_length
+     /tmp/ccSnqoOf.s:1027   .bss:0000000000000030 input_buffer
+     /tmp/ccSnqoOf.s:622    .text:000000000000020c usi_twi_slave
+     /tmp/ccSnqoOf.s:1035   .bss:0000000000000053 data_callback
+     /tmp/ccSnqoOf.s:1037   .bss:0000000000000055 idle_callback
                              .bss:0000000000000000 idle_call_count
-     /tmp/ccTFqpAo.s:1007   .bss:0000000000000008 stop_conditions_count
-     /tmp/ccTFqpAo.s:1001   .bss:0000000000000002 local_frames_count
-     /tmp/ccTFqpAo.s:833    .text:000000000000030e usi_twi_enable_stats
-     /tmp/ccTFqpAo.s:877    .text:0000000000000344 usi_twi_stats_start_conditions
-     /tmp/ccTFqpAo.s:898    .text:000000000000034e usi_twi_stats_stop_conditions
-     /tmp/ccTFqpAo.s:919    .text:0000000000000358 usi_twi_stats_error_conditions
-     /tmp/ccTFqpAo.s:940    .text:0000000000000362 usi_twi_stats_overflow_conditions
-     /tmp/ccTFqpAo.s:961    .text:000000000000036c usi_twi_stats_local_frames
-     /tmp/ccTFqpAo.s:982    .text:0000000000000376 usi_twi_stats_idle_calls
+     /tmp/ccSnqoOf.s:1013   .bss:0000000000000008 stop_conditions_count
+     /tmp/ccSnqoOf.s:1007   .bss:0000000000000002 local_frames_count
+     /tmp/ccSnqoOf.s:839    .text:000000000000030c usi_twi_enable_stats
+     /tmp/ccSnqoOf.s:883    .text:0000000000000342 usi_twi_stats_start_conditions
+     /tmp/ccSnqoOf.s:904    .text:000000000000034c usi_twi_stats_stop_conditions
+     /tmp/ccSnqoOf.s:925    .text:0000000000000356 usi_twi_stats_error_conditions
+     /tmp/ccSnqoOf.s:946    .text:0000000000000360 usi_twi_stats_overflow_conditions
+     /tmp/ccSnqoOf.s:967    .text:000000000000036a usi_twi_stats_local_frames
+     /tmp/ccSnqoOf.s:988    .text:0000000000000374 usi_twi_stats_idle_calls
                             *COM*:0000000000000001 startstop_state_t
                             *COM*:0000000000000001 overflow_state_t
 

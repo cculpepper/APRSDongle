@@ -127,8 +127,9 @@ int main(void)
 	/*PORTB |= (1<<i);        //Set PortD Pin0 high to turn on LED*/
 	/*PORTA |= (1<<i);        //Set PortD Pin0 high to turn on LED*/
 	/*}*/
-	DDRB |= (1<<2) | 1;
+	DDRB |= (1<<2) | (1<<1);
 	DDRA |= (1<<7);
+	PORTB |= (1<<1);
 	measCur();
 	measVin();	
 	// Set PTB0 to 0 to enable power save. 
@@ -156,6 +157,7 @@ int main(void)
 ISR (TIM1_COMPA_vect)      //Interrupt Service Routine
 {
 	PORTA ^= (1<<7);        //Use xor to toggle the LED
+	PORTB ^= (1<<2);        //Use xor to toggle the LED
 	measCur();
 	measVin();	
 }

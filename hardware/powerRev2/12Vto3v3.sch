@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:powerRev2-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -41,6 +42,8 @@ LIBS:Tag-Connect
 LIBS:mpcie
 LIBS:RF-Head2
 LIBS:ritli-rfhead
+LIBS:mos_n_numbered
+LIBS:npn-numbered
 LIBS:powerRev2-cache
 EELAYER 25 0
 EELAYER END
@@ -192,23 +195,11 @@ Connection ~ 6650 3150
 Wire Wire Line
 	6650 3700 6650 4150
 $Comp
-L MOS_N Q3
-U 1 1 561201E9
-P 6550 3500
-F 0 "Q3" H 6560 3670 60  0000 R CNN
-F 1 "MOS_N" H 6560 3350 60  0000 R CNN
-F 2 "Housings_SOT-23_SOT-143_TSOT-6:SOT-23" H 6550 3500 60  0001 C CNN
-F 3 "" H 6550 3500 60  0000 C CNN
-F 4 "2N7002P,215" H 6550 3500 60  0001 C CNN "Manufacturer PN"
-	1    6550 3500
-	1    0    0    -1  
-$EndComp
-$Comp
 L R R23
 U 1 1 561202C6
 P 6100 3800
 F 0 "R23" V 6180 3800 40  0000 C CNN
-F 1 "R" V 6107 3801 40  0000 C CNN
+F 1 "10K" V 6107 3801 40  0000 C CNN
 F 2 "Resistors_SMD:R_0402" V 6030 3800 30  0001 C CNN
 F 3 "" H 6100 3800 30  0000 C CNN
 	1    6100 3800
@@ -257,4 +248,16 @@ Wire Wire Line
 	4650 4150 4650 2300
 Connection ~ 4650 2300
 Connection ~ 6650 4150
+$Comp
+L MOS_N_numbered Q3
+U 1 1 562FE111
+P 6550 3500
+F 0 "Q3" H 6560 3670 60  0000 R CNN
+F 1 "MOS_N_numbered" H 6560 3350 60  0000 R CNN
+F 2 "Housings_SOT-23_SOT-143_TSOT-6:SOT-23" H 6550 3500 60  0001 C CNN
+F 3 "" H 6550 3500 60  0000 C CNN
+F 4 "DMG2302U" H 6550 3500 60  0001 C CNN "Manufacturer PN"
+	1    6550 3500
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

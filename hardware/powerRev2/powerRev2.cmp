@@ -1,17 +1,17 @@
-Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Tue 27 Oct 2015 00:06:40 EDT
+Cmp-Mod V01 Created by Cvpcb (after 2015-may-01 BZR unknown)-product   date = Mon 09 Nov 2015 09:42:57 EST
 
 BeginCmp
 TimeStamp = /56114AF5/5611543C;
 Reference = BT1;
 ValeurCmp = BATTERY;
-IdModule  = ;
+IdModule  = hardwareRev1:lifepo4-1004045-3C-folded;
 EndCmp
 
 BeginCmp
-TimeStamp = /56272392;
-Reference = C1;
-ValeurCmp = C;
-IdModule  = Capacitors_SMD:C_0402;
+TimeStamp = /56114AF5/5632D9D1;
+Reference = BT2;
+ValeurCmp = BATTERY;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
 EndCmp
 
 BeginCmp
@@ -246,9 +246,79 @@ IdModule  = hardwareRev1:1.27mmPitchHeader11X2;
 EndCmp
 
 BeginCmp
-TimeStamp = /5611F09A;
+TimeStamp = /56324297;
+Reference = P5;
+ValeurCmp = CONN_1;
+IdModule  = Wire_Pads:SolderWirePad_single_0-8mmDrill;
+EndCmp
+
+BeginCmp
+TimeStamp = /5632438C;
+Reference = P6;
+ValeurCmp = CONN_1;
+IdModule  = Wire_Pads:SolderWirePad_single_0-8mmDrill;
+EndCmp
+
+BeginCmp
+TimeStamp = /56326EC3;
+Reference = P7;
+ValeurCmp = CONN_1;
+IdModule  = Wire_Pads:SolderWirePad_single_0-8mmDrill;
+EndCmp
+
+BeginCmp
+TimeStamp = /56326EC9;
+Reference = P8;
+ValeurCmp = CONN_1;
+IdModule  = Wire_Pads:SolderWirePad_single_0-8mmDrill;
+EndCmp
+
+BeginCmp
+TimeStamp = /5640B5DF;
+Reference = P9;
+ValeurCmp = 12Vin2;
+IdModule  = ultrafit:ultraFitCONN_2;
+EndCmp
+
+BeginCmp
+TimeStamp = /5640CDA4;
+Reference = P10;
+ValeurCmp = 3v3Vout;
+IdModule  = ultrafit:ultraFitCONN_2;
+EndCmp
+
+BeginCmp
+TimeStamp = /56114AF5/5640F74A;
+Reference = P11;
+ValeurCmp = HOLE_1;
+IdModule  = Mounting_Holes:MountingHole_2-5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /56114AF5/5640F8B5;
+Reference = P12;
+ValeurCmp = HOLE_2;
+IdModule  = Mounting_Holes:MountingHole_2-5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /56114AF5/5640F8FF;
+Reference = P13;
+ValeurCmp = HOLE_3;
+IdModule  = Mounting_Holes:MountingHole_2-5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /56114AF5/5640F93F;
+Reference = P14;
+ValeurCmp = HOLE_4;
+IdModule  = Mounting_Holes:MountingHole_2-5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /562FF133;
 Reference = Q1;
-ValeurCmp = NPN;
+ValeurCmp = NPN-numbered;
 IdModule  = Housings_SOT-23_SOT-143_TSOT-6:SOT-23;
 EndCmp
 
@@ -260,9 +330,9 @@ IdModule  = hardwareRev1:DMP2018LFK-7;
 EndCmp
 
 BeginCmp
-TimeStamp = /5611FB98/561201E9;
+TimeStamp = /5611FB98/562FE111;
 Reference = Q3;
-ValeurCmp = MOS_N;
+ValeurCmp = MOS_N_numbered;
 IdModule  = Housings_SOT-23_SOT-143_TSOT-6:SOT-23;
 EndCmp
 
@@ -568,6 +638,20 @@ IdModule  = Resistors_SMD:R_0402;
 EndCmp
 
 BeginCmp
+TimeStamp = /56313889;
+Reference = R44;
+ValeurCmp = 2000;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = /563139B5;
+Reference = R45;
+ValeurCmp = 2000;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
 TimeStamp = /56270C33;
 Reference = TH1;
 ValeurCmp = THERMISTOR;
@@ -589,10 +673,10 @@ IdModule  = Housings_DFN_QFN:QFN-24-1EP_4x4mm_Pitch0.5mm;
 EndCmp
 
 BeginCmp
-TimeStamp = /561EB20E;
+TimeStamp = /563003D7;
 Reference = U2;
-ValeurCmp = NCP1117ST33T3G;
-IdModule  = SMD_Packages:SOT-223;
+ValeurCmp = TLV71209DBV;
+IdModule  = Housings_SOT-23_SOT-143_TSOT-6:SOT-23-5;
 EndCmp
 
 BeginCmp

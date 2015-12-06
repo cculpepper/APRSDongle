@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:powerRev2-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -41,6 +42,8 @@ LIBS:Tag-Connect
 LIBS:mpcie
 LIBS:RF-Head2
 LIBS:ritli-rfhead
+LIBS:mos_n_numbered
+LIBS:npn-numbered
 LIBS:powerRev2-cache
 EELAYER 25 0
 EELAYER END
@@ -155,7 +158,7 @@ U 1 1 5611543C
 P 9050 3850
 F 0 "BT1" H 9050 4050 50  0000 C CNN
 F 1 "BATTERY" H 9050 3660 50  0000 C CNN
-F 2 "" H 9050 3850 60  0001 C CNN
+F 2 "hardwareRev1:lifepo4-1004045-3C-folded" H 9050 3850 60  0001 C CNN
 F 3 "" H 9050 3850 60  0000 C CNN
 	1    9050 3850
 	0    1    1    0   
@@ -223,6 +226,7 @@ F 0 "TH2" V 6600 3850 50  0000 C CNN
 F 1 "THERMISTOR" V 6400 3800 50  0000 C CNN
 F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 6500 3800 60  0001 C CNN
 F 3 "" H 6500 3800 60  0000 C CNN
+F 4 "NTCLE100E3103JB0" H 6500 3800 60  0001 C CNN "Manufacturer PN"
 	1    6500 3800
 	1    0    0    -1  
 $EndComp
@@ -317,7 +321,7 @@ L R R29
 U 1 1 561165A5
 P 4550 3000
 F 0 "R29" V 4630 3000 40  0000 C CNN
-F 1 "50k" V 4557 3001 40  0000 C CNN
+F 1 "49.9K" V 4557 3001 40  0000 C CNN
 F 2 "Resistors_SMD:R_0402" V 4480 3000 30  0001 C CNN
 F 3 "" H 4550 3000 30  0000 C CNN
 	1    4550 3000
@@ -411,4 +415,69 @@ Connection ~ 3450 4100
 Wire Wire Line
 	5850 4100 5850 3650
 Connection ~ 5200 4100
+$Comp
+L BATTERY BT2
+U 1 1 5632D9D1
+P 9550 3850
+F 0 "BT2" H 9550 4050 50  0000 C CNN
+F 1 "BATTERY" H 9550 3660 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 9550 3850 60  0001 C CNN
+F 3 "" H 9550 3850 60  0000 C CNN
+	1    9550 3850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9550 3550 9550 3450
+Wire Wire Line
+	9550 3450 9050 3450
+Connection ~ 9050 3450
+Wire Wire Line
+	9550 4150 9550 4250
+Wire Wire Line
+	9550 4250 9050 4250
+Connection ~ 9050 4250
+$Comp
+L CONN_1 P11
+U 1 1 5640F74A
+P 7850 1200
+F 0 "P11" H 7930 1200 40  0000 L CNN
+F 1 "HOLE_1" H 7850 1255 30  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_2-5mm" H 7850 1200 60  0001 C CNN
+F 3 "" H 7850 1200 60  0000 C CNN
+	1    7850 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P12
+U 1 1 5640F8B5
+P 7850 1350
+F 0 "P12" H 7930 1350 40  0000 L CNN
+F 1 "HOLE_2" H 7850 1405 30  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_2-5mm" H 7850 1350 60  0001 C CNN
+F 3 "" H 7850 1350 60  0000 C CNN
+	1    7850 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P13
+U 1 1 5640F8FF
+P 7850 1500
+F 0 "P13" H 7930 1500 40  0000 L CNN
+F 1 "HOLE_3" H 7850 1555 30  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_2-5mm" H 7850 1500 60  0001 C CNN
+F 3 "" H 7850 1500 60  0000 C CNN
+	1    7850 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P14
+U 1 1 5640F93F
+P 7850 1650
+F 0 "P14" H 7930 1650 40  0000 L CNN
+F 1 "HOLE_4" H 7850 1705 30  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_2-5mm" H 7850 1650 60  0001 C CNN
+F 3 "" H 7850 1650 60  0000 C CNN
+	1    7850 1650
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
