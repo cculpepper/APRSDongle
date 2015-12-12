@@ -1,3 +1,4 @@
+         U ADCResultDirty
 1ffffe20 b __bss_end__
 1ffffe04 b __bss_start__
 1ffffe04 b completed.8358

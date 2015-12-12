@@ -107,6 +107,7 @@ extern "C" {
 #define MCG_MODE_LIRC_2M               2U
 #define MCG_MODE_EXT                   3U
 
+#define CLOCK_SETUP 			1
 /* Predefined clock setups
    0 ... Multipurpose Clock Generator Lite (MCG_Lite) in Low-frequency Internal Reference Clock 8 MHz (LIRC 8 MHz) mode
          Default part configuration.
