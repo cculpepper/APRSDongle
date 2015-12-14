@@ -13,18 +13,23 @@
 // I2C bus control functions
 //
 
-void i2c_init(I2C_Type *p)
+void i2c_init(void)
 {
     // Enable clocks
-    SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;      
+    SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;      
     SIM->SCGC4 |= SIM_SCGC4_I2C0_MASK;
     
     // Configure GPIO for I2C
-    PORTE->PCR[24] = PORT_PCR_MUX(5);
-    PORTE->PCR[25] = PORT_PCR_MUX(5);
+    PORTB->PCR[4] = PORT_PCR_MUX(2);
+    PORTB->PCR[3] = PORT_PCR_MUX(2);
+
+    I2C0->A1 = I2CADDRESS;
+
+    I2C0->C1  = I2C_C1_IICEN_MASK | I2C_C1_IICIE_MASK | I2C_C1_WUEN_MASK;
+
     
-    p->F  = 0x14;                   // Baudrate settings:  ICR=0x14, MULT=0
-    p->C1 = I2C_C1_IICEN_MASK;      // Enable:  IICEN=1
+/* We run off the system clock. Well divide down to get to 100 khz
+ * */ 
 }
 
 

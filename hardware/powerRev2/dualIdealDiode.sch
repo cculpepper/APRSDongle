@@ -39,7 +39,6 @@ LIBS:KL03-QFN24
 LIBS:ncp508
 LIBS:hardwareRev1-cache
 LIBS:Tag-Connect
-LIBS:mpcie
 LIBS:RF-Head2
 LIBS:ritli-rfhead
 LIBS:mos_n_numbered
@@ -363,4 +362,6 @@ Wire Wire Line
 Wire Wire Line
 	4900 3500 4900 3700
 Connection ~ 4900 3700
+Text Notes 1450 4350 0    60   ~ 0
+VOut = (Iout * 165) / 1000
 $EndSCHEMATC
