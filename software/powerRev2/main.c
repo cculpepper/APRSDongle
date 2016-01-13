@@ -14,25 +14,33 @@
  * limitations under the License.
  */
 #include "main.h"
-#include "MKL03Z4.h"
-#include "cw.h"
+#include "common.h"
+/*#include "cw.h"*/
+/*#include "uart.h"*/
 
 int main(void)
 {
+	int i;
     gpio_init();
 
     PTB->PSOR = (1U << 6U);
+    PTB->PSOR = (1U << 7U);
 
     while (1) {
+	for(i = 0;i<1000000;i++);
         PTB->PTOR = (1U << 6U);
-        delay(1000);
     }
 }
+
+
+
 
 void gpio_init(void)
 {
     SIM->SCGC5 = SIM_SCGC5_PORTB_MASK;
-    PORTB->PCR[6] = PORT_PCR_MUX(1U);
+    PORTB->PCR[6] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK;
+    PORTB->PCR[7] = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK;
     PTB->PDDR = (1U << 6U);
+    PTB->PDDR = (1U << 7U);
 }
 

@@ -41,6 +41,7 @@ volatile extern int ADCResultDirty;
 #define SCswitchI 	ADC_SC1_AIEN_MASK | ADC_SC1_ADCH(8)
 #define SCbatI 		ADC_SC1_AIEN_MASK | ADC_SC1_ADCH(9)
 #define SCinternT 	ADC_SC1_AIEN_MASK | ADC_SC1_ADCH(26)
+#define MULTSWITCHV 	
 
 #define resswitchV 	0
 #define resbatteryV 	1

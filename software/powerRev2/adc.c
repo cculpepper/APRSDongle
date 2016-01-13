@@ -13,8 +13,10 @@
 #include "adc.h"
 
 const uint8_t ADCSourceBytes[ADC_NUM_SOURCES] = {SCswitchV, SCbatteryV, SCmainI, SCexternT, SCinputV, SCswitchI, SCbatI, SCinternT};
+const float ADCConversionMult[ADC_NUM_SOURCES] ={};
 volatile int16_t ADCResults[ADC_NUM_SOURCES];
 volatile int ADCResultIndex;
+volatile int ADCResultDirty;
 void VREF_init(void){
 	SIM->SCGC4 |= SIM_SCGC4_VREF_MASK;
 	VREF->SC = VREF_SC_VREFEN_MASK | VREF_SC_REGEN_MASK | VREF_SC_MODE_LV(2);
@@ -84,8 +86,8 @@ void ADC0_IRQHandler(void) {
 		__enable_irq();
 		if (ADCResultIndex == ADC_NUM_SOURCES){
 			ADCResultIndex = 0;
-			ADC0_SC1A = ADC_SC1_ADCH(31);
 			// Disable the module. 
+			ADC0_SC1A = ADC_SC1_ADCH(31);
 			ADCResultDirty = 0;
 			// Let the thingy know that the results are good to go. 
 		}

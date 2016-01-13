@@ -115,11 +115,11 @@ __isr_vector:
     .weak    Reset_Handler
     .type    Reset_Handler, %function
 Reset_Handler:
+Reset_Handler:
     cpsid   i               /* Mask interrupts */
 #ifndef __NO_SYSTEM_INIT
     bl SystemInit
 #endif
-    bl init_data_bss
     cpsie   i               /* Unmask interrupts */
 #ifndef __START
 #define __START _start

@@ -16,7 +16,8 @@
 # limitations under the License.
 
 FOLDER_NAME = core
-LINKER_NAME = MKL03Z4
+LINKER_NAME = MKL03Z16xxx4_flash
+#LINKER_NAME = MKL03Z4
 CPU = cortex-m0plus
 
 # toolchain specific
@@ -57,7 +58,7 @@ else
 	OBJ_FOLDER = $(strip $(OUT_DIR))/
 endif
 
-COMPILER_OPTIONS  = -g -ggdb -Os -Wall -fno-strict-aliasing
+COMPILER_OPTIONS  = -ggdb -Os -Wall -fno-strict-aliasing
 COMPILER_OPTIONS += -ffunction-sections -fdata-sections -fno-exceptions -fno-delete-null-pointer-checks
 COMPILER_OPTIONS += -fmessage-length=0 -fno-builtin -m$(INSTRUCTION_MODE)
 COMPILER_OPTIONS += -mcpu=$(CPU) -MMD -MP $(CC_SYMBOLS)
@@ -136,6 +137,9 @@ $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT): $(LD_SCRIPT) $(C_OBJS) $(CPP_OBJS) $(S_OBJ
 	@echo 'Finished building target: $@'
 	@echo ' '
 
+$(OBJ_FOLDER)$(TARGET).s19: $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT)
+	arm-none-eabi-objcopy -O srec $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT) $(OBJ_FOLDER)$(TARGET).s19
+
 # Other Targets
 clean:
 	@echo 'Removing entire out directory'
@@ -152,3 +156,14 @@ print_info:
 	@echo ' '
 
 .PHONY: all clean print_info
+
+flash: $(OBJ_FOLDER)$(TARGET).s19
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/flash.cfg --command 'flash write_image  erase $(OBJ_FOLDER)$(TARGET).s19 0 s19' --command 'verify_image $(OBJ_FOLDER)$(TARGET).s19 0 s19' -f ocdStuff/flashExit.cfg
+
+debug: 
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/flash.cfg --command 'flash write_image $(OBJ_FOLDER)$(TARGET).s19 0 s19' --command 'verify_image $(OBJ_FOLDER)$(TARGET).s19 0 s19' 
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/debug.cfg &&
+	arm-none-eabigdb $(OBJ_FOLDER)$(TARGET).elf -x ocdStuff/gdb.cfg
+		
+erase:
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/erase.cfg 

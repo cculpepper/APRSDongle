@@ -254,6 +254,7 @@ extern uint32_t SystemCoreClock;
  * the variable SystemCoreClock. SystemInit is called from startup_device file.
  */
 void SystemInit (void);
+void Reset_Handler(void);
 
 /**
  * @brief Updates the SystemCoreClock variable.
