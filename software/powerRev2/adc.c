@@ -13,7 +13,7 @@
 #include "adc.h"
 
 const uint8_t ADCSourceBytes[ADC_NUM_SOURCES] = {SCswitchV, SCbatteryV, SCmainI, SCexternT, SCinputV, SCswitchI, SCbatI, SCinternT};
-const float ADCConversionMult[ADC_NUM_SOURCES] ={};
+const float ADCConversionMult[ADC_NUM_SOURCES];// = {};
 volatile int16_t ADCResults[ADC_NUM_SOURCES];
 volatile int ADCResultIndex;
 volatile int ADCResultDirty;

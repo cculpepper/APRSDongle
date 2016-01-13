@@ -1,0 +1,39 @@
+
+T0774 000:431 SEGGER J-Link V4.98b Log File (0001ms, 0279ms total)
+T0774 000:431 DLL Compiled: Apr 10 2015 20:15:52 (0001ms, 0279ms total)
+T0774 000:431 Logging started @ 2016-01-12 21:07 (0001ms, 0279ms total)
+T0774 000:432 JLINK_SetWarnOutHandler(...) (0000ms, 0279ms total)
+T0774 000:432 JLINK_OpenEx(...)
+Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+Hardware: V8.00
+S/N: 308622870
+Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFULL  returns O.K. (0272ms, 0551ms total)
+T0774 000:704 JLINK_SetErrorOutHandler(...) (0000ms, 0551ms total)
+T0774 000:704 JLINK_ExecCommand("ProjectFile = "C:\Users\chris\workspace\APRSDongle\software\powerRev2\JLinkSettings.ini"", ...)  returns 0x00 (0001ms, 0552ms total)
+T0774 000:705 JLINK_ExecCommand("Device = MKL03Z16xxx4", ...)Device "MKL03Z16XXX4" selected.  returns 0x00 (0000ms, 0552ms total)
+T0774 000:706 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetHardwareVersion()  returns 0x13880 (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetDLLVersion()  returns 49802 (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetFirmwareString(...) (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetDLLVersion()  returns 49802 (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetCompileDateTime() (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetFirmwareString(...) (0000ms, 0553ms total)
+T0774 000:706 JLINK_GetHardwareVersion()  returns 0x13880 (0000ms, 0553ms total)
+T0774 000:706 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0005ms, 0558ms total)
+T0774 000:711 JLINK_SetMaxSpeed() (0002ms, 0560ms total)
+T0774 000:713 JLINK_GetSpeed()  returns 0xC8 (0000ms, 0560ms total)
+T0774 000:713 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)  returns JLINKARM_RESET_TYPE_NORMAL (0001ms, 0561ms total)
+T0774 000:714 JLINK_Reset()JLINK_GetId()  returns 0x00000000 (0002ms, 0565ms total)
+T0774 000:718 JLINK_GetId()  returns 0x00000000 (0002ms, 0567ms total)
+T0774 000:723 JLINK_GetFirmwareString(...) (0000ms, 0567ms total)
+T0E6C 000:723 
+  ***** Error: Connection to emulator lost! (192078ms, 192645ms total)
+T0E6C 000:723 
+  ***** Error: Connection to emulator lost! (206979ms, 207546ms total)
+T0E6C 000:723 
+  ***** Error: Connection to emulator lost! (216129ms, 216696ms total)
+T0E6C 000:723 
+  ***** Error: Connection to emulator lost! (224580ms, 225147ms total)
+T0774 289:145 JLINK_Close() (0000ms, 0567ms total)
+T0774 289:145  (0000ms, 0567ms total)
+T0774 289:145 Closed (0000ms, 0567ms total)

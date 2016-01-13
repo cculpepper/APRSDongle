@@ -10,7 +10,7 @@ Spring 2015
 */
 #ifndef ADC_H
 #define ADC_H
-#include <common.h>
+#include "common.h"
 
 void ADC0_INIT(void) ;
 

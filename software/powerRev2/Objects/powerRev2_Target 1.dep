@@ -1,0 +1,65 @@
+Dependencies for Project 'powerRev2', Target 'Target 1': (DO NOT MODIFY !)
+F (.\adc.c)(0x5695AEBA)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\core-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="513" -D_RTE_ -DMKL03Z16xxx4-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
+I (common.h)(0x5695AD52)
+I (.\core\MKL03Z4.h)(0x5629A320)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476D400)
+I (.\core\core_cm0plus.h)(0x5695AD52)
+I (.\core\core_cmInstr.h)(0x5695AD52)
+I (.\core\core_cmFunc.h)(0x5695AD52)
+I (.\core\system_MKL03Z4.h)(0x5695AD52)
+I (adc.h)(0x5695AEAD)
+F (.\adc.h)(0x5695AEAD)()
+F (.\common.h)(0x5695AD52)()
+F (.\delay.c)(0x5629A320)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\core-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="513" -D_RTE_ -DMKL03Z16xxx4-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
+I (common.h)(0x5695AD52)
+I (.\core\MKL03Z4.h)(0x5629A320)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476D400)
+I (.\core\core_cm0plus.h)(0x5695AD52)
+I (.\core\core_cmInstr.h)(0x5695AD52)
+I (.\core\core_cmFunc.h)(0x5695AD52)
+I (.\core\system_MKL03Z4.h)(0x5695AD52)
+F (.\delay.h)(0x5629A320)()
+F (.\gpio.h)(0x5695AD52)()
+F (.\i2c.c)(0x5695AD52)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\core-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="513" -D_RTE_ -DMKL03Z16xxx4-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
+I (i2c.h)(0x5695AD52)
+I (common.h)(0x5695AD52)
+I (.\core\MKL03Z4.h)(0x5629A320)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476D400)
+I (.\core\core_cm0plus.h)(0x5695AD52)
+I (.\core\core_cmInstr.h)(0x5695AD52)
+I (.\core\core_cmFunc.h)(0x5695AD52)
+I (.\core\system_MKL03Z4.h)(0x5695AD52)
+F (.\i2c.h)(0x5695AD52)()
+F (.\main.c)(0x5695AD52)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\core-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="513" -D_RTE_ -DMKL03Z16xxx4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (main.h)(0x5695AD52)
+I (common.h)(0x5695AD52)
+I (.\core\MKL03Z4.h)(0x5629A320)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476D400)
+I (.\core\core_cm0plus.h)(0x5695AD52)
+I (.\core\core_cmInstr.h)(0x5695AD52)
+I (.\core\core_cmFunc.h)(0x5695AD52)
+I (.\core\system_MKL03Z4.h)(0x5695AD52)
+F (.\main.h)(0x5695AD52)()
+F (.\uart.c)(0x5695AD52)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\core-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="513" -D_RTE_ -DMKL03Z16xxx4-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
+I (common.h)(0x5695AD52)
+I (.\core\MKL03Z4.h)(0x5629A320)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476D400)
+I (.\core\core_cm0plus.h)(0x5695AD52)
+I (.\core\core_cmInstr.h)(0x5695AD52)
+I (.\core\core_cmFunc.h)(0x5695AD52)
+I (.\core\system_MKL03Z4.h)(0x5695AD52)
+I (uart.h)(0x5695AD52)
+F (.\uart.h)(0x5695AD52)()
+F (.\core\core_cm0plus.h)(0x5695AD52)()
+F (.\core\core_cmFunc.h)(0x5695AD52)()
+F (.\core\core_cmInstr.h)(0x5695AD52)()
+F (.\core\MKL03Z4.h)(0x5629A320)()
+F (RTE\Device\MKL03Z16xxx4\startup_MKL03Z4.s)(0x53B2E1B8)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include--pd "__UVISION_VERSION SETA 513" --pd "_RTE_ SETA 1" --pd "MKL03Z16xxx4 SETA 1"--list .\listings\startup_mkl03z4.lst --xref -o .\objects\startup_mkl03z4.o --depend .\objects\startup_mkl03z4.d)
+F (RTE\Device\MKL03Z16xxx4\system_MKL03Z4.c)(0x53AAFBF2)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\core-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE-I C:\Users\chris\workspace\APRSDongle\software\powerRev2\RTE\Device\MKL03Z16xxx4-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include-D__UVISION_VERSION="513" -D_RTE_ -DMKL03Z16xxx4-o .\objects\system_mkl03z4.o --omf_browse .\objects\system_mkl03z4.crf --depend .\objects\system_mkl03z4.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5476D400)
+I (core\MKL03Z4.h)(0x5629A320)
+I (core\core_cm0plus.h)(0x5695AD52)
+I (.\core\core_cmInstr.h)(0x5695AD52)
+I (.\core\core_cmFunc.h)(0x5695AD52)
+I (core\system_MKL03Z4.h)(0x5695AD52)
+F (RTE\Device\MKL03Z16xxx4\system_MKL03Z4.h)(0x53D2986A)()
