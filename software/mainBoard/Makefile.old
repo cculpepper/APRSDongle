@@ -1,0 +1,32 @@
+project=APRSDongle
+SOURCES=$(wildcard ,/*.c) $(wildcard ./Generated_Code/*.c)  
+all: $(SOURCES)
+	echo Making the program....
+	sh ./make.sh
+
+
+srec: all
+	echo Converting to srecord...
+	wine ~/.wine/drive_c/Keil_v5/ARM/ARMCC/bin/fromelf.exe --m32combined ./UVBuild/kl26test2.axf --output ./$(project).srec
+
+
+DEPLOY_VOLUME = $(shell df -h 2>/dev/null | fgrep " 128M" | awk '{print $$6}')
+deploy: $(project).srec srec
+	echo Deploying to $(DEPLOY_VOLUME)
+	dd conv=fsync bs=64k if=./$(project).srec of=$(DEPLOY_VOLUME)/$(project).srec
+		
+clean:
+	rm ./Objects/*
+
+
+
+flash: $(OBJ_FOLDER)$(TARGET).s19
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/flash.cfg --command 'flash write_image  erase $(OBJ_FOLDER)$(TARGET).s19 0 s19' --command 'verify_image $(OBJ_FOLDER)$(TARGET).s19 0 s19' -f ocdStuff/flashExit.cfg
+
+debug: 
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/flash.cfg --command 'flash write_image $(OBJ_FOLDER)$(TARGET).s19 0 s19' --command 'verify_image $(OBJ_FOLDER)$(TARGET).s19 0 s19' 
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/debug.cfg &&
+	arm-none-eabigdb $(OBJ_FOLDER)$(TARGET).elf -x ocdStuff/gdb.cfg
+		
+erase:
+	sudo openocd -f ocdStuff/jlink.cfg -c "transport select swd" -f /usr/share/openocd/scripts/target/klx.cfg -f ocdStuff/erase.cfg 

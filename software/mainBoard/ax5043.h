@@ -1,3 +1,4 @@
+#include <stdint.h>
 #define AX_REG_SILICONREVISION 		0x000 	/* Silicon Revision */        
 #define AX_REG_SCRATCH 			0x001 	/* Scratch */         
 #define AX_REG_PWRMODE 			0x002 	/* Power Mode */        
@@ -29,6 +30,31 @@
 #define AX_REG_PINSTATE 		0x020 	/* Pin State */        
 #define AX_REG_PINFUNCSYSCLK 		0x021 	/* Pin Function SYSCLK */       
 #define AX_REG_PINFUNCDCLK 		0x022 	/* Pin Function DCLK */       
+#define AX_REG_PINFUNCDATA 		0x023 	/* Pin Function DATA */       
+#define AX_REG_PINFUNCIRQ 		0x024 	/* Pin Function IRQ */       
+#define AX_REG_PINFUNCANTSEL 		0x025 	/* Pin Function ANTSEL */       
+#define AX_REG_PINFUNCPWRAMP 		0x026 	/* Pin Function PWRAMP */       
+#define AX_REG_PWRAMP 			0x027 	/* PWRAMP Control */        
+#define AX_REG_FIFOSTAT 		0x028 	/* FIFO Control */        
+#define AX_REG_FIFODATA 		0x029 	/* FIFO Data */        
+#define AX_REG_FIFOCOUNT1 		0x02A 	/* Number of Words currently in FIFO 1 */   
+#define AX_REG_FIFOCOUNT0 		0x02B 	/* Number of Words currently in FIFO 0 */   
+#define AX_REG_FIFOFREE1 		0x02C 	/* Number of Words that can be written to FIFO 1 */
+#define AX_REG_FIFOFREE0 		0x02D 	/* Number of Words that can be written to FIFO 0 */
+#define AX_REG_FIFOTHRESH1 		0x02E 	/* FIFO Threshold 1 */       
+#define AX_REG_FIFOTHRESH0 		0x02F 	/* FIFO Threshold 0 */       
+#define AX_REG_PLLLOOP 			0x030 	/* PLL Loop Filter Settings */      
+#define AX_REG_PLLCPI 			0x031 	/* PL Charge Pump Current */      
+#define AX_REG_PLLVCODIV 		0x032 	/* PLL Divider Settings */       
+#define AX_REG_PLLRANGINGA 		0x033 	/* PLL Autoranging A */       
+#define AX_REG_FREQA3 			0x034 	/* Frequency A 3 */       
+#define AX_REG_FREQA2 			0x035 	/* Frequency A 2 */       
+#define AX_REG_FREQA1 			0x036 	/* Frequency A 1 */       
+#define AX_REG_FREQA0 			0x037 	/* Frequency A 0 */       
+#define AX_REG_PLLLOOPBOOST 		0x038 	/* PLL Loop Filter Settings (Boosted) */     
+#define AX_REG_PLLCPIBOOST 		0x039 	/* PLL Charge Pump Current (Boosted) */     
+#define AX_REG_PLLRANGINGB 		0x03B 	/* PLL Autoranging B */       
+#define AX_REG_FREQB3 			0x03C 	/* Frequency B 3 */       
 #define AX_REG_PINFUNCDATA 		0x023 	/* Pin Function DATA */       
 #define AX_REG_PINFUNCIRQ 		0x024 	/* Pin Function IRQ */       
 #define AX_REG_PINFUNCANTSEL 		0x025 	/* Pin Function ANTSEL */       
@@ -291,31 +317,6 @@
 #define AX_REG_PWRMODE_FIFOEN_MASK 	(0x07)
 #define AX_REG_PWRMODE_SYNTH_RUN_RX_MASK (0x08) /* Synth is running , its in receive mode*/ 
 #define AX_REG_PWRMODE_RX_RUN_MASK 	(0x09)
-#define AX_REG_PWRMODE_WOR_MASK 	(0x0B)
-#define AX_REG_PWRMODE_SYNTH_RUN_TX_MASK (0x0C)
-#define AX_REG_PWRMODE_TX_RUN_MASK 	(0x0D)
-#define AX_REG_PWRMODE_WDS_MASK 	(1<<4) /* Wakeup from deep sleep.*/ 
-#define AX_REG_PWRMODE_REFEN_MASK 	(1<<5) /* Set to one to power the internal reference circuitry*/ 
-#define AX_REG_PWRMODE_XOEN_MASK 	(1<<6) /* Set to enable the crystal oscilator*/ 
-#define AX_REG_PWRMODE_RST_MASK 	(1<<7) /* Set this to 1 will reset the whole chip. Will remain in reset until bit is cleared*/ 
-
-#define AX_REG_IRQMASK0_FIFO_NOTEMPTY_MASK 	(1<<0) /* FIFO not empty interrupt enable*/ 
-#define AX_REG_IRQMASK0_FIFO_NOTFULL_MASK 	(1<<1) /* FIFO not full inturruyt enable*/ 
-#define AX_REG_IRQMASK0_FIFO_THRCNT_MASK 	(1<<2) /* FIFO count > threshold interrupt enable*/ 
-#define AX_REG_IRQMASK0_FIFO_THRFREE_MASK 	(1<<3) /* FIFO free > threshold interrupt enable*/ 
-#define AX_REG_IRQMASK0_FIFO_ERROR_MASK 	(1<<4) /* FIFO error interrupt enable*/ 
-#define AX_REG_IRQMASK0_PLL_UNLOCK_MASK 	(1<<5) /* PLL lock lost inturrupt enable*/ 
-#define AX_REG_IRQMASK0_RADIO_CTRL_MASK 	(1<<6) /* Radio controller inturrupt enable*/ 
-#define AX_REG_IRQMASK0_POWER_MASK 	 	(1<<7) /* Power interrupt enable*/ 
-#define AX_REG_IRQMASK1_XTAL_READY_MASK 	(1<<0) /* Crystal oscillator ready interrupt enable*/ 
-#define AX_REG_IRQMASK1_WAKEUP_TIMER_MASK 	(1<<1) /* Wakeup timer interrupt enable*/ 
-#define AX_REG_IRQMASK1_LP_OSC_MASK 		(1<<2) /* Low power oscillator inturrupt enable*/ 
-#define AX_REG_IRQMASK1_GPADC_MASK 		(1<<3) /* GPADC interrupt enable*/ 
-#define AX_REG_IRQMASK1_PLL_RNG_DONE_MASK 	(1<<4) /* PLL autoranging done interrupt enable*/ 
-
-
-
-#define AX_REG_IRQINVERSION0_FIFO_NOTEMPTY_MASK (1<<0) /* FIFO not empty interrupt inversion*/ 
 #define AX_REG_IRQINVERSION0_FIFO_NOTFULL_MASK 	(1<<1) /* FIFO not full inturruyt inversion*/ 
 #define AX_REG_IRQINVERSION0_FIFO_THRCNT_MASK 	(1<<2) /* FIFO count > threshold interrupt inversion*/ 
 #define AX_REG_IRQINVERSION0_FIFO_THRFREE_MASK 	(1<<3) /* FIFO free > threshold interrupt inversion*/ 
@@ -328,3 +329,213 @@
 #define AX_REG_IRQINVERSION1_LP_OSC_MASK 		(1<<2) /* Low power oscillator inturrupt inversion*/ 
 #define AX_REG_IRQINVERSION1_GPADC_MASK 		(1<<3) /* GPADC interrupt inversion*/ 
 #define AX_REG_IRQINVERSION1_PLL_RNG_DONE_MASK 	(1<<4) /* PLL autoranging done interrupt inversion*/ 
+
+
+#define AX_REG_MODULATION_ASK_MASK 		(0x00)
+#define AX_REG_MODULATION_ASK_COHERENT_MASK 	(0x01)
+#define AX_REG_MODULATION_PSK_MASK 		(0x04)
+#define AX_REG_MODULATION_OQSK_MASK 		(0x06)
+#define AX_REG_MODULATION_MSK_MASK 		(0x07)
+#define AX_REG_MODULATION_FSK_MASK 		(0x08)
+#define AX_REG_MODULATION_4FSK_MASK 		(0x09)
+#define AX_REG_MODULATION_AFSK_MASK 		(0x0A)
+#define AX_REG_MODULATION_FM_MASK 		(0x0B)
+#define AX_REG_MODULATION_RX_HALFSPEED_MASK 	(1<<4) /* Sets the receiver to half speed bitrate*/ 
+
+
+#define AX_REG_ENCODING_INV_MASK 		(1<<0)  /* Invert data if set to 1*/ 
+#define AX_REG_ENCODING_DIFF_MASK 		(1<<1)  /* Enable differential encode/decode*/ 
+#define AX_REG_ENCODING_SCRAM_MASK 		(1<<2)  /* Enable the scrambler*/ 
+#define AX_REG_ENCODING_MANCH_MASK 		(1<<3)  /* Enable manchester encoding*/ 
+#define AX_REG_ENCODING_NOSYNC_MASK 		(1<<4)  /* Disable dibit sync in 4fsk mode*/ 
+/* To use NRZI, set inv to high, and set diff to 1*/ 
+
+
+#define AX_REG_FRAMING_FABORT_MASK 		(1<<0)
+#define AX_REG_FRAMING_FRMMODE_RAW_MASK		(0x00 << 1)
+#define AX_REG_FRAMING_FRMMODE_RAW_SOFT_MASK	(0x01 << 1)
+#define AX_REG_FRAMING_FRMMODE_HDLC_MASK	(0x02 << 1)
+#define AX_REG_FRAMING_FRMMODE_RAW_PAT_MATCH_MASK (0x03 << 1)
+#define AX_REG_FRAMING_FRMMODE_MBUS_MASK	(0x04 << 1)
+#define AX_REG_FRAMING_FRMMODE_MBUS_4TO6_MASK	(0x05 << 1)
+
+#define AX_REG_FRAMING_CRC_OFF_MASK 		(0x00 << 4)
+#define AX_REG_FRAMING_CRC_CCITT_MASK 		(0x01 << 4)
+#define AX_REG_FRAMING_CRC_CRC16_MASK 		(0x02 << 4)
+#define AX_REG_FRAMING_CRC_DNP_MASK 		(0x03 << 4)
+#define AX_REG_FRAMING_CRC_CRC32_MASK 		(0x04 << 4)
+
+#define AX_REG_FRAMING_FRMRX_MASK 		(0x01 << 7) /* Flag set when flag is detected in HDLC mode or when preamble matches in raw pattern mode. Cleared by writting 1 to FABORT*/ 
+
+
+
+#define AX_REG_FEC_FECEN_MASK 			(1<<0) /* Enable FEC*/ 
+
+#define AX_REG_RADIOSTATE_IDLE_MASK 		(0x00)
+#define AX_REG_RADIOSTATE_POWER_DOWN_MASK 	(0x01)
+#define AX_REG_RADIOSTATE_TX_PLL_MASK 		(0x04)
+#define AX_REG_RADIOSTATE_TX_MASK 		(0x06)
+#define AX_REG_RADIOSTATE_TX_TAIL_MASK 		(0x07)
+#define AX_REG_RADIOSTATE_RX_PLL_MASK 		(0x08)
+#define AX_REG_RADIOSTATE_RX_ANT_MASK 		(0x09)
+#define AX_REG_RADIOSTATE_RX_PREAMBLE_1_MASK 	(0x0C)
+#define AX_REG_RADIOSTATE_RX_PREAMBLE_1_MASK 	(0x0D)
+#define AX_REG_RADIOSTATE_RX_PREAMBLE_1_MASK 	(0x0E)
+#define AX_REG_RADIOSTATE_RX_MASK 	 	(0x0F)
+
+
+#define AX_REG_XTALSTATUS_MASK 			(0x01) /* A 1 indicates that the crystal oscilator is up and running. */ 
+
+
+#define AX_REG_PINSTATE_SYSCLK_MASK 		(1<<0)
+#define AX_REG_PINSTATE_DCLK_MASK 		(1<<1)
+#define AX_REG_PINSTATE_DATA_MASK 		(1<<2)
+#define AX_REG_PINSTATE_IRQ_MASK 		(1<<3)
+#define AX_REG_PINSTATE_ANTSEL_MASK 		(1<<4)
+#define AX_REG_PINSTATE_PWRAMP_MASK 		(1<<5)
+
+#define AX_REG_PINFUNSYSCLK_OUT_ZERO_MASK 	(0x00)
+#define AX_REG_PINFUNSYSCLK_OUT_ONE_MASK 	(0x01)
+#define AX_REG_PINFUNSYSCLK_OUT_HIGHZ_MASK 	(0x02)
+#define AX_REG_PINFUNSYSCLK_OUT_INV_XTAL_MASK 	(0x03)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_MASK 	(0x04)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV2_MASK 	(0x05)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV4_MASK 	(0x06)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV8_MASK 	(0x07)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV16_MASK (0x08)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV32_MASK (0x09)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV64_MASK (0x0A)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV128_MASK 	(0x0B)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV256_MASK 	(0x0C)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV512_MASK 	(0x0D)
+#define AX_REG_PINFUNSYSCLK_OUT_XTAL_DIV1024_MASK 	(0x0E)
+#define AX_REG_PINFUNSYSCLK_OUT_LP_OSC_MASK 		(0x0F)
+#define AX_REG_PINFUNSYSCLK_OUT_TEST_OBS_OSC_MASK 	(0x1F)
+
+#define AX_REG_PINFUNSYSCLK_PUSYCLK_MASK 	(1<<7) /* Enables the weak pullup*/ 
+
+
+#define AX_REG_PINFUNCIRQ_ZERO_MASK 		(0x00)
+#define AX_REG_PINFUNCIRQ_ONE_MASK 		(0x01)
+#define AX_REG_PINFUNCIRQ_HIGH_Z_MASK 		(0x02)
+#define AX_REG_PINFUNCIRQ_IRQ_MASK 		(0x03) /* Enables the IRQ output*/ 
+#define AX_REG_PINFUNCIRQ_TEST_OBS_MASK 	(0x07)
+#define AX_REG_PINFUNCIRQ_PIIRQ_MASK 		(1 << 6) /* Inverts the data on the IRQ line*/ 
+#define AX_REG_PINFUNCIRQ_PUIRQ_MASK 		(1 << 7) /* Enables the weak pullup on the IRQ line*/ 
+
+
+#define AX_REG_PINFUNCANTSEL_ZERO_MASK 		(0x00) /* Outputs zero on the antenna select pin*/ 
+#define AX_REG_PINFUNCANTSEL_ONE_MASK 		(0x01)
+#define AX_REG_PINFUNCANTSEL_HIGH_Z_MASK 	(0x02)
+#define AX_REG_PINFUNCANTSEL_BASEBAND_CLK_MASK 	(0x03)
+#define AX_REG_PINFUNCANTSEL_EXTERNAL_TCXO_MASK (0x04)
+#define AX_REG_PINFUNCANTSEL_DAC_MASK 		(0x05)
+#define AX_REG_PINFUNCANTSEL_DIVERSITY_ANT_SEL_MASK (0x06)
+#define AX_REG_PINFUNCANTSEL_TEST_OBS_MASK 	(0x07)
+#define AX_REG_PINFUNCANTSEL_INV_MASK 	 	(1<<6)
+#define AX_REG_PINFUNCANTSEL_PULLUP_MASK 	(1<<7)
+
+struct reg_pair{
+	uint16_t address;
+	uint8_t  data;
+} ;
+typedef struct reg_pair reg_pair;
+struct ax_settings{ /* Register setting struct */ 
+	reg_pair MODULATION;
+	reg_pair ENCODING;
+	reg_pair FRAMING; 
+	reg_pair PINFUNCSYSCLK;
+	reg_pair PINFUNCANTSEL;
+	reg_pair PINFUNCPWRAMP;
+	reg_pair WAKEUPXOEARLY;
+	reg_pair IFFREQ1;
+	reg_pair IFFREQ0;
+	reg_pair DECIMATION;
+	reg_pair RXDATARATE2;
+	reg_pair RXDATARATE1;
+	reg_pair RXDATARATE0;
+	reg_pair MAXDROFFSET2;
+	reg_pair MAXDROFFSET1;
+	reg_pair MAXDROFFSET0;
+	reg_pair MAXRFOFFSET2;
+	reg_pair MAXRFOFFSET1;
+	reg_pair MAXRFOFFSET0;
+	reg_pair FSKDMAX1;
+	reg_pair FSKDMAX0;
+	reg_pair FSKDMIN1;
+	reg_pair FSKDMIN0;
+	reg_pair AMPLFILTER;
+	reg_pair RXPARAMSETS;
+	reg_pair AGCGAIN0;
+	reg_pair AGCTARGET0;
+	reg_pair TIMEGAIN0;
+	reg_pair DRGAIN0;
+	reg_pair PHASEGAIN0;
+	reg_pair FREQUENCYGAINA0;
+	reg_pair FREQUENCYGAINB0;
+	reg_pair FREQUENCYGAINC0;
+	reg_pair FREQUENCYGAIND0;
+	reg_pair AMPLITUDEGAIN0;
+	reg_pair FREQDEV10;
+	reg_pair FREQDEV00;
+	reg_pair BBOFFSRES0;
+	reg_pair AGCGAIN1;
+	reg_pair AGCTARGET1;
+	reg_pair AGCAHYST1;
+	reg_pair AGCMINMAX1;
+	reg_pair TIMEGAIN1;
+	reg_pair DRGAIN1;
+	reg_pair PHASEGAIN1;
+	reg_pair FREQUENCYGAINA1;
+	reg_pair FREQUENCYGAINB1;
+	reg_pair FREQUENCYGAINC1; 
+}; 
+struct ax_settings ax_reg_settings = {
+.MODULATION  =  { .address = AX_REG_MODULATION, 		.data = 0x08},
+.ENCODING ={ .address = AX_REG_ENCODING,			.data=0x00},
+.FRAMING = { .address=AX_REG_FRAMING,			  .data=0x14},
+.PINFUNCANTSEL  = { .address=AX_REG_PINFUNCANTSEL,	  .data=0x05},
+.PINFUNCPWRAMP  = { .address=AX_REG_PINFUNCPWRAMP,	  .data=0x00},
+.WAKEUPXOEARLY  = { .address=AX_REG_WAKEUPXOEARLY,	  .data=0x01},
+.IFFREQ1  = { .address=AX_REG_IFFREQ1,			  .data=0x00},
+.IFFREQ0  = { .address=AX_REG_IFFREQ0,			  .data=0x89},
+.DECIMATION  = { .address=AX_REG_DECIMATION,	       	  .data=0x7F},
+.RXDATARATE2  = { .address=AX_REG_RXDATARATE2,		  .data=0x00},
+.RXDATARATE1  = { .address=AX_REG_RXDATARATE1,		  .data=0x4E},
+.RXDATARATE0  = { .address=AX_REG_RXDATARATE0,		  .data=0xBD},
+.MAXDROFFSET2  = { .address=AX_REG_MAXDROFFSET2,	  .data=0x00},
+.MAXDROFFSET1  = { .address=AX_REG_MAXDROFFSET1,	  .data=0x00},
+.MAXDROFFSET0  = { .address=AX_REG_MAXDROFFSET0,	  .data=0x00},
+.MAXRFOFFSET2  = { .address=AX_REG_MAXRFOFFSET2,	  .data=0x80},
+.MAXRFOFFSET1  = { .address=AX_REG_MAXRFOFFSET1,	  .data=0x00},
+.MAXRFOFFSET0  = { .address=AX_REG_MAXRFOFFSET0,	  .data=0x66},
+.FSKDMAX1  = { .address=AX_REG_FSKDMAX1,		  .data=0x00},
+.FSKDMAX0  = { .address=AX_REG_FSKDMAX0,		  .data=0xA6},
+.FSKDMIN1  = { .address=AX_REG_FSKDMIN1,		  .data=0xFF},
+.FSKDMIN0  = { .address=AX_REG_FSKDMIN0,		  .data=0x5A},
+.AMPLFILTER  = { .address=AX_REG_AMPLFILTER,		  .data=0x00},
+.RXPARAMSETS  = { .address=AX_REG_RXPARAMSETS,		  .data=0xF4},
+.AGCGAIN0  = { .address=AX_REG_AGCGAIN0,		  .data=0xE8},
+.AGCTARGET0  = { .address=AX_REG_AGCTARGET0,		  .data=0x84},
+.TIMEGAIN0  = { .address=AX_REG_TIMEGAIN0,		  .data=0x99},
+.DRGAIN0  = { .address=AX_REG_DRGAIN0,			  .data=0x93},
+.PHASEGAIN0  = { .address=AX_REG_PHASEGAIN0,		  .data=0x83},
+.FREQUENCYGAINA0  = { .address=AX_REG_FREQUENCYGAINA0,	  .data=0x0F},
+.FREQUENCYGAINB0  = { .address=AX_REG_FREQUENCYGAINB0,	  .data=0x1F},
+.FREQUENCYGAINC0  = { .address=AX_REG_FREQUENCYGAINC0,	  .data=0x0B},
+.FREQUENCYGAIND0  = { .address=AX_REG_FREQUENCYGAIND0,	  .data=0x0B},
+.AMPLITUDEGAIN0  = { .address=AX_REG_AMPLITUDEGAIN0,	  .data=0x06},
+.FREQDEV10  = { .address=AX_REG_FREQDEV10,		  .data=0x00},
+.FREQDEV00  = { .address=AX_REG_FREQDEV00,		  .data=0x00},
+.BBOFFSRES0  = { .address=AX_REG_BBOFFSRES0,		  .data=0x00},
+.AGCGAIN1  = { .address=AX_REG_AGCGAIN1,		  .data=0xE8},
+.AGCTARGET1  = { .address=AX_REG_AGCTARGET1,		  .data=0x84},
+.AGCAHYST1  = { .address=AX_REG_AGCAHYST1,		  .data=0x00},
+.AGCMINMAX1  = { .address=AX_REG_AGCMINMAX1,		  .data=0x00},
+.TIMEGAIN1  = { .address=AX_REG_TIMEGAIN1,		  .data=0x97},
+.DRGAIN1  = { .address=AX_REG_DRGAIN1,			  .data=0x92},
+.PHASEGAIN1  = { .address=AX_REG_PHASEGAIN1,		  .data=0x83},
+.FREQUENCYGAINA1  = { .address=AX_REG_FREQUENCYGAINA1,	  .data=0x0F},
+.FREQUENCYGAINB1  = { .address=AX_REG_FREQUENCYGAINB1,	  .data=0x1F},
+.FREQUENCYGAINC1  = { .address=AX_REG_FREQUENCYGAINC1,	  .data=0x0B},
+};

@@ -16,7 +16,7 @@
 # limitations under the License.
 
 FOLDER_NAME = core
-LINKER_NAME = MKL03Z16xxx4_flash
+LINKER_NAME = MKL03Z32xxx4_flash
 #LINKER_NAME = MKL03Z4
 CPU = cortex-m0plus
 
@@ -148,7 +148,7 @@ clean:
 
 print_info:
 	@echo 'Printing size'
-	arm-none-eabi-size --totals $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT)
+	arm-none-eabi-size --totals build/*.o $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT)
 	arm-none-eabi-objcopy -O srec $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT) $(OBJ_FOLDER)$(TARGET).s19
 	arm-none-eabi-objcopy -O binary -v $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT) $(OBJ_FOLDER)$(TARGET).bin
 	arm-none-eabi-objdump -D $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT) > $(OBJ_FOLDER)$(TARGET).lst

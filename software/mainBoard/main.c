@@ -55,11 +55,6 @@ void clockInit(){
 	SIM->CLKDIV1 = 1 << SIM_CLKDIV1_OUTDIV4_SHIFT; // Divide the core clock by two for the bus clock. 
 
 }
-void SystemInit(){
-//	PTC->PCOR = 0xf00;
-//	main();
-
-}
 void start(){
 	//_start();
 	//init_mempool();
