@@ -1,4 +1,4 @@
-update=Sun 06 Mar 2016 10:40:15 PM PST
+update=Thu 24 Mar 2016 09:15:57 PM PDT
 version=1
 last_client=kicad
 [cvpcb]
@@ -28,7 +28,7 @@ BoardOutlineThickness=0.09999999999999999
 ModuleOutlineThickness=0.15
 [eeschema]
 version=1
-LibDir=
+LibDir=../../hardware;../../hardwareRev1.pretty
 [eeschema/libraries]
 LibName1=radio-rescue
 LibName2=power
